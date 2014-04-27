@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Prog3
 {
-    public partial class Form1 : Form
+    public partial class form1 : Form
     {
-        public Form1()
+        public form1()
         {
             InitializeComponent();
         }
