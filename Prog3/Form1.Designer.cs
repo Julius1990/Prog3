@@ -42,6 +42,10 @@
             this.randObenPanel = new System.Windows.Forms.Panel();
             this.centerPanel = new System.Windows.Forms.Panel();
             this.menuePanel = new System.Windows.Forms.Panel();
+            this.ansichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
+            this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -88,7 +92,7 @@
             this.linkerContainer.Panel1.AutoScroll = true;
             this.linkerContainer.Panel1.Controls.Add(this.bildPicturebox);
             this.linkerContainer.Size = new System.Drawing.Size(422, 478);
-            this.linkerContainer.SplitterDistance = 362;
+            this.linkerContainer.SplitterDistance = 280;
             this.linkerContainer.TabIndex = 0;
             // 
             // bildPicturebox
@@ -96,7 +100,7 @@
             this.bildPicturebox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bildPicturebox.Location = new System.Drawing.Point(0, 0);
             this.bildPicturebox.Name = "bildPicturebox";
-            this.bildPicturebox.Size = new System.Drawing.Size(420, 360);
+            this.bildPicturebox.Size = new System.Drawing.Size(420, 278);
             this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.bildPicturebox.TabIndex = 0;
             this.bildPicturebox.TabStop = false;
@@ -116,7 +120,8 @@
             // 
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dateiToolStripMenuItem});
+            this.dateiToolStripMenuItem,
+            this.ansichtToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Margin = new System.Windows.Forms.Padding(2);
             this.menuStrip2.Name = "menuStrip2";
@@ -129,7 +134,9 @@
             // 
             this.dateiToolStripMenuItem.AutoSize = false;
             this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.öffnenToolStripMenuItem});
+            this.öffnenToolStripMenuItem,
+            this.speichernUnterToolStripMenuItem,
+            this.beendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
             this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.dateiToolStripMenuItem.Text = "Datei";
@@ -137,7 +144,7 @@
             // öffnenToolStripMenuItem
             // 
             this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.öffnenToolStripMenuItem.Text = "Öffnen";
             this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
             // 
@@ -201,6 +208,26 @@
             this.menuePanel.Size = new System.Drawing.Size(617, 28);
             this.menuePanel.TabIndex = 6;
             // 
+            // ansichtToolStripMenuItem
+            // 
+            this.ansichtToolStripMenuItem.Name = "ansichtToolStripMenuItem";
+            this.ansichtToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
+            this.ansichtToolStripMenuItem.Text = "Ansicht";
+            // 
+            // speichernUnterToolStripMenuItem
+            // 
+            this.speichernUnterToolStripMenuItem.Name = "speichernUnterToolStripMenuItem";
+            this.speichernUnterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.speichernUnterToolStripMenuItem.Text = "Speichern unter";
+            this.speichernUnterToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
+            // 
+            // beendenToolStripMenuItem
+            // 
+            this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.beendenToolStripMenuItem.Text = "Beenden";
+            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,6 +275,10 @@
         private System.Windows.Forms.Panel randObenPanel;
         private System.Windows.Forms.Panel centerPanel;
         private System.Windows.Forms.Panel menuePanel;
+        private System.Windows.Forms.ToolStripMenuItem ansichtToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem speichernUnterToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog bildSpeichernDialog;
+        private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
 
 
     }
