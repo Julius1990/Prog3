@@ -26,6 +26,7 @@ namespace Prog3
         int zwischenSchrittCounter = -1;
         int maxSchritt = 0;
         string zwischenSchrittOrdner = "zwischenSchritte";
+        string speichernUnter;
         
 
     //----------------------------------------------------------------------------------------------------
@@ -55,10 +56,35 @@ namespace Prog3
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
         }
+        private void speichernToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //um an diese Funktion zu kommen, muss der Benutzer vorher die "Speichern unter" Funktion aufgerufen haben
+            string ext = Path.GetExtension(bildOeffnenDialog.FileName);
+            if (ext == ".jpg" || ext == ".jpeg")
+            {
+                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Jpeg);
+            }
+            else if (ext == ".png")
+            {
+                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Png);
+            }
+            else if (ext == ".gif")
+            {
+                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Gif);
+            }
+            else if (ext == ".tif" || ext == ".tiff")
+            {
+                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Tiff);
+            }
+            else if (ext == ".bmp")
+            {
+                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Bmp);
+            }
+        }
         private void speichernUnterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //speichern Dialog anzeigen
-            DialogResult rs = bildOeffnenDialog.ShowDialog();
+            DialogResult rs = bildSpeichernDialog.ShowDialog();
             if (rs == DialogResult.OK)
             {
                 //falls kein Bild geöffnet wurde
@@ -70,26 +96,30 @@ namespace Prog3
                 //Formate: jpeg, png, gif, tif, bmp
                 else
                 {
-                    string ext = Path.GetExtension(bildOeffnenDialog.FileName);
+                    //speichern wird ab jetzt aktiviert, dies speichert unter dem hier angegeben namen
+                    speichernToolStripMenuItem.Visible = true;
+                    speichernUnter = bildSpeichernDialog.FileName;
+
+                    string ext = Path.GetExtension(speichernUnter);
                     if (ext == ".jpg" || ext == ".jpeg")
                     {
-                        bildPicturebox.Image.Save(bildOeffnenDialog.FileName, ImageFormat.Jpeg);
+                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Jpeg);
                     }
                     else if (ext == ".png")
                     {
-                        bildPicturebox.Image.Save(bildOeffnenDialog.FileName, ImageFormat.Png);
+                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Png);
                     }
                     else if (ext == ".gif")
                     {
-                        bildPicturebox.Image.Save(bildOeffnenDialog.FileName, ImageFormat.Gif);
+                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Gif);
                     }
                     else if (ext == ".tif" || ext ==".tiff")
                     {
-                        bildPicturebox.Image.Save(bildOeffnenDialog.FileName, ImageFormat.Tiff);
+                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Tiff);
                     }
                     else if (ext == ".bmp")
                     {
-                        bildPicturebox.Image.Save(bildOeffnenDialog.FileName, ImageFormat.Bmp);
+                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Bmp);
                     }
                 }
             }
@@ -97,6 +127,7 @@ namespace Prog3
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             speichernUnterToolStripMenuItem.Visible = false;
+            speichernToolStripMenuItem.Visible = false;
             schließenToolStripMenuItem.Visible = false;
 
             bildPicturebox.Image = null;
@@ -142,6 +173,7 @@ namespace Prog3
         private void schrittSpeicherLoeschen()
         {
             zwischenSchrittCounter = -1;
+            maxSchritt = zwischenSchrittCounter;
             //sucht alle dateien und löscht diese
             string[] dateien = Directory.GetFiles(zwischenSchrittOrdner);
             foreach (string filePath in dateien)
@@ -208,6 +240,8 @@ namespace Prog3
                 wiederholenToolStripMenuItem.Visible = false;
             rückgängigToolStripMenuItem.Visible = true;
         }
+
+        
 
         
 
