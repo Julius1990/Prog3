@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -22,12 +23,13 @@ namespace Prog3
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
-        int zwischenSchrittCounter = 0;
+        int zwischenSchrittCounter = -1;
+        int maxSchritt = 0;
         string zwischenSchrittOrdner = "zwischenSchritte";
         
 
     //----------------------------------------------------------------------------------------------------
-    //Menu Bar
+    //MenuStrip
         private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Dialog anzeigen
@@ -43,9 +45,15 @@ namespace Prog3
                     schrittSpeicherLoeschen();
 
                     bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
-                    schrittSpeichern((Bitmap)bildPicturebox.Image);    
+                    schrittSpeichern((Bitmap)bildPicturebox.Image);
+
+                    speichernUnterToolStripMenuItem.Visible = true;
+                    schließenToolStripMenuItem.Visible = true;
                 }
             }
+            //rückgängig und wiederholen ausblenden
+            rückgängigToolStripMenuItem.Visible = false;
+            wiederholenToolStripMenuItem.Visible = false;
         }
         private void speichernUnterToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -86,11 +94,31 @@ namespace Prog3
                 }
             }
         }
+        private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            speichernUnterToolStripMenuItem.Visible = false;
+            schließenToolStripMenuItem.Visible = false;
+
+            bildPicturebox.Image = null;
+            schrittSpeicherLoeschen();
+            GC.Collect();
+        }
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bildPicturebox.Image = null;
             schrittSpeicherLoeschen();
+            GC.Collect();
             this.Close();
         }
+        private void rückgängigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            schrittZurueck();
+        }
+        private void wiederholenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            schrittVor();
+        }
+        
     //----------------------------------------------------------------------------------------------------
     //Zwischenschritte
         private void schrittSpeicherAnlegen()
@@ -107,32 +135,87 @@ namespace Prog3
             {
                 System.IO.Directory.CreateDirectory(zwischenSchrittOrdner);
             }
+            //optionen für rückgängig und wiederholen "ausblenden"
+            rückgängigToolStripMenuItem.Visible = false;
+            wiederholenToolStripMenuItem.Visible = false;
         }
         private void schrittSpeicherLoeschen()
         {
-            zwischenSchrittCounter = 0;
+            zwischenSchrittCounter = -1;
             //sucht alle dateien und löscht diese
             string[] dateien = Directory.GetFiles(zwischenSchrittOrdner);
             foreach (string filePath in dateien)
             {
                 File.Delete(filePath);
             }
+            //optionen für rückgängig und wiederholen ausblenden
+            rückgängigToolStripMenuItem.Visible = false;
+            wiederholenToolStripMenuItem.Visible = false;
         }
         private void schrittSpeichern(Bitmap bitmap_in)
         {
-            string dateiName = "zwischenSchritte\\";
-            dateiName += zwischenSchrittCounter.ToString();
-            dateiName += ".bmp";
-            bitmap_in.Save(dateiName);
+            //überflüssig gespeichertes löschen
+            if (maxSchritt>zwischenSchrittCounter)
+            {
+                string[] dateien = Directory.GetFiles(zwischenSchrittOrdner);
+                foreach (string filePath in dateien)
+                {
+                    string name = Path.GetFileNameWithoutExtension(filePath);
+                    Int32 number = Convert.ToInt32(name);
+
+                    if (number > zwischenSchrittCounter)
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+            }
+
             zwischenSchrittCounter++;
+            Debug.WriteLine("ZwischenSchrittCounter: " + zwischenSchrittCounter.ToString());
+
+            //bild speichern
+            string dateiName = "zwischenSchritte\\" + zwischenSchrittCounter.ToString() + ".bmp";
+            bitmap_in.Save(dateiName);
+
+            //rückgängig zulassen oder blockieren
+            if (zwischenSchrittCounter > 0)
+                rückgängigToolStripMenuItem.Visible = true;
+            else
+                rückgängigToolStripMenuItem.Visible = false;
+
+            //wiederholen deaktivieren
+            wiederholenToolStripMenuItem.Visible = false;
+            //benötigt für wiederholen
+            maxSchritt = zwischenSchrittCounter;
         }
         private void schrittZurueck()
         {
             zwischenSchrittCounter--;
-            string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString();
+            string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
             bildPicturebox.Image = Image.FromFile(dateiname);
-
+            if (zwischenSchrittCounter == 0)
+            {
+                rückgängigToolStripMenuItem.Visible = false;
+            }
+            wiederholenToolStripMenuItem.Visible = true;
         }
+        private void schrittVor()
+        {
+            zwischenSchrittCounter++;
+            string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
+            bildPicturebox.Image = Image.FromFile(dateiname);
+            if (zwischenSchrittCounter == maxSchritt)
+                wiederholenToolStripMenuItem.Visible = false;
+            rückgängigToolStripMenuItem.Visible = true;
+        }
+
+        
+
+        
+
+        
+
+        
 
     }
 
