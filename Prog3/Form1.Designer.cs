@@ -46,6 +46,9 @@
             this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wiederholenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -121,6 +124,7 @@
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dateiToolStripMenuItem,
+            this.bearbeitenToolStripMenuItem,
             this.ansichtToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Margin = new System.Windows.Forms.Padding(2);
@@ -138,7 +142,7 @@
             this.speichernUnterToolStripMenuItem,
             this.beendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.dateiToolStripMenuItem.Text = "Datei";
             // 
             // öffnenToolStripMenuItem
@@ -226,7 +230,27 @@
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
             this.beendenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
-            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            // 
+            // bearbeitenToolStripMenuItem
+            // 
+            this.bearbeitenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rückgängigToolStripMenuItem,
+            this.wiederholenToolStripMenuItem});
+            this.bearbeitenToolStripMenuItem.Name = "bearbeitenToolStripMenuItem";
+            this.bearbeitenToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
+            this.bearbeitenToolStripMenuItem.Text = "Bearbeiten";
+            // 
+            // rückgängigToolStripMenuItem
+            // 
+            this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rückgängigToolStripMenuItem.Text = "Rückgängig";
+            // 
+            // wiederholenToolStripMenuItem
+            // 
+            this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wiederholenToolStripMenuItem.Text = "Wiederholen";
             // 
             // form1
             // 
@@ -279,6 +303,9 @@
         private System.Windows.Forms.ToolStripMenuItem speichernUnterToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog bildSpeichernDialog;
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bearbeitenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rückgängigToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wiederholenToolStripMenuItem;
 
 
     }

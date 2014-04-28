@@ -17,7 +17,14 @@ namespace Prog3
         public form1()
         {
             InitializeComponent();
+            schrittSpeicherAnlegen();
+            
         }
+    //----------------------------------------------------------------------------------------------------
+    //Globale Variablen
+        int zwischenSchrittCounter = 0;
+        string zwischenSchrittOrdner = "zwischenSchritte";
+        
 
     //----------------------------------------------------------------------------------------------------
     //Menu Bar
@@ -32,7 +39,11 @@ namespace Prog3
                 //sortiert die NICHT Bildformate aus
                 if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
                 {
+                    //alte zwischenschritte löschen
+                    schrittSpeicherLoeschen();
+
                     bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
+                    schrittSpeichern((Bitmap)bildPicturebox.Image);    
                 }
             }
         }
@@ -77,8 +88,52 @@ namespace Prog3
         }
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            schrittSpeicherLoeschen();
             this.Close();
         }
-    
+    //----------------------------------------------------------------------------------------------------
+    //Zwischenschritte
+        private void schrittSpeicherAnlegen()
+        {
+            //Ordner für Zwischenschritte anlegen
+            bool existiert = System.IO.Directory.Exists(zwischenSchrittOrdner);
+            //falls er existiert, lösche den Inhalt
+            if (existiert)
+            {
+                schrittSpeicherLoeschen();
+            }
+            //falls er nicht existiert, legt er den Ordner an
+            else if (!existiert)
+            {
+                System.IO.Directory.CreateDirectory(zwischenSchrittOrdner);
+            }
+        }
+        private void schrittSpeicherLoeschen()
+        {
+            zwischenSchrittCounter = 0;
+            //sucht alle dateien und löscht diese
+            string[] dateien = Directory.GetFiles(zwischenSchrittOrdner);
+            foreach (string filePath in dateien)
+            {
+                File.Delete(filePath);
+            }
+        }
+        private void schrittSpeichern(Bitmap bitmap_in)
+        {
+            string dateiName = "zwischenSchritte\\";
+            dateiName += zwischenSchrittCounter.ToString();
+            dateiName += ".bmp";
+            bitmap_in.Save(dateiName);
+            zwischenSchrittCounter++;
+        }
+        private void schrittZurueck()
+        {
+            zwischenSchrittCounter--;
+            string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString();
+            bildPicturebox.Image = Image.FromFile(dateiname);
+
+        }
+
     }
+
 }
