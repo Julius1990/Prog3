@@ -42,8 +42,7 @@ namespace Prog3
                 //sortiert die NICHT Bildformate aus
                 if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
                 {
-                    //alte zwischenschritte löschen
-                    schrittSpeicherLoeschen();
+                    aufraeumen();
 
                     bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
                     schrittSpeichern((Bitmap)bildPicturebox.Image);
@@ -126,19 +125,11 @@ namespace Prog3
         }
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            speichernUnterToolStripMenuItem.Visible = false;
-            speichernToolStripMenuItem.Visible = false;
-            schließenToolStripMenuItem.Visible = false;
-
-            bildPicturebox.Image = null;
-            schrittSpeicherLoeschen();
-            GC.Collect();
+            aufraeumen();
         }
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bildPicturebox.Image = null;
-            schrittSpeicherLoeschen();
-            GC.Collect();
+            aufraeumen();
             this.Close();
         }
         private void rückgängigToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,6 +231,27 @@ namespace Prog3
                 wiederholenToolStripMenuItem.Visible = false;
             rückgängigToolStripMenuItem.Visible = true;
         }
+
+    //----------------------------------------------------------------------------------------------------
+    //aufräumen
+        private void aufraeumen()
+        {
+            schrittSpeicherLoeschen();
+
+            bildPicturebox.Image = null;
+
+            //datei
+            speichernUnterToolStripMenuItem.Visible = false;
+            speichernToolStripMenuItem.Visible = false;
+            schließenToolStripMenuItem.Visible = false;
+
+            //bearbeiten
+            rückgängigToolStripMenuItem.Visible = false;
+            wiederholenToolStripMenuItem.Visible = false;
+
+            GC.Collect();
+        }
+
 
         
 

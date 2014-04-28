@@ -138,7 +138,6 @@
             // 
             // dateiToolStripMenuItem
             // 
-            this.dateiToolStripMenuItem.AutoSize = false;
             this.dateiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.öffnenToolStripMenuItem,
             this.speichernToolStripMenuItem,
@@ -146,7 +145,7 @@
             this.schließenToolStripMenuItem,
             this.beendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
             this.dateiToolStripMenuItem.Text = "Datei";
             // 
             // öffnenToolStripMenuItem
