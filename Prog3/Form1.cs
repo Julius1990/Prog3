@@ -165,6 +165,8 @@ namespace Prog3
         }
         private void schrittSpeicherLoeschen()
         {
+            bildPicturebox.Image = null;
+            GC.Collect();
             zwischenSchrittCounter = -1;
             maxSchritt = zwischenSchrittCounter;
             //sucht alle dateien und löscht diese
@@ -216,6 +218,7 @@ namespace Prog3
         private void schrittZurueck()
         {
             zwischenSchrittCounter--;
+            Debug.WriteLine("ZwischenSchrittCounter: " + zwischenSchrittCounter.ToString());
             string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
             bildPicturebox.Image = Image.FromFile(dateiname);
             if (zwischenSchrittCounter == 0)
@@ -261,10 +264,14 @@ namespace Prog3
             bildPicturebox.Image = bitmap_in;
             schrittSpeichern(bitmap_in);
         }
+        public Bitmap getPictureBoxImage()
+        {
+            return (Bitmap)bildPicturebox.Image;
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            kontrast neu = new kontrast((Bitmap)Image.FromFile(bildOeffnenDialog.FileName), this);
+            kontrast neu = new kontrast(this);
             neu.Show();
         }
 
