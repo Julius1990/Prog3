@@ -51,6 +51,7 @@
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,6 +61,7 @@
             this.linkerContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).BeginInit();
+            this.rechterContainer.Panel1.SuspendLayout();
             this.rechterContainer.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.centerPanel.SuspendLayout();
@@ -117,6 +119,10 @@
             this.rechterContainer.Location = new System.Drawing.Point(0, 0);
             this.rechterContainer.Name = "rechterContainer";
             this.rechterContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // rechterContainer.Panel1
+            // 
+            this.rechterContainer.Panel1.Controls.Add(this.button1);
             this.rechterContainer.Size = new System.Drawing.Size(191, 478);
             this.rechterContainer.SplitterDistance = 280;
             this.rechterContainer.TabIndex = 0;
@@ -279,6 +285,16 @@
             this.speichernToolStripMenuItem.Visible = false;
             this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 36);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(168, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Kontrast //temporär";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,6 +315,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.linkerContainer)).EndInit();
             this.linkerContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
+            this.rechterContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
             this.rechterContainer.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
@@ -335,6 +352,7 @@
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
 
 
     }

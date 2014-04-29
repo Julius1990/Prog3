@@ -35,17 +35,27 @@
             this.centerPanel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.kontrastPicturebox = new System.Windows.Forms.PictureBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.speichernButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.kontrastLabel = new System.Windows.Forms.Label();
+            this.anwendenButton = new System.Windows.Forms.Button();
+            this.kontrastTextBox = new System.Windows.Forms.TextBox();
+            this.kontrastProgressBar = new System.Windows.Forms.ProgressBar();
             this.abbrechenButton = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.speichernButton = new System.Windows.Forms.Button();
+            this.kontrastTrackBar = new System.Windows.Forms.TrackBar();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.centerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kontrastPicturebox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kontrastTrackBar)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // randObenPanel
@@ -54,7 +64,7 @@
             this.randObenPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.randObenPanel.Location = new System.Drawing.Point(10, 0);
             this.randObenPanel.Name = "randObenPanel";
-            this.randObenPanel.Size = new System.Drawing.Size(614, 10);
+            this.randObenPanel.Size = new System.Drawing.Size(724, 10);
             this.randObenPanel.TabIndex = 13;
             // 
             // randLinksPanel
@@ -63,40 +73,43 @@
             this.randLinksPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.randLinksPanel.Location = new System.Drawing.Point(0, 0);
             this.randLinksPanel.Name = "randLinksPanel";
-            this.randLinksPanel.Size = new System.Drawing.Size(10, 471);
+            this.randLinksPanel.Size = new System.Drawing.Size(10, 422);
             this.randLinksPanel.TabIndex = 12;
             // 
             // randRechtsPanel
             // 
             this.randRechtsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randRechtsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.randRechtsPanel.Location = new System.Drawing.Point(624, 0);
+            this.randRechtsPanel.Location = new System.Drawing.Point(734, 0);
             this.randRechtsPanel.Name = "randRechtsPanel";
-            this.randRechtsPanel.Size = new System.Drawing.Size(10, 471);
+            this.randRechtsPanel.Size = new System.Drawing.Size(10, 422);
             this.randRechtsPanel.TabIndex = 11;
             // 
             // randUntenPanel
             // 
             this.randUntenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randUntenPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.randUntenPanel.Location = new System.Drawing.Point(0, 471);
+            this.randUntenPanel.Location = new System.Drawing.Point(0, 422);
             this.randUntenPanel.Name = "randUntenPanel";
-            this.randUntenPanel.Size = new System.Drawing.Size(634, 10);
+            this.randUntenPanel.Size = new System.Drawing.Size(744, 10);
             this.randUntenPanel.TabIndex = 10;
             // 
             // centerPanel
             // 
             this.centerPanel.Controls.Add(this.splitContainer1);
-            this.centerPanel.Location = new System.Drawing.Point(22, 23);
+            this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.centerPanel.Location = new System.Drawing.Point(10, 10);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(588, 437);
+            this.centerPanel.Size = new System.Drawing.Size(724, 412);
             this.centerPanel.TabIndex = 14;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(11, 9);
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
@@ -104,77 +117,150 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.progressBar1);
-            this.splitContainer1.Panel2.Controls.Add(this.abbrechenButton);
-            this.splitContainer1.Panel2.Controls.Add(this.speichernButton);
-            this.splitContainer1.Panel2.Controls.Add(this.trackBar1);
-            this.splitContainer1.Size = new System.Drawing.Size(563, 414);
-            this.splitContainer1.SplitterDistance = 312;
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(724, 412);
+            this.splitContainer1.SplitterDistance = 528;
             this.splitContainer1.TabIndex = 0;
             // 
             // kontrastPicturebox
             // 
-            this.kontrastPicturebox.Location = new System.Drawing.Point(14, 14);
+            this.kontrastPicturebox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kontrastPicturebox.Location = new System.Drawing.Point(0, 0);
             this.kontrastPicturebox.Name = "kontrastPicturebox";
-            this.kontrastPicturebox.Size = new System.Drawing.Size(535, 285);
+            this.kontrastPicturebox.Size = new System.Drawing.Size(526, 410);
+            this.kontrastPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.kontrastPicturebox.TabIndex = 0;
             this.kontrastPicturebox.TabStop = false;
             // 
-            // trackBar1
+            // panel1
             // 
-            this.trackBar1.AutoSize = false;
-            this.trackBar1.Location = new System.Drawing.Point(166, 12);
-            this.trackBar1.Maximum = 255;
-            this.trackBar1.Minimum = -255;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(232, 45);
-            this.trackBar1.TabIndex = 0;
-            this.trackBar1.TickFrequency = 51;
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.kontrastLabel);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.kontrastProgressBar);
+            this.panel1.Controls.Add(this.abbrechenButton);
+            this.panel1.Controls.Add(this.speichernButton);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(190, 410);
+            this.panel1.TabIndex = 0;
             // 
-            // speichernButton
+            // kontrastLabel
             // 
-            this.speichernButton.Location = new System.Drawing.Point(474, 63);
-            this.speichernButton.Name = "speichernButton";
-            this.speichernButton.Size = new System.Drawing.Size(75, 23);
-            this.speichernButton.TabIndex = 1;
-            this.speichernButton.Text = "Speichern";
-            this.speichernButton.UseVisualStyleBackColor = true;
+            this.kontrastLabel.AutoSize = true;
+            this.kontrastLabel.Location = new System.Drawing.Point(22, 10);
+            this.kontrastLabel.Name = "kontrastLabel";
+            this.kontrastLabel.Size = new System.Drawing.Size(46, 13);
+            this.kontrastLabel.TabIndex = 13;
+            this.kontrastLabel.Text = "Kontrast";
+            // 
+            // anwendenButton
+            // 
+            this.anwendenButton.Location = new System.Drawing.Point(97, 16);
+            this.anwendenButton.Name = "anwendenButton";
+            this.anwendenButton.Size = new System.Drawing.Size(75, 23);
+            this.anwendenButton.TabIndex = 12;
+            this.anwendenButton.Text = "Anwenden";
+            this.anwendenButton.UseVisualStyleBackColor = true;
+            // 
+            // kontrastTextBox
+            // 
+            this.kontrastTextBox.Location = new System.Drawing.Point(5, 18);
+            this.kontrastTextBox.Name = "kontrastTextBox";
+            this.kontrastTextBox.Size = new System.Drawing.Size(75, 20);
+            this.kontrastTextBox.TabIndex = 11;
+            // 
+            // kontrastProgressBar
+            // 
+            this.kontrastProgressBar.Location = new System.Drawing.Point(6, 346);
+            this.kontrastProgressBar.Name = "kontrastProgressBar";
+            this.kontrastProgressBar.Size = new System.Drawing.Size(177, 23);
+            this.kontrastProgressBar.TabIndex = 10;
             // 
             // abbrechenButton
             // 
-            this.abbrechenButton.Location = new System.Drawing.Point(14, 62);
+            this.abbrechenButton.Location = new System.Drawing.Point(6, 375);
             this.abbrechenButton.Name = "abbrechenButton";
             this.abbrechenButton.Size = new System.Drawing.Size(75, 23);
-            this.abbrechenButton.TabIndex = 2;
+            this.abbrechenButton.TabIndex = 9;
             this.abbrechenButton.Text = "Abbrechen";
             this.abbrechenButton.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // speichernButton
             // 
-            this.progressBar1.Location = new System.Drawing.Point(166, 63);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(232, 23);
-            this.progressBar1.TabIndex = 3;
+            this.speichernButton.Location = new System.Drawing.Point(108, 375);
+            this.speichernButton.Name = "speichernButton";
+            this.speichernButton.Size = new System.Drawing.Size(75, 23);
+            this.speichernButton.TabIndex = 8;
+            this.speichernButton.Text = "Speichern";
+            this.speichernButton.UseVisualStyleBackColor = true;
+            // 
+            // kontrastTrackBar
+            // 
+            this.kontrastTrackBar.AutoSize = false;
+            this.kontrastTrackBar.Location = new System.Drawing.Point(3, 13);
+            this.kontrastTrackBar.Maximum = 255;
+            this.kontrastTrackBar.Minimum = -255;
+            this.kontrastTrackBar.Name = "kontrastTrackBar";
+            this.kontrastTrackBar.Size = new System.Drawing.Size(167, 37);
+            this.kontrastTrackBar.TabIndex = 7;
+            this.kontrastTrackBar.TickFrequency = 51;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.kontrastTrackBar);
+            this.panel2.Location = new System.Drawing.Point(6, 20);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(177, 56);
+            this.panel2.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 86);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Manuell einstellen";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.anwendenButton);
+            this.panel3.Controls.Add(this.kontrastTextBox);
+            this.panel3.Location = new System.Drawing.Point(6, 96);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(177, 56);
+            this.panel3.TabIndex = 15;
             // 
             // kontrast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 481);
+            this.ClientSize = new System.Drawing.Size(744, 432);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.randObenPanel);
             this.Controls.Add(this.randLinksPanel);
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
+            this.MinimumSize = new System.Drawing.Size(760, 471);
             this.Name = "kontrast";
-            this.Text = "kontrast";
+            this.Text = "Kontrast";
             this.centerPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kontrastPicturebox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kontrastTrackBar)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -188,9 +274,16 @@
         private System.Windows.Forms.Panel centerPanel;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox kontrastPicturebox;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label kontrastLabel;
+        private System.Windows.Forms.Button anwendenButton;
+        private System.Windows.Forms.TextBox kontrastTextBox;
+        private System.Windows.Forms.ProgressBar kontrastProgressBar;
         private System.Windows.Forms.Button abbrechenButton;
         private System.Windows.Forms.Button speichernButton;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar kontrastTrackBar;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

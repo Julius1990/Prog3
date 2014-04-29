@@ -19,6 +19,8 @@ namespace Prog3
         {
             InitializeComponent();
             schrittSpeicherAnlegen();
+
+            
             
         }
     //----------------------------------------------------------------------------------------------------
@@ -175,7 +177,7 @@ namespace Prog3
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
         }
-        private void schrittSpeichern(Bitmap bitmap_in)
+        public void schrittSpeichern(Bitmap bitmap_in)
         {
             //überflüssig gespeichertes löschen
             if (maxSchritt>zwischenSchrittCounter)
@@ -250,6 +252,20 @@ namespace Prog3
             wiederholenToolStripMenuItem.Visible = false;
 
             GC.Collect();
+        }
+
+    //----------------------------------------------------------------------------------------------------
+    //get und set funktionen
+        public void setPictureBox(Bitmap bitmap_in)
+        {
+            bildPicturebox.Image = bitmap_in;
+            schrittSpeichern(bitmap_in);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            kontrast neu = new kontrast((Bitmap)Image.FromFile(bildOeffnenDialog.FileName), this);
+            neu.Show();
         }
 
 
