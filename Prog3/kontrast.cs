@@ -105,7 +105,7 @@ namespace Prog3
         }
         private void speichernButton_Click(object sender, EventArgs e)
         {
-            parent.setPictureBox((Bitmap)kontrastPicturebox.Image);
+            parent.setAndSavePictureBox((Bitmap)kontrastPicturebox.Image);
 
             kontrastPicturebox.Image = null;
             GC.Collect();

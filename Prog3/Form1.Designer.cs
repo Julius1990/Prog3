@@ -35,6 +35,14 @@
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wiederholenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ansichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bildOeffnenDialog = new System.Windows.Forms.OpenFileDialog();
             this.randUntenPanel = new System.Windows.Forms.Panel();
             this.randRechtsPanel = new System.Windows.Forms.Panel();
@@ -42,16 +50,17 @@
             this.randObenPanel = new System.Windows.Forms.Panel();
             this.centerPanel = new System.Windows.Forms.Panel();
             this.menuePanel = new System.Windows.Forms.Panel();
-            this.ansichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
-            this.bearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wiederholenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.handButton = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.zoomInButton = new System.Windows.Forms.Button();
+            this.ansicht = new System.Windows.Forms.Label();
+            this.zoomOutButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,6 +75,9 @@
             this.menuStrip2.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -99,18 +111,19 @@
             this.linkerContainer.Panel1.AutoScroll = true;
             this.linkerContainer.Panel1.Controls.Add(this.bildPicturebox);
             this.linkerContainer.Size = new System.Drawing.Size(422, 478);
-            this.linkerContainer.SplitterDistance = 280;
+            this.linkerContainer.SplitterDistance = 315;
             this.linkerContainer.TabIndex = 0;
             // 
             // bildPicturebox
             // 
-            this.bildPicturebox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bildPicturebox.Location = new System.Drawing.Point(0, 0);
+            this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
             this.bildPicturebox.Name = "bildPicturebox";
-            this.bildPicturebox.Size = new System.Drawing.Size(420, 278);
+            this.bildPicturebox.Size = new System.Drawing.Size(412, 279);
             this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.bildPicturebox.TabIndex = 0;
             this.bildPicturebox.TabStop = false;
+            this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
+            this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
             // 
             // rechterContainer
             // 
@@ -122,9 +135,14 @@
             // 
             // rechterContainer.Panel1
             // 
-            this.rechterContainer.Panel1.Controls.Add(this.button1);
+            this.rechterContainer.Panel1.Controls.Add(this.ansicht);
+            this.rechterContainer.Panel1.Controls.Add(this.panel3);
+            this.rechterContainer.Panel1.Controls.Add(this.label2);
+            this.rechterContainer.Panel1.Controls.Add(this.panel1);
+            this.rechterContainer.Panel1.Controls.Add(this.label1);
+            this.rechterContainer.Panel1.Controls.Add(this.panel2);
             this.rechterContainer.Size = new System.Drawing.Size(191, 478);
-            this.rechterContainer.SplitterDistance = 280;
+            this.rechterContainer.SplitterDistance = 314;
             this.rechterContainer.TabIndex = 0;
             // 
             // menuStrip2
@@ -160,6 +178,66 @@
             this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.öffnenToolStripMenuItem.Text = "Öffnen";
             this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
+            // 
+            // speichernToolStripMenuItem
+            // 
+            this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
+            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.speichernToolStripMenuItem.Text = "Speichern";
+            this.speichernToolStripMenuItem.Visible = false;
+            this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click);
+            // 
+            // speichernUnterToolStripMenuItem
+            // 
+            this.speichernUnterToolStripMenuItem.Name = "speichernUnterToolStripMenuItem";
+            this.speichernUnterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.speichernUnterToolStripMenuItem.Text = "Speichern unter";
+            this.speichernUnterToolStripMenuItem.Visible = false;
+            this.speichernUnterToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
+            // 
+            // schließenToolStripMenuItem
+            // 
+            this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
+            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.schließenToolStripMenuItem.Text = "Schließen";
+            this.schließenToolStripMenuItem.Visible = false;
+            this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
+            // 
+            // beendenToolStripMenuItem
+            // 
+            this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.beendenToolStripMenuItem.Text = "Beenden";
+            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            // 
+            // bearbeitenToolStripMenuItem
+            // 
+            this.bearbeitenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rückgängigToolStripMenuItem,
+            this.wiederholenToolStripMenuItem});
+            this.bearbeitenToolStripMenuItem.Name = "bearbeitenToolStripMenuItem";
+            this.bearbeitenToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
+            this.bearbeitenToolStripMenuItem.Text = "Bearbeiten";
+            // 
+            // rückgängigToolStripMenuItem
+            // 
+            this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.rückgängigToolStripMenuItem.Text = "Rückgängig";
+            this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
+            // 
+            // wiederholenToolStripMenuItem
+            // 
+            this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.wiederholenToolStripMenuItem.Text = "Wiederholen";
+            this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
+            // 
+            // ansichtToolStripMenuItem
+            // 
+            this.ansichtToolStripMenuItem.Name = "ansichtToolStripMenuItem";
+            this.ansichtToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
+            this.ansichtToolStripMenuItem.Text = "Ansicht";
             // 
             // bildOeffnenDialog
             // 
@@ -221,79 +299,104 @@
             this.menuePanel.Size = new System.Drawing.Size(617, 28);
             this.menuePanel.TabIndex = 6;
             // 
-            // ansichtToolStripMenuItem
-            // 
-            this.ansichtToolStripMenuItem.Name = "ansichtToolStripMenuItem";
-            this.ansichtToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
-            this.ansichtToolStripMenuItem.Text = "Ansicht";
-            // 
-            // speichernUnterToolStripMenuItem
-            // 
-            this.speichernUnterToolStripMenuItem.Name = "speichernUnterToolStripMenuItem";
-            this.speichernUnterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.speichernUnterToolStripMenuItem.Text = "Speichern unter";
-            this.speichernUnterToolStripMenuItem.Visible = false;
-            this.speichernUnterToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
-            // 
             // bildSpeichernDialog
             // 
             this.bildSpeichernDialog.Filter = "JPG|.jpg|PNG|.png|GIF|.gif|TIF|.tif|BMP|.bmp";
             // 
-            // bearbeitenToolStripMenuItem
+            // label1
             // 
-            this.bearbeitenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rückgängigToolStripMenuItem,
-            this.wiederholenToolStripMenuItem});
-            this.bearbeitenToolStripMenuItem.Name = "bearbeitenToolStripMenuItem";
-            this.bearbeitenToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
-            this.bearbeitenToolStripMenuItem.Text = "Bearbeiten";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Korrekturen";
             // 
-            // rückgängigToolStripMenuItem
+            // panel1
             // 
-            this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
-            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rückgängigToolStripMenuItem.Text = "Rückgängig";
-            this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.handButton);
+            this.panel1.Location = new System.Drawing.Point(8, 129);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(161, 78);
+            this.panel1.TabIndex = 3;
             // 
-            // wiederholenToolStripMenuItem
+            // panel2
             // 
-            this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
-            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.wiederholenToolStripMenuItem.Text = "Wiederholen";
-            this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.button2);
+            this.panel2.Location = new System.Drawing.Point(8, 41);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(160, 69);
+            this.panel2.TabIndex = 1;
             // 
-            // beendenToolStripMenuItem
+            // button2
             // 
-            this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.beendenToolStripMenuItem.Text = "Beenden";
-            this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
+            this.button2.Location = new System.Drawing.Point(3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(114, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Kontrast //temporär";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button1_Click);
             // 
-            // schließenToolStripMenuItem
+            // label2
             // 
-            this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
-            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.schließenToolStripMenuItem.Text = "Schließen";
-            this.schließenToolStripMenuItem.Visible = false;
-            this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 121);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Werkzeuge";
             // 
-            // speichernToolStripMenuItem
+            // handButton
             // 
-            this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
-            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.speichernToolStripMenuItem.Text = "Speichern";
-            this.speichernToolStripMenuItem.Visible = false;
-            this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click);
+            this.handButton.Location = new System.Drawing.Point(3, 16);
+            this.handButton.Name = "handButton";
+            this.handButton.Size = new System.Drawing.Size(114, 23);
+            this.handButton.TabIndex = 0;
+            this.handButton.Text = "Hand";
+            this.handButton.UseVisualStyleBackColor = true;
+            this.handButton.Click += new System.EventHandler(this.handButton_Click);
             // 
-            // button1
+            // panel3
             // 
-            this.button1.Location = new System.Drawing.Point(9, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Kontrast //temporär";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.zoomOutButton);
+            this.panel3.Controls.Add(this.zoomInButton);
+            this.panel3.Location = new System.Drawing.Point(8, 247);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(161, 62);
+            this.panel3.TabIndex = 5;
+            // 
+            // zoomInButton
+            // 
+            this.zoomInButton.Location = new System.Drawing.Point(3, 16);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(25, 23);
+            this.zoomInButton.TabIndex = 0;
+            this.zoomInButton.Text = "+";
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
+            // 
+            // ansicht
+            // 
+            this.ansicht.AutoSize = true;
+            this.ansicht.Location = new System.Drawing.Point(15, 238);
+            this.ansicht.Name = "ansicht";
+            this.ansicht.Size = new System.Drawing.Size(42, 13);
+            this.ansicht.TabIndex = 6;
+            this.ansicht.Text = "Ansicht";
+            // 
+            // zoomOutButton
+            // 
+            this.zoomOutButton.Location = new System.Drawing.Point(42, 16);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(25, 23);
+            this.zoomOutButton.TabIndex = 1;
+            this.zoomOutButton.Text = "-";
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
             // form1
             // 
@@ -316,6 +419,7 @@
             this.linkerContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
             this.rechterContainer.Panel1.ResumeLayout(false);
+            this.rechterContainer.Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
             this.rechterContainer.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
@@ -323,6 +427,9 @@
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -352,7 +459,16 @@
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button handButton;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label ansicht;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button zoomOutButton;
+        private System.Windows.Forms.Button zoomInButton;
 
 
     }

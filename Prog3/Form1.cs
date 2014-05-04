@@ -25,10 +25,19 @@ namespace Prog3
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
+        //zwischenschritte
         int zwischenSchrittCounter = -1;
         int maxSchritt = 0;
         string zwischenSchrittOrdner = "zwischenSchritte";
+
+        //speichervorgang
         string speichernUnter;
+
+        //bewegung der picturebox mit dem hand tool
+        int xMouseMove;
+        int yMouseMove;
+        bool handToolAusgewählt = false;
+
         
 
     //----------------------------------------------------------------------------------------------------
@@ -46,7 +55,10 @@ namespace Prog3
                 {
                     aufraeumen();
 
+                    //bild laden, picturebox ausrichten, geladenes bild als zwischenschritt speichern
                     bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
+                    bildPicturebox.Top = 0;
+                    bildPicturebox.Left = 0;
                     schrittSpeichern((Bitmap)bildPicturebox.Image);
 
                     speichernUnterToolStripMenuItem.Visible = true;
@@ -259,7 +271,7 @@ namespace Prog3
 
     //----------------------------------------------------------------------------------------------------
     //get und set funktionen
-        public void setPictureBox(Bitmap bitmap_in)
+        public void setAndSavePictureBox(Bitmap bitmap_in)
         {
             bildPicturebox.Image = bitmap_in;
             schrittSpeichern(bitmap_in);
@@ -269,10 +281,67 @@ namespace Prog3
             return (Bitmap)bildPicturebox.Image;
         }
 
+
+    //----------------------------------------------------------------------------------------------------
+    //Korrekturen
         private void button1_Click(object sender, EventArgs e)
         {
             kontrast neu = new kontrast(this);
             neu.Show();
+        }
+
+        private void handButton_Click(object sender, EventArgs e)
+        {
+            if (handToolAusgewählt)
+            {
+                handToolAusgewählt = false;
+                Cursor = Cursors.Default;
+            }
+            else
+            {
+                handToolAusgewählt = true;
+                Cursor = Cursors.Hand;
+            }
+        }
+
+    //----------------------------------------------------------------------------------------------------
+    //Mausbewegungen
+        private void bildPicturebox_MouseMove(object sender, MouseEventArgs e)
+        {
+            //falls Hand Tool ausgewählt
+            if (handToolAusgewählt)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    bildPicturebox.Top += (e.Y - yMouseMove);
+                    bildPicturebox.Left += (e.X - xMouseMove);
+                }
+            }
+        }
+        private void bildPicturebox_MouseDown(object sender, MouseEventArgs e)
+        {    
+            //falls Hand Tool ausgewählt
+            if (handToolAusgewählt)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    xMouseMove = e.X;
+                    yMouseMove = e.Y;
+                }
+            }
+        }
+
+    //----------------------------------------------------------------------------------------------------
+    //Ansicht
+        private void zoomInButton_Click(object sender, EventArgs e)
+        {
+            bildPicturebox.Width += bildPicturebox.Width / 5;
+            bildPicturebox.Height += bildPicturebox.Height / 5;
+        }
+        private void zoomOutButton_Click(object sender, EventArgs e)
+        {
+            bildPicturebox.Width -= bildPicturebox.Width / 5;
+            bildPicturebox.Height -= bildPicturebox.Height / 5;
         }
 
 
