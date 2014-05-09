@@ -345,9 +345,56 @@ namespace Prog3
         }
 
 
-        
+        //----------------------------------------------------------------------------------------------------
+        //Color-Picker
+        private void getPixelColor(MouseEventArgs e, PictureBox picBox)
+        {       //Funktion zum berechnen des Farbwerts einzelner Pixel
+            Bitmap helpMap;
+            Point picPos;
+            Color pixelColor;
+            helpMap = new Bitmap(picBox.Image);     //Bitmap aus Bild in Picturebox erstellen
+            picPos = TranslateZoomMousePosition(new Point(e.X, e.Y), picBox);       //Position der Maus über dem Bild bestimmen
+            pixelColor = helpMap.GetPixel(picPos.X, picPos.Y);      //Pixelfarbe bestimmen
+            labelR.Text = pixelColor.R.ToString();      //Farbwerte ausgeben
+            labelG.Text = pixelColor.G.ToString();      //
+            labelB.Text = pixelColor.B.ToString();      //
+        }
 
-        
+        private Point TranslateZoomMousePosition(Point coordinates, PictureBox picBox)
+        {
+            float imageAspect = (float)picBox.Image.Width / picBox.Image.Height;
+            float controlAspect = (float)picBox.Width / picBox.Height;
+            float newX = coordinates.X;
+            float newY = coordinates.Y;
+            if (imageAspect > controlAspect)        //Wenn Bild im Querformat vorliegt
+            {
+                float ratioWidth = (float)picBox.Image.Width / picBox.Width;        //Verhältnis von Bildbreite zu Pictureboxbreite bestimmen
+                newX *= ratioWidth;     //X-Koordinate der Maus über dem vollen Bild bestimmen
+                float scale = (float)picBox.Width / picBox.Image.Width;     //Verhältnis von Pictureboxbreite zu Bildbreite bestimmen
+                float displayHeight = scale * picBox.Image.Height;      //Höhe des Bildes in der Picturebox bestimmen
+                float diffHeight = picBox.Height - displayHeight;       //Höhe beider freien Flächen der Picturebox bestimmen
+                diffHeight /= 2;        //Höhe einer freien Fläche bestimmen
+                newY -= diffHeight;     //Höhe einer freien Fläche von der y-Koordinate der Mausposition über der Picturebox abziehen...
+                newY /= scale;          //...und durch scale teilen -> Y-Koordinate der Maus über dem vollen Bild
+            }
+            else        //Wenn Bild im Hochformat vorliegt
+            {
+                float ratioHeight = (float)picBox.Image.Height / picBox.Height;     //Verhältnis von Bildhöhe zu Pictureboxhöhe bestimmen
+                newY *= ratioHeight;        //Y-Koordinate der Maus über dem vollen Bild bestimmen
+                float scale = (float)picBox.Height / picBox.Image.Height;       //Verhältnis von Pictureboxhöhe zu Bildhöhe bestimmen
+                float displayWidth = scale * picBox.Image.Width;        //Breite des Bildes in der Picturebox bestimmen
+                float diffWidth = picBox.Width - displayWidth;          //Breite beider freien Flächen der Picturebox bestimmen
+                diffWidth /= 2;     //Breite einer freien Fläche bestimmen
+                newX -= diffWidth;      //Breite einer freien Fläche von der X-Koordinate der Mausposition über der Picturebox abziehen...
+                newX /= scale;          //...und durch scale teilen -> X-Koordinate der Maus über dem vollen Bild
+            }
+            return new Point((int)newX, (int)newY);     //Mauskoordinaten über dem vollen Bild zurückgeben
+        }
+
+        private void bildPicturebox_MouseClick(object sender, MouseEventArgs e)
+        {
+            getPixelColor(e, bildPicturebox);
+        }
 
         
 
