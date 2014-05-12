@@ -36,7 +36,11 @@ namespace Prog3
         //bewegung der picturebox mit dem hand tool
         int xMouseMove;
         int yMouseMove;
-        bool handToolAusgewählt = false;
+
+        //Werkzeuge
+        bool toolAusgewaehlt = false;
+        bool colorPickerAusgewaehlt = false;
+        bool handToolAusgewaehlt = false;
 
         
 
@@ -284,32 +288,125 @@ namespace Prog3
 
     //----------------------------------------------------------------------------------------------------
     //Korrekturen
-        private void button1_Click(object sender, EventArgs e)
+        private void kontrastButton_Click(object sender, EventArgs e)
         {
             kontrast neu = new kontrast(this);
             neu.Show();
         }
 
-        private void handButton_Click(object sender, EventArgs e)
+    //----------------------------------------------------------------------------------------------------
+    //Werkzeuge
+        private void lockUnlockTools()
         {
-            if (handToolAusgewählt)
+            if (toolAusgewaehlt)
             {
-                handToolAusgewählt = false;
-                Cursor = Cursors.Default;
+                handButton.Enabled=false;
+                colorPickerButton.Enabled=false;
+
+                if (handToolAusgewaehlt)
+                    handButton.Enabled = true;
+                if (colorPickerAusgewaehlt)
+                    colorPickerButton.Enabled = true;
             }
             else
             {
-                handToolAusgewählt = true;
-                Cursor = Cursors.Hand;
+                handButton.Enabled = true;
+                colorPickerButton.Enabled = true;
             }
         }
+        //------------------------------------------------------------------------------------------------
+        //Hand Tool
+            private void handButton_Click(object sender, EventArgs e)
+        {
+            if (!handToolAusgewaehlt && !toolAusgewaehlt)
+            {
+                handToolAusgewaehlt = true;
+                Cursor = Cursors.Hand;
+
+                toolAusgewaehlt = true;
+                lockUnlockTools();
+            }
+            else
+            {
+                handToolAusgewaehlt = false;
+                Cursor = Cursors.Default;
+
+                toolAusgewaehlt = false;
+                lockUnlockTools();
+            }
+        }
+            //siehe außerdem Funktion "bildPicturebox_MouseMove" und "bildPicturebox_MouseDown"
+        //------------------------------------------------------------------------------------------------
+        //Color Picker
+            private void colorPickerButton_Click(object sender, EventArgs e)
+            {
+                if (!colorPickerAusgewaehlt && !toolAusgewaehlt)
+                {
+                    colorPickerAusgewaehlt = true;
+                    Cursor = Cursors.Cross;
+
+                    toolAusgewaehlt = true;
+                    lockUnlockTools();
+                }
+                else
+                {
+                    colorPickerAusgewaehlt = false;
+                    Cursor = Cursors.Default;
+
+                    toolAusgewaehlt = false;
+                    lockUnlockTools();
+                }
+            }
+            private void getPixelColor(MouseEventArgs e, PictureBox picBox)
+            {       //Funktion zum berechnen des Farbwerts einzelner Pixel
+                Bitmap helpMap;
+                Point picPos;
+                Color pixelColor;
+                helpMap = new Bitmap(picBox.Image);     //Bitmap aus Bild in Picturebox erstellen
+                picPos = TranslateZoomMousePosition(new Point(e.X, e.Y), picBox);       //Position der Maus über dem Bild bestimmen
+                pixelColor = helpMap.GetPixel(picPos.X, picPos.Y);      //Pixelfarbe bestimmen
+                labelR.Text = pixelColor.R.ToString();      //Farbwerte ausgeben
+                labelG.Text = pixelColor.G.ToString();      //
+                labelB.Text = pixelColor.B.ToString();      //
+            }
+            private Point TranslateZoomMousePosition(Point coordinates, PictureBox picBox)
+            {
+                float imageAspect = (float)picBox.Image.Width / picBox.Image.Height;
+                float controlAspect = (float)picBox.Width / picBox.Height;
+                float newX = coordinates.X;
+                float newY = coordinates.Y;
+                if (imageAspect > controlAspect)        //Wenn Bild im Querformat vorliegt
+                {
+                    float ratioWidth = (float)picBox.Image.Width / picBox.Width;        //Verhältnis von Bildbreite zu Pictureboxbreite bestimmen
+                    newX *= ratioWidth;     //X-Koordinate der Maus über dem vollen Bild bestimmen
+                    float scale = (float)picBox.Width / picBox.Image.Width;     //Verhältnis von Pictureboxbreite zu Bildbreite bestimmen
+                    float displayHeight = scale * picBox.Image.Height;      //Höhe des Bildes in der Picturebox bestimmen
+                    float diffHeight = picBox.Height - displayHeight;       //Höhe beider freien Flächen der Picturebox bestimmen
+                    diffHeight /= 2;        //Höhe einer freien Fläche bestimmen
+                    newY -= diffHeight;     //Höhe einer freien Fläche von der y-Koordinate der Mausposition über der Picturebox abziehen...
+                    newY /= scale;          //...und durch scale teilen -> Y-Koordinate der Maus über dem vollen Bild
+                }
+                else        //Wenn Bild im Hochformat vorliegt
+                {
+                    float ratioHeight = (float)picBox.Image.Height / picBox.Height;     //Verhältnis von Bildhöhe zu Pictureboxhöhe bestimmen
+                    newY *= ratioHeight;        //Y-Koordinate der Maus über dem vollen Bild bestimmen
+                    float scale = (float)picBox.Height / picBox.Image.Height;       //Verhältnis von Pictureboxhöhe zu Bildhöhe bestimmen
+                    float displayWidth = scale * picBox.Image.Width;        //Breite des Bildes in der Picturebox bestimmen
+                    float diffWidth = picBox.Width - displayWidth;          //Breite beider freien Flächen der Picturebox bestimmen
+                    diffWidth /= 2;     //Breite einer freien Fläche bestimmen
+                    newX -= diffWidth;      //Breite einer freien Fläche von der X-Koordinate der Mausposition über der Picturebox abziehen...
+                    newX /= scale;          //...und durch scale teilen -> X-Koordinate der Maus über dem vollen Bild
+                }
+                return new Point((int)newX, (int)newY);     //Mauskoordinaten über dem vollen Bild zurückgeben
+            }
+            //siehe außerdem Funktion "bildPicturebox_MouseClick"
 
     //----------------------------------------------------------------------------------------------------
     //Mausbewegungen
         private void bildPicturebox_MouseMove(object sender, MouseEventArgs e)
         {
             //falls Hand Tool ausgewählt
-            if (handToolAusgewählt)
+            if (handToolAusgewaehlt)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -321,13 +418,20 @@ namespace Prog3
         private void bildPicturebox_MouseDown(object sender, MouseEventArgs e)
         {    
             //falls Hand Tool ausgewählt
-            if (handToolAusgewählt)
+            if (handToolAusgewaehlt)
             {
                 if (e.Button == MouseButtons.Left)
                 {
                     xMouseMove = e.X;
                     yMouseMove = e.Y;
                 }
+            }
+        }
+        private void bildPicturebox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (colorPickerAusgewaehlt)
+            {
+                getPixelColor(e, bildPicturebox);
             }
         }
 
@@ -343,58 +447,26 @@ namespace Prog3
             bildPicturebox.Width -= bildPicturebox.Width / 5;
             bildPicturebox.Height -= bildPicturebox.Height / 5;
         }
-
-
-        //----------------------------------------------------------------------------------------------------
-        //Color-Picker
-        private void getPixelColor(MouseEventArgs e, PictureBox picBox)
-        {       //Funktion zum berechnen des Farbwerts einzelner Pixel
-            Bitmap helpMap;
-            Point picPos;
-            Color pixelColor;
-            helpMap = new Bitmap(picBox.Image);     //Bitmap aus Bild in Picturebox erstellen
-            picPos = TranslateZoomMousePosition(new Point(e.X, e.Y), picBox);       //Position der Maus über dem Bild bestimmen
-            pixelColor = helpMap.GetPixel(picPos.X, picPos.Y);      //Pixelfarbe bestimmen
-            labelR.Text = pixelColor.R.ToString();      //Farbwerte ausgeben
-            labelG.Text = pixelColor.G.ToString();      //
-            labelB.Text = pixelColor.B.ToString();      //
-        }
-
-        private Point TranslateZoomMousePosition(Point coordinates, PictureBox picBox)
+        private void rechtsDrehenButton_Click(object sender, EventArgs e)
         {
-            float imageAspect = (float)picBox.Image.Width / picBox.Image.Height;
-            float controlAspect = (float)picBox.Width / picBox.Height;
-            float newX = coordinates.X;
-            float newY = coordinates.Y;
-            if (imageAspect > controlAspect)        //Wenn Bild im Querformat vorliegt
-            {
-                float ratioWidth = (float)picBox.Image.Width / picBox.Width;        //Verhältnis von Bildbreite zu Pictureboxbreite bestimmen
-                newX *= ratioWidth;     //X-Koordinate der Maus über dem vollen Bild bestimmen
-                float scale = (float)picBox.Width / picBox.Image.Width;     //Verhältnis von Pictureboxbreite zu Bildbreite bestimmen
-                float displayHeight = scale * picBox.Image.Height;      //Höhe des Bildes in der Picturebox bestimmen
-                float diffHeight = picBox.Height - displayHeight;       //Höhe beider freien Flächen der Picturebox bestimmen
-                diffHeight /= 2;        //Höhe einer freien Fläche bestimmen
-                newY -= diffHeight;     //Höhe einer freien Fläche von der y-Koordinate der Mausposition über der Picturebox abziehen...
-                newY /= scale;          //...und durch scale teilen -> Y-Koordinate der Maus über dem vollen Bild
-            }
-            else        //Wenn Bild im Hochformat vorliegt
-            {
-                float ratioHeight = (float)picBox.Image.Height / picBox.Height;     //Verhältnis von Bildhöhe zu Pictureboxhöhe bestimmen
-                newY *= ratioHeight;        //Y-Koordinate der Maus über dem vollen Bild bestimmen
-                float scale = (float)picBox.Height / picBox.Image.Height;       //Verhältnis von Pictureboxhöhe zu Bildhöhe bestimmen
-                float displayWidth = scale * picBox.Image.Width;        //Breite des Bildes in der Picturebox bestimmen
-                float diffWidth = picBox.Width - displayWidth;          //Breite beider freien Flächen der Picturebox bestimmen
-                diffWidth /= 2;     //Breite einer freien Fläche bestimmen
-                newX -= diffWidth;      //Breite einer freien Fläche von der X-Koordinate der Mausposition über der Picturebox abziehen...
-                newX /= scale;          //...und durch scale teilen -> X-Koordinate der Maus über dem vollen Bild
-            }
-            return new Point((int)newX, (int)newY);     //Mauskoordinaten über dem vollen Bild zurückgeben
+            Image img = bildPicturebox.Image;
+            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            setAndSavePictureBox((Bitmap)img);
+        }
+        private void linksDrehenButton_Click(object sender, EventArgs e)
+        {
+            Image img = bildPicturebox.Image;
+            img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+            setAndSavePictureBox((Bitmap)img);
         }
 
-        private void bildPicturebox_MouseClick(object sender, MouseEventArgs e)
-        {
-            getPixelColor(e, bildPicturebox);
-        }
+        
+
+        
+
+        
+
+        
 
         
 
