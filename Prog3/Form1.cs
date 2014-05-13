@@ -309,7 +309,13 @@ namespace Prog3
         private void greyValButton_Click(object sender, EventArgs e)
         {
             grauwert gw = new grauwert(bildPicturebox, this);
-            gw.Show();
+            //gw.Show();
+            //gw.createGreyValPic();
+        }
+
+        private void invertedButton_Click(object sender, EventArgs e)
+        {
+            negativ neg = new negativ(bildPicturebox, this);
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -477,6 +483,8 @@ namespace Prog3
             img.RotateFlip(RotateFlipType.Rotate270FlipNone);
             setAndSavePictureBox((Bitmap)img);
         }
+
+
 
 
 

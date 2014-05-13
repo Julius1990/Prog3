@@ -51,7 +51,9 @@
             this.handButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.greyValButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.proBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,8 +73,7 @@
             this.centerPanel = new System.Windows.Forms.Panel();
             this.menuePanel = new System.Windows.Forms.Panel();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
-            this.greyValButton = new System.Windows.Forms.Button();
-            this.proBar = new System.Windows.Forms.ProgressBar();
+            this.invertedButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -363,13 +364,24 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.invertedButton);
             this.panel2.Controls.Add(this.greyValButton);
             this.panel2.Controls.Add(this.button2);
             this.panel2.Location = new System.Drawing.Point(12, 63);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(238, 104);
+            this.panel2.Size = new System.Drawing.Size(238, 118);
             this.panel2.TabIndex = 1;
+            // 
+            // greyValButton
+            // 
+            this.greyValButton.Location = new System.Drawing.Point(4, 45);
+            this.greyValButton.Name = "greyValButton";
+            this.greyValButton.Size = new System.Drawing.Size(171, 29);
+            this.greyValButton.TabIndex = 11;
+            this.greyValButton.Text = "Grauwertbild";
+            this.greyValButton.UseVisualStyleBackColor = true;
+            this.greyValButton.Click += new System.EventHandler(this.greyValButton_Click);
             // 
             // button2
             // 
@@ -382,6 +394,13 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.kontrastButton_Click);
             // 
+            // proBar
+            // 
+            this.proBar.Location = new System.Drawing.Point(12, 206);
+            this.proBar.Name = "proBar";
+            this.proBar.Size = new System.Drawing.Size(240, 23);
+            this.proBar.TabIndex = 1;
+            // 
             // menuStrip2
             // 
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -390,9 +409,9 @@
             this.bearbeitenToolStripMenuItem,
             this.ansichtToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.menuStrip2.Margin = new System.Windows.Forms.Padding(3);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(3);
             this.menuStrip2.Size = new System.Drawing.Size(924, 40);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
@@ -546,22 +565,15 @@
             // 
             this.bildSpeichernDialog.Filter = "JPG|.jpg|PNG|.png|GIF|.gif|TIF|.tif|BMP|.bmp";
             // 
-            // greyValButton
+            // invertedButton
             // 
-            this.greyValButton.Location = new System.Drawing.Point(4, 49);
-            this.greyValButton.Name = "greyValButton";
-            this.greyValButton.Size = new System.Drawing.Size(171, 29);
-            this.greyValButton.TabIndex = 11;
-            this.greyValButton.Text = "Grauwertbild";
-            this.greyValButton.UseVisualStyleBackColor = true;
-            this.greyValButton.Click += new System.EventHandler(this.greyValButton_Click);
-            // 
-            // proBar
-            // 
-            this.proBar.Location = new System.Drawing.Point(12, 206);
-            this.proBar.Name = "proBar";
-            this.proBar.Size = new System.Drawing.Size(240, 23);
-            this.proBar.TabIndex = 1;
+            this.invertedButton.Location = new System.Drawing.Point(4, 77);
+            this.invertedButton.Name = "invertedButton";
+            this.invertedButton.Size = new System.Drawing.Size(171, 34);
+            this.invertedButton.TabIndex = 12;
+            this.invertedButton.Text = "Negativbild";
+            this.invertedButton.UseVisualStyleBackColor = true;
+            this.invertedButton.Click += new System.EventHandler(this.invertedButton_Click);
             // 
             // form1
             // 
@@ -649,6 +661,7 @@
         private System.Windows.Forms.Button colorPickerButton;
         private System.Windows.Forms.Button greyValButton;
         private System.Windows.Forms.ProgressBar proBar;
+        private System.Windows.Forms.Button invertedButton;
 
 
     }

@@ -52,37 +52,43 @@
             // 
             this.negativPicturebox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.negativPicturebox.Location = new System.Drawing.Point(0, 0);
+            this.negativPicturebox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.negativPicturebox.Name = "negativPicturebox";
-            this.negativPicturebox.Size = new System.Drawing.Size(537, 410);
+            this.negativPicturebox.Size = new System.Drawing.Size(806, 633);
             this.negativPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.negativPicturebox.TabIndex = 0;
             this.negativPicturebox.TabStop = false;
             // 
             // negativProgressBar
             // 
-            this.negativProgressBar.Location = new System.Drawing.Point(6, 346);
+            this.negativProgressBar.Location = new System.Drawing.Point(9, 532);
+            this.negativProgressBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.negativProgressBar.Name = "negativProgressBar";
-            this.negativProgressBar.Size = new System.Drawing.Size(177, 23);
+            this.negativProgressBar.Size = new System.Drawing.Size(266, 35);
             this.negativProgressBar.TabIndex = 10;
             this.negativProgressBar.Visible = false;
             // 
             // abbrechenButton
             // 
-            this.abbrechenButton.Location = new System.Drawing.Point(6, 375);
+            this.abbrechenButton.Location = new System.Drawing.Point(9, 577);
+            this.abbrechenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.abbrechenButton.Name = "abbrechenButton";
-            this.abbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.abbrechenButton.Size = new System.Drawing.Size(112, 35);
             this.abbrechenButton.TabIndex = 9;
             this.abbrechenButton.Text = "Abbrechen";
             this.abbrechenButton.UseVisualStyleBackColor = true;
+            this.abbrechenButton.Click += new System.EventHandler(this.abbrechenButton_Click);
             // 
             // speichernButton
             // 
-            this.speichernButton.Location = new System.Drawing.Point(108, 375);
+            this.speichernButton.Location = new System.Drawing.Point(162, 577);
+            this.speichernButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.speichernButton.Name = "speichernButton";
-            this.speichernButton.Size = new System.Drawing.Size(75, 23);
+            this.speichernButton.Size = new System.Drawing.Size(112, 35);
             this.speichernButton.TabIndex = 8;
             this.speichernButton.Text = "Speichern";
             this.speichernButton.UseVisualStyleBackColor = true;
+            this.speichernButton.Click += new System.EventHandler(this.speichernButton_Click);
             // 
             // splitContainer1
             // 
@@ -90,6 +96,7 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -99,8 +106,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(741, 412);
-            this.splitContainer1.SplitterDistance = 539;
+            this.splitContainer1.Size = new System.Drawing.Size(1112, 635);
+            this.splitContainer1.SplitterDistance = 808;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
             // panel1
@@ -110,26 +118,29 @@
             this.panel1.Controls.Add(this.speichernButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 410);
+            this.panel1.Size = new System.Drawing.Size(296, 633);
             this.panel1.TabIndex = 0;
             // 
             // centerPanel
             // 
             this.centerPanel.Controls.Add(this.splitContainer1);
             this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerPanel.Location = new System.Drawing.Point(10, 10);
+            this.centerPanel.Location = new System.Drawing.Point(15, 15);
+            this.centerPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(741, 412);
+            this.centerPanel.Size = new System.Drawing.Size(1112, 635);
             this.centerPanel.TabIndex = 24;
             // 
             // randObenPanel
             // 
             this.randObenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randObenPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.randObenPanel.Location = new System.Drawing.Point(10, 0);
+            this.randObenPanel.Location = new System.Drawing.Point(15, 0);
+            this.randObenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randObenPanel.Name = "randObenPanel";
-            this.randObenPanel.Size = new System.Drawing.Size(741, 10);
+            this.randObenPanel.Size = new System.Drawing.Size(1112, 15);
             this.randObenPanel.TabIndex = 23;
             // 
             // randLinksPanel
@@ -137,38 +148,42 @@
             this.randLinksPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randLinksPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.randLinksPanel.Location = new System.Drawing.Point(0, 0);
+            this.randLinksPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randLinksPanel.Name = "randLinksPanel";
-            this.randLinksPanel.Size = new System.Drawing.Size(10, 422);
+            this.randLinksPanel.Size = new System.Drawing.Size(15, 650);
             this.randLinksPanel.TabIndex = 22;
             // 
             // randRechtsPanel
             // 
             this.randRechtsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randRechtsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.randRechtsPanel.Location = new System.Drawing.Point(751, 0);
+            this.randRechtsPanel.Location = new System.Drawing.Point(1127, 0);
+            this.randRechtsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randRechtsPanel.Name = "randRechtsPanel";
-            this.randRechtsPanel.Size = new System.Drawing.Size(10, 422);
+            this.randRechtsPanel.Size = new System.Drawing.Size(15, 650);
             this.randRechtsPanel.TabIndex = 21;
             // 
             // randUntenPanel
             // 
             this.randUntenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randUntenPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.randUntenPanel.Location = new System.Drawing.Point(0, 422);
+            this.randUntenPanel.Location = new System.Drawing.Point(0, 650);
+            this.randUntenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randUntenPanel.Name = "randUntenPanel";
-            this.randUntenPanel.Size = new System.Drawing.Size(761, 10);
+            this.randUntenPanel.Size = new System.Drawing.Size(1142, 15);
             this.randUntenPanel.TabIndex = 20;
             // 
             // negativ
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(761, 432);
+            this.ClientSize = new System.Drawing.Size(1142, 665);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.randObenPanel);
             this.Controls.Add(this.randLinksPanel);
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "negativ";
             this.Text = "Negativ";
             ((System.ComponentModel.ISupportInitialize)(this.negativPicturebox)).EndInit();

@@ -22,11 +22,12 @@ namespace Prog3
             InitializeComponent();
             picBoxOld = pb;
             parent = parent_in;
+            this.Show();
             createGreyValPic();
         }
         //------------------------------------------------------------------------------------------------
         //Grauwertbild berechnen  
-        private void createGreyValPic(){
+        public void createGreyValPic(){
             Color oldColor, greyColor;
             Bitmap helpMap, greyMap;
             int width, height, i, j = 0, greyValue;
@@ -37,7 +38,8 @@ namespace Prog3
                 width = helpMap.Width;      //Bildbreite bestimmen
                 height = helpMap.Height;    //Bildhöhe bestimmen
                 greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
-                parent.setProBarMax(height);      //Maximum der Progressbar festlegen
+                grauwertProgressBar.Maximum = height;
+                //parent.setProBarMax(height);      //Maximum der Progressbar festlegen
                 while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
                 {
                     for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
@@ -48,10 +50,12 @@ namespace Prog3
                         greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
                     }
                     j++;        //Laufvariable inkrementieren
-                    parent.incProBar();      //Fortschritt der Progressbar erhöhen
+                    grauwertProgressBar.Increment(1);
+                    //parent.incProBar();      //Fortschritt der Progressbar erhöhen
                 }
                 grauwertPicturebox.Image = greyMap;      //Grauwertbild anzeigen
-                parent.setProBarToZero();     //Progressbar leeren
+                grauwertProgressBar.Value = 0;
+                //parent.setProBarToZero();     //Progressbar leeren
             }
             catch
             {
@@ -60,7 +64,7 @@ namespace Prog3
             GC.Collect();       //Garbage Collection auslösen
         }
         //------------------------------------------------------------------------------------------------
-        //Klickevents berechnen  
+        //Klickevents  
         private void abbrechenButton_Click(object sender, EventArgs e)
         {
             grauwertPicturebox.Image = null;
