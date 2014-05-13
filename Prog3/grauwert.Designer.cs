@@ -50,29 +50,34 @@
             // 
             // grauwertProgressBar
             // 
-            this.grauwertProgressBar.Location = new System.Drawing.Point(6, 346);
+            this.grauwertProgressBar.Location = new System.Drawing.Point(9, 532);
+            this.grauwertProgressBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grauwertProgressBar.Name = "grauwertProgressBar";
-            this.grauwertProgressBar.Size = new System.Drawing.Size(177, 23);
+            this.grauwertProgressBar.Size = new System.Drawing.Size(266, 35);
             this.grauwertProgressBar.TabIndex = 10;
             this.grauwertProgressBar.Visible = false;
             // 
             // abbrechenButton
             // 
-            this.abbrechenButton.Location = new System.Drawing.Point(6, 375);
+            this.abbrechenButton.Location = new System.Drawing.Point(9, 577);
+            this.abbrechenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.abbrechenButton.Name = "abbrechenButton";
-            this.abbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.abbrechenButton.Size = new System.Drawing.Size(112, 35);
             this.abbrechenButton.TabIndex = 9;
             this.abbrechenButton.Text = "Abbrechen";
             this.abbrechenButton.UseVisualStyleBackColor = true;
+            this.abbrechenButton.Click += new System.EventHandler(this.abbrechenButton_Click);
             // 
             // speichernButton
             // 
-            this.speichernButton.Location = new System.Drawing.Point(108, 375);
+            this.speichernButton.Location = new System.Drawing.Point(162, 577);
+            this.speichernButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.speichernButton.Name = "speichernButton";
-            this.speichernButton.Size = new System.Drawing.Size(75, 23);
+            this.speichernButton.Size = new System.Drawing.Size(112, 35);
             this.speichernButton.TabIndex = 8;
             this.speichernButton.Text = "Speichern";
             this.speichernButton.UseVisualStyleBackColor = true;
+            this.speichernButton.Click += new System.EventHandler(this.speichernButton_Click);
             // 
             // splitContainer1
             // 
@@ -80,6 +85,7 @@
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -89,16 +95,18 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(743, 412);
-            this.splitContainer1.SplitterDistance = 541;
+            this.splitContainer1.Size = new System.Drawing.Size(1114, 635);
+            this.splitContainer1.SplitterDistance = 811;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
             // grauwertPicturebox
             // 
             this.grauwertPicturebox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grauwertPicturebox.Location = new System.Drawing.Point(0, 0);
+            this.grauwertPicturebox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grauwertPicturebox.Name = "grauwertPicturebox";
-            this.grauwertPicturebox.Size = new System.Drawing.Size(539, 410);
+            this.grauwertPicturebox.Size = new System.Drawing.Size(809, 633);
             this.grauwertPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.grauwertPicturebox.TabIndex = 0;
             this.grauwertPicturebox.TabStop = false;
@@ -110,26 +118,29 @@
             this.panel1.Controls.Add(this.speichernButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(196, 410);
+            this.panel1.Size = new System.Drawing.Size(295, 633);
             this.panel1.TabIndex = 0;
             // 
             // centerPanel
             // 
             this.centerPanel.Controls.Add(this.splitContainer1);
             this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerPanel.Location = new System.Drawing.Point(10, 10);
+            this.centerPanel.Location = new System.Drawing.Point(15, 15);
+            this.centerPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(743, 412);
+            this.centerPanel.Size = new System.Drawing.Size(1114, 635);
             this.centerPanel.TabIndex = 19;
             // 
             // randObenPanel
             // 
             this.randObenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randObenPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.randObenPanel.Location = new System.Drawing.Point(10, 0);
+            this.randObenPanel.Location = new System.Drawing.Point(15, 0);
+            this.randObenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randObenPanel.Name = "randObenPanel";
-            this.randObenPanel.Size = new System.Drawing.Size(743, 10);
+            this.randObenPanel.Size = new System.Drawing.Size(1114, 15);
             this.randObenPanel.TabIndex = 18;
             // 
             // randLinksPanel
@@ -137,38 +148,42 @@
             this.randLinksPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randLinksPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.randLinksPanel.Location = new System.Drawing.Point(0, 0);
+            this.randLinksPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randLinksPanel.Name = "randLinksPanel";
-            this.randLinksPanel.Size = new System.Drawing.Size(10, 422);
+            this.randLinksPanel.Size = new System.Drawing.Size(15, 650);
             this.randLinksPanel.TabIndex = 17;
             // 
             // randRechtsPanel
             // 
             this.randRechtsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randRechtsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.randRechtsPanel.Location = new System.Drawing.Point(753, 0);
+            this.randRechtsPanel.Location = new System.Drawing.Point(1129, 0);
+            this.randRechtsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randRechtsPanel.Name = "randRechtsPanel";
-            this.randRechtsPanel.Size = new System.Drawing.Size(10, 422);
+            this.randRechtsPanel.Size = new System.Drawing.Size(15, 650);
             this.randRechtsPanel.TabIndex = 16;
             // 
             // randUntenPanel
             // 
             this.randUntenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randUntenPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.randUntenPanel.Location = new System.Drawing.Point(0, 422);
+            this.randUntenPanel.Location = new System.Drawing.Point(0, 650);
+            this.randUntenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randUntenPanel.Name = "randUntenPanel";
-            this.randUntenPanel.Size = new System.Drawing.Size(763, 10);
+            this.randUntenPanel.Size = new System.Drawing.Size(1144, 15);
             this.randUntenPanel.TabIndex = 15;
             // 
             // grauwert
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(763, 432);
+            this.ClientSize = new System.Drawing.Size(1144, 665);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.randObenPanel);
             this.Controls.Add(this.randLinksPanel);
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "grauwert";
             this.Text = "Grauwert";
             this.splitContainer1.Panel1.ResumeLayout(false);

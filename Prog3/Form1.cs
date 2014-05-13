@@ -285,6 +285,18 @@ namespace Prog3
             return (Bitmap)bildPicturebox.Image;
         }
 
+        public void setProBarMax(int max) {
+            proBar.Maximum = max;
+        }
+
+        public void incProBar() {
+            proBar.Increment(1);
+        }
+
+        public void setProBarToZero() {
+            proBar.Value = 0;
+        }
+
 
     //----------------------------------------------------------------------------------------------------
     //Korrekturen
@@ -292,6 +304,12 @@ namespace Prog3
         {
             kontrast neu = new kontrast(this);
             neu.Show();
+        }
+
+        private void greyValButton_Click(object sender, EventArgs e)
+        {
+            grauwert gw = new grauwert(bildPicturebox, this);
+            gw.Show();
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -459,6 +477,8 @@ namespace Prog3
             img.RotateFlip(RotateFlipType.Rotate270FlipNone);
             setAndSavePictureBox((Bitmap)img);
         }
+
+
 
         
 
