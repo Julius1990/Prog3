@@ -35,7 +35,7 @@ namespace Prog3
                 width = helpMap.Width;      //Bildbreite bestimmen
                 height = helpMap.Height;    //Bildhöhe bestimmen
                 invertedMap = new Bitmap(width, height);    //Bitmap für das invertierte Bild erstellen
-
+                negativProgressBar.Visible = true;      //Progressbar sichtbar machen
                 negativProgressBar.Maximum = height;      //Maximum der Progressbar festlegen
 
                 while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
