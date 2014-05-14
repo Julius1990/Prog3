@@ -40,6 +40,8 @@ namespace Prog3
                 greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
                 grauwertProgressBar.Maximum = height;
                 //parent.setProBarMax(height);      //Maximum der Progressbar festlegen
+grauwertProgressBar.Maximum = height; //JULIUS
+grauwertProgressBar.Visible = true; //JULIUS
                 while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
                 {
                     for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
@@ -50,7 +52,7 @@ namespace Prog3
                         greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
                     }
                     j++;        //Laufvariable inkrementieren
-                    grauwertProgressBar.Increment(1);
+grauwertProgressBar.Increment(1);//Julius
                     //parent.incProBar();      //Fortschritt der Progressbar erhöhen
                 }
                 grauwertPicturebox.Image = greyMap;      //Grauwertbild anzeigen
