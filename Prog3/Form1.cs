@@ -20,6 +20,7 @@ namespace Prog3
             InitializeComponent();
             schrittSpeicherAnlegen();
 
+            //Accordion Menu
             checkboxes = new List<CheckBox> { korrekturenCheckBox, werkzeugeCheckBox, ansichtCheckBox };
             panels = new List<Panel> { korrekturenPanel, werkzeugPanel, ansichtPanel };
             organizePanels();
@@ -287,9 +288,7 @@ namespace Prog3
         public Bitmap getPictureBoxImage()
         {
             return (Bitmap)bildPicturebox.Image;
-        }
-
-
+        } 
 
     //----------------------------------------------------------------------------------------------------
     //Korrekturen
@@ -498,16 +497,19 @@ namespace Prog3
             {
                 panels[0].Top = checkboxes[0].Bottom;
                 panels[0].Visible = true;
+                checkboxes[0].Image = Prog3.Properties.Resources.pfeilunten;
             }
             else
             {
                 panels[0].Visible = false;
+                checkboxes[0].Image = Prog3.Properties.Resources.pfeil_rechts2;
             }
             //alle anderen Checkboxes
             for (int i = 1; i < checkboxes.Count; i++)
             {
                 if (checkboxes[i].Checked)
                 {
+                    checkboxes[i].Image = Prog3.Properties.Resources.pfeilunten;
                     if (checkboxes[i - 1].Checked)
                     {
                         checkboxes[i].Top = panels[i - 1].Bottom;
@@ -523,6 +525,7 @@ namespace Prog3
                 }
                 else
                 {
+                    checkboxes[i].Image = Prog3.Properties.Resources.pfeil_rechts2;
                     if (checkboxes[i - 1].Checked)
                     {
                         checkboxes[i].Top = panels[i - 1].Bottom;

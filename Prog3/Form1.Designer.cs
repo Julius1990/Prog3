@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.linkerContainer = new System.Windows.Forms.SplitContainer();
-            this.bildPicturebox = new System.Windows.Forms.PictureBox();
             this.labelB = new System.Windows.Forms.Label();
             this.labelG = new System.Windows.Forms.Label();
             this.labelR = new System.Windows.Forms.Label();
@@ -39,17 +38,8 @@
             this.labelTextG = new System.Windows.Forms.Label();
             this.labelTextR = new System.Windows.Forms.Label();
             this.rechterContainer = new System.Windows.Forms.SplitContainer();
-            this.korrekturenCheckBox = new System.Windows.Forms.CheckBox();
-            this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
-            this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
             this.ansichtPanel = new System.Windows.Forms.Panel();
-            this.linksDrehenButton = new System.Windows.Forms.Button();
-            this.rechtsDrehenButton = new System.Windows.Forms.Button();
-            this.zoomOutButton = new System.Windows.Forms.Button();
-            this.zoomInButton = new System.Windows.Forms.Button();
             this.werkzeugPanel = new System.Windows.Forms.Panel();
-            this.colorPickerButton = new System.Windows.Forms.Button();
-            this.handButton = new System.Windows.Forms.Button();
             this.korrekturenPanel = new System.Windows.Forms.Panel();
             this.invertedButton = new System.Windows.Forms.Button();
             this.greyValButton = new System.Windows.Forms.Button();
@@ -73,6 +63,16 @@
             this.centerPanel = new System.Windows.Forms.Panel();
             this.menuePanel = new System.Windows.Forms.Panel();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
+            this.bildPicturebox = new System.Windows.Forms.PictureBox();
+            this.korrekturenCheckBox = new System.Windows.Forms.CheckBox();
+            this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
+            this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
+            this.linksDrehenButton = new System.Windows.Forms.Button();
+            this.rechtsDrehenButton = new System.Windows.Forms.Button();
+            this.zoomOutButton = new System.Windows.Forms.Button();
+            this.zoomInButton = new System.Windows.Forms.Button();
+            this.colorPickerButton = new System.Windows.Forms.Button();
+            this.handButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,7 +81,6 @@
             this.linkerContainer.Panel1.SuspendLayout();
             this.linkerContainer.Panel2.SuspendLayout();
             this.linkerContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).BeginInit();
             this.rechterContainer.Panel1.SuspendLayout();
             this.rechterContainer.SuspendLayout();
@@ -91,6 +90,7 @@
             this.menuStrip2.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -135,18 +135,6 @@
             this.linkerContainer.Size = new System.Drawing.Size(418, 493);
             this.linkerContainer.SplitterDistance = 323;
             this.linkerContainer.TabIndex = 0;
-            // 
-            // bildPicturebox
-            // 
-            this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
-            this.bildPicturebox.Name = "bildPicturebox";
-            this.bildPicturebox.Size = new System.Drawing.Size(412, 279);
-            this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.bildPicturebox.TabIndex = 0;
-            this.bildPicturebox.TabStop = false;
-            this.bildPicturebox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseClick);
-            this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
-            this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
             // 
             // labelB
             // 
@@ -229,39 +217,6 @@
             this.rechterContainer.SplitterDistance = 348;
             this.rechterContainer.TabIndex = 0;
             // 
-            // korrekturenCheckBox
-            // 
-            this.korrekturenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.korrekturenCheckBox.Location = new System.Drawing.Point(3, 31);
-            this.korrekturenCheckBox.Name = "korrekturenCheckBox";
-            this.korrekturenCheckBox.Size = new System.Drawing.Size(160, 24);
-            this.korrekturenCheckBox.TabIndex = 9;
-            this.korrekturenCheckBox.Text = "Korrekturen";
-            this.korrekturenCheckBox.UseVisualStyleBackColor = true;
-            this.korrekturenCheckBox.CheckedChanged += new System.EventHandler(this.korrekturenCheckBox_CheckedChanged);
-            // 
-            // werkzeugeCheckBox
-            // 
-            this.werkzeugeCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.werkzeugeCheckBox.Location = new System.Drawing.Point(4, 145);
-            this.werkzeugeCheckBox.Name = "werkzeugeCheckBox";
-            this.werkzeugeCheckBox.Size = new System.Drawing.Size(161, 24);
-            this.werkzeugeCheckBox.TabIndex = 8;
-            this.werkzeugeCheckBox.Text = "Werkzeuge";
-            this.werkzeugeCheckBox.UseVisualStyleBackColor = true;
-            this.werkzeugeCheckBox.CheckedChanged += new System.EventHandler(this.werkzeugeCheckBox_CheckedChanged);
-            // 
-            // ansichtCheckBox
-            // 
-            this.ansichtCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ansichtCheckBox.Location = new System.Drawing.Point(4, 238);
-            this.ansichtCheckBox.Name = "ansichtCheckBox";
-            this.ansichtCheckBox.Size = new System.Drawing.Size(161, 24);
-            this.ansichtCheckBox.TabIndex = 7;
-            this.ansichtCheckBox.Text = "Ansicht";
-            this.ansichtCheckBox.UseVisualStyleBackColor = true;
-            this.ansichtCheckBox.CheckedChanged += new System.EventHandler(this.ansichtCheckBox_CheckedChanged);
-            // 
             // ansichtPanel
             // 
             this.ansichtPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -275,51 +230,6 @@
             this.ansichtPanel.TabIndex = 5;
             this.ansichtPanel.Visible = false;
             // 
-            // linksDrehenButton
-            // 
-            this.linksDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("linksDrehenButton.BackgroundImage")));
-            this.linksDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.linksDrehenButton.Location = new System.Drawing.Point(88, 16);
-            this.linksDrehenButton.Name = "linksDrehenButton";
-            this.linksDrehenButton.Size = new System.Drawing.Size(30, 30);
-            this.linksDrehenButton.TabIndex = 3;
-            this.linksDrehenButton.UseVisualStyleBackColor = true;
-            this.linksDrehenButton.Click += new System.EventHandler(this.linksDrehenButton_Click);
-            // 
-            // rechtsDrehenButton
-            // 
-            this.rechtsDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rechtsDrehenButton.BackgroundImage")));
-            this.rechtsDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rechtsDrehenButton.Location = new System.Drawing.Point(124, 16);
-            this.rechtsDrehenButton.Name = "rechtsDrehenButton";
-            this.rechtsDrehenButton.Size = new System.Drawing.Size(30, 30);
-            this.rechtsDrehenButton.TabIndex = 2;
-            this.rechtsDrehenButton.UseVisualStyleBackColor = true;
-            this.rechtsDrehenButton.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
-            // 
-            // zoomOutButton
-            // 
-            this.zoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomOutButton.BackgroundImage")));
-            this.zoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.zoomOutButton.Location = new System.Drawing.Point(37, 16);
-            this.zoomOutButton.Name = "zoomOutButton";
-            this.zoomOutButton.Size = new System.Drawing.Size(30, 30);
-            this.zoomOutButton.TabIndex = 1;
-            this.zoomOutButton.UseVisualStyleBackColor = true;
-            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
-            // 
-            // zoomInButton
-            // 
-            this.zoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomInButton.BackgroundImage")));
-            this.zoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.zoomInButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.zoomInButton.Location = new System.Drawing.Point(3, 16);
-            this.zoomInButton.Name = "zoomInButton";
-            this.zoomInButton.Size = new System.Drawing.Size(30, 30);
-            this.zoomInButton.TabIndex = 0;
-            this.zoomInButton.UseVisualStyleBackColor = true;
-            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
-            // 
             // werkzeugPanel
             // 
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -330,28 +240,6 @@
             this.werkzeugPanel.Size = new System.Drawing.Size(161, 57);
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
-            // 
-            // colorPickerButton
-            // 
-            this.colorPickerButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("colorPickerButton.BackgroundImage")));
-            this.colorPickerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.colorPickerButton.Location = new System.Drawing.Point(37, 10);
-            this.colorPickerButton.Name = "colorPickerButton";
-            this.colorPickerButton.Size = new System.Drawing.Size(30, 30);
-            this.colorPickerButton.TabIndex = 1;
-            this.colorPickerButton.UseVisualStyleBackColor = true;
-            this.colorPickerButton.Click += new System.EventHandler(this.colorPickerButton_Click);
-            // 
-            // handButton
-            // 
-            this.handButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("handButton.BackgroundImage")));
-            this.handButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.handButton.Location = new System.Drawing.Point(3, 10);
-            this.handButton.Name = "handButton";
-            this.handButton.Size = new System.Drawing.Size(30, 30);
-            this.handButton.TabIndex = 0;
-            this.handButton.UseVisualStyleBackColor = true;
-            this.handButton.Click += new System.EventHandler(this.handButton_Click);
             // 
             // korrekturenPanel
             // 
@@ -555,6 +443,124 @@
             // 
             this.bildSpeichernDialog.Filter = "JPG|.jpg|PNG|.png|GIF|.gif|TIF|.tif|BMP|.bmp";
             // 
+            // bildPicturebox
+            // 
+            this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
+            this.bildPicturebox.Name = "bildPicturebox";
+            this.bildPicturebox.Size = new System.Drawing.Size(412, 279);
+            this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bildPicturebox.TabIndex = 0;
+            this.bildPicturebox.TabStop = false;
+            this.bildPicturebox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseClick);
+            this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
+            this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
+            // 
+            // korrekturenCheckBox
+            // 
+            this.korrekturenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.korrekturenCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("korrekturenCheckBox.Image")));
+            this.korrekturenCheckBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.korrekturenCheckBox.Location = new System.Drawing.Point(3, 31);
+            this.korrekturenCheckBox.Name = "korrekturenCheckBox";
+            this.korrekturenCheckBox.Size = new System.Drawing.Size(160, 24);
+            this.korrekturenCheckBox.TabIndex = 9;
+            this.korrekturenCheckBox.Text = "      Korrekturen";
+            this.korrekturenCheckBox.UseVisualStyleBackColor = true;
+            this.korrekturenCheckBox.CheckedChanged += new System.EventHandler(this.korrekturenCheckBox_CheckedChanged);
+            // 
+            // werkzeugeCheckBox
+            // 
+            this.werkzeugeCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.werkzeugeCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("werkzeugeCheckBox.Image")));
+            this.werkzeugeCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.werkzeugeCheckBox.Location = new System.Drawing.Point(4, 145);
+            this.werkzeugeCheckBox.Name = "werkzeugeCheckBox";
+            this.werkzeugeCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.werkzeugeCheckBox.TabIndex = 8;
+            this.werkzeugeCheckBox.Text = "      Werkzeuge";
+            this.werkzeugeCheckBox.UseVisualStyleBackColor = true;
+            this.werkzeugeCheckBox.CheckedChanged += new System.EventHandler(this.werkzeugeCheckBox_CheckedChanged);
+            // 
+            // ansichtCheckBox
+            // 
+            this.ansichtCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ansichtCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
+            this.ansichtCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ansichtCheckBox.Location = new System.Drawing.Point(4, 238);
+            this.ansichtCheckBox.Name = "ansichtCheckBox";
+            this.ansichtCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.ansichtCheckBox.TabIndex = 7;
+            this.ansichtCheckBox.Text = "      Ansicht";
+            this.ansichtCheckBox.UseVisualStyleBackColor = true;
+            this.ansichtCheckBox.CheckedChanged += new System.EventHandler(this.ansichtCheckBox_CheckedChanged);
+            // 
+            // linksDrehenButton
+            // 
+            this.linksDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("linksDrehenButton.BackgroundImage")));
+            this.linksDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.linksDrehenButton.Location = new System.Drawing.Point(88, 16);
+            this.linksDrehenButton.Name = "linksDrehenButton";
+            this.linksDrehenButton.Size = new System.Drawing.Size(30, 30);
+            this.linksDrehenButton.TabIndex = 3;
+            this.linksDrehenButton.UseVisualStyleBackColor = true;
+            this.linksDrehenButton.Click += new System.EventHandler(this.linksDrehenButton_Click);
+            // 
+            // rechtsDrehenButton
+            // 
+            this.rechtsDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rechtsDrehenButton.BackgroundImage")));
+            this.rechtsDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rechtsDrehenButton.Location = new System.Drawing.Point(124, 16);
+            this.rechtsDrehenButton.Name = "rechtsDrehenButton";
+            this.rechtsDrehenButton.Size = new System.Drawing.Size(30, 30);
+            this.rechtsDrehenButton.TabIndex = 2;
+            this.rechtsDrehenButton.UseVisualStyleBackColor = true;
+            this.rechtsDrehenButton.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
+            // 
+            // zoomOutButton
+            // 
+            this.zoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomOutButton.BackgroundImage")));
+            this.zoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.zoomOutButton.Location = new System.Drawing.Point(37, 16);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(30, 30);
+            this.zoomOutButton.TabIndex = 1;
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
+            // 
+            // zoomInButton
+            // 
+            this.zoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomInButton.BackgroundImage")));
+            this.zoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.zoomInButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.zoomInButton.Location = new System.Drawing.Point(3, 16);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(30, 30);
+            this.zoomInButton.TabIndex = 0;
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
+            // 
+            // colorPickerButton
+            // 
+            this.colorPickerButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("colorPickerButton.BackgroundImage")));
+            this.colorPickerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.colorPickerButton.Location = new System.Drawing.Point(37, 10);
+            this.colorPickerButton.Name = "colorPickerButton";
+            this.colorPickerButton.Size = new System.Drawing.Size(30, 30);
+            this.colorPickerButton.TabIndex = 1;
+            this.colorPickerButton.UseVisualStyleBackColor = true;
+            this.colorPickerButton.Click += new System.EventHandler(this.colorPickerButton_Click);
+            // 
+            // handButton
+            // 
+            this.handButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("handButton.BackgroundImage")));
+            this.handButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.handButton.Location = new System.Drawing.Point(3, 10);
+            this.handButton.Name = "handButton";
+            this.handButton.Size = new System.Drawing.Size(30, 30);
+            this.handButton.TabIndex = 0;
+            this.handButton.UseVisualStyleBackColor = true;
+            this.handButton.Click += new System.EventHandler(this.handButton_Click);
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,7 +582,6 @@
             this.linkerContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.linkerContainer)).EndInit();
             this.linkerContainer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
             this.rechterContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
             this.rechterContainer.ResumeLayout(false);
@@ -588,6 +593,7 @@
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
             this.ResumeLayout(false);
 
         }
