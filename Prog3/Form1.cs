@@ -20,8 +20,9 @@ namespace Prog3
             InitializeComponent();
             schrittSpeicherAnlegen();
 
-            
-            
+            checkboxes = new List<CheckBox> { korrekturenCheckBox, werkzeugeCheckBox, ansichtCheckBox };
+            panels = new List<Panel> { korrekturenPanel, werkzeugPanel, ansichtPanel };
+            organizePanels();
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
@@ -42,7 +43,10 @@ namespace Prog3
         bool colorPickerAusgewaehlt = false;
         bool handToolAusgewaehlt = false;
 
-        
+        //Accordion Menu
+        List<CheckBox> checkboxes;
+        List<Panel> panels;
+
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -298,7 +302,7 @@ namespace Prog3
         private void greyValButton_Click(object sender, EventArgs e)
         {
             grauwert gw = new grauwert(bildPicturebox, this);
-            //gw.Show();
+            gw.Show();
             //gw.createGreyValPic();
         }
 
@@ -472,6 +476,68 @@ namespace Prog3
             img.RotateFlip(RotateFlipType.Rotate270FlipNone);
             setAndSavePictureBox((Bitmap)img);
         }
+
+    //----------------------------------------------------------------------------------------------------
+    //Accordion Menu
+        private void korrekturenCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            organizePanels();
+        }
+        private void ansichtCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            organizePanels();
+        }
+        private void werkzeugeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            organizePanels();
+        }
+        private void organizePanels()
+        {
+            //erste Checkbox
+            if (checkboxes[0].Checked)
+            {
+                panels[0].Top = checkboxes[0].Bottom;
+                panels[0].Visible = true;
+            }
+            else
+            {
+                panels[0].Visible = false;
+            }
+            //alle anderen Checkboxes
+            for (int i = 1; i < checkboxes.Count; i++)
+            {
+                if (checkboxes[i].Checked)
+                {
+                    if (checkboxes[i - 1].Checked)
+                    {
+                        checkboxes[i].Top = panels[i - 1].Bottom;
+                        panels[i].Top = checkboxes[i].Bottom;
+                        panels[i].Visible = true;
+                    }
+                    else
+                    {
+                        checkboxes[i].Top = checkboxes[i - 1].Bottom;
+                        panels[i].Top = checkboxes[i].Bottom;
+                        panels[i].Visible = true;
+                    }
+                }
+                else
+                {
+                    if (checkboxes[i - 1].Checked)
+                    {
+                        checkboxes[i].Top = panels[i - 1].Bottom;
+                        panels[i].Visible = false;
+                    }
+                    else
+                    {
+                        checkboxes[i].Top = checkboxes[i - 1].Bottom;
+                        panels[i].Visible = false;
+                    }
+                }
+            }
+        }
+
+        
 
 
 

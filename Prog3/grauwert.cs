@@ -22,7 +22,7 @@ namespace Prog3
             InitializeComponent();
             picBoxOld = pb;
             parent = parent_in;
-            this.Show();
+            //this.Show();
             createGreyValPic();
         }
         //------------------------------------------------------------------------------------------------
