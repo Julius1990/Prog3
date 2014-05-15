@@ -21,9 +21,7 @@ namespace Prog3
             schrittSpeicherAnlegen();
 
             //Accordion Menu
-            checkboxes = new List<CheckBox> { korrekturenCheckBox, werkzeugeCheckBox, ansichtCheckBox };
-            panels = new List<Panel> { korrekturenPanel, werkzeugPanel, ansichtPanel };
-            organizePanels();
+            initializeAccordionMenu();
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
@@ -47,7 +45,6 @@ namespace Prog3
         //Accordion Menu
         List<CheckBox> checkboxes;
         List<Panel> panels;
-
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -297,14 +294,51 @@ namespace Prog3
             kontrast neu = new kontrast(this);
             neu.Show();
         }
-
         private void greyValButton_Click(object sender, EventArgs e)
         {
-            grauwert gw = new grauwert(bildPicturebox, this);
-            gw.Show();
+            //grauwert gw = new grauwert(bildPicturebox, this);
+            //gw.Show();
             //gw.createGreyValPic();
+            createGreyValPic();
         }
+        public void createGreyValPic()
+        {
+            Color oldColor, greyColor;
+            Bitmap helpMap, greyMap;
+            int width, height, i, j = 0, greyValue;
 
+            try
+            {
+                helpMap = (Bitmap)bildPicturebox.Image;   //Bitmap aus Bild in picBoxOld erstellen
+                width = helpMap.Width;      //Bildbreite bestimmen
+                height = helpMap.Height;    //Bildhöhe bestimmen
+                greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
+                form1ProgressBar.Top = linkerContainer.Panel1.Height / 2;
+                form1ProgressBar.Left = linkerContainer.Width / 2 - form1ProgressBar.Width;
+                form1ProgressBar.Maximum = height;
+                form1ProgressBar.Visible = true; //Progressbar sichtbar machen
+                while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
+                {
+                    for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
+                    {
+                        oldColor = helpMap.GetPixel(i, j);      //Farbwert bestimmen
+                        greyValue = (int)(0.3 * oldColor.R + 0.6 * oldColor.G + 0.1 * oldColor.B);     //Grauwert berechnen
+                        greyColor = Color.FromArgb(greyValue, greyValue, greyValue);        //Colorvariable aus Grauwert erzeugen
+                        greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
+                    }
+                    j++;        //Laufvariable inkrementieren
+                    form1ProgressBar.Increment(1);   //Fortschritt der Progressbar erhöhen
+                }
+                setAndSavePictureBox(greyMap);
+                form1ProgressBar.Value = 0;  //Progressbar leeren
+                form1ProgressBar.Visible = false;
+            }
+            catch
+            {
+                MessageBox.Show("Bitte öffnen Sie ein Bild bevor Sie diese Funktion nutzen!", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Warning);     //Ausgabe bei Exception
+            }
+            GC.Collect();       //Garbage Collection auslösen
+        }
         private void invertedButton_Click(object sender, EventArgs e)
         {
             negativ neg = new negativ(bildPicturebox, this);
@@ -445,9 +479,18 @@ namespace Prog3
         }
         private void bildPicturebox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (colorPickerAusgewaehlt)
+            //Aktionen bei gedrückter linker Maustaste
+            if (e.Button == MouseButtons.Left)
             {
-                getPixelColor(e, bildPicturebox);
+                if (colorPickerAusgewaehlt)
+                {
+                    getPixelColor(e, bildPicturebox);
+                }
+            }
+            //Aktionen bei gedrückter rechter Maustaste
+            else if (e.Button == MouseButtons.Right)
+            {
+
             }
         }
 
@@ -490,12 +533,25 @@ namespace Prog3
         {
             organizePanels();
         }
+        private void filterCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            organizePanels();
+        }
+        private void initializeAccordionMenu()
+        {
+            //neue listen für die checkboxen und panels anlegen
+            checkboxes = new List<CheckBox> { korrekturenCheckBox, werkzeugeCheckBox, ansichtCheckBox,filterCheckBox };
+            panels = new List<Panel> { korrekturenPanel, werkzeugPanel, ansichtPanel,FilterPanel };
+            //auf Anfangszustand setzen(alles eingeklappt)
+            organizePanels();
+        }
         private void organizePanels()
         {
             //erste Checkbox
             if (checkboxes[0].Checked)
             {
                 panels[0].Top = checkboxes[0].Bottom;
+                panels[0].Left = checkboxes[0].Left;
                 panels[0].Visible = true;
                 checkboxes[0].Image = Prog3.Properties.Resources.pfeilunten;
             }
@@ -507,31 +563,37 @@ namespace Prog3
             //alle anderen Checkboxes
             for (int i = 1; i < checkboxes.Count; i++)
             {
-                if (checkboxes[i].Checked)
+                if (checkboxes[i].Checked)//nur die ausgewählten checkBoxen durchgehen
                 {
+                    //Das Bild der entsprechenden Box ändern
                     checkboxes[i].Image = Prog3.Properties.Resources.pfeilunten;
-                    if (checkboxes[i - 1].Checked)
+
+                    if (checkboxes[i - 1].Checked)  //falls der Vorgänger angeklickt ist
                     {
                         checkboxes[i].Top = panels[i - 1].Bottom;
                         panels[i].Top = checkboxes[i].Bottom;
+                        panels[i].Left = checkboxes[i].Left;
                         panels[i].Visible = true;
                     }
-                    else
+                    else//falls der vorgänger nicht angeklickt ist
                     {
                         checkboxes[i].Top = checkboxes[i - 1].Bottom;
                         panels[i].Top = checkboxes[i].Bottom;
+                        panels[i].Left = checkboxes[i].Left;
                         panels[i].Visible = true;
                     }
                 }
-                else
+                else//die nicht angeklickten checkBoxen
                 {
+                    //bild der checkboxen ändern
                     checkboxes[i].Image = Prog3.Properties.Resources.pfeil_rechts2;
-                    if (checkboxes[i - 1].Checked)
+
+                    if (checkboxes[i - 1].Checked)  //falls der vorgänger ausgewählt ist
                     {
                         checkboxes[i].Top = panels[i - 1].Bottom;
                         panels[i].Visible = false;
                     }
-                    else
+                    else//falls der vorgänger nicht ausgewählt ist
                     {
                         checkboxes[i].Top = checkboxes[i - 1].Bottom;
                         panels[i].Visible = false;
@@ -539,6 +601,9 @@ namespace Prog3
                 }
             }
         }
+
+        
+
 
         
 
