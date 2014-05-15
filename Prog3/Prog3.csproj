@@ -48,8 +48,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,12 +69,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="grauwert.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="grauwert.Designer.cs">
-      <DependentUpon>grauwert.cs</DependentUpon>
-    </Compile>
     <Compile Include="kontrast.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,11 +83,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="statusFenster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="statusFenster.Designer.cs">
+      <DependentUpon>statusFenster.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="grauwert.resx">
-      <DependentUpon>grauwert.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="kontrast.resx">
       <DependentUpon>kontrast.cs</DependentUpon>
@@ -102,6 +102,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="statusFenster.resx">
+      <DependentUpon>statusFenster.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

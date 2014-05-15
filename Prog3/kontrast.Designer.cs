@@ -42,6 +42,7 @@
             this.anwendenTextBox = new System.Windows.Forms.TextBox();
             this.kontrastLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.anwendenTrackBarButton = new System.Windows.Forms.Button();
             this.kontrastTrackBar = new System.Windows.Forms.TrackBar();
             this.kontrastProgressBar = new System.Windows.Forms.ProgressBar();
             this.abbrechenButton = new System.Windows.Forms.Button();
@@ -150,7 +151,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 86);
+            this.label1.Location = new System.Drawing.Point(22, 101);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 13;
@@ -161,7 +162,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.anwendenButton);
             this.panel3.Controls.Add(this.anwendenTextBox);
-            this.panel3.Location = new System.Drawing.Point(6, 96);
+            this.panel3.Location = new System.Drawing.Point(6, 111);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(177, 56);
             this.panel3.TabIndex = 15;
@@ -196,11 +197,22 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.anwendenTrackBarButton);
             this.panel2.Controls.Add(this.kontrastTrackBar);
             this.panel2.Location = new System.Drawing.Point(6, 20);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(177, 56);
+            this.panel2.Size = new System.Drawing.Size(177, 67);
             this.panel2.TabIndex = 14;
+            // 
+            // anwendenTrackBarButton
+            // 
+            this.anwendenTrackBarButton.Location = new System.Drawing.Point(50, 37);
+            this.anwendenTrackBarButton.Name = "anwendenTrackBarButton";
+            this.anwendenTrackBarButton.Size = new System.Drawing.Size(75, 23);
+            this.anwendenTrackBarButton.TabIndex = 8;
+            this.anwendenTrackBarButton.Text = "Anwenden";
+            this.anwendenTrackBarButton.UseVisualStyleBackColor = true;
+            this.anwendenTrackBarButton.Click += new System.EventHandler(this.anwendenTrackBarButton_Click);
             // 
             // kontrastTrackBar
             // 
@@ -219,6 +231,7 @@
             this.kontrastProgressBar.Location = new System.Drawing.Point(6, 346);
             this.kontrastProgressBar.Name = "kontrastProgressBar";
             this.kontrastProgressBar.Size = new System.Drawing.Size(177, 23);
+            this.kontrastProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.kontrastProgressBar.TabIndex = 10;
             this.kontrastProgressBar.Visible = false;
             // 
@@ -291,5 +304,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button anwendenTrackBarButton;
     }
 }

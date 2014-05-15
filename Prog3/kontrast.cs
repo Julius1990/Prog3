@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -57,6 +59,12 @@ namespace Prog3
             g.DrawImage(parent.getPictureBoxImage(), new Rectangle(0, 0, neueBitmap.Width, neueBitmap.Height), 0, 0, neueBitmap.Width, neueBitmap.Height,
                 GraphicsUnit.Pixel, imageAttributes);
             kontrastPicturebox.Image = neueBitmap;
+
+        }
+        private void showAndEndInfo()
+        {
+            statusFenster neu = new statusFenster();
+            neu.Show();
         }
 
     //------------------------------------------------------------------------------------------------
@@ -67,8 +75,7 @@ namespace Prog3
             float eingabeKontrast = (float)Convert.ToDouble(einlesen);
 
             kontrastwert = eingabeKontrast;
-
-
+            
             kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast/2.0f));
             kontrastBerechnen();
 
@@ -89,9 +96,12 @@ namespace Prog3
             {
                 kontrastwert = 1.0f - ((50.0f - (float)kontrastTrackBar.Value) * 0.02f);
                 anwendenTextBox.Text = (-((50.0f-(float)kontrastTrackBar.Value)*2.0f)).ToString();
-            }
-
-            kontrastBerechnen();
+            }                       
+        }
+        private void anwendenTrackBarButton_Click(object sender, EventArgs e)
+        {
+            Thread meinThread = new Thread(kontrastBerechnen);
+            meinThread.Start();
         }
 
     //------------------------------------------------------------------------------------------------
@@ -112,6 +122,8 @@ namespace Prog3
 
             this.Close();
         }
+      
+
 
     //------------------------------------------------------------------------------------------------
     //Kommentare

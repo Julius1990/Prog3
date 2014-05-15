@@ -314,7 +314,7 @@ namespace Prog3
                 height = helpMap.Height;    //Bildhöhe bestimmen
                 greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
                 form1ProgressBar.Top = linkerContainer.Panel1.Height / 2;
-                form1ProgressBar.Left = linkerContainer.Width / 2 - form1ProgressBar.Width;
+                form1ProgressBar.Left = (linkerContainer.Width- form1ProgressBar.Width)/2;
                 form1ProgressBar.Maximum = height;
                 form1ProgressBar.Visible = true; //Progressbar sichtbar machen
                 while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
