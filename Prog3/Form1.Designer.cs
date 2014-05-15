@@ -51,9 +51,9 @@
             this.handButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.invertedButton = new System.Windows.Forms.Button();
             this.greyValButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.proBar = new System.Windows.Forms.ProgressBar();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,7 +73,6 @@
             this.centerPanel = new System.Windows.Forms.Panel();
             this.menuePanel = new System.Windows.Forms.Panel();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
-            this.invertedButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,7 +84,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).BeginInit();
             this.rechterContainer.Panel1.SuspendLayout();
-            this.rechterContainer.Panel2.SuspendLayout();
             this.rechterContainer.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -225,10 +223,6 @@
             this.rechterContainer.Panel1.Controls.Add(this.panel1);
             this.rechterContainer.Panel1.Controls.Add(this.label1);
             this.rechterContainer.Panel1.Controls.Add(this.panel2);
-            // 
-            // rechterContainer.Panel2
-            // 
-            this.rechterContainer.Panel2.Controls.Add(this.proBar);
             this.rechterContainer.Size = new System.Drawing.Size(292, 702);
             this.rechterContainer.SplitterDistance = 458;
             this.rechterContainer.SplitterWidth = 6;
@@ -373,6 +367,16 @@
             this.panel2.Size = new System.Drawing.Size(238, 118);
             this.panel2.TabIndex = 1;
             // 
+            // invertedButton
+            // 
+            this.invertedButton.Location = new System.Drawing.Point(4, 77);
+            this.invertedButton.Name = "invertedButton";
+            this.invertedButton.Size = new System.Drawing.Size(171, 34);
+            this.invertedButton.TabIndex = 12;
+            this.invertedButton.Text = "Negativbild";
+            this.invertedButton.UseVisualStyleBackColor = true;
+            this.invertedButton.Click += new System.EventHandler(this.invertedButton_Click);
+            // 
             // greyValButton
             // 
             this.greyValButton.Location = new System.Drawing.Point(4, 45);
@@ -393,13 +397,6 @@
             this.button2.Text = "Kontrast //temporär";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.kontrastButton_Click);
-            // 
-            // proBar
-            // 
-            this.proBar.Location = new System.Drawing.Point(12, 206);
-            this.proBar.Name = "proBar";
-            this.proBar.Size = new System.Drawing.Size(240, 23);
-            this.proBar.TabIndex = 1;
             // 
             // menuStrip2
             // 
@@ -565,16 +562,6 @@
             // 
             this.bildSpeichernDialog.Filter = "JPG|.jpg|PNG|.png|GIF|.gif|TIF|.tif|BMP|.bmp";
             // 
-            // invertedButton
-            // 
-            this.invertedButton.Location = new System.Drawing.Point(4, 77);
-            this.invertedButton.Name = "invertedButton";
-            this.invertedButton.Size = new System.Drawing.Size(171, 34);
-            this.invertedButton.TabIndex = 12;
-            this.invertedButton.Text = "Negativbild";
-            this.invertedButton.UseVisualStyleBackColor = true;
-            this.invertedButton.Click += new System.EventHandler(this.invertedButton_Click);
-            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -600,7 +587,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
             this.rechterContainer.Panel1.ResumeLayout(false);
             this.rechterContainer.Panel1.PerformLayout();
-            this.rechterContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
             this.rechterContainer.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -660,7 +646,6 @@
         private System.Windows.Forms.Button linksDrehenButton;
         private System.Windows.Forms.Button colorPickerButton;
         private System.Windows.Forms.Button greyValButton;
-        private System.Windows.Forms.ProgressBar proBar;
         private System.Windows.Forms.Button invertedButton;
 
 

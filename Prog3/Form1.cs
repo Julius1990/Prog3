@@ -285,17 +285,6 @@ namespace Prog3
             return (Bitmap)bildPicturebox.Image;
         }
 
-        public void setProBarMax(int max) {
-            proBar.Maximum = max;
-        }
-
-        public void incProBar() {
-            proBar.Increment(1);
-        }
-
-        public void setProBarToZero() {
-            proBar.Value = 0;
-        }
 
 
     //----------------------------------------------------------------------------------------------------

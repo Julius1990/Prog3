@@ -39,7 +39,6 @@ namespace Prog3
                 height = helpMap.Height;    //Bildhöhe bestimmen
                 greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
                 grauwertProgressBar.Maximum = height;
-                //parent.setProBarMax(height);      //Maximum der Progressbar festlegen
                 grauwertProgressBar.Visible = true; //Progressbar sichtbar machen
                 while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
                 {
@@ -52,11 +51,9 @@ namespace Prog3
                     }
                     j++;        //Laufvariable inkrementieren
                     grauwertProgressBar.Increment(1);   //Fortschritt der Progressbar erhöhen
-                    //parent.incProBar();      //Fortschritt der Progressbar erhöhen
                 }
                 grauwertPicturebox.Image = greyMap;      //Grauwertbild anzeigen
                 grauwertProgressBar.Value = 0;  //Progressbar leeren
-                //parent.setProBarToZero();     //Progressbar leeren
             }
             catch
             {
