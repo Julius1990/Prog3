@@ -47,6 +47,7 @@
             this.kontrastProgressBar = new System.Windows.Forms.ProgressBar();
             this.abbrechenButton = new System.Windows.Forms.Button();
             this.speichernButton = new System.Windows.Forms.Button();
+            this.kontrastBerechnungBW = new System.ComponentModel.BackgroundWorker();
             this.centerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -255,6 +256,10 @@
             this.speichernButton.UseVisualStyleBackColor = true;
             this.speichernButton.Click += new System.EventHandler(this.speichernButton_Click);
             // 
+            // kontrastBerechnungBW
+            // 
+            this.kontrastBerechnungBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.kontrastBerechnungBW_RunWorkerCompleted);
+            // 
             // kontrast
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,5 +310,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button anwendenTrackBarButton;
+        private System.ComponentModel.BackgroundWorker kontrastBerechnungBW;
     }
 }

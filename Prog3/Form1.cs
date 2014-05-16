@@ -294,12 +294,45 @@ namespace Prog3
             kontrast neu = new kontrast(this);
             neu.Show();
         }
+
+    //----------------------------------------------------------------------------------------------------
+    //Korrekturen
+        //GrauwertBild
         private void greyValButton_Click(object sender, EventArgs e)
         {
-            //grauwert gw = new grauwert(bildPicturebox, this);
-            //gw.Show();
-            //gw.createGreyValPic();
+            //wenn ein Bild in der PictureBox ist, fang an zu rechnen
+            if (bildPicturebox.Image != null)
+            {
+                //startet die Berechnung in einem neuen Thread
+                grauwertBW.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("Kein Bild zum Bearbeiten vorhanden");
+            }
+        }
+        private void grauwertBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //da man hier in einem anderen Thread arbeitet, ist dieser Schritt von Nöten um Zugriff
+            //auf die Variablen der form1 zu haben
+            form1ProgressBar.Invoke(new Action(() =>
+            {
+                form1ProgressBar.Visible = false;
+            }));
+        }
+        private void grauwertBW_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //berechne das Grauwertbild
             createGreyValPic();
+        }
+        private void grauwertBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            //da man hier in einem anderen Thread arbeitet, ist dieser Schritt von Nöten um Zugriff
+            //auf die Variablen der form1 zu haben
+            form1ProgressBar.Invoke(new Action(() =>
+            {
+                form1ProgressBar.Value = e.ProgressPercentage;
+            }));
         }
         public void createGreyValPic()
         {
@@ -307,38 +340,38 @@ namespace Prog3
             Bitmap helpMap, greyMap;
             int width, height, i, j = 0, greyValue;
 
-            try
+            helpMap = (Bitmap)bildPicturebox.Image; //Bitmap aus Bild in picBoxOld erstellen
+            width = helpMap.Width;      //Bildbreite bestimmen
+            height = helpMap.Height;    //Bildhöhe bestimmen
+            greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
+
+            form1ProgressBar.Invoke(new Action(() =>
             {
-                helpMap = (Bitmap)bildPicturebox.Image;   //Bitmap aus Bild in picBoxOld erstellen
-                width = helpMap.Width;      //Bildbreite bestimmen
-                height = helpMap.Height;    //Bildhöhe bestimmen
-                greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
-                form1ProgressBar.Top = linkerContainer.Panel1.Height / 2;
-                form1ProgressBar.Left = (linkerContainer.Width- form1ProgressBar.Width)/2;
                 form1ProgressBar.Maximum = height;
-                form1ProgressBar.Visible = true; //Progressbar sichtbar machen
-                while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
-                {
-                    for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
-                    {
-                        oldColor = helpMap.GetPixel(i, j);      //Farbwert bestimmen
-                        greyValue = (int)(0.3 * oldColor.R + 0.6 * oldColor.G + 0.1 * oldColor.B);     //Grauwert berechnen
-                        greyColor = Color.FromArgb(greyValue, greyValue, greyValue);        //Colorvariable aus Grauwert erzeugen
-                        greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
-                    }
-                    j++;        //Laufvariable inkrementieren
-                    form1ProgressBar.Increment(1);   //Fortschritt der Progressbar erhöhen
-                }
-                setAndSavePictureBox(greyMap);
-                form1ProgressBar.Value = 0;  //Progressbar leeren
-                form1ProgressBar.Visible = false;
-            }
-            catch
+                form1ProgressBar.Visible = true;
+            }));
+
+            while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
             {
-                MessageBox.Show("Bitte öffnen Sie ein Bild bevor Sie diese Funktion nutzen!", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Warning);     //Ausgabe bei Exception
+                for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
+                {
+                    oldColor = helpMap.GetPixel(i, j);      //Farbwert bestimmen
+                    greyValue = (int)(0.3 * oldColor.R + 0.6 * oldColor.G + 0.1 * oldColor.B);     //Grauwert berechnen
+                    greyColor = Color.FromArgb(greyValue, greyValue, greyValue);        //Colorvariable aus Grauwert erzeugen
+                    greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
+                }
+                j++;        //Laufvariable inkrementieren
+                grauwertBW.ReportProgress(j);
             }
-            GC.Collect();       //Garbage Collection auslösen
+
+            GC.Collect();
+            bildPicturebox.Invoke(new Action(() =>
+            {
+                setAndSavePictureBox(greyMap);
+            }));
         }
+
+        //Negativ
         private void invertedButton_Click(object sender, EventArgs e)
         {
             negativ neg = new negativ(bildPicturebox, this);
@@ -601,6 +634,10 @@ namespace Prog3
                 }
             }
         }
+
+        
+
+        
 
         
 

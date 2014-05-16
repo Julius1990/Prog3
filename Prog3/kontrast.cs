@@ -60,12 +60,7 @@ namespace Prog3
                 GraphicsUnit.Pixel, imageAttributes);
             kontrastPicturebox.Image = neueBitmap;
 
-        }
-        private void showAndEndInfo()
-        {
-            statusFenster neu = new statusFenster();
-            neu.Show();
-        }
+        }        
 
     //------------------------------------------------------------------------------------------------
     //Steuerung des Kontrasts 
@@ -98,10 +93,15 @@ namespace Prog3
                 anwendenTextBox.Text = (-((50.0f-(float)kontrastTrackBar.Value)*2.0f)).ToString();
             }                       
         }
+
+        //Hier wird mit dem Backgroundworker gearbeitet um die WinForm aktiv zu halten während die Berechnung durchgeführt wird
         private void anwendenTrackBarButton_Click(object sender, EventArgs e)
         {
-            Thread meinThread = new Thread(kontrastBerechnen);
-            meinThread.Start();
+            kontrastBerechnungBW.RunWorkerAsync();
+        }
+        private void kontrastBerechnungBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            kontrastBerechnen();
         }
 
     //------------------------------------------------------------------------------------------------
@@ -121,9 +121,7 @@ namespace Prog3
             GC.Collect();
 
             this.Close();
-        }
-      
-
+        }        
 
     //------------------------------------------------------------------------------------------------
     //Kommentare

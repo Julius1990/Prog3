@@ -76,6 +76,7 @@
             this.centerPanel = new System.Windows.Forms.Panel();
             this.menuePanel = new System.Windows.Forms.Panel();
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
+            this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -599,6 +600,14 @@
             // 
             this.bildSpeichernDialog.Filter = "JPG|.jpg|PNG|.png|GIF|.gif|TIF|.tif|BMP|.bmp";
             // 
+            // grauwertBW
+            // 
+            this.grauwertBW.WorkerReportsProgress = true;
+            this.grauwertBW.WorkerSupportsCancellation = true;
+            this.grauwertBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.grauwertBW_DoWork);
+            this.grauwertBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.grauwertBW_ProgressChanged);
+            this.grauwertBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.grauwertBW_RunWorkerCompleted);
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -686,6 +695,7 @@
         private System.Windows.Forms.CheckBox filterCheckBox;
         private System.Windows.Forms.Panel FilterPanel;
         private System.Windows.Forms.ProgressBar form1ProgressBar;
+        private System.ComponentModel.BackgroundWorker grauwertBW;
 
 
     }
