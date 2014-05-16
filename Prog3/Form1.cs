@@ -272,6 +272,9 @@ namespace Prog3
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
 
+            if (grauwertBW.IsBusy)
+                grauwertBW.CancelAsync();
+
             GC.Collect();
         }
 
@@ -361,10 +364,19 @@ namespace Prog3
                     greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
                 }
                 j++;        //Laufvariable inkrementieren
+                
+                //falls die bearbeitung abgebrochen wird
+                if (grauwertBW.CancellationPending)
+                    return;
+
                 grauwertBW.ReportProgress(j);
             }
 
             GC.Collect();
+
+            if (grauwertBW.CancellationPending)
+                return;
+
             bildPicturebox.Invoke(new Action(() =>
             {
                 setAndSavePictureBox(greyMap);
@@ -372,10 +384,25 @@ namespace Prog3
         }
 
         //Negativ
+        
+        //Noch zu implementieren
+        private void negativBW_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+        private void negativBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+        private void negativBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
         private void invertedButton_Click(object sender, EventArgs e)
         {
             negativ neg = new negativ(bildPicturebox, this);
         }
+         
 
     //----------------------------------------------------------------------------------------------------
     //Werkzeuge
@@ -634,6 +661,13 @@ namespace Prog3
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            grauwertBW.CancelAsync();
+        }
+
+        
 
         
 
