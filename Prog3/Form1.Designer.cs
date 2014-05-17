@@ -40,6 +40,7 @@
             this.labelTextG = new System.Windows.Forms.Label();
             this.labelTextR = new System.Windows.Forms.Label();
             this.rechterContainer = new System.Windows.Forms.SplitContainer();
+            this.progressBarAbbrechenButton = new System.Windows.Forms.Button();
             this.filterCheckBox = new System.Windows.Forms.CheckBox();
             this.FilterPanel = new System.Windows.Forms.Panel();
             this.invertedButton = new System.Windows.Forms.Button();
@@ -78,7 +79,6 @@
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -129,6 +129,7 @@
             // linkerContainer.Panel1
             // 
             this.linkerContainer.Panel1.AutoScroll = true;
+            this.linkerContainer.Panel1.Controls.Add(this.progressBarAbbrechenButton);
             this.linkerContainer.Panel1.Controls.Add(this.form1ProgressBar);
             this.linkerContainer.Panel1.Controls.Add(this.bildPicturebox);
             // 
@@ -236,7 +237,6 @@
             // rechterContainer.Panel1
             // 
             this.rechterContainer.Panel1.AutoScroll = true;
-            this.rechterContainer.Panel1.Controls.Add(this.button1);
             this.rechterContainer.Panel1.Controls.Add(this.filterCheckBox);
             this.rechterContainer.Panel1.Controls.Add(this.FilterPanel);
             this.rechterContainer.Panel1.Controls.Add(this.ansichtPanel);
@@ -248,6 +248,16 @@
             this.rechterContainer.Size = new System.Drawing.Size(363, 493);
             this.rechterContainer.SplitterDistance = 348;
             this.rechterContainer.TabIndex = 0;
+            // 
+            // progressBarAbbrechenButton
+            // 
+            this.progressBarAbbrechenButton.Location = new System.Drawing.Point(94, 168);
+            this.progressBarAbbrechenButton.Name = "progressBarAbbrechenButton";
+            this.progressBarAbbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.progressBarAbbrechenButton.TabIndex = 12;
+            this.progressBarAbbrechenButton.Text = "Abbrechen";
+            this.progressBarAbbrechenButton.UseVisualStyleBackColor = true;
+            this.progressBarAbbrechenButton.Click += new System.EventHandler(this.abbrechenButton_CLick);
             // 
             // filterCheckBox
             // 
@@ -619,16 +629,6 @@
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(64, 180);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -718,7 +718,7 @@
         private System.Windows.Forms.ProgressBar form1ProgressBar;
         private System.ComponentModel.BackgroundWorker grauwertBW;
         private System.ComponentModel.BackgroundWorker negativBW;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button progressBarAbbrechenButton;
 
 
     }

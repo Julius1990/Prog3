@@ -274,6 +274,8 @@ namespace Prog3
 
             if (grauwertBW.IsBusy)
                 grauwertBW.CancelAsync();
+            if (negativBW.IsBusy)
+                negativBW.CancelAsync();
 
             GC.Collect();
         }
@@ -300,6 +302,15 @@ namespace Prog3
 
     //----------------------------------------------------------------------------------------------------
     //Korrekturen
+        //Vorgang abbrechen
+        private void abbrechenButton_CLick(object sender, EventArgs e)
+        {
+            if (grauwertBW.IsBusy)
+                grauwertBW.CancelAsync();
+            if (negativBW.IsBusy)
+                negativBW.CancelAsync();
+        }
+
         //GrauwertBild
         private void greyValButton_Click(object sender, EventArgs e)
         {
@@ -308,6 +319,7 @@ namespace Prog3
             {
                 //startet die Berechnung in einem neuen Thread
                 grauwertBW.RunWorkerAsync();
+                progressBarAbbrechenButton.Visible = true;
             }
             else
             {
@@ -318,10 +330,10 @@ namespace Prog3
         {
             //da man hier in einem anderen Thread arbeitet, ist dieser Schritt von Nöten um Zugriff
             //auf die Variablen der form1 zu haben
-            form1ProgressBar.Invoke(new Action(() =>
-            {
-                form1ProgressBar.Visible = false;
-            }));
+            form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
+
+            //abbrechen Button verschwinden lassen
+            progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
         }
         private void grauwertBW_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -352,6 +364,7 @@ namespace Prog3
             {
                 form1ProgressBar.Maximum = height;
                 form1ProgressBar.Visible = true;
+                form1ProgressBar.Value = 0;
             }));
 
             while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
@@ -384,23 +397,76 @@ namespace Prog3
         }
 
         //Negativ
-        
-        //Noch zu implementieren
         private void negativBW_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            //negativ berechnen
+            createInvertedPic();
         }
         private void negativBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            //Fortschritt in er Progress Bar anzeigen
+            form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Value = e.ProgressPercentage));
         }
         private void negativBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            //progress bar verschwinden lassen
+            form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
+            //abbrechen button verschwinden lassen
+            progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
         }
         private void invertedButton_Click(object sender, EventArgs e)
         {
-            negativ neg = new negativ(bildPicturebox, this);
+            if (bildPicturebox.Image != null)
+            {
+                progressBarAbbrechenButton.Visible = true;
+                negativBW.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("Kein Bild zum Bearbeiten vorhanden");
+            }
+        }
+        private void createInvertedPic()
+        {
+            Color oldColor, invertedColor;
+            Bitmap helpMap, invertedMap;
+            int r, g, b, width, height, i, j = 0;
+
+            helpMap = (Bitmap)bildPicturebox.Image;      //Bitmap aus Bild in picBoxOld erstellen
+            width = helpMap.Width;      //Bildbreite bestimmen
+            height = helpMap.Height;    //Bildhöhe bestimmen
+            invertedMap = new Bitmap(width, height);    //Bitmap für das invertierte Bild erstellen
+            form1ProgressBar.Invoke(new Action(() =>
+            {
+                form1ProgressBar.Visible = true;
+                form1ProgressBar.Value = 0;
+                form1ProgressBar.Maximum = height;
+            }));
+
+            while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
+            {
+                for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
+                {
+                    oldColor = helpMap.GetPixel(i, j);      //Farbwert bestimmen
+                    r = 255 - oldColor.R;       //Farbwerte invertieren
+                    g = 255 - oldColor.G;       //
+                    b = 255 - oldColor.B;       //
+                    invertedColor = Color.FromArgb(r, g, b);        //Colorvariable aus invertierten Farbwerten erstellen
+                    invertedMap.SetPixel(i, j, invertedColor);      //Farbe setzen
+                }
+                j++;        //Laufvariable inkrementieren
+                negativBW.ReportProgress(j);
+                if (negativBW.CancellationPending)
+                    return;
+            }
+
+            if (negativBW.CancellationPending)
+                return;
+
+            bildPicturebox.Invoke(new Action(() =>
+            {
+                setAndSavePictureBox(invertedMap);
+            }));
         }
          
 
