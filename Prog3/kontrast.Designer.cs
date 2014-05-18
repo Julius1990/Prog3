@@ -36,15 +36,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.kontrastPicturebox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.anwendenButton = new System.Windows.Forms.Button();
-            this.anwendenTextBox = new System.Windows.Forms.TextBox();
             this.kontrastLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.anwendenTrackBarButton = new System.Windows.Forms.Button();
+            this.anwendenTextBox = new System.Windows.Forms.TextBox();
             this.kontrastTrackBar = new System.Windows.Forms.TrackBar();
-            this.kontrastProgressBar = new System.Windows.Forms.ProgressBar();
             this.abbrechenButton = new System.Windows.Forms.Button();
             this.speichernButton = new System.Windows.Forms.Button();
             this.kontrastBerechnungBW = new System.ComponentModel.BackgroundWorker();
@@ -55,7 +51,6 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kontrastPicturebox)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kontrastTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -136,11 +131,8 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.kontrastLabel);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.kontrastProgressBar);
             this.panel1.Controls.Add(this.abbrechenButton);
             this.panel1.Controls.Add(this.speichernButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -148,43 +140,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(190, 410);
             this.panel1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Manuell einstellen";
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.anwendenButton);
-            this.panel3.Controls.Add(this.anwendenTextBox);
-            this.panel3.Location = new System.Drawing.Point(6, 111);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(177, 56);
-            this.panel3.TabIndex = 15;
-            // 
-            // anwendenButton
-            // 
-            this.anwendenButton.Location = new System.Drawing.Point(97, 16);
-            this.anwendenButton.Name = "anwendenButton";
-            this.anwendenButton.Size = new System.Drawing.Size(75, 23);
-            this.anwendenButton.TabIndex = 12;
-            this.anwendenButton.Text = "Anwenden";
-            this.anwendenButton.UseVisualStyleBackColor = true;
-            this.anwendenButton.Click += new System.EventHandler(this.anwendenButton_Click);
-            // 
-            // anwendenTextBox
-            // 
-            this.anwendenTextBox.Location = new System.Drawing.Point(5, 18);
-            this.anwendenTextBox.Name = "anwendenTextBox";
-            this.anwendenTextBox.Size = new System.Drawing.Size(75, 20);
-            this.anwendenTextBox.TabIndex = 11;
-            this.anwendenTextBox.Text = "0";
             // 
             // kontrastLabel
             // 
@@ -199,6 +154,7 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.anwendenTrackBarButton);
+            this.panel2.Controls.Add(this.anwendenTextBox);
             this.panel2.Controls.Add(this.kontrastTrackBar);
             this.panel2.Location = new System.Drawing.Point(6, 20);
             this.panel2.Name = "panel2";
@@ -207,13 +163,21 @@
             // 
             // anwendenTrackBarButton
             // 
-            this.anwendenTrackBarButton.Location = new System.Drawing.Point(50, 37);
+            this.anwendenTrackBarButton.Location = new System.Drawing.Point(95, 37);
             this.anwendenTrackBarButton.Name = "anwendenTrackBarButton";
             this.anwendenTrackBarButton.Size = new System.Drawing.Size(75, 23);
             this.anwendenTrackBarButton.TabIndex = 8;
             this.anwendenTrackBarButton.Text = "Anwenden";
             this.anwendenTrackBarButton.UseVisualStyleBackColor = true;
             this.anwendenTrackBarButton.Click += new System.EventHandler(this.anwendenTrackBarButton_Click);
+            // 
+            // anwendenTextBox
+            // 
+            this.anwendenTextBox.Location = new System.Drawing.Point(14, 39);
+            this.anwendenTextBox.Name = "anwendenTextBox";
+            this.anwendenTextBox.Size = new System.Drawing.Size(75, 20);
+            this.anwendenTextBox.TabIndex = 11;
+            this.anwendenTextBox.Text = "0";
             // 
             // kontrastTrackBar
             // 
@@ -226,15 +190,6 @@
             this.kontrastTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.kontrastTrackBar.Value = 50;
             this.kontrastTrackBar.ValueChanged += new System.EventHandler(this.kontrastTrackBar_ValueChanged);
-            // 
-            // kontrastProgressBar
-            // 
-            this.kontrastProgressBar.Location = new System.Drawing.Point(6, 346);
-            this.kontrastProgressBar.Name = "kontrastProgressBar";
-            this.kontrastProgressBar.Size = new System.Drawing.Size(177, 23);
-            this.kontrastProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.kontrastProgressBar.TabIndex = 10;
-            this.kontrastProgressBar.Visible = false;
             // 
             // abbrechenButton
             // 
@@ -258,6 +213,8 @@
             // 
             // kontrastBerechnungBW
             // 
+            this.kontrastBerechnungBW.WorkerSupportsCancellation = true;
+            this.kontrastBerechnungBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.kontrastBerechnungBW_DoWork);
             this.kontrastBerechnungBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.kontrastBerechnungBW_RunWorkerCompleted);
             // 
             // kontrast
@@ -281,9 +238,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.kontrastPicturebox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kontrastTrackBar)).EndInit();
             this.ResumeLayout(false);
 
@@ -300,15 +256,11 @@
         private System.Windows.Forms.PictureBox kontrastPicturebox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label kontrastLabel;
-        private System.Windows.Forms.Button anwendenButton;
         private System.Windows.Forms.TextBox anwendenTextBox;
-        private System.Windows.Forms.ProgressBar kontrastProgressBar;
         private System.Windows.Forms.Button abbrechenButton;
         private System.Windows.Forms.Button speichernButton;
         private System.Windows.Forms.TrackBar kontrastTrackBar;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button anwendenTrackBarButton;
         private System.ComponentModel.BackgroundWorker kontrastBerechnungBW;
     }

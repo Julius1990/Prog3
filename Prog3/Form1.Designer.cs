@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.linkerContainer = new System.Windows.Forms.SplitContainer();
+            this.progressBarAbbrechenButton = new System.Windows.Forms.Button();
             this.form1ProgressBar = new System.Windows.Forms.ProgressBar();
             this.bildPicturebox = new System.Windows.Forms.PictureBox();
             this.labelB = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.labelTextG = new System.Windows.Forms.Label();
             this.labelTextR = new System.Windows.Forms.Label();
             this.rechterContainer = new System.Windows.Forms.SplitContainer();
-            this.progressBarAbbrechenButton = new System.Windows.Forms.Button();
             this.filterCheckBox = new System.Windows.Forms.CheckBox();
             this.FilterPanel = new System.Windows.Forms.Panel();
             this.invertedButton = new System.Windows.Forms.Button();
@@ -54,8 +54,8 @@
             this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
             this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
             this.werkzeugPanel = new System.Windows.Forms.Panel();
-            this.colorPickerButton = new System.Windows.Forms.Button();
-            this.handButton = new System.Windows.Forms.Button();
+            this.handCheckBox = new System.Windows.Forms.CheckBox();
+            this.colorPickerCheckBox = new System.Windows.Forms.CheckBox();
             this.korrekturenPanel = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
@@ -115,7 +115,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rechterContainer);
             this.splitContainer1.Size = new System.Drawing.Size(723, 493);
-            this.splitContainer1.SplitterDistance = 356;
+            this.splitContainer1.SplitterDistance = 289;
             this.splitContainer1.TabIndex = 5;
             // 
             // linkerContainer
@@ -141,9 +141,20 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextB);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
-            this.linkerContainer.Size = new System.Drawing.Size(356, 493);
-            this.linkerContainer.SplitterDistance = 323;
+            this.linkerContainer.Size = new System.Drawing.Size(289, 493);
+            this.linkerContainer.SplitterDistance = 447;
             this.linkerContainer.TabIndex = 0;
+            // 
+            // progressBarAbbrechenButton
+            // 
+            this.progressBarAbbrechenButton.Location = new System.Drawing.Point(94, 168);
+            this.progressBarAbbrechenButton.Name = "progressBarAbbrechenButton";
+            this.progressBarAbbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.progressBarAbbrechenButton.TabIndex = 12;
+            this.progressBarAbbrechenButton.Text = "Abbrechen";
+            this.progressBarAbbrechenButton.UseVisualStyleBackColor = true;
+            this.progressBarAbbrechenButton.Visible = false;
+            this.progressBarAbbrechenButton.Click += new System.EventHandler(this.abbrechenButton_CLick);
             // 
             // form1ProgressBar
             // 
@@ -158,7 +169,7 @@
             // 
             this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
             this.bildPicturebox.Name = "bildPicturebox";
-            this.bildPicturebox.Size = new System.Drawing.Size(412, 279);
+            this.bildPicturebox.Size = new System.Drawing.Size(541, 411);
             this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.bildPicturebox.TabIndex = 0;
             this.bildPicturebox.TabStop = false;
@@ -245,19 +256,9 @@
             this.rechterContainer.Panel1.Controls.Add(this.ansichtCheckBox);
             this.rechterContainer.Panel1.Controls.Add(this.werkzeugPanel);
             this.rechterContainer.Panel1.Controls.Add(this.korrekturenPanel);
-            this.rechterContainer.Size = new System.Drawing.Size(363, 493);
+            this.rechterContainer.Size = new System.Drawing.Size(430, 493);
             this.rechterContainer.SplitterDistance = 348;
             this.rechterContainer.TabIndex = 0;
-            // 
-            // progressBarAbbrechenButton
-            // 
-            this.progressBarAbbrechenButton.Location = new System.Drawing.Point(94, 168);
-            this.progressBarAbbrechenButton.Name = "progressBarAbbrechenButton";
-            this.progressBarAbbrechenButton.Size = new System.Drawing.Size(75, 23);
-            this.progressBarAbbrechenButton.TabIndex = 12;
-            this.progressBarAbbrechenButton.Text = "Abbrechen";
-            this.progressBarAbbrechenButton.UseVisualStyleBackColor = true;
-            this.progressBarAbbrechenButton.Click += new System.EventHandler(this.abbrechenButton_CLick);
             // 
             // filterCheckBox
             // 
@@ -405,35 +406,37 @@
             // werkzeugPanel
             // 
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.werkzeugPanel.Controls.Add(this.colorPickerButton);
-            this.werkzeugPanel.Controls.Add(this.handButton);
+            this.werkzeugPanel.Controls.Add(this.handCheckBox);
+            this.werkzeugPanel.Controls.Add(this.colorPickerCheckBox);
             this.werkzeugPanel.Location = new System.Drawing.Point(171, 117);
             this.werkzeugPanel.Name = "werkzeugPanel";
             this.werkzeugPanel.Size = new System.Drawing.Size(161, 57);
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
             // 
-            // colorPickerButton
+            // handCheckBox
             // 
-            this.colorPickerButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("colorPickerButton.BackgroundImage")));
-            this.colorPickerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.colorPickerButton.Location = new System.Drawing.Point(37, 10);
-            this.colorPickerButton.Name = "colorPickerButton";
-            this.colorPickerButton.Size = new System.Drawing.Size(30, 30);
-            this.colorPickerButton.TabIndex = 1;
-            this.colorPickerButton.UseVisualStyleBackColor = true;
-            this.colorPickerButton.Click += new System.EventHandler(this.colorPickerButton_Click);
+            this.handCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.handCheckBox.BackgroundImage = global::Prog3.Properties.Resources.move_1;
+            this.handCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.handCheckBox.Location = new System.Drawing.Point(3, 10);
+            this.handCheckBox.Name = "handCheckBox";
+            this.handCheckBox.Size = new System.Drawing.Size(30, 30);
+            this.handCheckBox.TabIndex = 3;
+            this.handCheckBox.UseVisualStyleBackColor = true;
+            this.handCheckBox.CheckedChanged += new System.EventHandler(this.handCheckBox_CheckedChanged);
             // 
-            // handButton
+            // colorPickerCheckBox
             // 
-            this.handButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("handButton.BackgroundImage")));
-            this.handButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.handButton.Location = new System.Drawing.Point(3, 10);
-            this.handButton.Name = "handButton";
-            this.handButton.Size = new System.Drawing.Size(30, 30);
-            this.handButton.TabIndex = 0;
-            this.handButton.UseVisualStyleBackColor = true;
-            this.handButton.Click += new System.EventHandler(this.handButton_Click);
+            this.colorPickerCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.colorPickerCheckBox.BackgroundImage = global::Prog3.Properties.Resources.color_picker;
+            this.colorPickerCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.colorPickerCheckBox.Location = new System.Drawing.Point(41, 9);
+            this.colorPickerCheckBox.Name = "colorPickerCheckBox";
+            this.colorPickerCheckBox.Size = new System.Drawing.Size(30, 30);
+            this.colorPickerCheckBox.TabIndex = 2;
+            this.colorPickerCheckBox.UseVisualStyleBackColor = true;
+            this.colorPickerCheckBox.CheckedChanged += new System.EventHandler(this.colorPickerCheckBox_CheckedChanged);
             // 
             // korrekturenPanel
             // 
@@ -451,7 +454,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(114, 23);
             this.button2.TabIndex = 0;
-            this.button2.Text = "Kontrast //temporär";
+            this.button2.Text = "Kontrast";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.kontrastButton_Click);
             // 
@@ -693,7 +696,6 @@
         private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
         private System.Windows.Forms.Panel werkzeugPanel;
-        private System.Windows.Forms.Button handButton;
         private System.Windows.Forms.Panel korrekturenPanel;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel ansichtPanel;
@@ -707,7 +709,6 @@
         private System.Windows.Forms.Label labelTextR;
         private System.Windows.Forms.Button rechtsDrehenButton;
         private System.Windows.Forms.Button linksDrehenButton;
-        private System.Windows.Forms.Button colorPickerButton;
         private System.Windows.Forms.Button greyValButton;
         private System.Windows.Forms.Button invertedButton;
         private System.Windows.Forms.CheckBox ansichtCheckBox;
@@ -719,6 +720,8 @@
         private System.ComponentModel.BackgroundWorker grauwertBW;
         private System.ComponentModel.BackgroundWorker negativBW;
         private System.Windows.Forms.Button progressBarAbbrechenButton;
+        private System.Windows.Forms.CheckBox colorPickerCheckBox;
+        private System.Windows.Forms.CheckBox handCheckBox;
 
 
     }

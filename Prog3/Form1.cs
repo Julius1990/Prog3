@@ -22,6 +22,12 @@ namespace Prog3
 
             //Accordion Menu
             initializeAccordionMenu();
+
+            //Backgroundworker
+            threadsInitialisieren();
+
+            //Werkzeuge
+            initialisiereTools();
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
@@ -36,15 +42,16 @@ namespace Prog3
         //bewegung der picturebox mit dem hand tool
         int xMouseMove;
         int yMouseMove;
-
-        //Werkzeuge
-        bool toolAusgewaehlt = false;
-        bool colorPickerAusgewaehlt = false;
-        bool handToolAusgewaehlt = false;
-
+        
         //Accordion Menu
         List<CheckBox> checkboxes;
         List<Panel> panels;
+
+        //Backgroundworker
+        List<BackgroundWorker> backWorkers;
+
+        //Werkzeuge
+        List<CheckBox> werkzeuge;
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -197,7 +204,7 @@ namespace Prog3
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
         }
-        public void schrittSpeichern(Bitmap bitmap_in)
+        private void schrittSpeichern(Bitmap bitmap_in)
         {
             //überflüssig gespeichertes löschen
             if (maxSchritt>zwischenSchrittCounter)
@@ -272,10 +279,8 @@ namespace Prog3
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
 
-            if (grauwertBW.IsBusy)
-                grauwertBW.CancelAsync();
-            if (negativBW.IsBusy)
-                negativBW.CancelAsync();
+            //Threads beenden
+            threadsBeenden();
 
             GC.Collect();
         }
@@ -296,19 +301,24 @@ namespace Prog3
     //Korrekturen
         private void kontrastButton_Click(object sender, EventArgs e)
         {
-            kontrast neu = new kontrast(this);
-            neu.Show();
+            if (threadsKoordinieren())
+            {
+                kontrast neu = new kontrast(this);
+                neu.Show();
+            }
+            else
+            {
+                MessageBox.Show("Das geöffnete Bild wird gerade Bearbeitet");
+            }
         }
 
     //----------------------------------------------------------------------------------------------------
-    //Korrekturen
-        //Vorgang abbrechen
+    //Korrekturen       
+
+        //Korrekturen abbrechen
         private void abbrechenButton_CLick(object sender, EventArgs e)
         {
-            if (grauwertBW.IsBusy)
-                grauwertBW.CancelAsync();
-            if (negativBW.IsBusy)
-                negativBW.CancelAsync();
+            threadsBeenden();
         }
 
         //GrauwertBild
@@ -317,9 +327,13 @@ namespace Prog3
             //wenn ein Bild in der PictureBox ist, fang an zu rechnen
             if (bildPicturebox.Image != null)
             {
-                //startet die Berechnung in einem neuen Thread
-                grauwertBW.RunWorkerAsync();
-                progressBarAbbrechenButton.Visible = true;
+                if (threadsKoordinieren())    //falls kein anderer Thread läuft
+                {
+                    //startet die Berechnung in einem neuen Thread
+                    grauwertBW.RunWorkerAsync();
+                    greyValButton.Enabled = false;
+                    progressBarAbbrechenButton.Visible = true;
+                }
             }
             else
             {
@@ -334,6 +348,9 @@ namespace Prog3
 
             //abbrechen Button verschwinden lassen
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
+
+            //Grauwert Button wieder benutzbar machen
+            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true));
         }
         private void grauwertBW_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -355,7 +372,9 @@ namespace Prog3
             Bitmap helpMap, greyMap;
             int width, height, i, j = 0, greyValue;
 
-            helpMap = (Bitmap)bildPicturebox.Image; //Bitmap aus Bild in picBoxOld erstellen
+            //neue Instanz anlegen, sonst bekommt man eine Zugriffsverletzung
+            helpMap = new Bitmap(bildPicturebox.Image);
+
             width = helpMap.Width;      //Bildbreite bestimmen
             height = helpMap.Height;    //Bildhöhe bestimmen
             greyMap = new Bitmap(width, height);        //Bitmap für das Grauwertbild erstellen
@@ -406,6 +425,9 @@ namespace Prog3
         {
             //Fortschritt in er Progress Bar anzeigen
             form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Value = e.ProgressPercentage));
+
+            //Negativ Button wieder benutzbar machen
+            invertedButton.Invoke(new Action(() => invertedButton.Enabled = true));
         }
         private void negativBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -418,8 +440,13 @@ namespace Prog3
         {
             if (bildPicturebox.Image != null)
             {
-                progressBarAbbrechenButton.Visible = true;
-                negativBW.RunWorkerAsync();
+                if (threadsKoordinieren())
+                {
+                    
+                    progressBarAbbrechenButton.Visible = true;
+                    invertedButton.Enabled = false;
+                    negativBW.RunWorkerAsync();
+                }
             }
             else
             {
@@ -428,13 +455,16 @@ namespace Prog3
         }
         private void createInvertedPic()
         {
-            Color oldColor, invertedColor;
-            Bitmap helpMap, invertedMap;
+            Color origColor, invertedColor;
+            Bitmap origMap, invertedMap;
             int r, g, b, width, height, i, j = 0;
 
-            helpMap = (Bitmap)bildPicturebox.Image;      //Bitmap aus Bild in picBoxOld erstellen
-            width = helpMap.Width;      //Bildbreite bestimmen
-            height = helpMap.Height;    //Bildhöhe bestimmen
+            //Hier muss ein neues Objekt angelegt werde, ansonsten bekommt man eine Zugriffsverletzung
+            origMap = new Bitmap(bildPicturebox.Image);
+
+            width = origMap.Width;      //Bildbreite bestimmen
+            height = origMap.Height;    //Bildhöhe bestimmen
+
             invertedMap = new Bitmap(width, height);    //Bitmap für das invertierte Bild erstellen
             form1ProgressBar.Invoke(new Action(() =>
             {
@@ -443,14 +473,15 @@ namespace Prog3
                 form1ProgressBar.Maximum = height;
             }));
 
+
             while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
             {
                 for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
                 {
-                    oldColor = helpMap.GetPixel(i, j);      //Farbwert bestimmen
-                    r = 255 - oldColor.R;       //Farbwerte invertieren
-                    g = 255 - oldColor.G;       //
-                    b = 255 - oldColor.B;       //
+                    origColor = origMap.GetPixel(i, j);      //Farbwert bestimmen
+                    r = 255 - origColor.R;       //Farbwerte invertieren
+                    g = 255 - origColor.G;       //
+                    b = 255 - origColor.B;       //
                     invertedColor = Color.FromArgb(r, g, b);        //Colorvariable aus invertierten Farbwerten erstellen
                     invertedMap.SetPixel(i, j, invertedColor);      //Farbe setzen
                 }
@@ -459,7 +490,7 @@ namespace Prog3
                 if (negativBW.CancellationPending)
                     return;
             }
-
+            
             if (negativBW.CancellationPending)
                 return;
 
@@ -468,71 +499,120 @@ namespace Prog3
                 setAndSavePictureBox(invertedMap);
             }));
         }
-         
+
+    //----------------------------------------------------------------------------------------------------
+    //Threads 
+        private bool threadsKoordinieren()
+        {
+            foreach (BackgroundWorker a in backWorkers)
+            {
+                if (a.IsBusy)
+                    return false;
+            }
+            return true;
+        }
+        private void threadsInitialisieren()
+        {
+            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW };
+        }
+        private void threadsBeenden()
+        {
+            foreach (BackgroundWorker b in backWorkers)
+            {
+                if (b.IsBusy)
+                    b.CancelAsync();
+            }
+        }         
 
     //----------------------------------------------------------------------------------------------------
     //Werkzeuge
-        private void lockUnlockTools()
+        private void initialisiereTools()
         {
-            if (toolAusgewaehlt)
+            werkzeuge = new List<CheckBox> { handCheckBox, colorPickerCheckBox };
+        }
+        private void lockTools(CheckBox selbst)
+        {
+            foreach (CheckBox c in werkzeuge)
             {
-                handButton.Enabled=false;
-                colorPickerButton.Enabled=false;
-
-                if (handToolAusgewaehlt)
-                    handButton.Enabled = true;
-                if (colorPickerAusgewaehlt)
-                    colorPickerButton.Enabled = true;
-            }
-            else
-            {
-                handButton.Enabled = true;
-                colorPickerButton.Enabled = true;
+                if (!c.Equals(selbst))
+                    c.Enabled = false;
             }
         }
+        private void unlockTools(CheckBox selbst)
+        {
+            foreach (CheckBox c in werkzeuge)
+            {
+                if (!c.Equals(selbst))
+                    c.Enabled = true;
+            }
+        }
+        private bool checkTools(CheckBox selbst)
+        {
+            foreach (CheckBox c in werkzeuge)
+            {
+                if (c.Checked && !c.Equals(selbst))
+                    return false;
+            }
+            return true;
+        }
+
         //------------------------------------------------------------------------------------------------
         //Hand Tool
-            private void handButton_Click(object sender, EventArgs e)
+        private void handCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (!handToolAusgewaehlt && !toolAusgewaehlt)
+            if (handCheckBox.Checked)
             {
-                handToolAusgewaehlt = true;
-                Cursor = Cursors.Hand;
-
-                toolAusgewaehlt = true;
-                lockUnlockTools();
-            }
-            else
-            {
-                handToolAusgewaehlt = false;
-                Cursor = Cursors.Default;
-
-                toolAusgewaehlt = false;
-                lockUnlockTools();
-            }
-        }
-            //siehe außerdem Funktion "bildPicturebox_MouseMove" und "bildPicturebox_MouseDown"
-        //------------------------------------------------------------------------------------------------
-        //Color Picker
-            private void colorPickerButton_Click(object sender, EventArgs e)
-            {
-                if (!colorPickerAusgewaehlt && !toolAusgewaehlt)
+                if (checkTools(handCheckBox))   //wenn kein anderes tool aktiv
                 {
-                    colorPickerAusgewaehlt = true;
-                    Cursor = Cursors.Cross;
+                    //einfach so stehen lasse, die Funktionen "bildPicturebox_MouseMove" und 
+                    //"bildPicturebox_MouseDown" arbeiten damit weiter
 
-                    toolAusgewaehlt = true;
-                    lockUnlockTools();
+                    Cursor = Cursors.Hand;
+                    lockTools(handCheckBox);
                 }
                 else
                 {
-                    colorPickerAusgewaehlt = false;
-                    Cursor = Cursors.Default;
-
-                    toolAusgewaehlt = false;
-                    lockUnlockTools();
+                    handCheckBox.CheckState = CheckState.Unchecked;
                 }
             }
+            else
+            {
+                if (checkTools(handCheckBox))
+                {
+                    unlockTools(handCheckBox);
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
+            
+        //------------------------------------------------------------------------------------------------
+        //Color Picker
+        private void colorPickerCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (colorPickerCheckBox.Checked)
+            {
+                if (checkTools(colorPickerCheckBox))   //wenn kein anderes tool aktiv
+                {
+                    //einfach so stehen lasse, die Funktionen "bildPicturebox_MouseMove" und 
+                    //"bildPicturebox_MouseDown" arbeiten damit weiter
+
+                    Cursor = Cursors.Cross;
+                    lockTools(colorPickerCheckBox);
+                }
+                else
+                {
+                    colorPickerCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkTools(colorPickerCheckBox))
+                {
+                    unlockTools(colorPickerCheckBox);
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
             private void getPixelColor(MouseEventArgs e, PictureBox picBox)
             {       //Funktion zum berechnen des Farbwerts einzelner Pixel
                 Bitmap helpMap;
@@ -582,7 +662,7 @@ namespace Prog3
         private void bildPicturebox_MouseMove(object sender, MouseEventArgs e)
         {
             //falls Hand Tool ausgewählt
-            if (handToolAusgewaehlt)
+            if (handCheckBox.Checked)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -594,7 +674,7 @@ namespace Prog3
         private void bildPicturebox_MouseDown(object sender, MouseEventArgs e)
         {    
             //falls Hand Tool ausgewählt
-            if (handToolAusgewaehlt)
+            if (handCheckBox.Checked)
             {
                 if (e.Button == MouseButtons.Left)
                 {
@@ -608,7 +688,7 @@ namespace Prog3
             //Aktionen bei gedrückter linker Maustaste
             if (e.Button == MouseButtons.Left)
             {
-                if (colorPickerAusgewaehlt)
+                if (colorPickerCheckBox.Checked)
                 {
                     getPixelColor(e, bildPicturebox);
                 }
@@ -728,10 +808,9 @@ namespace Prog3
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            grauwertBW.CancelAsync();
-        }
+        
+
+        
 
         
 

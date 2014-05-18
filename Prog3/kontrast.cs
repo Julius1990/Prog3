@@ -59,28 +59,39 @@ namespace Prog3
             g.DrawImage(parent.getPictureBoxImage(), new Rectangle(0, 0, neueBitmap.Width, neueBitmap.Height), 0, 0, neueBitmap.Width, neueBitmap.Height,
                 GraphicsUnit.Pixel, imageAttributes);
             kontrastPicturebox.Image = neueBitmap;
-
         }        
 
     //------------------------------------------------------------------------------------------------
-    //Steuerung des Kontrasts 
-        private void anwendenButton_Click(object sender, EventArgs e)
+    //Steuerung des Kontrasts                 
+        private void anwendenTrackBarButton_Click(object sender, EventArgs e)
         {
+            //Textbox auswerten und Wert speichern
             string einlesen = anwendenTextBox.Text.ToString();
             float eingabeKontrast = (float)Convert.ToDouble(einlesen);
-
             kontrastwert = eingabeKontrast;
+            kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast / 2.0f));
             
-            kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast/2.0f));
+            //Berechnung im Hintergrund ausführen
+            if (!kontrastBerechnungBW.IsBusy)   //verhindert Zugriffsprobleme
+            {
+                kontrastBerechnungBW.RunWorkerAsync();
+                Cursor = Cursors.WaitCursor;
+            }
+        }
+        private void kontrastBerechnungBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
+        private void kontrastBerechnungBW_DoWork(object sender, DoWorkEventArgs e)
+        {
             kontrastBerechnen();
-
         }
         private void kontrastTrackBar_ValueChanged(object sender, EventArgs e)
         {
             if (kontrastTrackBar.Value > 50)
             {
                 kontrastwert = 1.0f + ((float)kontrastTrackBar.Value - 50.0f) * 0.06f;
-                anwendenTextBox.Text = (((float)kontrastTrackBar.Value - 50.0f)*2.0f).ToString();
+                anwendenTextBox.Text = (((float)kontrastTrackBar.Value - 50.0f) * 2.0f).ToString();
             }
             else if (kontrastTrackBar.Value == 50)
             {
@@ -90,18 +101,8 @@ namespace Prog3
             else
             {
                 kontrastwert = 1.0f - ((50.0f - (float)kontrastTrackBar.Value) * 0.02f);
-                anwendenTextBox.Text = (-((50.0f-(float)kontrastTrackBar.Value)*2.0f)).ToString();
-            }                       
-        }
-
-        //Hier wird mit dem Backgroundworker gearbeitet um die WinForm aktiv zu halten während die Berechnung durchgeführt wird
-        private void anwendenTrackBarButton_Click(object sender, EventArgs e)
-        {
-            kontrastBerechnungBW.RunWorkerAsync();
-        }
-        private void kontrastBerechnungBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            kontrastBerechnen();
+                anwendenTextBox.Text = (-((50.0f - (float)kontrastTrackBar.Value) * 2.0f)).ToString();
+            }
         }
 
     //------------------------------------------------------------------------------------------------
@@ -121,12 +122,12 @@ namespace Prog3
             GC.Collect();
 
             this.Close();
-        }        
+        }              
 
     //------------------------------------------------------------------------------------------------
     //Kommentare
-        /* Das Panel auf der rechten Seite enthält noch eine Progress Bar. Da die Funktion zur Konrastberechnung
-         * aber keine Schleife ist, weiß ich noch nicht wie ich die Bar incrementieren soll.
+         /* Da die Funktion zur Konrastberechnung keine Schleife ist, weiß ich noch nicht wie ich die Bar
+          * incrementieren soll.
          * 
          * Der Schieberegler arbeitet in einem Zahlenraum von 0 bis 100, die Mitte liegt auf 50. Für die Kontrast-
          * berechnung werden diese Werte in den Funktionen anwendenButtonClick und kontrastTrackBar_Valuechanged
