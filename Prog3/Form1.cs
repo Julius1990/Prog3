@@ -53,6 +53,8 @@ namespace Prog3
         //Werkzeuge
         List<CheckBox> werkzeuge;
 
+        //Metadaten
+        string picDir;
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
         private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -74,6 +76,9 @@ namespace Prog3
                     bildPicturebox.Left = 0;
                     schrittSpeichern((Bitmap)bildPicturebox.Image);
 
+                    //Speicherort merken
+                    picDir = bildOeffnenDialog.FileName;
+
                     speichernUnterToolStripMenuItem.Visible = true;
                     schließenToolStripMenuItem.Visible = true;
                 }
@@ -81,6 +86,8 @@ namespace Prog3
             //rückgängig und wiederholen ausblenden
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
+
+            getPicMeta();
         }
         private void speichernToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -678,6 +685,23 @@ namespace Prog3
                 return new Point((int)newX, (int)newY);     //Mauskoordinaten über dem vollen Bild zurückgeben
             }
             //siehe außerdem Funktion "bildPicturebox_MouseClick"
+
+    //----------------------------------------------------------------------------------------------------
+    //Metadaten auslesen
+        private void getPicMeta() {
+            PropertyItem[] picProps = bildPicturebox.Image.PropertyItems;
+            ASCIIEncoding metaEncoder = new ASCIIEncoding();
+
+            labelDate.Text = "default";
+
+            foreach(PropertyItem item in picProps){
+                if (item.Id == 0x9003)
+                {
+                    labelDate.Text = metaEncoder.GetString(item.Value);
+                }
+            }
+            labelDir.Text = picDir;
+        }
 
     //----------------------------------------------------------------------------------------------------
     //Mausbewegungen
