@@ -56,6 +56,8 @@ namespace Prog3
         //Werkzeuge
         List<CheckBox> werkzeuge;
 
+        //Metadaten
+        string picDir;
         //Histogramme
         List<CheckBox> histogramme;
 
@@ -80,6 +82,9 @@ namespace Prog3
                     bildPicturebox.Left = 0;
                     schrittSpeichern((Bitmap)bildPicturebox.Image);
 
+                    //Speicherort merken
+                    picDir = bildOeffnenDialog.FileName;
+
                     speichernUnterToolStripMenuItem.Visible = true;
                     schließenToolStripMenuItem.Visible = true;
                 }
@@ -87,6 +92,8 @@ namespace Prog3
             //rückgängig und wiederholen ausblenden
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
+
+            getPicMeta();
         }
         private void speichernToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -686,6 +693,23 @@ namespace Prog3
             //siehe außerdem Funktion "bildPicturebox_MouseClick"
 
     //----------------------------------------------------------------------------------------------------
+    //Metadaten auslesen
+        private void getPicMeta() {
+            PropertyItem[] picProps = bildPicturebox.Image.PropertyItems;
+            ASCIIEncoding metaEncoder = new ASCIIEncoding();
+
+            labelDate.Text = "default";
+
+            foreach(PropertyItem item in picProps){
+                if (item.Id == 0x9003)
+                {
+                    labelDate.Text = metaEncoder.GetString(item.Value);
+                }
+            }
+            labelDir.Text = picDir;
+        }
+
+    //----------------------------------------------------------------------------------------------------
     //Mausbewegungen
         private void bildPicturebox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -1121,7 +1145,7 @@ namespace Prog3
             for (int a = 0; a < 255; a++)
             {
                 green[a] = 0;
-            }
+                }
 
             //Fortschritt
             histoProgressBar.Invoke(new Action(() =>
@@ -1139,11 +1163,11 @@ namespace Prog3
                     green[gruenwert]++;
                     if (green[gruenwert] > max)
                         max = green[gruenwert];
-                }
+            }
                 histoBW.ReportProgress(x);
                 if (histoBW.CancellationPending)
                     return;
-            }
+        }
             Bitmap histogramm = new Bitmap(258, 132);
 
             histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
@@ -1351,7 +1375,7 @@ namespace Prog3
 
         
 
-        
+
         
 
         
