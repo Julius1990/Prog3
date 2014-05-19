@@ -140,7 +140,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rechterContainer);
             this.splitContainer1.Size = new System.Drawing.Size(723, 456);
-            this.splitContainer1.SplitterDistance = 548;
+            this.splitContainer1.SplitterDistance = 375;
             this.splitContainer1.TabIndex = 5;
             // 
             // linkerContainer
@@ -172,7 +172,7 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextB);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
-            this.linkerContainer.Size = new System.Drawing.Size(548, 456);
+            this.linkerContainer.Size = new System.Drawing.Size(375, 456);
             this.linkerContainer.SplitterDistance = 264;
             this.linkerContainer.TabIndex = 0;
             // 
@@ -346,7 +346,7 @@
             // rechterContainer.Panel2
             // 
             this.rechterContainer.Panel2.Controls.Add(this.histoPanel);
-            this.rechterContainer.Size = new System.Drawing.Size(171, 456);
+            this.rechterContainer.Size = new System.Drawing.Size(344, 456);
             this.rechterContainer.SplitterDistance = 299;
             this.rechterContainer.TabIndex = 0;
             // 
@@ -569,7 +569,7 @@
             this.histoPanel.Location = new System.Drawing.Point(0, 0);
             this.histoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.histoPanel.Name = "histoPanel";
-            this.histoPanel.Size = new System.Drawing.Size(169, 151);
+            this.histoPanel.Size = new System.Drawing.Size(342, 151);
             this.histoPanel.TabIndex = 0;
             // 
             // panel3
@@ -585,7 +585,7 @@
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(166, 25);
+            this.panel2.Location = new System.Drawing.Point(339, 25);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.MinimumSize = new System.Drawing.Size(3, 0);
             this.panel2.Name = "panel2";
@@ -601,7 +601,7 @@
             this.histoPictureboxPanel.Location = new System.Drawing.Point(0, 25);
             this.histoPictureboxPanel.Margin = new System.Windows.Forms.Padding(2);
             this.histoPictureboxPanel.Name = "histoPictureboxPanel";
-            this.histoPictureboxPanel.Size = new System.Drawing.Size(169, 126);
+            this.histoPictureboxPanel.Size = new System.Drawing.Size(342, 126);
             this.histoPictureboxPanel.TabIndex = 8;
             // 
             // histoProgressBar
@@ -619,7 +619,7 @@
             this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
             this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.histoPictureBox.Name = "histoPictureBox";
-            this.histoPictureBox.Size = new System.Drawing.Size(169, 126);
+            this.histoPictureBox.Size = new System.Drawing.Size(342, 126);
             this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.histoPictureBox.TabIndex = 0;
             this.histoPictureBox.TabStop = false;
@@ -636,7 +636,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(169, 25);
+            this.panel1.Size = new System.Drawing.Size(342, 25);
             this.panel1.TabIndex = 7;
             // 
             // rgbHistCheckBox
@@ -899,6 +899,8 @@
             this.Controls.Add(this.randUntenPanel);
             this.Name = "form1";
             this.Text = "Prog3";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form1_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.form1_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

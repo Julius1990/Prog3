@@ -17,7 +17,7 @@ namespace Prog3
     {
     //------------------------------------------------------------------------------------------------
     //Konstruktor
-        public kontrast(form1 parent_in)
+        public kontrast(form1 parent_in, Semaphore sem_in)
         {
             InitializeComponent();
 
@@ -28,11 +28,15 @@ namespace Prog3
             kontrastPicturebox.Image = parent.getPictureBoxImage();
 
             kontrastwert = 1.0f;
+
+            //Semaphore
+            kontrSem = sem_in;
         }
     //------------------------------------------------------------------------------------------------
     //Globale Variablen
         form1 parent;
         float kontrastwert;
+        Semaphore kontrSem;
 
     //------------------------------------------------------------------------------------------------
     //Kontrast berechnen       
@@ -133,6 +137,12 @@ namespace Prog3
             GC.Collect();
 
             this.Close();
+        }
+
+        private void kontrast_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Kritischen Bereich freigeben
+            kontrSem.Release();
         }              
 
     //------------------------------------------------------------------------------------------------

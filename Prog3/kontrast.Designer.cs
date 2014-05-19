@@ -230,6 +230,7 @@
             this.MinimumSize = new System.Drawing.Size(760, 471);
             this.Name = "kontrast";
             this.Text = "Kontrast";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.kontrast_FormClosing);
             this.centerPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

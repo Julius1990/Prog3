@@ -64,106 +64,150 @@ namespace Prog3
         List<CheckBox> histogramme;
         int zuletztBerechnetesHistogramm = 1;
 
+        //Semaphore
+        public Semaphore sem = new Semaphore(1, 1);
+
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
         private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Dialog anzeigen
-            DialogResult rs = bildOeffnenDialog.ShowDialog();
-            if (rs == DialogResult.OK)
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
             {
-                //extrahiert die Endung des geöffneten Files
-                string ext = Path.GetExtension(bildOeffnenDialog.FileName);
-                //sortiert die NICHT Bildformate aus
-                if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
+                //Dialog anzeigen
+                DialogResult rs = bildOeffnenDialog.ShowDialog();
+                if (rs == DialogResult.OK)
                 {
-                    aufraeumen();
+                    //extrahiert die Endung des geöffneten Files
+                    string ext = Path.GetExtension(bildOeffnenDialog.FileName);
+                    //sortiert die NICHT Bildformate aus
+                    if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
+                    {
+                        aufraeumen();
 
-                    //bild laden, picturebox ausrichten, geladenes bild als zwischenschritt speichern
-                    bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
-                    bildPicturebox.Top = 0;
-                    bildPicturebox.Left = 0;
-                    schrittSpeichern((Bitmap)bildPicturebox.Image);
+                        //bild laden, picturebox ausrichten, geladenes bild als zwischenschritt speichern
+                        bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
+                        bildPicturebox.Top = 0;
+                        bildPicturebox.Left = 0;
+                        schrittSpeichern((Bitmap)bildPicturebox.Image);
 
-                    //Speicherort merken
-                    picDir = bildOeffnenDialog.FileName;
+                        //Speicherort merken
+                        picDir = bildOeffnenDialog.FileName;
 
-                    speichernUnterToolStripMenuItem.Visible = true;
-                    schließenToolStripMenuItem.Visible = true;
+                        speichernUnterToolStripMenuItem.Visible = true;
+                        schließenToolStripMenuItem.Visible = true;
+                    }
                 }
-            }
-            //rückgängig und wiederholen ausblenden
-            rückgängigToolStripMenuItem.Visible = false;
-            wiederholenToolStripMenuItem.Visible = false;
+                //rückgängig und wiederholen ausblenden
+                rückgängigToolStripMenuItem.Visible = false;
+                wiederholenToolStripMenuItem.Visible = false;
 
-            getPicMeta();
+                getPicMeta();
+
+                //Kritischen Bereich verlassen
+                sem.Release();
+            }
+            else
+            {
+                MessageBox.Show("Bild wird gerade bearbeitet");
+            }
+        }
+        private void form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            aufraeumen();
+        }
+        private void form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            aufraeumen();
         }
         private void speichernToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //um an diese Funktion zu kommen, muss der Benutzer vorher die "Speichern unter" Funktion aufgerufen haben
-            string ext = Path.GetExtension(bildOeffnenDialog.FileName);
-            if (ext == ".jpg" || ext == ".jpeg")
+            if (sem.WaitOne(1000))
             {
-                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Jpeg);
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                //um an diese Funktion zu kommen, muss der Benutzer vorher die "Speichern unter" Funktion aufgerufen haben
+                string ext = Path.GetExtension(bildOeffnenDialog.FileName);
+                if (ext == ".jpg" || ext == ".jpeg")
+                {
+                    bildPicturebox.Image.Save(speichernUnter, ImageFormat.Jpeg);
+                }
+                else if (ext == ".png")
+                {
+                    bildPicturebox.Image.Save(speichernUnter, ImageFormat.Png);
+                }
+                else if (ext == ".gif")
+                {
+                    bildPicturebox.Image.Save(speichernUnter, ImageFormat.Gif);
+                }
+                else if (ext == ".tif" || ext == ".tiff")
+                {
+                    bildPicturebox.Image.Save(speichernUnter, ImageFormat.Tiff);
+                }
+                else if (ext == ".bmp")
+                {
+                    bildPicturebox.Image.Save(speichernUnter, ImageFormat.Bmp);
+                }
+
+                //Kritischen Bereich verlassen
+                sem.Release();
             }
-            else if (ext == ".png")
+            else
             {
-                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Png);
-            }
-            else if (ext == ".gif")
-            {
-                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Gif);
-            }
-            else if (ext == ".tif" || ext == ".tiff")
-            {
-                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Tiff);
-            }
-            else if (ext == ".bmp")
-            {
-                bildPicturebox.Image.Save(speichernUnter, ImageFormat.Bmp);
+                MessageBox.Show("Bild kann nicht gespeichert werden, es wird noch bearbeitet");
             }
         }
         private void speichernUnterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //speichern Dialog anzeigen
-            DialogResult rs = bildSpeichernDialog.ShowDialog();
-            if (rs == DialogResult.OK)
+            if (sem.WaitOne(1000))
             {
-                //falls kein Bild geöffnet wurde
-                if (bildPicturebox.Image == null)
+                //speichern Dialog anzeigen
+                DialogResult rs = bildSpeichernDialog.ShowDialog();
+                if (rs == DialogResult.OK)
                 {
-                    MessageBox.Show("Es gibt nichts zu speichern");
-                }
-                //ansonsten als gewünschtes Format speichern
-                //Formate: jpeg, png, gif, tif, bmp
-                else
-                {
-                    //speichern wird ab jetzt aktiviert, dies speichert unter dem hier angegeben namen
-                    speichernToolStripMenuItem.Visible = true;
-                    speichernUnter = bildSpeichernDialog.FileName;
+                    //falls kein Bild geöffnet wurde
+                    if (bildPicturebox.Image == null)
+                    {
+                        MessageBox.Show("Es gibt nichts zu speichern");
+                    }
+                    //ansonsten als gewünschtes Format speichern
+                    //Formate: jpeg, png, gif, tif, bmp
+                    else
+                    {
+                        //speichern wird ab jetzt aktiviert, dies speichert unter dem hier angegeben namen
+                        speichernToolStripMenuItem.Visible = true;
+                        speichernUnter = bildSpeichernDialog.FileName;
 
-                    string ext = Path.GetExtension(speichernUnter);
-                    if (ext == ".jpg" || ext == ".jpeg")
-                    {
-                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Jpeg);
-                    }
-                    else if (ext == ".png")
-                    {
-                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Png);
-                    }
-                    else if (ext == ".gif")
-                    {
-                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Gif);
-                    }
-                    else if (ext == ".tif" || ext ==".tiff")
-                    {
-                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Tiff);
-                    }
-                    else if (ext == ".bmp")
-                    {
-                        bildPicturebox.Image.Save(speichernUnter, ImageFormat.Bmp);
+                        string ext = Path.GetExtension(speichernUnter);
+                        if (ext == ".jpg" || ext == ".jpeg")
+                        {
+                            bildPicturebox.Image.Save(speichernUnter, ImageFormat.Jpeg);
+                        }
+                        else if (ext == ".png")
+                        {
+                            bildPicturebox.Image.Save(speichernUnter, ImageFormat.Png);
+                        }
+                        else if (ext == ".gif")
+                        {
+                            bildPicturebox.Image.Save(speichernUnter, ImageFormat.Gif);
+                        }
+                        else if (ext == ".tif" || ext == ".tiff")
+                        {
+                            bildPicturebox.Image.Save(speichernUnter, ImageFormat.Tiff);
+                        }
+                        else if (ext == ".bmp")
+                        {
+                            bildPicturebox.Image.Save(speichernUnter, ImageFormat.Bmp);
+                        }
                     }
                 }
+                //Kritischen Bereich verlassen
+                sem.Release();
+            }
+            else
+            {
+                MessageBox.Show("Bild kann nicht gespeichert werden, es wird gerade bearbeitet");
             }
         }
         private void schließenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -286,6 +330,11 @@ namespace Prog3
     //aufräumen
         private void aufraeumen()
         {
+            //Threads beenden
+            threadsBeenden();
+
+            Thread.Sleep(1000);
+
             schrittSpeicherLoeschen();
 
             bildPicturebox.Image = null;
@@ -298,9 +347,6 @@ namespace Prog3
             //bearbeiten
             rückgängigToolStripMenuItem.Visible = false;
             wiederholenToolStripMenuItem.Visible = false;
-
-            //Threads beenden
-            threadsBeenden();
 
             GC.Collect();
         }
@@ -321,25 +367,35 @@ namespace Prog3
     //Korrekturen
         private void kontrastButton_Click(object sender, EventArgs e)
         {
-            if (threadsKoordinieren())
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
             {
-                kontrast neu = new kontrast(this);
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                //neue Form öffnen
+                kontrast neu = new kontrast(this, sem);
                 neu.Show();
             }
             else
             {
-                MessageBox.Show("Das geöffnete Bild wird gerade Bearbeitet");
+                MessageBox.Show("Bild wird gerade bearbeitet");
             }
         }
         private void saettigungButton_Click(object sender, EventArgs e)
-        {            
-            if (threadsKoordinieren())
+        {
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
             {
-                saettigung saet = new saettigung(getPictureBoxImage(), this);
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                //neue Form öffnen
+                saettigung saet = new saettigung(getPictureBoxImage(), this, sem);
             }
             else
             {
-                MessageBox.Show("Das geöffnete Bild wird gerade Bearbeitet");
+                MessageBox.Show("Bild wird gerade bearbeitet");
             }
         }
 
@@ -368,14 +424,11 @@ namespace Prog3
             //wenn ein Bild in der PictureBox ist, fang an zu rechnen
             if (bildPicturebox.Image != null)
             {
-                if (threadsKoordinieren())    //falls kein anderer Thread läuft
-                {
-                    //startet die Berechnung in einem neuen Thread
-                    grauwertBW.RunWorkerAsync();
-                    greyValButton.Enabled = false;
-                    progressBarAbbrechenButton.Visible = true;
-                    positioniereProgressBar();
-                }
+                positioniereProgressBar();
+                greyValButton.Enabled = false;
+
+                //startet die Berechnung in einem neuen Thread
+                grauwertBW.RunWorkerAsync();
             }
             else
             {
@@ -392,15 +445,29 @@ namespace Prog3
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
 
             //Grauwert Button wieder benutzbar machen
-            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true));            
+            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true)); 
+           
+            //Verlasse den kritischen Bereich
+            sem.Release();
         }
         private void grauwertBW_DoWork(object sender, DoWorkEventArgs e)
         {
-            //berechne das Grauwertbild
+            //Betrete den geschützten Bereich
+            sem.WaitOne();
+
+            //um auf nummer sicher zu gehen
+            Thread.Sleep(1000);
+
+            progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = true));
+
+            //berechne das Grauwertbild            
             createGreyValPic();
         }
         private void grauwertBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            if (grauwertBW.CancellationPending)
+                return;
+
             //da man hier in einem anderen Thread arbeitet, ist dieser Schritt von Nöten um Zugriff
             //auf die Variablen der form1 zu haben
             form1ProgressBar.Invoke(new Action(() =>
@@ -455,23 +522,29 @@ namespace Prog3
             {
                 setAndSavePictureBox(greyMap);
             }));
-
-            berechneHistogramm();
         }
 
         //Negativ
         private void negativBW_DoWork(object sender, DoWorkEventArgs e)
         {
+            //Kritischen Bereich betreten
+            sem.WaitOne();
+
+            //nur um auf nummer sicher zu gehen
+            Thread.Sleep(1000);
+
+            progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = true));
+
             //negativ berechnen
             createInvertedPic();
         }
         private void negativBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            if (negativBW.CancellationPending)
+                return;
+
             //Fortschritt in er Progress Bar anzeigen
             form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Value = e.ProgressPercentage));
-
-            //Negativ Button wieder benutzbar machen
-            invertedButton.Invoke(new Action(() => invertedButton.Enabled = true));
         }
         private void negativBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -479,18 +552,21 @@ namespace Prog3
             form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
             //abbrechen button verschwinden lassen
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
+
+            //Negativ Checkbox wieder benutzbar machen
+            invertedButton.Enabled = true;
+
+            //Kritischen Bereich verlassen
+            sem.Release();
         }
         private void invertedButton_Click(object sender, EventArgs e)
         {
             if (bildPicturebox.Image != null)
             {
-                if (threadsKoordinieren())
-                {
-                    positioniereProgressBar();
-                    progressBarAbbrechenButton.Visible = true;
-                    invertedButton.Enabled = false;
-                    negativBW.RunWorkerAsync();
-                }
+                positioniereProgressBar();
+                invertedButton.Enabled = false;
+                
+                negativBW.RunWorkerAsync();
             }
             else
             {
@@ -542,24 +618,13 @@ namespace Prog3
             {
                 setAndSavePictureBox(invertedMap);
             }));
-
-            berechneHistogramm();
         }
 
     //----------------------------------------------------------------------------------------------------
-    //Threads 
-        private bool threadsKoordinieren()
-        {
-            foreach (BackgroundWorker a in backWorkers)
-            {
-                if (a.IsBusy)
-                    return false;
-            }
-            return true;
-        }
+    //Threads
         private void threadsInitialisieren()
         {
-            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW };
+            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histoBW };
         }
         private void threadsBeenden()
         {
@@ -779,15 +844,43 @@ namespace Prog3
         }
         private void rechtsDrehenButton_Click(object sender, EventArgs e)
         {
-            Image img = bildPicturebox.Image;
-            img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            setAndSavePictureBox((Bitmap)img);
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
+            {
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                Image img = bildPicturebox.Image;
+                img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                setAndSavePictureBox((Bitmap)img);
+
+                //Kritischen Bereich verlassen
+                sem.Release();
+            }
+            else
+            {
+                MessageBox.Show("Bild wird gerade bearbeitet");
+            }
         }
         private void linksDrehenButton_Click(object sender, EventArgs e)
         {
-            Image img = bildPicturebox.Image;
-            img.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            setAndSavePictureBox((Bitmap)img);
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
+            {
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                Image img = bildPicturebox.Image;
+                img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                setAndSavePictureBox((Bitmap)img);
+
+                //Kritischen Bereich verlassen
+                sem.Release();
+            }
+            else
+            {
+                MessageBox.Show("Bild wird gerade bearbeitet");
+            }
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -878,6 +971,11 @@ namespace Prog3
         //BackgroundWorker
         private void histoBW_DoWork(object sender, DoWorkEventArgs e)
         {
+            //Kritischen Bereich betreten
+            sem.WaitOne();
+
+            Thread.Sleep(1000);
+
             if (grauHistCheckBox.Checked)
             {
                 histGray();
@@ -914,19 +1012,14 @@ namespace Prog3
             histoProgressBar.Invoke(new Action(() => histoProgressBar.Visible = false));
 
             unlockHistoButtons();
+
+            //Kritischen Bereich verlassen
+            sem.Release();
         }
 
         //Fremdberechnung
         private void berechneHistogramm()
         {
-            //histogramm neu berechnen
-            if (histoBW.IsBusy)
-                histoBW.CancelAsync();
-            while (histoBW.IsBusy)
-            {
-                Thread.Sleep(2000);
-            }
-
             if (zuletztBerechnetesHistogramm == 1)
             {
                 grauHistCheckBox.Invoke(new Action(() =>
@@ -964,11 +1057,16 @@ namespace Prog3
             }
 
             lockHistoButtons();
+
+            histoBW.RunWorkerAsync();
         }
 
         //Funktionen zur Histogramm Berechnung
         private void histGray()
         {
+            if (histoBW.CancellationPending)
+                return;
+
             Bitmap origBitmap = (Bitmap)bildPicturebox.Image.Clone();
 
             int[] hist = new int[256];
@@ -1031,6 +1129,9 @@ namespace Prog3
         }
         private void histRGB()
         {
+            if (histoBW.CancellationPending)
+                return;
+
             Bitmap orig = new Bitmap(bildPicturebox.Image);
 
             //blau
@@ -1171,6 +1272,9 @@ namespace Prog3
         }
         private void histRed()
         {
+            if (histoBW.CancellationPending)
+                return;
+
             Bitmap orig = new Bitmap(bildPicturebox.Image);
             int[] rot = new int[256];
             int max = 0;
@@ -1220,6 +1324,9 @@ namespace Prog3
         }
         private void histGreen()
         {
+            if (histoBW.CancellationPending)
+                return;
+
             Bitmap orig = new Bitmap(bildPicturebox.Image);
             int[] green = new int[256];
             int max = 0;
@@ -1269,6 +1376,9 @@ namespace Prog3
         }
         private void histBlue()
         {
+            if (histoBW.CancellationPending)
+                return;
+
             Bitmap orig = new Bitmap(bildPicturebox.Image);
             int[] blue = new int[256];
             int max = 0;
@@ -1449,6 +1559,10 @@ namespace Prog3
                 c.CheckState = CheckState.Unchecked;
             }
         }
+
+        
+
+        
 
 
         

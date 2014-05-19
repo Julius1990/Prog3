@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,13 +15,15 @@ namespace Prog3
     {
         form1 parent;
         Bitmap pictureBackup;
+        Semaphore saettSem;
 
-        public saettigung(Bitmap bm, form1 parent_in)
+        public saettigung(Bitmap bm, form1 parent_in,Semaphore sem_in)
         {
             InitializeComponent();
             saettigungPicturebox.Image = bm;
             pictureBackup = bm;
             parent = parent_in;
+            saettSem = sem_in;
             this.Show();
         }
 
@@ -158,6 +161,12 @@ namespace Prog3
         private void anwendenTrackBarButton_Click(object sender, EventArgs e)
         {
             changeSaturation(Convert.ToDouble(anwendenTextBox.Text));
+        }
+
+        private void saettigung_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Kritischen Bereich verlassen
+            saettSem.Release();
         }
     }
 }

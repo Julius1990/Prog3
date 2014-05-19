@@ -228,6 +228,7 @@
             this.Controls.Add(this.randUntenPanel);
             this.Name = "saettigung";
             this.Text = "saettigung";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.saettigung_FormClosing);
             this.centerPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
