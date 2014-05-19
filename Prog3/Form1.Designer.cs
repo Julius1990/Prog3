@@ -34,6 +34,8 @@
             this.progressBarAbbrechenButton = new System.Windows.Forms.Button();
             this.form1ProgressBar = new System.Windows.Forms.ProgressBar();
             this.bildPicturebox = new System.Windows.Forms.PictureBox();
+            this.labelReso = new System.Windows.Forms.Label();
+            this.labelTextReso = new System.Windows.Forms.Label();
             this.labelDir = new System.Windows.Forms.Label();
             this.labelTextDir = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
@@ -64,9 +66,6 @@
             this.saettigungButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.histoPanel = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.histoImmerBerechnenCheckBox = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.histoPictureboxPanel = new System.Windows.Forms.Panel();
@@ -118,7 +117,6 @@
             this.werkzeugPanel.SuspendLayout();
             this.korrekturenPanel.SuspendLayout();
             this.histoPanel.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.histoPictureboxPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
@@ -131,7 +129,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(20);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -162,6 +160,8 @@
             // 
             // linkerContainer.Panel2
             // 
+            this.linkerContainer.Panel2.Controls.Add(this.labelReso);
+            this.linkerContainer.Panel2.Controls.Add(this.labelTextReso);
             this.linkerContainer.Panel2.Controls.Add(this.labelDir);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextDir);
             this.linkerContainer.Panel2.Controls.Add(this.labelDate);
@@ -173,7 +173,7 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
             this.linkerContainer.Size = new System.Drawing.Size(548, 456);
-            this.linkerContainer.SplitterDistance = 413;
+            this.linkerContainer.SplitterDistance = 264;
             this.linkerContainer.TabIndex = 0;
             // 
             // progressBarAbbrechenButton
@@ -190,7 +190,7 @@
             // form1ProgressBar
             // 
             this.form1ProgressBar.Location = new System.Drawing.Point(56, 136);
-            this.form1ProgressBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.form1ProgressBar.Margin = new System.Windows.Forms.Padding(6);
             this.form1ProgressBar.Name = "form1ProgressBar";
             this.form1ProgressBar.Size = new System.Drawing.Size(182, 23);
             this.form1ProgressBar.TabIndex = 7;
@@ -208,11 +208,28 @@
             this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
             this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
             // 
+            // labelReso
+            // 
+            this.labelReso.AutoSize = true;
+            this.labelReso.Location = new System.Drawing.Point(10, 137);
+            this.labelReso.Name = "labelReso";
+            this.labelReso.Size = new System.Drawing.Size(39, 13);
+            this.labelReso.TabIndex = 12;
+            this.labelReso.Text = "default";
+            // 
+            // labelTextReso
+            // 
+            this.labelTextReso.AutoSize = true;
+            this.labelTextReso.Location = new System.Drawing.Point(6, 113);
+            this.labelTextReso.Name = "labelTextReso";
+            this.labelTextReso.Size = new System.Drawing.Size(60, 13);
+            this.labelTextReso.TabIndex = 11;
+            this.labelTextReso.Text = "Auflösung: ";
+            // 
             // labelDir
             // 
             this.labelDir.AutoSize = true;
-            this.labelDir.Location = new System.Drawing.Point(150, 55);
-            this.labelDir.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelDir.Location = new System.Drawing.Point(225, 85);
             this.labelDir.Name = "labelDir";
             this.labelDir.Size = new System.Drawing.Size(39, 13);
             this.labelDir.TabIndex = 10;
@@ -221,8 +238,7 @@
             // labelTextDir
             // 
             this.labelTextDir.AutoSize = true;
-            this.labelTextDir.Location = new System.Drawing.Point(150, 42);
-            this.labelTextDir.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTextDir.Location = new System.Drawing.Point(225, 65);
             this.labelTextDir.Name = "labelTextDir";
             this.labelTextDir.Size = new System.Drawing.Size(67, 13);
             this.labelTextDir.TabIndex = 9;
@@ -231,8 +247,7 @@
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(4, 55);
-            this.labelDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelDate.Location = new System.Drawing.Point(6, 85);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(39, 13);
             this.labelDate.TabIndex = 8;
@@ -241,8 +256,7 @@
             // labelTextDate
             // 
             this.labelTextDate.AutoSize = true;
-            this.labelTextDate.Location = new System.Drawing.Point(4, 42);
-            this.labelTextDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTextDate.Location = new System.Drawing.Point(6, 65);
             this.labelTextDate.Name = "labelTextDate";
             this.labelTextDate.Size = new System.Drawing.Size(90, 13);
             this.labelTextDate.TabIndex = 7;
@@ -333,7 +347,7 @@
             // 
             this.rechterContainer.Panel2.Controls.Add(this.histoPanel);
             this.rechterContainer.Size = new System.Drawing.Size(171, 456);
-            this.rechterContainer.SplitterDistance = 321;
+            this.rechterContainer.SplitterDistance = 299;
             this.rechterContainer.TabIndex = 0;
             // 
             // filterCheckBox
@@ -363,7 +377,7 @@
             // invertedButton
             // 
             this.invertedButton.Location = new System.Drawing.Point(3, 30);
-            this.invertedButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.invertedButton.Margin = new System.Windows.Forms.Padding(2);
             this.invertedButton.Name = "invertedButton";
             this.invertedButton.Size = new System.Drawing.Size(114, 22);
             this.invertedButton.TabIndex = 12;
@@ -374,7 +388,7 @@
             // greyValButton
             // 
             this.greyValButton.Location = new System.Drawing.Point(3, 7);
-            this.greyValButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.greyValButton.Margin = new System.Windows.Forms.Padding(2);
             this.greyValButton.Name = "greyValButton";
             this.greyValButton.Size = new System.Drawing.Size(114, 19);
             this.greyValButton.TabIndex = 11;
@@ -547,69 +561,35 @@
             // 
             // histoPanel
             // 
-            this.histoPanel.Controls.Add(this.panel4);
             this.histoPanel.Controls.Add(this.panel3);
             this.histoPanel.Controls.Add(this.panel2);
             this.histoPanel.Controls.Add(this.histoPictureboxPanel);
             this.histoPanel.Controls.Add(this.panel1);
             this.histoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.histoPanel.Location = new System.Drawing.Point(0, 0);
-            this.histoPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.histoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.histoPanel.Name = "histoPanel";
-            this.histoPanel.Size = new System.Drawing.Size(169, 129);
+            this.histoPanel.Size = new System.Drawing.Size(169, 151);
             this.histoPanel.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Controls.Add(this.histoImmerBerechnenCheckBox);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(3, 117);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(163, 12);
-            this.panel4.TabIndex = 12;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.panel5.MinimumSize = new System.Drawing.Size(3, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(3, 12);
-            this.panel5.TabIndex = 13;
-            // 
-            // histoImmerBerechnenCheckBox
-            // 
-            this.histoImmerBerechnenCheckBox.AutoSize = true;
-            this.histoImmerBerechnenCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.histoImmerBerechnenCheckBox.Location = new System.Drawing.Point(5, 1);
-            this.histoImmerBerechnenCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.histoImmerBerechnenCheckBox.Name = "histoImmerBerechnenCheckBox";
-            this.histoImmerBerechnenCheckBox.Size = new System.Drawing.Size(147, 14);
-            this.histoImmerBerechnenCheckBox.TabIndex = 6;
-            this.histoImmerBerechnenCheckBox.Text = "Histogramm automatisch berechnen";
-            this.histoImmerBerechnenCheckBox.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 25);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.MinimumSize = new System.Drawing.Size(3, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(3, 104);
+            this.panel3.Size = new System.Drawing.Size(3, 126);
             this.panel3.TabIndex = 10;
             // 
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(166, 25);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.MinimumSize = new System.Drawing.Size(3, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(3, 104);
+            this.panel2.Size = new System.Drawing.Size(3, 126);
             this.panel2.TabIndex = 9;
             // 
             // histoPictureboxPanel
@@ -619,17 +599,17 @@
             this.histoPictureboxPanel.Controls.Add(this.histoPictureBox);
             this.histoPictureboxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.histoPictureboxPanel.Location = new System.Drawing.Point(0, 25);
-            this.histoPictureboxPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.histoPictureboxPanel.Margin = new System.Windows.Forms.Padding(2);
             this.histoPictureboxPanel.Name = "histoPictureboxPanel";
-            this.histoPictureboxPanel.Size = new System.Drawing.Size(169, 104);
+            this.histoPictureboxPanel.Size = new System.Drawing.Size(169, 126);
             this.histoPictureboxPanel.TabIndex = 8;
             // 
             // histoProgressBar
             // 
             this.histoProgressBar.Location = new System.Drawing.Point(7, 11);
-            this.histoProgressBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.histoProgressBar.Margin = new System.Windows.Forms.Padding(2);
             this.histoProgressBar.Name = "histoProgressBar";
-            this.histoProgressBar.Size = new System.Drawing.Size(89, 15);
+            this.histoProgressBar.Size = new System.Drawing.Size(148, 27);
             this.histoProgressBar.TabIndex = 1;
             this.histoProgressBar.Visible = false;
             // 
@@ -637,9 +617,9 @@
             // 
             this.histoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.histoPictureBox.Name = "histoPictureBox";
-            this.histoPictureBox.Size = new System.Drawing.Size(169, 104);
+            this.histoPictureBox.Size = new System.Drawing.Size(169, 126);
             this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.histoPictureBox.TabIndex = 0;
             this.histoPictureBox.TabStop = false;
@@ -654,7 +634,7 @@
             this.panel1.Controls.Add(this.gHistCheckBox);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(169, 25);
             this.panel1.TabIndex = 7;
@@ -664,7 +644,7 @@
             this.rgbHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.rgbHistCheckBox.AutoSize = true;
             this.rgbHistCheckBox.Location = new System.Drawing.Point(38, 0);
-            this.rgbHistCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rgbHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.rgbHistCheckBox.Name = "rgbHistCheckBox";
             this.rgbHistCheckBox.Size = new System.Drawing.Size(40, 23);
             this.rgbHistCheckBox.TabIndex = 2;
@@ -677,7 +657,7 @@
             this.grauHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.grauHistCheckBox.AutoSize = true;
             this.grauHistCheckBox.Location = new System.Drawing.Point(2, 0);
-            this.grauHistCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grauHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.grauHistCheckBox.Name = "grauHistCheckBox";
             this.grauHistCheckBox.Size = new System.Drawing.Size(40, 23);
             this.grauHistCheckBox.TabIndex = 1;
@@ -690,7 +670,7 @@
             this.bHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.bHistCheckBox.AutoSize = true;
             this.bHistCheckBox.Location = new System.Drawing.Point(140, 0);
-            this.bHistCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.bHistCheckBox.Name = "bHistCheckBox";
             this.bHistCheckBox.Size = new System.Drawing.Size(24, 23);
             this.bHistCheckBox.TabIndex = 5;
@@ -703,7 +683,7 @@
             this.rHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.rHistCheckBox.AutoSize = true;
             this.rHistCheckBox.Location = new System.Drawing.Point(93, 0);
-            this.rHistCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.rHistCheckBox.Name = "rHistCheckBox";
             this.rHistCheckBox.Size = new System.Drawing.Size(25, 23);
             this.rHistCheckBox.TabIndex = 3;
@@ -716,7 +696,7 @@
             this.gHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.gHistCheckBox.AutoSize = true;
             this.gHistCheckBox.Location = new System.Drawing.Point(117, 0);
-            this.gHistCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.gHistCheckBox.Name = "gHistCheckBox";
             this.gHistCheckBox.Size = new System.Drawing.Size(25, 23);
             this.gHistCheckBox.TabIndex = 4;
@@ -732,9 +712,9 @@
             this.bearbeitenToolStripMenuItem,
             this.ansichtToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menuStrip2.Margin = new System.Windows.Forms.Padding(2);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(2);
             this.menuStrip2.Size = new System.Drawing.Size(721, 26);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
@@ -939,8 +919,6 @@
             this.korrekturenPanel.ResumeLayout(false);
             this.histoPanel.ResumeLayout(false);
             this.histoPanel.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.histoPictureboxPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -1014,19 +992,18 @@
         private System.Windows.Forms.CheckBox rHistCheckBox;
         private System.Windows.Forms.CheckBox rgbHistCheckBox;
         private System.Windows.Forms.CheckBox grauHistCheckBox;
-        private System.Windows.Forms.CheckBox histoImmerBerechnenCheckBox;
         private System.Windows.Forms.CheckBox bHistCheckBox;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel histoPictureboxPanel;
         private System.Windows.Forms.ProgressBar histoProgressBar;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelTextDate;
         private System.Windows.Forms.Label labelDir;
         private System.Windows.Forms.Label labelTextDir;
+        private System.Windows.Forms.Label labelTextReso;
+        private System.Windows.Forms.Label labelReso;
 
 
     }

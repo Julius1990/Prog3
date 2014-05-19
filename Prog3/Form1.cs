@@ -8,6 +8,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -177,10 +178,14 @@ namespace Prog3
         private void rückgängigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             schrittZurueck();
+
+            berechneHistogramm();
         }
         private void wiederholenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             schrittVor();
+
+            berechneHistogramm();
         }
         
     //----------------------------------------------------------------------------------------------------
@@ -387,10 +392,7 @@ namespace Prog3
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
 
             //Grauwert Button wieder benutzbar machen
-            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true));
-
-            //histogramm neu berechnen
-            berechneHistogramm();
+            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true));            
         }
         private void grauwertBW_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -453,6 +455,8 @@ namespace Prog3
             {
                 setAndSavePictureBox(greyMap);
             }));
+
+            berechneHistogramm();
         }
 
         //Negativ
@@ -475,9 +479,6 @@ namespace Prog3
             form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
             //abbrechen button verschwinden lassen
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
-
-            //Histogramm berechnen
-            berechneHistogramm();
         }
         private void invertedButton_Click(object sender, EventArgs e)
         {
@@ -541,6 +542,8 @@ namespace Prog3
             {
                 setAndSavePictureBox(invertedMap);
             }));
+
+            berechneHistogramm();
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -714,6 +717,8 @@ namespace Prog3
                     labelDate.Text = metaEncoder.GetString(item.Value);
                 }
             }
+
+            labelReso.Text = bildPicturebox.Image.Width + " x " + bildPicturebox.Image.Height;
             labelDir.Text = picDir;
         }
 
@@ -914,26 +919,57 @@ namespace Prog3
         //Fremdberechnung
         private void berechneHistogramm()
         {
+            //histogramm neu berechnen
+            if (histoBW.IsBusy)
+                histoBW.CancelAsync();
+            while (histoBW.IsBusy)
+            {
+                Thread.Sleep(2000);
+            }
+
             if (zuletztBerechnetesHistogramm == 1)
-                grauHistCheckBox.CheckState = CheckState.Checked;
+            {
+                grauHistCheckBox.Invoke(new Action(() =>
+                {
+                    grauHistCheckBox.CheckState = CheckState.Checked;
+                }));
+            }
             else if (zuletztBerechnetesHistogramm == 2)
-                rgbHistCheckBox.CheckState = CheckState.Checked;
+            {
+                rgbHistCheckBox.Invoke(new Action(() =>
+                {
+                    rgbHistCheckBox.CheckState = CheckState.Checked;
+                }));
+            }
             else if (zuletztBerechnetesHistogramm == 3)
-                rHistCheckBox.CheckState = CheckState.Checked;
+            {
+                rHistCheckBox.Invoke(new Action(() =>
+                {
+                    rHistCheckBox.CheckState = CheckState.Checked;
+                }));
+            }
             else if (zuletztBerechnetesHistogramm == 4)
-                gHistCheckBox.CheckState = CheckState.Checked;
+            {
+                gHistCheckBox.Invoke(new Action(() =>
+                {
+                    gHistCheckBox.CheckState = CheckState.Checked;
+                }));
+            }
             else if (zuletztBerechnetesHistogramm == 5)
-                bHistCheckBox.CheckState = CheckState.Checked;
+            {
+                bHistCheckBox.Invoke(new Action(() =>
+                {
+                    bHistCheckBox.CheckState = CheckState.Checked;
+                }));
+            }
 
             lockHistoButtons();
-            if (!histoBW.IsBusy)
-                histoBW.RunWorkerAsync();
         }
 
         //Funktionen zur Histogramm Berechnung
         private void histGray()
         {
-            Bitmap origBitmap = new Bitmap(bildPicturebox.Image);
+            Bitmap origBitmap = (Bitmap)bildPicturebox.Image.Clone();
 
             int[] hist = new int[256];
             int max = 0;
@@ -988,7 +1024,10 @@ namespace Prog3
                 if (histoBW.CancellationPending)
                     return;
             }
-            histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+            if (!negativBW.IsBusy && !grauwertBW.IsBusy)
+            {
+                histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+            }
         }
         private void histRGB()
         {
@@ -1410,6 +1449,7 @@ namespace Prog3
                 c.CheckState = CheckState.Unchecked;
             }
         }
+
 
         
 
