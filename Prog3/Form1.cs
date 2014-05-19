@@ -706,6 +706,8 @@ namespace Prog3
                     labelDate.Text = metaEncoder.GetString(item.Value);
                 }
             }
+
+            labelReso.Text = bildPicturebox.Image.Width + " x " + bildPicturebox.Image.Height;
             labelDir.Text = picDir;
         }
 
@@ -1368,6 +1370,7 @@ namespace Prog3
                 c.CheckState = CheckState.Unchecked;
             }
         }
+
 
         
 
