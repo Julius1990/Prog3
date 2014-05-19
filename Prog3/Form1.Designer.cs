@@ -80,6 +80,17 @@
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
+            this.histoBW = new System.ComponentModel.BackgroundWorker();
+            this.histoPanel = new System.Windows.Forms.Panel();
+            this.histoPictureBox = new System.Windows.Forms.PictureBox();
+            this.grauHistCheckBox = new System.Windows.Forms.CheckBox();
+            this.rgbHistCheckBox = new System.Windows.Forms.CheckBox();
+            this.rHistCheckBox = new System.Windows.Forms.CheckBox();
+            this.gHistCheckBox = new System.Windows.Forms.CheckBox();
+            this.bHistCheckBox = new System.Windows.Forms.CheckBox();
+            this.histoImmerBerechnenCheckBox = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -91,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).BeginInit();
             this.rechterContainer.Panel1.SuspendLayout();
+            this.rechterContainer.Panel2.SuspendLayout();
             this.rechterContainer.SuspendLayout();
             this.FilterPanel.SuspendLayout();
             this.ansichtPanel.SuspendLayout();
@@ -99,6 +111,10 @@
             this.menuStrip2.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
+            this.histoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -257,6 +273,10 @@
             this.rechterContainer.Panel1.Controls.Add(this.ansichtCheckBox);
             this.rechterContainer.Panel1.Controls.Add(this.werkzeugPanel);
             this.rechterContainer.Panel1.Controls.Add(this.korrekturenPanel);
+            // 
+            // rechterContainer.Panel2
+            // 
+            this.rechterContainer.Panel2.Controls.Add(this.histoPanel);
             this.rechterContainer.Size = new System.Drawing.Size(353, 493);
             this.rechterContainer.SplitterDistance = 348;
             this.rechterContainer.TabIndex = 0;
@@ -645,6 +665,127 @@
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
             // 
+            // histoBW
+            // 
+            this.histoBW.WorkerReportsProgress = true;
+            this.histoBW.WorkerSupportsCancellation = true;
+            this.histoBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.histoBW_DoWork);
+            this.histoBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.histoBW_ProgressChanged);
+            this.histoBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.histoBW_RunWorkerCompleted);
+            // 
+            // histoPanel
+            // 
+            this.histoPanel.Controls.Add(this.panel2);
+            this.histoPanel.Controls.Add(this.panel1);
+            this.histoPanel.Controls.Add(this.histoImmerBerechnenCheckBox);
+            this.histoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.histoPanel.Location = new System.Drawing.Point(0, 0);
+            this.histoPanel.Name = "histoPanel";
+            this.histoPanel.Size = new System.Drawing.Size(351, 139);
+            this.histoPanel.TabIndex = 0;
+            // 
+            // histoPictureBox
+            // 
+            this.histoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.histoPictureBox.Name = "histoPictureBox";
+            this.histoPictureBox.Size = new System.Drawing.Size(351, 99);
+            this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.histoPictureBox.TabIndex = 0;
+            this.histoPictureBox.TabStop = false;
+            // 
+            // grauHistCheckBox
+            // 
+            this.grauHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.grauHistCheckBox.AutoSize = true;
+            this.grauHistCheckBox.Location = new System.Drawing.Point(3, 0);
+            this.grauHistCheckBox.Name = "grauHistCheckBox";
+            this.grauHistCheckBox.Size = new System.Drawing.Size(40, 23);
+            this.grauHistCheckBox.TabIndex = 1;
+            this.grauHistCheckBox.Text = "Grau";
+            this.grauHistCheckBox.UseVisualStyleBackColor = true;
+            this.grauHistCheckBox.CheckedChanged += new System.EventHandler(this.grauHistCheckBox_CheckedChanged);
+            // 
+            // rgbHistCheckBox
+            // 
+            this.rgbHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rgbHistCheckBox.AutoSize = true;
+            this.rgbHistCheckBox.Location = new System.Drawing.Point(40, 0);
+            this.rgbHistCheckBox.Name = "rgbHistCheckBox";
+            this.rgbHistCheckBox.Size = new System.Drawing.Size(40, 23);
+            this.rgbHistCheckBox.TabIndex = 2;
+            this.rgbHistCheckBox.Text = "RGB";
+            this.rgbHistCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // rHistCheckBox
+            // 
+            this.rHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rHistCheckBox.AutoSize = true;
+            this.rHistCheckBox.Location = new System.Drawing.Point(86, 0);
+            this.rHistCheckBox.Name = "rHistCheckBox";
+            this.rHistCheckBox.Size = new System.Drawing.Size(25, 23);
+            this.rHistCheckBox.TabIndex = 3;
+            this.rHistCheckBox.Text = "R";
+            this.rHistCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // gHistCheckBox
+            // 
+            this.gHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.gHistCheckBox.AutoSize = true;
+            this.gHistCheckBox.Location = new System.Drawing.Point(109, 0);
+            this.gHistCheckBox.Name = "gHistCheckBox";
+            this.gHistCheckBox.Size = new System.Drawing.Size(25, 23);
+            this.gHistCheckBox.TabIndex = 4;
+            this.gHistCheckBox.Text = "G";
+            this.gHistCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // bHistCheckBox
+            // 
+            this.bHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.bHistCheckBox.AutoSize = true;
+            this.bHistCheckBox.Location = new System.Drawing.Point(132, 0);
+            this.bHistCheckBox.Name = "bHistCheckBox";
+            this.bHistCheckBox.Size = new System.Drawing.Size(24, 23);
+            this.bHistCheckBox.TabIndex = 5;
+            this.bHistCheckBox.Text = "B";
+            this.bHistCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // histoImmerBerechnenCheckBox
+            // 
+            this.histoImmerBerechnenCheckBox.AutoSize = true;
+            this.histoImmerBerechnenCheckBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.histoImmerBerechnenCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.histoImmerBerechnenCheckBox.Location = new System.Drawing.Point(0, 125);
+            this.histoImmerBerechnenCheckBox.Name = "histoImmerBerechnenCheckBox";
+            this.histoImmerBerechnenCheckBox.Size = new System.Drawing.Size(351, 14);
+            this.histoImmerBerechnenCheckBox.TabIndex = 6;
+            this.histoImmerBerechnenCheckBox.Text = "Histogramm automatisch berechnen";
+            this.histoImmerBerechnenCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.rgbHistCheckBox);
+            this.panel1.Controls.Add(this.grauHistCheckBox);
+            this.panel1.Controls.Add(this.bHistCheckBox);
+            this.panel1.Controls.Add(this.rHistCheckBox);
+            this.panel1.Controls.Add(this.gHistCheckBox);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(351, 26);
+            this.panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.Controls.Add(this.histoPictureBox);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 26);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(351, 99);
+            this.panel2.TabIndex = 8;
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,6 +809,7 @@
             this.linkerContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
             this.rechterContainer.Panel1.ResumeLayout(false);
+            this.rechterContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
             this.rechterContainer.ResumeLayout(false);
             this.FilterPanel.ResumeLayout(false);
@@ -679,6 +821,12 @@
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
+            this.histoPanel.ResumeLayout(false);
+            this.histoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -736,6 +884,17 @@
         private System.Windows.Forms.CheckBox colorPickerCheckBox;
         private System.Windows.Forms.CheckBox handCheckBox;
         private System.Windows.Forms.Button saettigungButton;
+        private System.ComponentModel.BackgroundWorker histoBW;
+        private System.Windows.Forms.Panel histoPanel;
+        private System.Windows.Forms.PictureBox histoPictureBox;
+        private System.Windows.Forms.CheckBox gHistCheckBox;
+        private System.Windows.Forms.CheckBox rHistCheckBox;
+        private System.Windows.Forms.CheckBox rgbHistCheckBox;
+        private System.Windows.Forms.CheckBox grauHistCheckBox;
+        private System.Windows.Forms.CheckBox histoImmerBerechnenCheckBox;
+        private System.Windows.Forms.CheckBox bHistCheckBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
 
 
     }

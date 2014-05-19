@@ -830,6 +830,76 @@ namespace Prog3
             }
         }
 
+    //----------------------------------------------------------------------------------------------------
+    //Histogramme
+        private void histoBW_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+        private void histoBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+        private void histoBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+        private void histGray()
+        {
+            Bitmap origBitmap = new Bitmap(getPictureBoxImage());
+
+            int[] hist = new int[256];
+            int max = 0;
+
+            for (int a = 0; a < 255; a++)
+            {
+                hist[a] = 0;
+            }
+
+            //Hier muss der Backgroundworker rein
+            //progressBar1.Maximum = origBitmap.Width;
+            //progressBar1.Value = 0;
+
+
+            //läuft jedes Pixel einzeln durch
+            for (int x = 0; x < origBitmap.Width; x++)
+            {
+ //progressBar1.Increment(1);   Backgroundworker
+                for (int y = 0; y < origBitmap.Height; y++)
+                {
+                    Color orig = origBitmap.GetPixel(x, y);
+                    //Diese Werte sind aus der Vorlesung
+                    int grey = (int)((orig.R * 0.3) + (orig.G * 0.6) + (orig.B * 0.1));
+
+                    int grauWert = grey;
+                    hist[grauWert]++;
+                    if (hist[grauWert] > max)
+                    {
+                        max = hist[grauWert];
+                    }
+                }
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)hist[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Black);
+                }
+            }
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+        }
+
+        private void grauHistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            histGray();
+        }
+
         
 
         
