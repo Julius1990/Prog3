@@ -311,6 +311,17 @@ namespace Prog3
                 MessageBox.Show("Das geöffnete Bild wird gerade Bearbeitet");
             }
         }
+        private void saettigungButton_Click(object sender, EventArgs e)
+        {            
+            if (threadsKoordinieren())
+            {
+                saettigung saet = new saettigung(getPictureBoxImage(), this);
+            }
+            else
+            {
+                MessageBox.Show("Das geöffnete Bild wird gerade Bearbeitet");
+            }
+        }
 
     //----------------------------------------------------------------------------------------------------
     //Korrekturen       
@@ -807,6 +818,8 @@ namespace Prog3
                 }
             }
         }
+
+        
 
         
 

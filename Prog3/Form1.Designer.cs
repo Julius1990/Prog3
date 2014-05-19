@@ -79,6 +79,7 @@
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
+            this.saettigungButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -115,7 +116,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rechterContainer);
             this.splitContainer1.Size = new System.Drawing.Size(723, 493);
-            this.splitContainer1.SplitterDistance = 289;
+            this.splitContainer1.SplitterDistance = 366;
             this.splitContainer1.TabIndex = 5;
             // 
             // linkerContainer
@@ -141,7 +142,7 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextB);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
-            this.linkerContainer.Size = new System.Drawing.Size(289, 493);
+            this.linkerContainer.Size = new System.Drawing.Size(366, 493);
             this.linkerContainer.SplitterDistance = 447;
             this.linkerContainer.TabIndex = 0;
             // 
@@ -256,7 +257,7 @@
             this.rechterContainer.Panel1.Controls.Add(this.ansichtCheckBox);
             this.rechterContainer.Panel1.Controls.Add(this.werkzeugPanel);
             this.rechterContainer.Panel1.Controls.Add(this.korrekturenPanel);
-            this.rechterContainer.Size = new System.Drawing.Size(430, 493);
+            this.rechterContainer.Size = new System.Drawing.Size(353, 493);
             this.rechterContainer.SplitterDistance = 348;
             this.rechterContainer.TabIndex = 0;
             // 
@@ -441,6 +442,7 @@
             // korrekturenPanel
             // 
             this.korrekturenPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.korrekturenPanel.Controls.Add(this.saettigungButton);
             this.korrekturenPanel.Controls.Add(this.button2);
             this.korrekturenPanel.Location = new System.Drawing.Point(171, 33);
             this.korrekturenPanel.Name = "korrekturenPanel";
@@ -632,6 +634,16 @@
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
             // 
+            // saettigungButton
+            // 
+            this.saettigungButton.Location = new System.Drawing.Point(3, 33);
+            this.saettigungButton.Name = "saettigungButton";
+            this.saettigungButton.Size = new System.Drawing.Size(114, 23);
+            this.saettigungButton.TabIndex = 1;
+            this.saettigungButton.Text = "Sättigung";
+            this.saettigungButton.UseVisualStyleBackColor = true;
+            this.saettigungButton.Click += new System.EventHandler(this.saettigungButton_Click);
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -722,6 +734,7 @@
         private System.Windows.Forms.Button progressBarAbbrechenButton;
         private System.Windows.Forms.CheckBox colorPickerCheckBox;
         private System.Windows.Forms.CheckBox handCheckBox;
+        private System.Windows.Forms.Button saettigungButton;
 
 
     }
