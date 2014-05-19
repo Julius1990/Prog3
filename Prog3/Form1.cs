@@ -58,8 +58,10 @@ namespace Prog3
 
         //Metadaten
         string picDir;
+
         //Histogramme
         List<CheckBox> histogramme;
+        int zuletztBerechnetesHistogramm = 1;
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -386,6 +388,9 @@ namespace Prog3
 
             //Grauwert Button wieder benutzbar machen
             greyValButton.Invoke(new Action(() => greyValButton.Enabled = true));
+
+            //histogramm neu berechnen
+            berechneHistogramm();
         }
         private void grauwertBW_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -470,6 +475,9 @@ namespace Prog3
             form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
             //abbrechen button verschwinden lassen
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
+
+            //Histogramm berechnen
+            berechneHistogramm();
         }
         private void invertedButton_Click(object sender, EventArgs e)
         {
@@ -866,15 +874,30 @@ namespace Prog3
         private void histoBW_DoWork(object sender, DoWorkEventArgs e)
         {
             if (grauHistCheckBox.Checked)
+            {
                 histGray();
+                zuletztBerechnetesHistogramm = 1;
+            }
             else if (rgbHistCheckBox.Checked)
+            {
                 histRGB();
+                zuletztBerechnetesHistogramm = 2;
+            }
             else if (rHistCheckBox.Checked)
+            {
                 histRed();
+                zuletztBerechnetesHistogramm = 3;
+            }
             else if (gHistCheckBox.Checked)
+            {
                 histGreen();
+                zuletztBerechnetesHistogramm = 4;
+            }
             else if (bHistCheckBox.Checked)
+            {
                 histBlue();
+                zuletztBerechnetesHistogramm = 5;
+            }
         }
         private void histoBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -888,10 +911,29 @@ namespace Prog3
             unlockHistoButtons();
         }
 
+        //Fremdberechnung
+        private void berechneHistogramm()
+        {
+            if (zuletztBerechnetesHistogramm == 1)
+                grauHistCheckBox.CheckState = CheckState.Checked;
+            else if (zuletztBerechnetesHistogramm == 2)
+                rgbHistCheckBox.CheckState = CheckState.Checked;
+            else if (zuletztBerechnetesHistogramm == 3)
+                rHistCheckBox.CheckState = CheckState.Checked;
+            else if (zuletztBerechnetesHistogramm == 4)
+                gHistCheckBox.CheckState = CheckState.Checked;
+            else if (zuletztBerechnetesHistogramm == 5)
+                bHistCheckBox.CheckState = CheckState.Checked;
+
+            lockHistoButtons();
+            if (!histoBW.IsBusy)
+                histoBW.RunWorkerAsync();
+        }
+
         //Funktionen zur Histogramm Berechnung
         private void histGray()
         {
-            Bitmap origBitmap = new Bitmap(getPictureBoxImage());
+            Bitmap origBitmap = new Bitmap(bildPicturebox.Image);
 
             int[] hist = new int[256];
             int max = 0;
@@ -950,7 +992,7 @@ namespace Prog3
         }
         private void histRGB()
         {
-            Bitmap orig = new Bitmap(getPictureBoxImage());
+            Bitmap orig = new Bitmap(bildPicturebox.Image);
 
             //blau
             long[] blue = new long[256];
@@ -1090,7 +1132,7 @@ namespace Prog3
         }
         private void histRed()
         {
-            Bitmap orig = new Bitmap(getPictureBoxImage());
+            Bitmap orig = new Bitmap(bildPicturebox.Image);
             int[] rot = new int[256];
             int max = 0;
             for (int a = 0; a < 255; a++)
@@ -1139,7 +1181,7 @@ namespace Prog3
         }
         private void histGreen()
         {
-            Bitmap orig = new Bitmap(getPictureBoxImage());
+            Bitmap orig = new Bitmap(bildPicturebox.Image);
             int[] green = new int[256];
             int max = 0;
             for (int a = 0; a < 255; a++)
@@ -1188,7 +1230,7 @@ namespace Prog3
         }
         private void histBlue()
         {
-            Bitmap orig = new Bitmap(getPictureBoxImage());
+            Bitmap orig = new Bitmap(bildPicturebox.Image);
             int[] blue = new int[256];
             int max = 0;
             for (int a = 0; a <= 255; a++)
@@ -1239,7 +1281,7 @@ namespace Prog3
         //Histogramm CheckBoxes
         private void grauHistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (grauHistCheckBox.Checked)
+            if (grauHistCheckBox.Checked && bildPicturebox.Image!=null)
             {
                 if (checkHistogramme(grauHistCheckBox) && !histoBW.IsBusy)
                 {
@@ -1259,7 +1301,7 @@ namespace Prog3
         }
         private void rgbHistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (rgbHistCheckBox.Checked)
+            if (rgbHistCheckBox.Checked && bildPicturebox.Image != null)
             {
                 if (checkHistogramme(rgbHistCheckBox) && !histoBW.IsBusy)
                 {
@@ -1279,7 +1321,7 @@ namespace Prog3
         }
         private void rHistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (rHistCheckBox.Checked)
+            if (rHistCheckBox.Checked && bildPicturebox.Image != null)
             {
                 if (checkHistogramme(rHistCheckBox) && !histoBW.IsBusy)
                 {
@@ -1299,7 +1341,7 @@ namespace Prog3
         }
         private void gHistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (gHistCheckBox.Checked)
+            if (gHistCheckBox.Checked && bildPicturebox.Image != null)
             {
                 if (checkHistogramme(gHistCheckBox) && !histoBW.IsBusy)
                 {
@@ -1319,7 +1361,7 @@ namespace Prog3
         }
         private void bHistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (bHistCheckBox.Checked)
+            if (bHistCheckBox.Checked && bildPicturebox.Image != null)
             {
                 if (checkHistogramme(bHistCheckBox) && !histoBW.IsBusy)
                 {
