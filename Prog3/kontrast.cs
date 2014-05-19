@@ -68,14 +68,23 @@ namespace Prog3
             //Textbox auswerten und Wert speichern
             string einlesen = anwendenTextBox.Text.ToString();
             float eingabeKontrast = (float)Convert.ToDouble(einlesen);
-            kontrastwert = eingabeKontrast;
-            kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast / 2.0f));
-            
-            //Berechnung im Hintergrund ausführen
-            if (!kontrastBerechnungBW.IsBusy)   //verhindert Zugriffsprobleme
+
+            if (eingabeKontrast > 0 && eingabeKontrast < 101)
             {
-                kontrastBerechnungBW.RunWorkerAsync();
-                Cursor = Cursors.WaitCursor;
+
+                kontrastwert = eingabeKontrast;
+                kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast / 2.0f));
+
+                //Berechnung im Hintergrund ausführen
+                if (!kontrastBerechnungBW.IsBusy)   //verhindert Zugriffsprobleme
+                {
+                    kontrastBerechnungBW.RunWorkerAsync();
+                    Cursor = Cursors.WaitCursor;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte einen Wert zwischen 0 und 100 eingeben");
             }
         }
         private void kontrastBerechnungBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

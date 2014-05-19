@@ -57,6 +57,7 @@
             this.handCheckBox = new System.Windows.Forms.CheckBox();
             this.colorPickerCheckBox = new System.Windows.Forms.CheckBox();
             this.korrekturenPanel = new System.Windows.Forms.Panel();
+            this.saettigungButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,6 @@
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
-            this.saettigungButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -450,6 +450,16 @@
             this.korrekturenPanel.TabIndex = 1;
             this.korrekturenPanel.Visible = false;
             // 
+            // saettigungButton
+            // 
+            this.saettigungButton.Location = new System.Drawing.Point(3, 33);
+            this.saettigungButton.Name = "saettigungButton";
+            this.saettigungButton.Size = new System.Drawing.Size(114, 23);
+            this.saettigungButton.TabIndex = 1;
+            this.saettigungButton.Text = "Sättigung";
+            this.saettigungButton.UseVisualStyleBackColor = true;
+            this.saettigungButton.Click += new System.EventHandler(this.saettigungButton_Click);
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(3, 4);
@@ -537,14 +547,15 @@
             // rückgängigToolStripMenuItem
             // 
             this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
-            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.rückgängigToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.rückgängigToolStripMenuItem.Text = "Rückgängig";
             this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
             // 
             // wiederholenToolStripMenuItem
             // 
             this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
-            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wiederholenToolStripMenuItem.Text = "Wiederholen";
             this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
             // 
@@ -633,16 +644,6 @@
             this.negativBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.negativBW_DoWork);
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
-            // 
-            // saettigungButton
-            // 
-            this.saettigungButton.Location = new System.Drawing.Point(3, 33);
-            this.saettigungButton.Name = "saettigungButton";
-            this.saettigungButton.Size = new System.Drawing.Size(114, 23);
-            this.saettigungButton.TabIndex = 1;
-            this.saettigungButton.Text = "Sättigung";
-            this.saettigungButton.UseVisualStyleBackColor = true;
-            this.saettigungButton.Click += new System.EventHandler(this.saettigungButton_Click);
             // 
             // form1
             // 

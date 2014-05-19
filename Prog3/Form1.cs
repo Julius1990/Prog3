@@ -332,6 +332,16 @@ namespace Prog3
             threadsBeenden();
         }
 
+        //Progress Bar und Abbrechen Button positionieren
+        private void positioniereProgressBar()
+        {
+            form1ProgressBar.Top = linkerContainer.Panel1.Height / 2;
+            form1ProgressBar.Left = (linkerContainer.Width - form1ProgressBar.Width) / 2;
+
+            progressBarAbbrechenButton.Top = linkerContainer.Panel1.Height / 2 + form1ProgressBar.Height;
+            progressBarAbbrechenButton.Left = (linkerContainer.Width - progressBarAbbrechenButton.Width) / 2;
+        }
+
         //GrauwertBild
         private void greyValButton_Click(object sender, EventArgs e)
         {
@@ -344,6 +354,7 @@ namespace Prog3
                     grauwertBW.RunWorkerAsync();
                     greyValButton.Enabled = false;
                     progressBarAbbrechenButton.Visible = true;
+                    positioniereProgressBar();
                 }
             }
             else
@@ -453,7 +464,7 @@ namespace Prog3
             {
                 if (threadsKoordinieren())
                 {
-                    
+                    positioniereProgressBar();
                     progressBarAbbrechenButton.Visible = true;
                     invertedButton.Enabled = false;
                     negativBW.RunWorkerAsync();
