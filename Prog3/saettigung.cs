@@ -14,7 +14,6 @@ namespace Prog3
     {
         form1 parent;
         Bitmap pictureBackup;
-        double wert;
 
         public saettigung(Bitmap bm, form1 parent_in)
         {
@@ -127,14 +126,14 @@ namespace Prog3
 
         private void saettTrackBar_ValueChanged_1(object sender, EventArgs e)
         {
-            if (saettTrackBar.Value <= 50)
+            if (saettTrackBar.Value < 0)
             {
-                wert = saettTrackBar.Value / 50.0;
+                anwendenTextBox.Text = (-(1.0 / saettTrackBar.Value)).ToString();
                 
             }
             else
             {
-                wert = saettTrackBar.Value / 10.0;
+                anwendenTextBox.Text = saettTrackBar.Value.ToString();
             }
         }
 
@@ -158,7 +157,7 @@ namespace Prog3
 
         private void anwendenTrackBarButton_Click(object sender, EventArgs e)
         {
-            changeSaturation(wert);
+            changeSaturation(Convert.ToDouble(anwendenTextBox.Text));
         }
     }
 }
