@@ -59,10 +59,9 @@
             // 
             this.centerPanel.Controls.Add(this.splitContainer1);
             this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerPanel.Location = new System.Drawing.Point(15, 15);
-            this.centerPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.centerPanel.Location = new System.Drawing.Point(10, 10);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(1046, 670);
+            this.centerPanel.Size = new System.Drawing.Size(697, 435);
             this.centerPanel.TabIndex = 19;
             // 
             // splitContainer1
@@ -70,7 +69,6 @@
             this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -80,18 +78,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1046, 670);
-            this.splitContainer1.SplitterDistance = 762;
-            this.splitContainer1.SplitterWidth = 6;
+            this.splitContainer1.Size = new System.Drawing.Size(697, 435);
+            this.splitContainer1.SplitterDistance = 501;
             this.splitContainer1.TabIndex = 0;
             // 
             // saettigungPicturebox
             // 
             this.saettigungPicturebox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.saettigungPicturebox.Location = new System.Drawing.Point(0, 0);
-            this.saettigungPicturebox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saettigungPicturebox.Name = "saettigungPicturebox";
-            this.saettigungPicturebox.Size = new System.Drawing.Size(760, 668);
+            this.saettigungPicturebox.Size = new System.Drawing.Size(499, 433);
             this.saettigungPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.saettigungPicturebox.TabIndex = 0;
             this.saettigungPicturebox.TabStop = false;
@@ -104,18 +100,17 @@
             this.panel1.Controls.Add(this.speichernButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.MinimumSize = new System.Drawing.Size(190, 433);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(276, 668);
+            this.panel1.Size = new System.Drawing.Size(190, 433);
             this.panel1.TabIndex = 0;
             // 
             // saettigungLabel
             // 
             this.saettigungLabel.AutoSize = true;
-            this.saettigungLabel.Location = new System.Drawing.Point(33, 15);
-            this.saettigungLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.saettigungLabel.Location = new System.Drawing.Point(22, 10);
             this.saettigungLabel.Name = "saettigungLabel";
-            this.saettigungLabel.Size = new System.Drawing.Size(78, 20);
+            this.saettigungLabel.Size = new System.Drawing.Size(52, 13);
             this.saettigungLabel.TabIndex = 13;
             this.saettigungLabel.Text = "Sättigung";
             // 
@@ -125,18 +120,16 @@
             this.panel2.Controls.Add(this.anwendenTrackBarButton);
             this.panel2.Controls.Add(this.anwendenTextBox);
             this.panel2.Controls.Add(this.saettTrackBar);
-            this.panel2.Location = new System.Drawing.Point(9, 31);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel2.Location = new System.Drawing.Point(6, 20);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(264, 101);
+            this.panel2.Size = new System.Drawing.Size(177, 67);
             this.panel2.TabIndex = 14;
             // 
             // anwendenTrackBarButton
             // 
-            this.anwendenTrackBarButton.Location = new System.Drawing.Point(142, 57);
-            this.anwendenTrackBarButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.anwendenTrackBarButton.Location = new System.Drawing.Point(95, 37);
             this.anwendenTrackBarButton.Name = "anwendenTrackBarButton";
-            this.anwendenTrackBarButton.Size = new System.Drawing.Size(112, 35);
+            this.anwendenTrackBarButton.Size = new System.Drawing.Size(75, 23);
             this.anwendenTrackBarButton.TabIndex = 8;
             this.anwendenTrackBarButton.Text = "Anwenden";
             this.anwendenTrackBarButton.UseVisualStyleBackColor = true;
@@ -144,33 +137,30 @@
             // 
             // anwendenTextBox
             // 
-            this.anwendenTextBox.Location = new System.Drawing.Point(21, 60);
-            this.anwendenTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.anwendenTextBox.Location = new System.Drawing.Point(14, 39);
             this.anwendenTextBox.MaxLength = 10000;
             this.anwendenTextBox.Name = "anwendenTextBox";
-            this.anwendenTextBox.Size = new System.Drawing.Size(110, 26);
+            this.anwendenTextBox.Size = new System.Drawing.Size(75, 20);
             this.anwendenTextBox.TabIndex = 11;
             this.anwendenTextBox.Text = "0";
             // 
             // saettTrackBar
             // 
             this.saettTrackBar.AutoSize = false;
-            this.saettTrackBar.Location = new System.Drawing.Point(4, 20);
-            this.saettTrackBar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.saettTrackBar.Location = new System.Drawing.Point(3, 13);
             this.saettTrackBar.Maximum = 100;
             this.saettTrackBar.Minimum = -10;
             this.saettTrackBar.Name = "saettTrackBar";
-            this.saettTrackBar.Size = new System.Drawing.Size(250, 57);
+            this.saettTrackBar.Size = new System.Drawing.Size(167, 37);
             this.saettTrackBar.TabIndex = 11;
             this.saettTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.saettTrackBar.ValueChanged += new System.EventHandler(this.saettTrackBar_ValueChanged_1);
             // 
             // abbrechenButton
             // 
-            this.abbrechenButton.Location = new System.Drawing.Point(9, 577);
-            this.abbrechenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.abbrechenButton.Location = new System.Drawing.Point(6, 375);
             this.abbrechenButton.Name = "abbrechenButton";
-            this.abbrechenButton.Size = new System.Drawing.Size(112, 35);
+            this.abbrechenButton.Size = new System.Drawing.Size(75, 23);
             this.abbrechenButton.TabIndex = 9;
             this.abbrechenButton.Text = "Abbrechen";
             this.abbrechenButton.UseVisualStyleBackColor = true;
@@ -178,10 +168,9 @@
             // 
             // speichernButton
             // 
-            this.speichernButton.Location = new System.Drawing.Point(162, 577);
-            this.speichernButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.speichernButton.Location = new System.Drawing.Point(108, 375);
             this.speichernButton.Name = "speichernButton";
-            this.speichernButton.Size = new System.Drawing.Size(112, 35);
+            this.speichernButton.Size = new System.Drawing.Size(75, 23);
             this.speichernButton.TabIndex = 8;
             this.speichernButton.Text = "Speichern";
             this.speichernButton.UseVisualStyleBackColor = true;
@@ -191,10 +180,9 @@
             // 
             this.randObenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randObenPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.randObenPanel.Location = new System.Drawing.Point(15, 0);
-            this.randObenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.randObenPanel.Location = new System.Drawing.Point(10, 0);
             this.randObenPanel.Name = "randObenPanel";
-            this.randObenPanel.Size = new System.Drawing.Size(1046, 15);
+            this.randObenPanel.Size = new System.Drawing.Size(697, 10);
             this.randObenPanel.TabIndex = 18;
             // 
             // randLinksPanel
@@ -202,29 +190,26 @@
             this.randLinksPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randLinksPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.randLinksPanel.Location = new System.Drawing.Point(0, 0);
-            this.randLinksPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randLinksPanel.Name = "randLinksPanel";
-            this.randLinksPanel.Size = new System.Drawing.Size(15, 685);
+            this.randLinksPanel.Size = new System.Drawing.Size(10, 445);
             this.randLinksPanel.TabIndex = 17;
             // 
             // randRechtsPanel
             // 
             this.randRechtsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randRechtsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.randRechtsPanel.Location = new System.Drawing.Point(1061, 0);
-            this.randRechtsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.randRechtsPanel.Location = new System.Drawing.Point(707, 0);
             this.randRechtsPanel.Name = "randRechtsPanel";
-            this.randRechtsPanel.Size = new System.Drawing.Size(15, 685);
+            this.randRechtsPanel.Size = new System.Drawing.Size(10, 445);
             this.randRechtsPanel.TabIndex = 16;
             // 
             // randUntenPanel
             // 
             this.randUntenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randUntenPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.randUntenPanel.Location = new System.Drawing.Point(0, 685);
-            this.randUntenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.randUntenPanel.Location = new System.Drawing.Point(0, 445);
             this.randUntenPanel.Name = "randUntenPanel";
-            this.randUntenPanel.Size = new System.Drawing.Size(1076, 15);
+            this.randUntenPanel.Size = new System.Drawing.Size(717, 10);
             this.randUntenPanel.TabIndex = 15;
             // 
             // kontrastBerechnungBW
@@ -233,15 +218,14 @@
             // 
             // saettigung
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1076, 700);
+            this.ClientSize = new System.Drawing.Size(717, 455);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.randObenPanel);
             this.Controls.Add(this.randLinksPanel);
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "saettigung";
             this.Text = "saettigung";
             this.centerPanel.ResumeLayout(false);

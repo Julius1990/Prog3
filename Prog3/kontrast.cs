@@ -69,11 +69,13 @@ namespace Prog3
             string einlesen = anwendenTextBox.Text.ToString();
             float eingabeKontrast = (float)Convert.ToDouble(einlesen);
 
-            if (eingabeKontrast > 0 && eingabeKontrast < 101)
+            if (eingabeKontrast > -101 && eingabeKontrast < 101)
             {
 
-                kontrastwert = eingabeKontrast;
-                kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast / 2.0f));
+//Hier läuft irgendwas gewaltig schief !!!
+                //kontrastwert = eingabeKontrast;
+                //kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast / 2.0f));
+//------------------------------------------
 
                 //Berechnung im Hintergrund ausführen
                 if (!kontrastBerechnungBW.IsBusy)   //verhindert Zugriffsprobleme
@@ -84,7 +86,7 @@ namespace Prog3
             }
             else
             {
-                MessageBox.Show("Bitte einen Wert zwischen 0 und 100 eingeben");
+                MessageBox.Show("Bitte einen Wert zwischen -100 und 100 eingeben");
             }
         }
         private void kontrastBerechnungBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

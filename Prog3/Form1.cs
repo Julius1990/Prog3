@@ -28,6 +28,9 @@ namespace Prog3
 
             //Werkzeuge
             initialisiereTools();
+
+            //Histogramme
+            initialisiereHistogramme();
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
@@ -52,6 +55,9 @@ namespace Prog3
 
         //Werkzeuge
         List<CheckBox> werkzeuge;
+
+        //Histogramme
+        List<CheckBox> histogramme;
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -832,18 +838,33 @@ namespace Prog3
 
     //----------------------------------------------------------------------------------------------------
     //Histogramme
+        //BackgroundWorker
         private void histoBW_DoWork(object sender, DoWorkEventArgs e)
         {
-
+            if (grauHistCheckBox.Checked)
+                histGray();
+            else if (rgbHistCheckBox.Checked)
+                histRGB();
+            else if (rHistCheckBox.Checked)
+                histRed();
+            else if (gHistCheckBox.Checked)
+                histGreen();
+            else if (bHistCheckBox.Checked)
+                histBlue();
         }
         private void histoBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            histoProgressBar.Invoke(new Action(() => histoProgressBar.Value = e.ProgressPercentage));
         }
         private void histoBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            //Fortschritt
+            histoProgressBar.Invoke(new Action(() => histoProgressBar.Visible = false));
 
+            unlockHistoButtons();
         }
+
+        //Funktionen zur Histogramm Berechnung
         private void histGray()
         {
             Bitmap origBitmap = new Bitmap(getPictureBoxImage());
@@ -856,15 +877,18 @@ namespace Prog3
                 hist[a] = 0;
             }
 
-            //Hier muss der Backgroundworker rein
-            //progressBar1.Maximum = origBitmap.Width;
-            //progressBar1.Value = 0;
+            //Fortschritt
+            histoProgressBar.Invoke(new Action(() =>
+            {
+                histoProgressBar.Visible = true;
+                histoProgressBar.Maximum = origBitmap.Width;
+                histoProgressBar.Value = 0;
+            }));
 
 
             //läuft jedes Pixel einzeln durch
             for (int x = 0; x < origBitmap.Width; x++)
             {
- //progressBar1.Increment(1);   Backgroundworker
                 for (int y = 0; y < origBitmap.Height; y++)
                 {
                     Color orig = origBitmap.GetPixel(x, y);
@@ -878,10 +902,14 @@ namespace Prog3
                         max = hist[grauWert];
                     }
                 }
+                histoBW.ReportProgress(x);
+                if (histoBW.CancellationPending)
+                    return;
             }
             Bitmap histogramm = new Bitmap(258, 132);
 
             histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
+
             double ratio = 132.0 / (double)max;
 
             for (int x = 1; x <= 256; x++)
@@ -891,15 +919,439 @@ namespace Prog3
                 {
                     histogramm.SetPixel(x, 131 - b, Color.Black);
                 }
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+        }
+        private void histRGB()
+        {
+            Bitmap orig = new Bitmap(getPictureBoxImage());
+
+            //blau
+            long[] blue = new long[256];
+            long maxBlau = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                blue[a] = 0;
+            }
+
+            //rot
+            long[] red = new long[256];
+            long maxRot = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                red[a] = 0;
+            }
+
+            //Grün
+            long[] greene = new long[256];
+            long maxGruen = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                greene[a] = 0;
+            }
+
+            //Fortschritt
+            histoProgressBar.Invoke(new Action(() =>
+            {
+                histoProgressBar.Visible = true;
+                histoProgressBar.Maximum = orig.Width;
+                histoProgressBar.Value = 0;
+            }));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int rotwert = orig.GetPixel(x, y).R;
+                    int gruenwert = orig.GetPixel(x, y).G;
+                    int blauwert = orig.GetPixel(x, y).B;
+
+                    //rot
+                    red[rotwert]++;
+                    if (red[rotwert] > maxRot)
+                        maxRot = red[rotwert];
+
+                    //grün
+                    greene[gruenwert]++;
+                    if (greene[gruenwert] > maxGruen)
+                        maxGruen = greene[gruenwert];
+
+                    //blau
+                    blue[blauwert]++;
+                    if (blue[blauwert] > maxBlau)
+                        maxBlau = blue[blauwert];
+                }
+                histoBW.ReportProgress(x);
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
+
+            long groesste = 0;
+
+            if (maxBlau > maxGruen && maxBlau > maxRot)
+            {
+                groesste = maxBlau;
+            }
+            else if (maxGruen > maxBlau && maxGruen > maxRot)
+            {
+                groesste = maxGruen;
+            }
+            else
+                groesste = maxRot;
+
+            Debug.WriteLine(groesste);
+            Debug.WriteLine("Blau:" + maxBlau.ToString());
+
+            double ratio = 132.0 / (double)groesste;
+
+            //rot
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)red[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Red);
+                }
+                if (histoBW.CancellationPending)
+                    return;
+            }
+
+            //grün
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)greene[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    if (histogramm.GetPixel(x, 131 - b).R != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.Yellow);
+                    }
+                    else
+                        histogramm.SetPixel(x, 131 - b, Color.Green);
+                }
+                if (histoBW.CancellationPending)
+                    return;
+            }
+
+            //blau
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)blue[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    Color grab = histogramm.GetPixel(x + 1, 131 - b);
+                    if (grab.R != 0 && grab.G != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.Gray);
+                    }
+                    else if (grab.R != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.Magenta);
+                    }
+                    else if (grab.G != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.LightBlue);
+                    }
+                    else
+                        histogramm.SetPixel(x, 131 - b, Color.Blue);
+                }
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+        }
+        private void histRed()
+        {
+            Bitmap orig = new Bitmap(getPictureBoxImage());
+            int[] rot = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                rot[a] = 0;
+            }
+
+            //Fortschritt
+            histoProgressBar.Invoke(new Action(() =>
+            {
+                histoProgressBar.Visible = true;
+                histoProgressBar.Maximum = orig.Width;
+                histoProgressBar.Value = 0;
+            }));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int rotwert = orig.GetPixel(x, y).R;
+                    rot[rotwert]++;
+                    if (rot[rotwert] > max)
+                        max = rot[rotwert];
+                }
+                histoBW.ReportProgress(x);
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
+
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)rot[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Red);
+                }
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+        }
+        private void histGreen()
+        {
+            Bitmap orig = new Bitmap(getPictureBoxImage());
+            int[] green = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                green[a] = 0;
+            }
+
+            //Fortschritt
+            histoProgressBar.Invoke(new Action(() =>
+            {
+                histoProgressBar.Visible = true;
+                histoProgressBar.Maximum = orig.Width;
+                histoProgressBar.Value = 0;
+            }));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int gruenwert = orig.GetPixel(x, y).G;
+                    green[gruenwert]++;
+                    if (green[gruenwert] > max)
+                        max = green[gruenwert];
+                }
+                histoBW.ReportProgress(x);
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
+
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)green[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Green);
+                }
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
+        }
+        private void histBlue()
+        {
+            Bitmap orig = new Bitmap(getPictureBoxImage());
+            int[] blue = new int[256];
+            int max = 0;
+            for (int a = 0; a <= 255; a++)
+            {
+                blue[a] = 0;
+            }
+
+            //Fortschritt
+            histoProgressBar.Invoke(new Action(() =>
+            {
+                histoProgressBar.Visible = true;
+                histoProgressBar.Maximum = orig.Width;
+                histoProgressBar.Value = 0;
+            }));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int blauwert = orig.GetPixel(x, y).B;
+                    blue[blauwert]++;
+                    if (blue[blauwert] > max)
+                        max = blue[blauwert];
+                }
+                histoBW.ReportProgress(x);
+                if (histoBW.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
+
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)blue[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Blue);
+                }
+                if (histoBW.CancellationPending)
+                    return;
             }
             histoPictureBox.Invoke(new Action(() => histoPictureBox.Image = histogramm));
         }
 
+        //Histogramm CheckBoxes
         private void grauHistCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            histGray();
+            if (grauHistCheckBox.Checked)
+            {
+                if (checkHistogramme(grauHistCheckBox) && !histoBW.IsBusy)
+                {
+                    lockHistoButtons();
+                    histoBW.RunWorkerAsync();
+                }
+                else
+                {
+                    grauHistCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkHistogramme(grauHistCheckBox))
+                    unlockHistoButtons();
+            }
+        }
+        private void rgbHistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rgbHistCheckBox.Checked)
+            {
+                if (checkHistogramme(rgbHistCheckBox) && !histoBW.IsBusy)
+                {
+                    lockHistoButtons();
+                    histoBW.RunWorkerAsync();
+                }
+                else
+                {
+                    rgbHistCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkHistogramme(rgbHistCheckBox))
+                    unlockHistoButtons();
+            }
+        }
+        private void rHistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rHistCheckBox.Checked)
+            {
+                if (checkHistogramme(rHistCheckBox) && !histoBW.IsBusy)
+                {
+                    lockHistoButtons();
+                    histoBW.RunWorkerAsync();
+                }
+                else
+                {
+                    rHistCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkHistogramme(rHistCheckBox))
+                    unlockHistoButtons();
+            }
+        }
+        private void gHistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (gHistCheckBox.Checked)
+            {
+                if (checkHistogramme(gHistCheckBox) && !histoBW.IsBusy)
+                {
+                    lockHistoButtons();
+                    histoBW.RunWorkerAsync();
+                }
+                else
+                {
+                    gHistCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkHistogramme(gHistCheckBox))
+                    unlockHistoButtons();
+            }
+        }
+        private void bHistCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bHistCheckBox.Checked)
+            {
+                if (checkHistogramme(bHistCheckBox) && !histoBW.IsBusy)
+                {
+                    lockHistoButtons();
+                    histoBW.RunWorkerAsync();
+                }
+                else
+                {
+                    bHistCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkHistogramme(bHistCheckBox))
+                    unlockHistoButtons();
+            }
         }
 
+        //Histogramm Checkbox Logik
+        private void initialisiereHistogramme()
+        {
+            histogramme = new List<CheckBox> { grauHistCheckBox, rgbHistCheckBox, rHistCheckBox, gHistCheckBox, bHistCheckBox };
+        }
+        private bool checkHistogramme(CheckBox selbst)
+        {
+            //Prüft ob ein anderes Histogramm gerade aktiv ist
+            foreach (CheckBox h in histogramme)
+            {
+                if (h.Checked && !h.Equals(selbst))
+                    return false;
+            }
+            return true;
+        }
+        private void lockHistoButtons()
+        {
+            foreach (CheckBox c in histogramme)
+            {
+                c.Enabled = false;
+            }
+        }
+        private void unlockHistoButtons()
+        {
+            foreach (CheckBox c in histogramme)
+            {
+                c.Enabled = true;
+                c.CheckState = CheckState.Unchecked;
+            }
+        }
+
+        
+
+        
+
+        
+
+        
         
 
         
