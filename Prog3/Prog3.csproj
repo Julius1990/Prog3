@@ -69,6 +69,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="helligkeit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="helligkeit.Designer.cs">
+      <DependentUpon>helligkeit.cs</DependentUpon>
+    </Compile>
     <Compile Include="kontrast.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="helligkeit.resx">
+      <DependentUpon>helligkeit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="kontrast.resx">
       <DependentUpon>kontrast.cs</DependentUpon>

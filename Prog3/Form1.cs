@@ -222,14 +222,10 @@ namespace Prog3
         private void rückgängigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             schrittZurueck();
-
-            berechneHistogramm();
         }
         private void wiederholenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             schrittVor();
-
-            berechneHistogramm();
         }
         
     //----------------------------------------------------------------------------------------------------
@@ -306,24 +302,42 @@ namespace Prog3
         }
         private void schrittZurueck()
         {
-            zwischenSchrittCounter--;
-            Debug.WriteLine("ZwischenSchrittCounter: " + zwischenSchrittCounter.ToString());
-            string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
-            bildPicturebox.Image = Image.FromFile(dateiname);
-            if (zwischenSchrittCounter == 0)
+            if (sem.WaitOne(500))
             {
-                rückgängigToolStripMenuItem.Visible = false;
+                Thread.Sleep(1000);
+
+                zwischenSchrittCounter--;
+                Debug.WriteLine("ZwischenSchrittCounter: " + zwischenSchrittCounter.ToString());
+                string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
+                bildPicturebox.Image = Image.FromFile(dateiname);
+                if (zwischenSchrittCounter == 0)
+                {
+                    rückgängigToolStripMenuItem.Visible = false;
+                }
+                wiederholenToolStripMenuItem.Visible = true;
             }
-            wiederholenToolStripMenuItem.Visible = true;
+            else
+            {
+                MessageBox.Show("Das Bild wird gerade bearbeitet");
+            }
         }
         private void schrittVor()
         {
-            zwischenSchrittCounter++;
-            string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
-            bildPicturebox.Image = Image.FromFile(dateiname);
-            if (zwischenSchrittCounter == maxSchritt)
-                wiederholenToolStripMenuItem.Visible = false;
-            rückgängigToolStripMenuItem.Visible = true;
+            if (sem.WaitOne(500))
+            {
+
+                Thread.Sleep(1000);
+                zwischenSchrittCounter++;
+                string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
+                bildPicturebox.Image = Image.FromFile(dateiname);
+                if (zwischenSchrittCounter == maxSchritt)
+                    wiederholenToolStripMenuItem.Visible = false;
+                rückgängigToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Das Bild wird gerade bearbeitet");
+            }
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -376,6 +390,23 @@ namespace Prog3
                 //neue Form öffnen
                 kontrast neu = new kontrast(this, sem);
                 neu.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bild wird gerade bearbeitet");
+            }
+        }
+        private void helligkeitButton_Click(object sender, EventArgs e)
+        {
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
+            {
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                //neue Form öffnen
+                helligkeit hell = new helligkeit(this,sem);
+                hell.Show();
             }
             else
             {
@@ -1057,7 +1088,8 @@ namespace Prog3
             }
 
             lockHistoButtons();
-
+            while (histoBW.IsBusy)
+                Thread.Sleep(200);
             histoBW.RunWorkerAsync();
         }
 
@@ -1559,6 +1591,8 @@ namespace Prog3
                 c.CheckState = CheckState.Unchecked;
             }
         }
+
+        
 
         
 
