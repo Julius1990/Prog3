@@ -89,6 +89,9 @@ namespace Prog3
         {
             //Kritischen Bereich verlassen
             hellSem.Release();
+
+            //hauptfenster freigeben
+            parent.unlockMainWindow();
         }
 
     }

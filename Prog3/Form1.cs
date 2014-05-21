@@ -71,45 +71,37 @@ namespace Prog3
     //MenuStrip
         private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Kritischen Bereich betreten
-            if (sem.WaitOne(1000))
+            threadsBeenden();
+
+            //Dialog anzeigen
+            DialogResult rs = bildOeffnenDialog.ShowDialog();
+            if (rs == DialogResult.OK)
             {
-                //Dialog anzeigen
-                DialogResult rs = bildOeffnenDialog.ShowDialog();
-                if (rs == DialogResult.OK)
+                //extrahiert die Endung des geöffneten Files
+                string ext = Path.GetExtension(bildOeffnenDialog.FileName);
+                //sortiert die NICHT Bildformate aus
+                if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
                 {
-                    //extrahiert die Endung des geöffneten Files
-                    string ext = Path.GetExtension(bildOeffnenDialog.FileName);
-                    //sortiert die NICHT Bildformate aus
-                    if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
-                    {
-                        aufraeumen();
+                    aufraeumen();
 
-                        //bild laden, picturebox ausrichten, geladenes bild als zwischenschritt speichern
-                        bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
-                        bildPicturebox.Top = 0;
-                        bildPicturebox.Left = 0;
-                        schrittSpeichern((Bitmap)bildPicturebox.Image);
+                    //bild laden, picturebox ausrichten, geladenes bild als zwischenschritt speichern
+                    bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
+                    bildPicturebox.Top = 0;
+                    bildPicturebox.Left = 0;
+                    schrittSpeichern((Bitmap)bildPicturebox.Image);
 
-                        //Speicherort merken
-                        picDir = bildOeffnenDialog.FileName;
+                    //Speicherort merken
+                    picDir = bildOeffnenDialog.FileName;
 
-                        speichernUnterToolStripMenuItem.Visible = true;
-                        schließenToolStripMenuItem.Visible = true;
-                    }
-                }
-                //rückgängig und wiederholen ausblenden
-                rückgängigToolStripMenuItem.Visible = false;
-                wiederholenToolStripMenuItem.Visible = false;
+                    speichernUnterToolStripMenuItem.Visible = true;
+                    schließenToolStripMenuItem.Visible = true;
 
-                getPicMeta();
+                    //rückgängig und wiederholen ausblenden
+                    rückgängigToolStripMenuItem.Visible = false;
+                    wiederholenToolStripMenuItem.Visible = false;
 
-                //Kritischen Bereich verlassen
-                sem.Release();
-            }
-            else
-            {
-                MessageBox.Show("Bild wird gerade bearbeitet");
+                    getPicMeta();
+                }                
             }
         }
         private void form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -347,8 +339,6 @@ namespace Prog3
             //Threads beenden
             threadsBeenden();
 
-            Thread.Sleep(1000);
-
             schrittSpeicherLoeschen();
 
             bildPicturebox.Image = null;
@@ -375,7 +365,15 @@ namespace Prog3
         public Bitmap getPictureBoxImage()
         {
             return (Bitmap)bildPicturebox.Image;
-        } 
+        }
+        public void lockMainWindow()
+        {
+            centerPanel.Enabled = false;
+        }
+        public void unlockMainWindow()
+        {
+            centerPanel.Enabled = true;
+        }
 
     //----------------------------------------------------------------------------------------------------
     //Korrekturen
@@ -384,6 +382,9 @@ namespace Prog3
             //Kritischen Bereich betreten
             if (sem.WaitOne(1000))
             {
+                //ganze form sperren
+                lockMainWindow();
+
                 //um auf nummer sicher zu gehen
                 Thread.Sleep(1000);
 
@@ -401,6 +402,9 @@ namespace Prog3
             //Kritischen Bereich betreten
             if (sem.WaitOne(1000))
             {
+                //hauptfenster sperren
+                lockMainWindow();
+
                 //um auf nummer sicher zu gehen
                 Thread.Sleep(1000);
 
@@ -418,6 +422,9 @@ namespace Prog3
             //Kritischen Bereich betreten
             if (sem.WaitOne(1000))
             {
+                //ganze form sperren
+                lockMainWindow();
+
                 //um auf nummer sicher zu gehen
                 Thread.Sleep(1000);
 
@@ -455,6 +462,8 @@ namespace Prog3
             //wenn ein Bild in der PictureBox ist, fang an zu rechnen
             if (bildPicturebox.Image != null)
             {
+                threadsBeenden();
+
                 positioniereProgressBar();
                 greyValButton.Enabled = false;
 
@@ -594,6 +603,8 @@ namespace Prog3
         {
             if (bildPicturebox.Image != null)
             {
+                threadsBeenden();
+
                 positioniereProgressBar();
                 invertedButton.Enabled = false;
                 

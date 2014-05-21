@@ -167,6 +167,9 @@ namespace Prog3
         {
             //Kritischen Bereich verlassen
             saettSem.Release();
+
+            //hauptfenster freigeben
+            parent.unlockMainWindow();
         }
     }
 }

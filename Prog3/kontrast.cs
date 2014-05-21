@@ -143,6 +143,9 @@ namespace Prog3
         {
             //Kritischen Bereich freigeben
             kontrSem.Release();
+
+            //hauptfenster wieder freigeben
+            parent.unlockMainWindow();
         }              
 
     //------------------------------------------------------------------------------------------------
