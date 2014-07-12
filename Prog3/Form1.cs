@@ -298,6 +298,8 @@ namespace Prog3
             {
                 Thread.Sleep(1000);
 
+                Debug.WriteLine("Schritt zurück Angefordert");
+
                 zwischenSchrittCounter--;
                 Debug.WriteLine("ZwischenSchrittCounter: " + zwischenSchrittCounter.ToString());
                 string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
@@ -307,28 +309,40 @@ namespace Prog3
                     rückgängigToolStripMenuItem.Visible = false;
                 }
                 wiederholenToolStripMenuItem.Visible = true;
+
+                Debug.WriteLine("Schritt zurück Ausgeführt");
+
+                sem.Release();
             }
             else
             {
                 MessageBox.Show("Das Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
         private void schrittVor()
         {
             if (sem.WaitOne(500))
             {
+                Debug.WriteLine("Schritt vor Angefordert");
 
                 Thread.Sleep(1000);
+
                 zwischenSchrittCounter++;
                 string dateiname = zwischenSchrittOrdner + "\\" + zwischenSchrittCounter.ToString() + ".bmp";
                 bildPicturebox.Image = Image.FromFile(dateiname);
                 if (zwischenSchrittCounter == maxSchritt)
                     wiederholenToolStripMenuItem.Visible = false;
                 rückgängigToolStripMenuItem.Visible = true;
+
+                Debug.WriteLine("Schritt vor Ausgeführt");
+
+                sem.Release();
             }
             else
             {
                 MessageBox.Show("Das Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
 
@@ -395,6 +409,7 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
         private void helligkeitButton_Click(object sender, EventArgs e)
@@ -415,6 +430,7 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
         private void saettigungButton_Click(object sender, EventArgs e)
@@ -434,6 +450,7 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
 
@@ -493,7 +510,9 @@ namespace Prog3
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
 
             //Grauwert Button wieder benutzbar machen
-            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true)); 
+            greyValButton.Invoke(new Action(() => greyValButton.Enabled = true));
+
+            Debug.WriteLine("Grauwert BW Arbeit beendet");
            
             //Verlasse den kritischen Bereich
             sem.Release();
@@ -502,6 +521,8 @@ namespace Prog3
         {
             //Betrete den geschützten Bereich
             sem.WaitOne();
+
+            Debug.WriteLine("Grauwert BW starten");
 
             //um auf nummer sicher zu gehen
             Thread.Sleep(1000);
@@ -578,6 +599,8 @@ namespace Prog3
             //Kritischen Bereich betreten
             sem.WaitOne();
 
+            Debug.WriteLine("Negativ BW starten");
+
             //nur um auf nummer sicher zu gehen
             Thread.Sleep(1000);
 
@@ -603,6 +626,8 @@ namespace Prog3
 
             //Negativ Checkbox wieder benutzbar machen
             invertedButton.Enabled = true;
+
+            Debug.WriteLine("Negativ BW Arbeit beendet");
 
             //Kritischen Bereich verlassen
             sem.Release();
@@ -834,7 +859,7 @@ namespace Prog3
             }
 
             labelReso.Text = bildPicturebox.Image.Width + " x " + bildPicturebox.Image.Height;
-            labelDir.Text = picDir;
+            labelDirectory.Text = picDir;
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -910,6 +935,7 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
         private void linksDrehenButton_Click(object sender, EventArgs e)
@@ -930,6 +956,7 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
+                checkWorkers();
             }
         }
 
@@ -1024,6 +1051,8 @@ namespace Prog3
             //Kritischen Bereich betreten
             sem.WaitOne();
 
+            Debug.WriteLine("Hisrogramm BW startet");
+
             Thread.Sleep(1000);
 
             histoAbbrechenButton.Invoke(new Action(() => histoAbbrechenButton.Visible = true));
@@ -1065,6 +1094,8 @@ namespace Prog3
             histoAbbrechenButton.Invoke(new Action(() => histoAbbrechenButton.Visible = false));
 
             unlockHistoButtons();
+
+            Debug.WriteLine("Histo BW Arbeit beendet");
 
             //Kritischen Bereich verlassen
             sem.Release();
@@ -1624,8 +1655,17 @@ namespace Prog3
             threadsBeenden();
         }
 
-        
+        //---------------------------------------------------------------------------------------------------------
+        //Debug Funktionen
 
+        private void checkWorkers()
+        {
+            foreach (BackgroundWorker bw in backWorkers)
+            {
+                if (bw.IsBusy)
+                    Debug.WriteLine(bw.GetHashCode().ToString() + " is busy");
+            }
+        }
         
 
         

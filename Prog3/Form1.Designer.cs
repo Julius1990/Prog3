@@ -36,8 +36,6 @@
             this.bildPicturebox = new System.Windows.Forms.PictureBox();
             this.labelReso = new System.Windows.Forms.Label();
             this.labelTextReso = new System.Windows.Forms.Label();
-            this.labelDir = new System.Windows.Forms.Label();
-            this.labelTextDir = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.labelTextDate = new System.Windows.Forms.Label();
             this.labelB = new System.Windows.Forms.Label();
@@ -101,6 +99,8 @@
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.histoBW = new System.ComponentModel.BackgroundWorker();
             this.histoAbbrechenButton = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -123,8 +123,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
+            this.randUntenPanel.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -141,7 +143,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rechterContainer);
-            this.splitContainer1.Size = new System.Drawing.Size(1004, 495);
+            this.splitContainer1.Size = new System.Drawing.Size(1004, 480);
             this.splitContainer1.SplitterDistance = 520;
             this.splitContainer1.TabIndex = 5;
             // 
@@ -164,8 +166,6 @@
             // 
             this.linkerContainer.Panel2.Controls.Add(this.labelReso);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextReso);
-            this.linkerContainer.Panel2.Controls.Add(this.labelDir);
-            this.linkerContainer.Panel2.Controls.Add(this.labelTextDir);
             this.linkerContainer.Panel2.Controls.Add(this.labelDate);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextDate);
             this.linkerContainer.Panel2.Controls.Add(this.labelB);
@@ -174,8 +174,8 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextB);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
-            this.linkerContainer.Size = new System.Drawing.Size(520, 495);
-            this.linkerContainer.SplitterDistance = 412;
+            this.linkerContainer.Size = new System.Drawing.Size(520, 480);
+            this.linkerContainer.SplitterDistance = 399;
             this.linkerContainer.TabIndex = 0;
             // 
             // progressBarAbbrechenButton
@@ -213,7 +213,7 @@
             // labelReso
             // 
             this.labelReso.AutoSize = true;
-            this.labelReso.Location = new System.Drawing.Point(199, 31);
+            this.labelReso.Location = new System.Drawing.Point(212, 31);
             this.labelReso.Name = "labelReso";
             this.labelReso.Size = new System.Drawing.Size(39, 13);
             this.labelReso.TabIndex = 12;
@@ -222,29 +222,11 @@
             // labelTextReso
             // 
             this.labelTextReso.AutoSize = true;
-            this.labelTextReso.Location = new System.Drawing.Point(133, 31);
+            this.labelTextReso.Location = new System.Drawing.Point(158, 31);
             this.labelTextReso.Name = "labelTextReso";
             this.labelTextReso.Size = new System.Drawing.Size(60, 13);
             this.labelTextReso.TabIndex = 11;
             this.labelTextReso.Text = "Auflösung: ";
-            // 
-            // labelDir
-            // 
-            this.labelDir.AutoSize = true;
-            this.labelDir.Location = new System.Drawing.Point(78, 53);
-            this.labelDir.Name = "labelDir";
-            this.labelDir.Size = new System.Drawing.Size(39, 13);
-            this.labelDir.TabIndex = 10;
-            this.labelDir.Text = "default";
-            // 
-            // labelTextDir
-            // 
-            this.labelTextDir.AutoSize = true;
-            this.labelTextDir.Location = new System.Drawing.Point(5, 53);
-            this.labelTextDir.Name = "labelTextDir";
-            this.labelTextDir.Size = new System.Drawing.Size(67, 13);
-            this.labelTextDir.TabIndex = 9;
-            this.labelTextDir.Text = "Speicherort: ";
             // 
             // labelDate
             // 
@@ -348,8 +330,8 @@
             // rechterContainer.Panel2
             // 
             this.rechterContainer.Panel2.Controls.Add(this.histoPanel);
-            this.rechterContainer.Size = new System.Drawing.Size(480, 495);
-            this.rechterContainer.SplitterDistance = 324;
+            this.rechterContainer.Size = new System.Drawing.Size(480, 480);
+            this.rechterContainer.SplitterDistance = 314;
             this.rechterContainer.TabIndex = 0;
             // 
             // filterCheckBox
@@ -370,7 +352,7 @@
             this.FilterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.FilterPanel.Controls.Add(this.invertedButton);
             this.FilterPanel.Controls.Add(this.greyValButton);
-            this.FilterPanel.Location = new System.Drawing.Point(316, 201);
+            this.FilterPanel.Location = new System.Drawing.Point(299, 129);
             this.FilterPanel.Name = "FilterPanel";
             this.FilterPanel.Size = new System.Drawing.Size(161, 62);
             this.FilterPanel.TabIndex = 10;
@@ -405,7 +387,7 @@
             this.ansichtPanel.Controls.Add(this.rechtsDrehenButton);
             this.ansichtPanel.Controls.Add(this.zoomOutButton);
             this.ansichtPanel.Controls.Add(this.zoomInButton);
-            this.ansichtPanel.Location = new System.Drawing.Point(42, 165);
+            this.ansichtPanel.Location = new System.Drawing.Point(299, 197);
             this.ansichtPanel.Name = "ansichtPanel";
             this.ansichtPanel.Size = new System.Drawing.Size(161, 62);
             this.ansichtPanel.TabIndex = 5;
@@ -500,7 +482,7 @@
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.werkzeugPanel.Controls.Add(this.handCheckBox);
             this.werkzeugPanel.Controls.Add(this.colorPickerCheckBox);
-            this.werkzeugPanel.Location = new System.Drawing.Point(38, 233);
+            this.werkzeugPanel.Location = new System.Drawing.Point(4, 151);
             this.werkzeugPanel.Name = "werkzeugPanel";
             this.werkzeugPanel.Size = new System.Drawing.Size(161, 57);
             this.werkzeugPanel.TabIndex = 3;
@@ -536,9 +518,9 @@
             this.korrekturenPanel.Controls.Add(this.helligkeitButton);
             this.korrekturenPanel.Controls.Add(this.saettigungButton);
             this.korrekturenPanel.Controls.Add(this.button2);
-            this.korrekturenPanel.Location = new System.Drawing.Point(313, 33);
+            this.korrekturenPanel.Location = new System.Drawing.Point(299, 31);
             this.korrekturenPanel.Name = "korrekturenPanel";
-            this.korrekturenPanel.Size = new System.Drawing.Size(160, 94);
+            this.korrekturenPanel.Size = new System.Drawing.Size(161, 94);
             this.korrekturenPanel.TabIndex = 1;
             this.korrekturenPanel.Visible = false;
             // 
@@ -582,7 +564,7 @@
             this.histoPanel.Location = new System.Drawing.Point(0, 0);
             this.histoPanel.Margin = new System.Windows.Forms.Padding(2);
             this.histoPanel.Name = "histoPanel";
-            this.histoPanel.Size = new System.Drawing.Size(478, 165);
+            this.histoPanel.Size = new System.Drawing.Size(478, 160);
             this.histoPanel.TabIndex = 0;
             // 
             // panel3
@@ -592,7 +574,7 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.MinimumSize = new System.Drawing.Size(3, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(3, 140);
+            this.panel3.Size = new System.Drawing.Size(3, 135);
             this.panel3.TabIndex = 10;
             // 
             // panel2
@@ -602,7 +584,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.MinimumSize = new System.Drawing.Size(3, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(3, 140);
+            this.panel2.Size = new System.Drawing.Size(3, 135);
             this.panel2.TabIndex = 9;
             // 
             // histoPictureboxPanel
@@ -615,7 +597,7 @@
             this.histoPictureboxPanel.Location = new System.Drawing.Point(0, 25);
             this.histoPictureboxPanel.Margin = new System.Windows.Forms.Padding(2);
             this.histoPictureboxPanel.Name = "histoPictureboxPanel";
-            this.histoPictureboxPanel.Size = new System.Drawing.Size(478, 140);
+            this.histoPictureboxPanel.Size = new System.Drawing.Size(478, 135);
             this.histoPictureboxPanel.TabIndex = 8;
             // 
             // histoProgressBar
@@ -633,7 +615,7 @@
             this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
             this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2);
             this.histoPictureBox.Name = "histoPictureBox";
-            this.histoPictureBox.Size = new System.Drawing.Size(478, 140);
+            this.histoPictureBox.Size = new System.Drawing.Size(478, 135);
             this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.histoPictureBox.TabIndex = 0;
             this.histoPictureBox.TabStop = false;
@@ -819,10 +801,11 @@
             // randUntenPanel
             // 
             this.randUntenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.randUntenPanel.Controls.Add(this.statusStrip1);
             this.randUntenPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.randUntenPanel.Location = new System.Drawing.Point(0, 505);
+            this.randUntenPanel.Location = new System.Drawing.Point(0, 490);
             this.randUntenPanel.Name = "randUntenPanel";
-            this.randUntenPanel.Size = new System.Drawing.Size(1024, 10);
+            this.randUntenPanel.Size = new System.Drawing.Size(1024, 25);
             this.randUntenPanel.TabIndex = 6;
             // 
             // randRechtsPanel
@@ -831,7 +814,7 @@
             this.randRechtsPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.randRechtsPanel.Location = new System.Drawing.Point(1014, 0);
             this.randRechtsPanel.Name = "randRechtsPanel";
-            this.randRechtsPanel.Size = new System.Drawing.Size(10, 505);
+            this.randRechtsPanel.Size = new System.Drawing.Size(10, 490);
             this.randRechtsPanel.TabIndex = 7;
             // 
             // randLinksPanel
@@ -840,7 +823,7 @@
             this.randLinksPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.randLinksPanel.Location = new System.Drawing.Point(0, 0);
             this.randLinksPanel.Name = "randLinksPanel";
-            this.randLinksPanel.Size = new System.Drawing.Size(10, 505);
+            this.randLinksPanel.Size = new System.Drawing.Size(10, 490);
             this.randLinksPanel.TabIndex = 8;
             // 
             // randObenPanel
@@ -859,7 +842,7 @@
             this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.centerPanel.Location = new System.Drawing.Point(10, 10);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(1004, 495);
+            this.centerPanel.Size = new System.Drawing.Size(1004, 480);
             this.centerPanel.TabIndex = 10;
             // 
             // menuePanel
@@ -911,6 +894,22 @@
             this.histoAbbrechenButton.Visible = false;
             this.histoAbbrechenButton.Click += new System.EventHandler(this.histoAbbrechenButton_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelDirectory});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 3);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelDirectory
+            // 
+            this.labelDirectory.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelDirectory.Name = "labelDirectory";
+            this.labelDirectory.Size = new System.Drawing.Size(0, 17);
+            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -951,9 +950,13 @@
             this.panel1.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
+            this.randUntenPanel.ResumeLayout(false);
+            this.randUntenPanel.PerformLayout();
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1026,12 +1029,12 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelTextDate;
-        private System.Windows.Forms.Label labelDir;
-        private System.Windows.Forms.Label labelTextDir;
         private System.Windows.Forms.Label labelTextReso;
         private System.Windows.Forms.Label labelReso;
         private System.Windows.Forms.Button helligkeitButton;
         private System.Windows.Forms.Button histoAbbrechenButton;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel labelDirectory;
 
 
     }
