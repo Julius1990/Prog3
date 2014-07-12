@@ -47,6 +47,7 @@
             this.rechterContainer = new System.Windows.Forms.SplitContainer();
             this.filterCheckBox = new System.Windows.Forms.CheckBox();
             this.FilterPanel = new System.Windows.Forms.Panel();
+            this.sepiaButton = new System.Windows.Forms.Button();
             this.invertedButton = new System.Windows.Forms.Button();
             this.greyValButton = new System.Windows.Forms.Button();
             this.ansichtPanel = new System.Windows.Forms.Panel();
@@ -68,6 +69,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.histoPictureboxPanel = new System.Windows.Forms.Panel();
+            this.histoAbbrechenButton = new System.Windows.Forms.Button();
             this.histoProgressBar = new System.Windows.Forms.ProgressBar();
             this.histoPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -87,8 +89,15 @@
             this.rückgängigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wiederholenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ansichtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drehe90RechtsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.drehe90LinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.verkleinernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bildOeffnenDialog = new System.Windows.Forms.OpenFileDialog();
             this.randUntenPanel = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             this.randRechtsPanel = new System.Windows.Forms.Panel();
             this.randLinksPanel = new System.Windows.Forms.Panel();
             this.randObenPanel = new System.Windows.Forms.Panel();
@@ -98,9 +107,6 @@
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.histoBW = new System.ComponentModel.BackgroundWorker();
-            this.histoAbbrechenButton = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.labelDirectory = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -124,9 +130,9 @@
             this.panel1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.randUntenPanel.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -200,6 +206,7 @@
             // 
             // bildPicturebox
             // 
+            this.bildPicturebox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
             this.bildPicturebox.Name = "bildPicturebox";
             this.bildPicturebox.Size = new System.Drawing.Size(541, 411);
@@ -350,13 +357,25 @@
             // FilterPanel
             // 
             this.FilterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.FilterPanel.Controls.Add(this.sepiaButton);
             this.FilterPanel.Controls.Add(this.invertedButton);
             this.FilterPanel.Controls.Add(this.greyValButton);
             this.FilterPanel.Location = new System.Drawing.Point(299, 129);
             this.FilterPanel.Name = "FilterPanel";
-            this.FilterPanel.Size = new System.Drawing.Size(161, 62);
+            this.FilterPanel.Size = new System.Drawing.Size(161, 86);
             this.FilterPanel.TabIndex = 10;
             this.FilterPanel.Visible = false;
+            // 
+            // sepiaButton
+            // 
+            this.sepiaButton.Location = new System.Drawing.Point(3, 55);
+            this.sepiaButton.Margin = new System.Windows.Forms.Padding(2);
+            this.sepiaButton.Name = "sepiaButton";
+            this.sepiaButton.Size = new System.Drawing.Size(114, 22);
+            this.sepiaButton.TabIndex = 13;
+            this.sepiaButton.Text = "Sepia";
+            this.sepiaButton.UseVisualStyleBackColor = true;
+            this.sepiaButton.Click += new System.EventHandler(this.sepiaButton_Click);
             // 
             // invertedButton
             // 
@@ -387,7 +406,7 @@
             this.ansichtPanel.Controls.Add(this.rechtsDrehenButton);
             this.ansichtPanel.Controls.Add(this.zoomOutButton);
             this.ansichtPanel.Controls.Add(this.zoomInButton);
-            this.ansichtPanel.Location = new System.Drawing.Point(299, 197);
+            this.ansichtPanel.Location = new System.Drawing.Point(4, 214);
             this.ansichtPanel.Name = "ansichtPanel";
             this.ansichtPanel.Size = new System.Drawing.Size(161, 62);
             this.ansichtPanel.TabIndex = 5;
@@ -600,6 +619,17 @@
             this.histoPictureboxPanel.Size = new System.Drawing.Size(478, 135);
             this.histoPictureboxPanel.TabIndex = 8;
             // 
+            // histoAbbrechenButton
+            // 
+            this.histoAbbrechenButton.Location = new System.Drawing.Point(8, 91);
+            this.histoAbbrechenButton.Name = "histoAbbrechenButton";
+            this.histoAbbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.histoAbbrechenButton.TabIndex = 13;
+            this.histoAbbrechenButton.Text = "Abbrechen";
+            this.histoAbbrechenButton.UseVisualStyleBackColor = true;
+            this.histoAbbrechenButton.Visible = false;
+            this.histoAbbrechenButton.Click += new System.EventHandler(this.histoAbbrechenButton_Click);
+            // 
             // histoProgressBar
             // 
             this.histoProgressBar.Location = new System.Drawing.Point(7, 50);
@@ -790,9 +820,48 @@
             // 
             // ansichtToolStripMenuItem
             // 
+            this.ansichtToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.drehe90RechtsToolStripMenuItem,
+            this.drehe90LinksToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.toolStripMenuItem1,
+            this.verkleinernToolStripMenuItem});
             this.ansichtToolStripMenuItem.Name = "ansichtToolStripMenuItem";
             this.ansichtToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
             this.ansichtToolStripMenuItem.Text = "Ansicht";
+            // 
+            // drehe90RechtsToolStripMenuItem
+            // 
+            this.drehe90RechtsToolStripMenuItem.Name = "drehe90RechtsToolStripMenuItem";
+            this.drehe90RechtsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.drehe90RechtsToolStripMenuItem.Text = "Drehe 90° Rechts";
+            this.drehe90RechtsToolStripMenuItem.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
+            // 
+            // drehe90LinksToolStripMenuItem
+            // 
+            this.drehe90LinksToolStripMenuItem.Name = "drehe90LinksToolStripMenuItem";
+            this.drehe90LinksToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.drehe90LinksToolStripMenuItem.Text = "Drehe 90° Links";
+            this.drehe90LinksToolStripMenuItem.Click += new System.EventHandler(this.linksDrehenButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.toolStripMenuItem1.Text = "Vergrößern";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.zoomInButton_Click);
+            // 
+            // verkleinernToolStripMenuItem
+            // 
+            this.verkleinernToolStripMenuItem.Name = "verkleinernToolStripMenuItem";
+            this.verkleinernToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.verkleinernToolStripMenuItem.Text = "Verkleinern";
+            this.verkleinernToolStripMenuItem.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
             // bildOeffnenDialog
             // 
@@ -807,6 +876,22 @@
             this.randUntenPanel.Name = "randUntenPanel";
             this.randUntenPanel.Size = new System.Drawing.Size(1024, 25);
             this.randUntenPanel.TabIndex = 6;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.labelDirectory});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 3);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelDirectory
+            // 
+            this.labelDirectory.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelDirectory.Name = "labelDirectory";
+            this.labelDirectory.Size = new System.Drawing.Size(0, 17);
             // 
             // randRechtsPanel
             // 
@@ -883,33 +968,6 @@
             this.histoBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.histoBW_ProgressChanged);
             this.histoBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.histoBW_RunWorkerCompleted);
             // 
-            // histoAbbrechenButton
-            // 
-            this.histoAbbrechenButton.Location = new System.Drawing.Point(8, 91);
-            this.histoAbbrechenButton.Name = "histoAbbrechenButton";
-            this.histoAbbrechenButton.Size = new System.Drawing.Size(75, 23);
-            this.histoAbbrechenButton.TabIndex = 13;
-            this.histoAbbrechenButton.Text = "Abbrechen";
-            this.histoAbbrechenButton.UseVisualStyleBackColor = true;
-            this.histoAbbrechenButton.Visible = false;
-            this.histoAbbrechenButton.Click += new System.EventHandler(this.histoAbbrechenButton_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.labelDirectory});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 3);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // labelDirectory
-            // 
-            this.labelDirectory.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelDirectory.Name = "labelDirectory";
-            this.labelDirectory.Size = new System.Drawing.Size(0, 17);
-            // 
             // form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -952,11 +1010,11 @@
             this.menuStrip2.PerformLayout();
             this.randUntenPanel.ResumeLayout(false);
             this.randUntenPanel.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1035,6 +1093,12 @@
         private System.Windows.Forms.Button histoAbbrechenButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelDirectory;
+        private System.Windows.Forms.ToolStripMenuItem drehe90RechtsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem drehe90LinksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem verkleinernToolStripMenuItem;
+        private System.Windows.Forms.Button sepiaButton;
 
 
     }

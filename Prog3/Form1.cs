@@ -32,6 +32,12 @@ namespace Prog3
 
             //Histogramme
             initialisiereHistogramme();
+
+            //Picturebox ordentlich anordnen
+            bildPicturebox.Left = linkerContainer.Panel1.Left + 10;
+            bildPicturebox.Top = linkerContainer.Panel1.Top + 35;
+            bildPicturebox.Width = linkerContainer.Panel1.Width - 30;
+            bildPicturebox.Height = linkerContainer.Panel1.Height - 55;
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
@@ -455,7 +461,7 @@ namespace Prog3
         }
 
     //----------------------------------------------------------------------------------------------------
-    //Korrekturen       
+    //Filter     
 
         //Korrekturen abbrechen
         private void abbrechenButton_CLick(object sender, EventArgs e)
@@ -695,6 +701,12 @@ namespace Prog3
             }));
         }
 
+        //Sepia
+        private void sepiaButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
     //----------------------------------------------------------------------------------------------------
     //Threads
         private void threadsInitialisieren()
@@ -909,13 +921,35 @@ namespace Prog3
     //Ansicht
         private void zoomInButton_Click(object sender, EventArgs e)
         {
-            bildPicturebox.Width += bildPicturebox.Width / 5;
-            bildPicturebox.Height += bildPicturebox.Height / 5;
+            if (bildPicturebox.Image != null)
+            {
+                bildPicturebox.Width += bildPicturebox.Width / 5;
+                bildPicturebox.Height += bildPicturebox.Height / 5;
+            }
+                //Ordnet die Picturebox ordentlich an
+            else
+            {
+                bildPicturebox.Left = linkerContainer.Panel1.Left+10;
+                bildPicturebox.Top = linkerContainer.Panel1.Top+35;
+                bildPicturebox.Width = linkerContainer.Panel1.Width-30;
+                bildPicturebox.Height = linkerContainer.Panel1.Height-55;
+            }
         }
         private void zoomOutButton_Click(object sender, EventArgs e)
         {
-            bildPicturebox.Width -= bildPicturebox.Width / 5;
-            bildPicturebox.Height -= bildPicturebox.Height / 5;
+            if (bildPicturebox.Image != null)
+            {
+                bildPicturebox.Width -= bildPicturebox.Width / 5;
+                bildPicturebox.Height -= bildPicturebox.Height / 5;
+            }
+            //Ordnet die Picturebox ordentlich an
+            else
+            {
+                bildPicturebox.Left = linkerContainer.Panel1.Left + 10;
+                bildPicturebox.Top = linkerContainer.Panel1.Top + 35;
+                bildPicturebox.Width = linkerContainer.Panel1.Width - 30;
+                bildPicturebox.Height = linkerContainer.Panel1.Height - 55;
+            }
         }
         private void rechtsDrehenButton_Click(object sender, EventArgs e)
         {
@@ -925,10 +959,16 @@ namespace Prog3
                 //um auf nummer sicher zu gehen
                 Thread.Sleep(1000);
 
-                Image img = bildPicturebox.Image;
-                img.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                setAndSavePictureBox((Bitmap)img);
-
+                if (bildPicturebox.Image != null)
+                {
+                    Image img = bildPicturebox.Image;
+                    img.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    setAndSavePictureBox((Bitmap)img);
+                }
+                else
+                {
+                    MessageBox.Show("Kein Bild zum Drehen geöffnet");
+                }
                 //Kritischen Bereich verlassen
                 sem.Release();
             }
@@ -946,10 +986,16 @@ namespace Prog3
                 //um auf nummer sicher zu gehen
                 Thread.Sleep(1000);
 
-                Image img = bildPicturebox.Image;
-                img.RotateFlip(RotateFlipType.Rotate270FlipNone);
-                setAndSavePictureBox((Bitmap)img);
-
+                if (bildPicturebox.Image != null)
+                {
+                    Image img = bildPicturebox.Image;
+                    img.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                    setAndSavePictureBox((Bitmap)img);
+                }
+                else
+                {
+                    MessageBox.Show("Kein Bild zum Drehen geöffnet");
+                }
                 //Kritischen Bereich verlassen
                 sem.Release();
             }
@@ -1666,6 +1712,15 @@ namespace Prog3
                     Debug.WriteLine(bw.GetHashCode().ToString() + " is busy");
             }
         }
+
+        
+
+        
+
+        
+        
+
+       
         
 
         
