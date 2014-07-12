@@ -447,13 +447,21 @@ namespace Prog3
         }
 
         //Progress Bar und Abbrechen Button positionieren
-        private void positioniereProgressBar()
+        private void positioniereProgressBarPictureBox()
         {
             form1ProgressBar.Top = linkerContainer.Panel1.Height / 2;
             form1ProgressBar.Left = (linkerContainer.Width - form1ProgressBar.Width) / 2;
 
             progressBarAbbrechenButton.Top = linkerContainer.Panel1.Height / 2 + form1ProgressBar.Height;
             progressBarAbbrechenButton.Left = (linkerContainer.Width - progressBarAbbrechenButton.Width) / 2;
+        }
+        private void positioniereProgressBarHistogramme()
+        {
+            histoProgressBar.Top = histoPictureBox.Height / 2;
+            histoProgressBar.Left = (histoPictureBox.Width - histoProgressBar.Width) / 2;
+
+            histoAbbrechenButton.Top = histoPictureBox.Height / 2 + histoProgressBar.Height;
+            histoAbbrechenButton.Left = (histoPictureBox.Width - histoAbbrechenButton.Width) / 2;
         }
 
         //GrauwertBild
@@ -464,7 +472,7 @@ namespace Prog3
             {
                 threadsBeenden();
 
-                positioniereProgressBar();
+                positioniereProgressBarPictureBox();
                 greyValButton.Enabled = false;
 
                 //startet die Berechnung in einem neuen Thread
@@ -605,7 +613,7 @@ namespace Prog3
             {
                 threadsBeenden();
 
-                positioniereProgressBar();
+                positioniereProgressBarPictureBox();
                 invertedButton.Enabled = false;
                 
                 negativBW.RunWorkerAsync();
@@ -1018,6 +1026,8 @@ namespace Prog3
 
             Thread.Sleep(1000);
 
+            histoAbbrechenButton.Invoke(new Action(() => histoAbbrechenButton.Visible = true));
+
             if (grauHistCheckBox.Checked)
             {
                 histGray();
@@ -1052,6 +1062,7 @@ namespace Prog3
         {
             //Fortschritt
             histoProgressBar.Invoke(new Action(() => histoProgressBar.Visible = false));
+            histoAbbrechenButton.Invoke(new Action(() => histoAbbrechenButton.Visible = false));
 
             unlockHistoButtons();
 
@@ -1478,6 +1489,7 @@ namespace Prog3
                 if (checkHistogramme(grauHistCheckBox) && !histoBW.IsBusy)
                 {
                     lockHistoButtons();
+                    positioniereProgressBarHistogramme();
                     histoBW.RunWorkerAsync();
                 }
                 else
@@ -1498,6 +1510,7 @@ namespace Prog3
                 if (checkHistogramme(rgbHistCheckBox) && !histoBW.IsBusy)
                 {
                     lockHistoButtons();
+                    positioniereProgressBarHistogramme();
                     histoBW.RunWorkerAsync();
                 }
                 else
@@ -1518,6 +1531,7 @@ namespace Prog3
                 if (checkHistogramme(rHistCheckBox) && !histoBW.IsBusy)
                 {
                     lockHistoButtons();
+                    positioniereProgressBarHistogramme();
                     histoBW.RunWorkerAsync();
                 }
                 else
@@ -1538,6 +1552,7 @@ namespace Prog3
                 if (checkHistogramme(gHistCheckBox) && !histoBW.IsBusy)
                 {
                     lockHistoButtons();
+                    positioniereProgressBarHistogramme();
                     histoBW.RunWorkerAsync();
                 }
                 else
@@ -1558,6 +1573,7 @@ namespace Prog3
                 if (checkHistogramme(bHistCheckBox) && !histoBW.IsBusy)
                 {
                     lockHistoButtons();
+                    positioniereProgressBarHistogramme();
                     histoBW.RunWorkerAsync();
                 }
                 else
@@ -1601,6 +1617,11 @@ namespace Prog3
                 c.Enabled = true;
                 c.CheckState = CheckState.Unchecked;
             }
+        }
+
+        private void histoAbbrechenButton_Click(object sender, EventArgs e)
+        {
+            threadsBeenden();
         }
 
         

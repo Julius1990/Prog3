@@ -33,6 +33,7 @@
             this.linkerContainer = new System.Windows.Forms.SplitContainer();
             this.progressBarAbbrechenButton = new System.Windows.Forms.Button();
             this.form1ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.bildPicturebox = new System.Windows.Forms.PictureBox();
             this.labelReso = new System.Windows.Forms.Label();
             this.labelTextReso = new System.Windows.Forms.Label();
             this.labelDir = new System.Windows.Forms.Label();
@@ -46,12 +47,23 @@
             this.labelTextG = new System.Windows.Forms.Label();
             this.labelTextR = new System.Windows.Forms.Label();
             this.rechterContainer = new System.Windows.Forms.SplitContainer();
+            this.filterCheckBox = new System.Windows.Forms.CheckBox();
             this.FilterPanel = new System.Windows.Forms.Panel();
             this.invertedButton = new System.Windows.Forms.Button();
             this.greyValButton = new System.Windows.Forms.Button();
             this.ansichtPanel = new System.Windows.Forms.Panel();
+            this.linksDrehenButton = new System.Windows.Forms.Button();
+            this.rechtsDrehenButton = new System.Windows.Forms.Button();
+            this.zoomOutButton = new System.Windows.Forms.Button();
+            this.zoomInButton = new System.Windows.Forms.Button();
+            this.korrekturenCheckBox = new System.Windows.Forms.CheckBox();
+            this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
+            this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
             this.werkzeugPanel = new System.Windows.Forms.Panel();
+            this.handCheckBox = new System.Windows.Forms.CheckBox();
+            this.colorPickerCheckBox = new System.Windows.Forms.CheckBox();
             this.korrekturenPanel = new System.Windows.Forms.Panel();
+            this.helligkeitButton = new System.Windows.Forms.Button();
             this.saettigungButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.histoPanel = new System.Windows.Forms.Panel();
@@ -59,6 +71,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.histoPictureboxPanel = new System.Windows.Forms.Panel();
             this.histoProgressBar = new System.Windows.Forms.ProgressBar();
+            this.histoPictureBox = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rgbHistCheckBox = new System.Windows.Forms.CheckBox();
             this.grauHistCheckBox = new System.Windows.Forms.CheckBox();
@@ -87,19 +100,7 @@
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.histoBW = new System.ComponentModel.BackgroundWorker();
-            this.helligkeitButton = new System.Windows.Forms.Button();
-            this.bildPicturebox = new System.Windows.Forms.PictureBox();
-            this.filterCheckBox = new System.Windows.Forms.CheckBox();
-            this.linksDrehenButton = new System.Windows.Forms.Button();
-            this.rechtsDrehenButton = new System.Windows.Forms.Button();
-            this.zoomOutButton = new System.Windows.Forms.Button();
-            this.zoomInButton = new System.Windows.Forms.Button();
-            this.korrekturenCheckBox = new System.Windows.Forms.CheckBox();
-            this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
-            this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
-            this.handCheckBox = new System.Windows.Forms.CheckBox();
-            this.colorPickerCheckBox = new System.Windows.Forms.CheckBox();
-            this.histoPictureBox = new System.Windows.Forms.PictureBox();
+            this.histoAbbrechenButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -108,6 +109,7 @@
             this.linkerContainer.Panel1.SuspendLayout();
             this.linkerContainer.Panel2.SuspendLayout();
             this.linkerContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).BeginInit();
             this.rechterContainer.Panel1.SuspendLayout();
             this.rechterContainer.Panel2.SuspendLayout();
@@ -118,12 +120,11 @@
             this.korrekturenPanel.SuspendLayout();
             this.histoPanel.SuspendLayout();
             this.histoPictureboxPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -174,7 +175,7 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
             this.linkerContainer.Size = new System.Drawing.Size(520, 495);
-            this.linkerContainer.SplitterDistance = 286;
+            this.linkerContainer.SplitterDistance = 412;
             this.linkerContainer.TabIndex = 0;
             // 
             // progressBarAbbrechenButton
@@ -197,10 +198,22 @@
             this.form1ProgressBar.TabIndex = 7;
             this.form1ProgressBar.Visible = false;
             // 
+            // bildPicturebox
+            // 
+            this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
+            this.bildPicturebox.Name = "bildPicturebox";
+            this.bildPicturebox.Size = new System.Drawing.Size(541, 411);
+            this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bildPicturebox.TabIndex = 0;
+            this.bildPicturebox.TabStop = false;
+            this.bildPicturebox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseClick);
+            this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
+            this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
+            // 
             // labelReso
             // 
             this.labelReso.AutoSize = true;
-            this.labelReso.Location = new System.Drawing.Point(10, 137);
+            this.labelReso.Location = new System.Drawing.Point(199, 31);
             this.labelReso.Name = "labelReso";
             this.labelReso.Size = new System.Drawing.Size(39, 13);
             this.labelReso.TabIndex = 12;
@@ -209,7 +222,7 @@
             // labelTextReso
             // 
             this.labelTextReso.AutoSize = true;
-            this.labelTextReso.Location = new System.Drawing.Point(6, 113);
+            this.labelTextReso.Location = new System.Drawing.Point(133, 31);
             this.labelTextReso.Name = "labelTextReso";
             this.labelTextReso.Size = new System.Drawing.Size(60, 13);
             this.labelTextReso.TabIndex = 11;
@@ -218,7 +231,7 @@
             // labelDir
             // 
             this.labelDir.AutoSize = true;
-            this.labelDir.Location = new System.Drawing.Point(225, 85);
+            this.labelDir.Location = new System.Drawing.Point(78, 53);
             this.labelDir.Name = "labelDir";
             this.labelDir.Size = new System.Drawing.Size(39, 13);
             this.labelDir.TabIndex = 10;
@@ -227,7 +240,7 @@
             // labelTextDir
             // 
             this.labelTextDir.AutoSize = true;
-            this.labelTextDir.Location = new System.Drawing.Point(225, 65);
+            this.labelTextDir.Location = new System.Drawing.Point(5, 53);
             this.labelTextDir.Name = "labelTextDir";
             this.labelTextDir.Size = new System.Drawing.Size(67, 13);
             this.labelTextDir.TabIndex = 9;
@@ -236,7 +249,7 @@
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(6, 85);
+            this.labelDate.Location = new System.Drawing.Point(88, 31);
             this.labelDate.Name = "labelDate";
             this.labelDate.Size = new System.Drawing.Size(39, 13);
             this.labelDate.TabIndex = 8;
@@ -245,7 +258,7 @@
             // labelTextDate
             // 
             this.labelTextDate.AutoSize = true;
-            this.labelTextDate.Location = new System.Drawing.Point(6, 65);
+            this.labelTextDate.Location = new System.Drawing.Point(4, 31);
             this.labelTextDate.Name = "labelTextDate";
             this.labelTextDate.Size = new System.Drawing.Size(90, 13);
             this.labelTextDate.TabIndex = 7;
@@ -254,7 +267,7 @@
             // labelB
             // 
             this.labelB.AutoSize = true;
-            this.labelB.Location = new System.Drawing.Point(150, 21);
+            this.labelB.Location = new System.Drawing.Point(212, 8);
             this.labelB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelB.Name = "labelB";
             this.labelB.Size = new System.Drawing.Size(39, 13);
@@ -264,7 +277,7 @@
             // labelG
             // 
             this.labelG.AutoSize = true;
-            this.labelG.Location = new System.Drawing.Point(75, 21);
+            this.labelG.Location = new System.Drawing.Point(121, 8);
             this.labelG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelG.Name = "labelG";
             this.labelG.Size = new System.Drawing.Size(39, 13);
@@ -274,7 +287,7 @@
             // labelR
             // 
             this.labelR.AutoSize = true;
-            this.labelR.Location = new System.Drawing.Point(4, 21);
+            this.labelR.Location = new System.Drawing.Point(30, 8);
             this.labelR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelR.Name = "labelR";
             this.labelR.Size = new System.Drawing.Size(39, 13);
@@ -284,7 +297,7 @@
             // labelTextB
             // 
             this.labelTextB.AutoSize = true;
-            this.labelTextB.Location = new System.Drawing.Point(150, 8);
+            this.labelTextB.Location = new System.Drawing.Point(184, 7);
             this.labelTextB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextB.Name = "labelTextB";
             this.labelTextB.Size = new System.Drawing.Size(34, 13);
@@ -294,7 +307,7 @@
             // labelTextG
             // 
             this.labelTextG.AutoSize = true;
-            this.labelTextG.Location = new System.Drawing.Point(75, 8);
+            this.labelTextG.Location = new System.Drawing.Point(91, 8);
             this.labelTextG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextG.Name = "labelTextG";
             this.labelTextG.Size = new System.Drawing.Size(36, 13);
@@ -339,12 +352,25 @@
             this.rechterContainer.SplitterDistance = 324;
             this.rechterContainer.TabIndex = 0;
             // 
+            // filterCheckBox
+            // 
+            this.filterCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.filterCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
+            this.filterCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.filterCheckBox.Location = new System.Drawing.Point(3, 121);
+            this.filterCheckBox.Name = "filterCheckBox";
+            this.filterCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.filterCheckBox.TabIndex = 11;
+            this.filterCheckBox.Text = "      Filter";
+            this.filterCheckBox.UseVisualStyleBackColor = true;
+            this.filterCheckBox.CheckedChanged += new System.EventHandler(this.filterCheckBox_CheckedChanged);
+            // 
             // FilterPanel
             // 
             this.FilterPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.FilterPanel.Controls.Add(this.invertedButton);
             this.FilterPanel.Controls.Add(this.greyValButton);
-            this.FilterPanel.Location = new System.Drawing.Point(312, 257);
+            this.FilterPanel.Location = new System.Drawing.Point(316, 201);
             this.FilterPanel.Name = "FilterPanel";
             this.FilterPanel.Size = new System.Drawing.Size(161, 62);
             this.FilterPanel.TabIndex = 10;
@@ -379,22 +405,130 @@
             this.ansichtPanel.Controls.Add(this.rechtsDrehenButton);
             this.ansichtPanel.Controls.Add(this.zoomOutButton);
             this.ansichtPanel.Controls.Add(this.zoomInButton);
-            this.ansichtPanel.Location = new System.Drawing.Point(145, 257);
+            this.ansichtPanel.Location = new System.Drawing.Point(42, 165);
             this.ansichtPanel.Name = "ansichtPanel";
             this.ansichtPanel.Size = new System.Drawing.Size(161, 62);
             this.ansichtPanel.TabIndex = 5;
             this.ansichtPanel.Visible = false;
+            // 
+            // linksDrehenButton
+            // 
+            this.linksDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("linksDrehenButton.BackgroundImage")));
+            this.linksDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.linksDrehenButton.Location = new System.Drawing.Point(88, 16);
+            this.linksDrehenButton.Name = "linksDrehenButton";
+            this.linksDrehenButton.Size = new System.Drawing.Size(30, 30);
+            this.linksDrehenButton.TabIndex = 3;
+            this.linksDrehenButton.UseVisualStyleBackColor = true;
+            this.linksDrehenButton.Click += new System.EventHandler(this.linksDrehenButton_Click);
+            // 
+            // rechtsDrehenButton
+            // 
+            this.rechtsDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rechtsDrehenButton.BackgroundImage")));
+            this.rechtsDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.rechtsDrehenButton.Location = new System.Drawing.Point(124, 16);
+            this.rechtsDrehenButton.Name = "rechtsDrehenButton";
+            this.rechtsDrehenButton.Size = new System.Drawing.Size(30, 30);
+            this.rechtsDrehenButton.TabIndex = 2;
+            this.rechtsDrehenButton.UseVisualStyleBackColor = true;
+            this.rechtsDrehenButton.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
+            // 
+            // zoomOutButton
+            // 
+            this.zoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomOutButton.BackgroundImage")));
+            this.zoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.zoomOutButton.Location = new System.Drawing.Point(37, 16);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(30, 30);
+            this.zoomOutButton.TabIndex = 1;
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
+            // 
+            // zoomInButton
+            // 
+            this.zoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomInButton.BackgroundImage")));
+            this.zoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.zoomInButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this.zoomInButton.Location = new System.Drawing.Point(3, 16);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(30, 30);
+            this.zoomInButton.TabIndex = 0;
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
+            // 
+            // korrekturenCheckBox
+            // 
+            this.korrekturenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.korrekturenCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("korrekturenCheckBox.Image")));
+            this.korrekturenCheckBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.korrekturenCheckBox.Location = new System.Drawing.Point(3, 31);
+            this.korrekturenCheckBox.Name = "korrekturenCheckBox";
+            this.korrekturenCheckBox.Size = new System.Drawing.Size(162, 24);
+            this.korrekturenCheckBox.TabIndex = 9;
+            this.korrekturenCheckBox.Text = "      Korrekturen";
+            this.korrekturenCheckBox.UseVisualStyleBackColor = true;
+            this.korrekturenCheckBox.CheckedChanged += new System.EventHandler(this.korrekturenCheckBox_CheckedChanged);
+            // 
+            // werkzeugeCheckBox
+            // 
+            this.werkzeugeCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.werkzeugeCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("werkzeugeCheckBox.Image")));
+            this.werkzeugeCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.werkzeugeCheckBox.Location = new System.Drawing.Point(3, 61);
+            this.werkzeugeCheckBox.Name = "werkzeugeCheckBox";
+            this.werkzeugeCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.werkzeugeCheckBox.TabIndex = 8;
+            this.werkzeugeCheckBox.Text = "      Werkzeuge";
+            this.werkzeugeCheckBox.UseVisualStyleBackColor = true;
+            this.werkzeugeCheckBox.CheckedChanged += new System.EventHandler(this.werkzeugeCheckBox_CheckedChanged);
+            // 
+            // ansichtCheckBox
+            // 
+            this.ansichtCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.ansichtCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
+            this.ansichtCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ansichtCheckBox.Location = new System.Drawing.Point(3, 91);
+            this.ansichtCheckBox.Name = "ansichtCheckBox";
+            this.ansichtCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.ansichtCheckBox.TabIndex = 7;
+            this.ansichtCheckBox.Text = "      Ansicht";
+            this.ansichtCheckBox.UseVisualStyleBackColor = true;
+            this.ansichtCheckBox.CheckedChanged += new System.EventHandler(this.ansichtCheckBox_CheckedChanged);
             // 
             // werkzeugPanel
             // 
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.werkzeugPanel.Controls.Add(this.handCheckBox);
             this.werkzeugPanel.Controls.Add(this.colorPickerCheckBox);
-            this.werkzeugPanel.Location = new System.Drawing.Point(145, 194);
+            this.werkzeugPanel.Location = new System.Drawing.Point(38, 233);
             this.werkzeugPanel.Name = "werkzeugPanel";
             this.werkzeugPanel.Size = new System.Drawing.Size(161, 57);
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
+            // 
+            // handCheckBox
+            // 
+            this.handCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.handCheckBox.BackgroundImage = global::Prog3.Properties.Resources.move_1;
+            this.handCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.handCheckBox.Location = new System.Drawing.Point(3, 10);
+            this.handCheckBox.Name = "handCheckBox";
+            this.handCheckBox.Size = new System.Drawing.Size(30, 30);
+            this.handCheckBox.TabIndex = 3;
+            this.handCheckBox.UseVisualStyleBackColor = true;
+            this.handCheckBox.CheckedChanged += new System.EventHandler(this.handCheckBox_CheckedChanged);
+            // 
+            // colorPickerCheckBox
+            // 
+            this.colorPickerCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.colorPickerCheckBox.BackgroundImage = global::Prog3.Properties.Resources.color_picker;
+            this.colorPickerCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.colorPickerCheckBox.Location = new System.Drawing.Point(41, 9);
+            this.colorPickerCheckBox.Name = "colorPickerCheckBox";
+            this.colorPickerCheckBox.Size = new System.Drawing.Size(30, 30);
+            this.colorPickerCheckBox.TabIndex = 2;
+            this.colorPickerCheckBox.UseVisualStyleBackColor = true;
+            this.colorPickerCheckBox.CheckedChanged += new System.EventHandler(this.colorPickerCheckBox_CheckedChanged);
             // 
             // korrekturenPanel
             // 
@@ -402,11 +536,21 @@
             this.korrekturenPanel.Controls.Add(this.helligkeitButton);
             this.korrekturenPanel.Controls.Add(this.saettigungButton);
             this.korrekturenPanel.Controls.Add(this.button2);
-            this.korrekturenPanel.Location = new System.Drawing.Point(312, 157);
+            this.korrekturenPanel.Location = new System.Drawing.Point(313, 33);
             this.korrekturenPanel.Name = "korrekturenPanel";
             this.korrekturenPanel.Size = new System.Drawing.Size(160, 94);
             this.korrekturenPanel.TabIndex = 1;
             this.korrekturenPanel.Visible = false;
+            // 
+            // helligkeitButton
+            // 
+            this.helligkeitButton.Location = new System.Drawing.Point(3, 33);
+            this.helligkeitButton.Name = "helligkeitButton";
+            this.helligkeitButton.Size = new System.Drawing.Size(114, 23);
+            this.helligkeitButton.TabIndex = 2;
+            this.helligkeitButton.Text = "Helligkeit";
+            this.helligkeitButton.UseVisualStyleBackColor = true;
+            this.helligkeitButton.Click += new System.EventHandler(this.helligkeitButton_Click);
             // 
             // saettigungButton
             // 
@@ -464,6 +608,7 @@
             // histoPictureboxPanel
             // 
             this.histoPictureboxPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.histoPictureboxPanel.Controls.Add(this.histoAbbrechenButton);
             this.histoPictureboxPanel.Controls.Add(this.histoProgressBar);
             this.histoPictureboxPanel.Controls.Add(this.histoPictureBox);
             this.histoPictureboxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -481,6 +626,17 @@
             this.histoProgressBar.Size = new System.Drawing.Size(148, 27);
             this.histoProgressBar.TabIndex = 1;
             this.histoProgressBar.Visible = false;
+            // 
+            // histoPictureBox
+            // 
+            this.histoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2);
+            this.histoPictureBox.Name = "histoPictureBox";
+            this.histoPictureBox.Size = new System.Drawing.Size(478, 140);
+            this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.histoPictureBox.TabIndex = 0;
+            this.histoPictureBox.TabStop = false;
             // 
             // panel1
             // 
@@ -639,14 +795,14 @@
             // rückgängigToolStripMenuItem
             // 
             this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
-            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.rückgängigToolStripMenuItem.Text = "Rückgängig";
             this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
             // 
             // wiederholenToolStripMenuItem
             // 
             this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
-            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.wiederholenToolStripMenuItem.Text = "Wiederholen";
             this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
             // 
@@ -744,159 +900,16 @@
             this.histoBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.histoBW_ProgressChanged);
             this.histoBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.histoBW_RunWorkerCompleted);
             // 
-            // helligkeitButton
+            // histoAbbrechenButton
             // 
-            this.helligkeitButton.Location = new System.Drawing.Point(3, 33);
-            this.helligkeitButton.Name = "helligkeitButton";
-            this.helligkeitButton.Size = new System.Drawing.Size(114, 23);
-            this.helligkeitButton.TabIndex = 2;
-            this.helligkeitButton.Text = "Helligkeit";
-            this.helligkeitButton.UseVisualStyleBackColor = true;
-            this.helligkeitButton.Click += new System.EventHandler(this.helligkeitButton_Click);
-            // 
-            // bildPicturebox
-            // 
-            this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
-            this.bildPicturebox.Name = "bildPicturebox";
-            this.bildPicturebox.Size = new System.Drawing.Size(541, 411);
-            this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.bildPicturebox.TabIndex = 0;
-            this.bildPicturebox.TabStop = false;
-            this.bildPicturebox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseClick);
-            this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
-            this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
-            // 
-            // filterCheckBox
-            // 
-            this.filterCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.filterCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
-            this.filterCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.filterCheckBox.Location = new System.Drawing.Point(3, 121);
-            this.filterCheckBox.Name = "filterCheckBox";
-            this.filterCheckBox.Size = new System.Drawing.Size(161, 24);
-            this.filterCheckBox.TabIndex = 11;
-            this.filterCheckBox.Text = "      Filter";
-            this.filterCheckBox.UseVisualStyleBackColor = true;
-            this.filterCheckBox.CheckedChanged += new System.EventHandler(this.filterCheckBox_CheckedChanged);
-            // 
-            // linksDrehenButton
-            // 
-            this.linksDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("linksDrehenButton.BackgroundImage")));
-            this.linksDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.linksDrehenButton.Location = new System.Drawing.Point(88, 16);
-            this.linksDrehenButton.Name = "linksDrehenButton";
-            this.linksDrehenButton.Size = new System.Drawing.Size(30, 30);
-            this.linksDrehenButton.TabIndex = 3;
-            this.linksDrehenButton.UseVisualStyleBackColor = true;
-            this.linksDrehenButton.Click += new System.EventHandler(this.linksDrehenButton_Click);
-            // 
-            // rechtsDrehenButton
-            // 
-            this.rechtsDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rechtsDrehenButton.BackgroundImage")));
-            this.rechtsDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rechtsDrehenButton.Location = new System.Drawing.Point(124, 16);
-            this.rechtsDrehenButton.Name = "rechtsDrehenButton";
-            this.rechtsDrehenButton.Size = new System.Drawing.Size(30, 30);
-            this.rechtsDrehenButton.TabIndex = 2;
-            this.rechtsDrehenButton.UseVisualStyleBackColor = true;
-            this.rechtsDrehenButton.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
-            // 
-            // zoomOutButton
-            // 
-            this.zoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomOutButton.BackgroundImage")));
-            this.zoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.zoomOutButton.Location = new System.Drawing.Point(37, 16);
-            this.zoomOutButton.Name = "zoomOutButton";
-            this.zoomOutButton.Size = new System.Drawing.Size(30, 30);
-            this.zoomOutButton.TabIndex = 1;
-            this.zoomOutButton.UseVisualStyleBackColor = true;
-            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
-            // 
-            // zoomInButton
-            // 
-            this.zoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomInButton.BackgroundImage")));
-            this.zoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.zoomInButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.zoomInButton.Location = new System.Drawing.Point(3, 16);
-            this.zoomInButton.Name = "zoomInButton";
-            this.zoomInButton.Size = new System.Drawing.Size(30, 30);
-            this.zoomInButton.TabIndex = 0;
-            this.zoomInButton.UseVisualStyleBackColor = true;
-            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
-            // 
-            // korrekturenCheckBox
-            // 
-            this.korrekturenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.korrekturenCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("korrekturenCheckBox.Image")));
-            this.korrekturenCheckBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.korrekturenCheckBox.Location = new System.Drawing.Point(3, 31);
-            this.korrekturenCheckBox.Name = "korrekturenCheckBox";
-            this.korrekturenCheckBox.Size = new System.Drawing.Size(162, 24);
-            this.korrekturenCheckBox.TabIndex = 9;
-            this.korrekturenCheckBox.Text = "      Korrekturen";
-            this.korrekturenCheckBox.UseVisualStyleBackColor = true;
-            this.korrekturenCheckBox.CheckedChanged += new System.EventHandler(this.korrekturenCheckBox_CheckedChanged);
-            // 
-            // werkzeugeCheckBox
-            // 
-            this.werkzeugeCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.werkzeugeCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("werkzeugeCheckBox.Image")));
-            this.werkzeugeCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.werkzeugeCheckBox.Location = new System.Drawing.Point(3, 61);
-            this.werkzeugeCheckBox.Name = "werkzeugeCheckBox";
-            this.werkzeugeCheckBox.Size = new System.Drawing.Size(161, 24);
-            this.werkzeugeCheckBox.TabIndex = 8;
-            this.werkzeugeCheckBox.Text = "      Werkzeuge";
-            this.werkzeugeCheckBox.UseVisualStyleBackColor = true;
-            this.werkzeugeCheckBox.CheckedChanged += new System.EventHandler(this.werkzeugeCheckBox_CheckedChanged);
-            // 
-            // ansichtCheckBox
-            // 
-            this.ansichtCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ansichtCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
-            this.ansichtCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ansichtCheckBox.Location = new System.Drawing.Point(3, 91);
-            this.ansichtCheckBox.Name = "ansichtCheckBox";
-            this.ansichtCheckBox.Size = new System.Drawing.Size(161, 24);
-            this.ansichtCheckBox.TabIndex = 7;
-            this.ansichtCheckBox.Text = "      Ansicht";
-            this.ansichtCheckBox.UseVisualStyleBackColor = true;
-            this.ansichtCheckBox.CheckedChanged += new System.EventHandler(this.ansichtCheckBox_CheckedChanged);
-            // 
-            // handCheckBox
-            // 
-            this.handCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.handCheckBox.BackgroundImage = global::Prog3.Properties.Resources.move_1;
-            this.handCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.handCheckBox.Location = new System.Drawing.Point(3, 10);
-            this.handCheckBox.Name = "handCheckBox";
-            this.handCheckBox.Size = new System.Drawing.Size(30, 30);
-            this.handCheckBox.TabIndex = 3;
-            this.handCheckBox.UseVisualStyleBackColor = true;
-            this.handCheckBox.CheckedChanged += new System.EventHandler(this.handCheckBox_CheckedChanged);
-            // 
-            // colorPickerCheckBox
-            // 
-            this.colorPickerCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.colorPickerCheckBox.BackgroundImage = global::Prog3.Properties.Resources.color_picker;
-            this.colorPickerCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.colorPickerCheckBox.Location = new System.Drawing.Point(41, 9);
-            this.colorPickerCheckBox.Name = "colorPickerCheckBox";
-            this.colorPickerCheckBox.Size = new System.Drawing.Size(30, 30);
-            this.colorPickerCheckBox.TabIndex = 2;
-            this.colorPickerCheckBox.UseVisualStyleBackColor = true;
-            this.colorPickerCheckBox.CheckedChanged += new System.EventHandler(this.colorPickerCheckBox_CheckedChanged);
-            // 
-            // histoPictureBox
-            // 
-            this.histoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2);
-            this.histoPictureBox.Name = "histoPictureBox";
-            this.histoPictureBox.Size = new System.Drawing.Size(478, 140);
-            this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.histoPictureBox.TabIndex = 0;
-            this.histoPictureBox.TabStop = false;
+            this.histoAbbrechenButton.Location = new System.Drawing.Point(8, 91);
+            this.histoAbbrechenButton.Name = "histoAbbrechenButton";
+            this.histoAbbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.histoAbbrechenButton.TabIndex = 13;
+            this.histoAbbrechenButton.Text = "Abbrechen";
+            this.histoAbbrechenButton.UseVisualStyleBackColor = true;
+            this.histoAbbrechenButton.Visible = false;
+            this.histoAbbrechenButton.Click += new System.EventHandler(this.histoAbbrechenButton_Click);
             // 
             // form1
             // 
@@ -921,6 +934,7 @@
             this.linkerContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.linkerContainer)).EndInit();
             this.linkerContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
             this.rechterContainer.Panel1.ResumeLayout(false);
             this.rechterContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
@@ -932,6 +946,7 @@
             this.histoPanel.ResumeLayout(false);
             this.histoPanel.PerformLayout();
             this.histoPictureboxPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
@@ -939,8 +954,6 @@
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bildPicturebox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1018,6 +1031,7 @@
         private System.Windows.Forms.Label labelTextReso;
         private System.Windows.Forms.Label labelReso;
         private System.Windows.Forms.Button helligkeitButton;
+        private System.Windows.Forms.Button histoAbbrechenButton;
 
 
     }
