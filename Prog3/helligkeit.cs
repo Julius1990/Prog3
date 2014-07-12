@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
@@ -43,6 +44,7 @@ namespace Prog3
         {
             Bitmap neueBitmap = new Bitmap(helligkeitPicturebox.Image.Width, helligkeitPicturebox.Image.Height);
 
+            //Vorigen Bearbeitungsschritt löschen
             helligkeitPicturebox.Image = null;
             GC.Collect();
 
@@ -63,7 +65,29 @@ namespace Prog3
         }
         private void anwendenTrackBarButton_Click(object sender, EventArgs e)
         {
-            helligkeitberechnen();
+            string gelesen = anwendenTextBox.Text;
+            try
+            {
+                float wert = (float)Convert.ToDouble(gelesen);
+                Debug.WriteLine("Eingelesen :" + wert);
+
+                if (wert == 0)
+                    helligkeitParameter = 0;
+                else
+                    helligkeitParameter = wert * 0.01f;
+
+                Debug.WriteLine("Umgerechnet in :" + helligkeitParameter);
+
+                if (!helligkeitBerechnungBW.IsBusy)
+                {
+                    Cursor = Cursors.WaitCursor;
+                    helligkeitBerechnungBW.RunWorkerAsync();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Bitte Wert zwischen -100 und 100 eingeben");
+            }
         }
 
     //------------------------------------------------------------------------------------------------
@@ -92,6 +116,23 @@ namespace Prog3
 
             //hauptfenster freigeben
             parent.unlockMainWindow();
+        }
+
+        //--------------------------------------------------------------------------------------
+        //Backgroundworker
+        private void helligkeitBerechnungBW_DoWork(object sender, DoWorkEventArgs e)
+        {
+            helligkeitberechnen();
+        }
+
+        private void helligkeitBerechnungBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Cursor = Cursors.Default;
+        }
+
+        private void helligkeitTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            anwendenTextBox.Text = helligkeitTrackBar.Value.ToString();
         }
 
     }

@@ -43,7 +43,7 @@
             this.randLinksPanel = new System.Windows.Forms.Panel();
             this.randRechtsPanel = new System.Windows.Forms.Panel();
             this.randUntenPanel = new System.Windows.Forms.Panel();
-            this.kontrastBerechnungBW = new System.ComponentModel.BackgroundWorker();
+            this.helligkeitBerechnungBW = new System.ComponentModel.BackgroundWorker();
             this.centerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -148,11 +148,13 @@
             this.helligkeitTrackBar.AutoSize = false;
             this.helligkeitTrackBar.Location = new System.Drawing.Point(3, 13);
             this.helligkeitTrackBar.Maximum = 100;
+            this.helligkeitTrackBar.Minimum = -100;
             this.helligkeitTrackBar.Name = "helligkeitTrackBar";
             this.helligkeitTrackBar.Size = new System.Drawing.Size(167, 37);
             this.helligkeitTrackBar.TabIndex = 7;
+            this.helligkeitTrackBar.TickFrequency = 5;
             this.helligkeitTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.helligkeitTrackBar.Value = 50;
+            this.helligkeitTrackBar.ValueChanged += new System.EventHandler(this.helligkeitTrackBar_ValueChanged);
             // 
             // abbrechenButton
             // 
@@ -210,9 +212,11 @@
             this.randUntenPanel.Size = new System.Drawing.Size(736, 10);
             this.randUntenPanel.TabIndex = 15;
             // 
-            // kontrastBerechnungBW
+            // helligkeitBerechnungBW
             // 
-            this.kontrastBerechnungBW.WorkerSupportsCancellation = true;
+            this.helligkeitBerechnungBW.WorkerSupportsCancellation = true;
+            this.helligkeitBerechnungBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.helligkeitBerechnungBW_DoWork);
+            this.helligkeitBerechnungBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.helligkeitBerechnungBW_RunWorkerCompleted);
             // 
             // helligkeit
             // 
@@ -259,6 +263,6 @@
         private System.Windows.Forms.Panel randLinksPanel;
         private System.Windows.Forms.Panel randRechtsPanel;
         private System.Windows.Forms.Panel randUntenPanel;
-        private System.ComponentModel.BackgroundWorker kontrastBerechnungBW;
+        private System.ComponentModel.BackgroundWorker helligkeitBerechnungBW;
     }
 }

@@ -184,11 +184,11 @@
             this.kontrastTrackBar.AutoSize = false;
             this.kontrastTrackBar.Location = new System.Drawing.Point(3, 13);
             this.kontrastTrackBar.Maximum = 100;
+            this.kontrastTrackBar.Minimum = -100;
             this.kontrastTrackBar.Name = "kontrastTrackBar";
             this.kontrastTrackBar.Size = new System.Drawing.Size(167, 37);
             this.kontrastTrackBar.TabIndex = 7;
             this.kontrastTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.kontrastTrackBar.Value = 50;
             this.kontrastTrackBar.ValueChanged += new System.EventHandler(this.kontrastTrackBar_ValueChanged);
             // 
             // abbrechenButton

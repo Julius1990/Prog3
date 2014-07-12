@@ -27,9 +27,10 @@ namespace Prog3
             //Bild in PictureBox öffnen
             kontrastPicturebox.Image = parent.getPictureBoxImage();
 
+            //Default Kontrast einstellen
             kontrastwert = 1.0f;
 
-            //Semaphore
+            //Semaphore kommt aus Form1
             kontrSem = sem_in;
         }
     //------------------------------------------------------------------------------------------------
@@ -46,7 +47,9 @@ namespace Prog3
 
             kontrastPicturebox.Image = null;
             GC.Collect();
-             
+
+            Debug.WriteLine("Verarbeiteter Wert: " + kontrastwert);
+
             float angepassteHelligkeit = (1.0f - kontrastwert) / 2.0f;
 
             float[][] meineMatrix ={
@@ -70,16 +73,26 @@ namespace Prog3
         private void anwendenTrackBarButton_Click(object sender, EventArgs e)
         {
             //Textbox auswerten und Wert speichern
-            string einlesen = anwendenTextBox.Text.ToString();
-            float eingabeKontrast = (float)Convert.ToDouble(einlesen);
+            string einlesen = anwendenTextBox.Text;
 
-            if (eingabeKontrast > -101 && eingabeKontrast < 101)
+            try
             {
+                //Wert aus der Textbox einlesen
+                float eingabeKontrast = (float)Convert.ToDouble(einlesen);
 
-//Hier läuft irgendwas gewaltig schief !!!
-                //kontrastwert = eingabeKontrast;
-                //kontrastTrackBar.Value = (int)(50.0f + ((float)eingabeKontrast / 2.0f));
-//------------------------------------------
+                kontrastTrackBar.Value = (int)eingabeKontrast;
+
+                //Wert umrechnen
+                if (eingabeKontrast == 0)
+                    kontrastwert = 1;
+                else if (eingabeKontrast > 0)
+                {
+                    kontrastwert = 1+eingabeKontrast * 0.04f;
+                }
+                else
+                {
+                    kontrastwert = 1 -(-eingabeKontrast * 0.01f);
+                }
 
                 //Berechnung im Hintergrund ausführen
                 if (!kontrastBerechnungBW.IsBusy)   //verhindert Zugriffsprobleme
@@ -88,7 +101,7 @@ namespace Prog3
                     Cursor = Cursors.WaitCursor;
                 }
             }
-            else
+            catch
             {
                 MessageBox.Show("Bitte einen Wert zwischen -100 und 100 eingeben");
             }
@@ -103,21 +116,7 @@ namespace Prog3
         }
         private void kontrastTrackBar_ValueChanged(object sender, EventArgs e)
         {
-            if (kontrastTrackBar.Value > 50)
-            {
-                kontrastwert = 1.0f + ((float)kontrastTrackBar.Value - 50.0f) * 0.06f;
-                anwendenTextBox.Text = (((float)kontrastTrackBar.Value - 50.0f) * 2.0f).ToString();
-            }
-            else if (kontrastTrackBar.Value == 50)
-            {
-                kontrastwert = 1;
-                anwendenTextBox.Text = "1";
-            }
-            else
-            {
-                kontrastwert = 1.0f - ((50.0f - (float)kontrastTrackBar.Value) * 0.02f);
-                anwendenTextBox.Text = (-((50.0f - (float)kontrastTrackBar.Value) * 2.0f)).ToString();
-            }
+            anwendenTextBox.Text = kontrastTrackBar.Value.ToString();
         }
 
     //------------------------------------------------------------------------------------------------
