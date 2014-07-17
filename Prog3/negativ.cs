@@ -13,9 +13,9 @@ namespace Prog3
     public partial class negativ : Form
     {
         private PictureBox picBoxOld;
-        private form1 parent;
+        private _hauptfenster parent;
 
-        public negativ(PictureBox pb, form1 parent_in)
+        public negativ(PictureBox pb, _hauptfenster parent_in)
         {
             InitializeComponent();
             picBoxOld = pb;

@@ -15,7 +15,7 @@ namespace Prog3
 {
     public partial class helligkeit : Form
     {
-        public helligkeit(form1 parent_in, Semaphore sem_in)
+        public helligkeit(_hauptfenster parent_in, Semaphore sem_in)
         {
             InitializeComponent();
 
@@ -34,7 +34,7 @@ namespace Prog3
 
         //Variablen
         Semaphore hellSem;
-        form1 parent;
+        _hauptfenster parent;
         float helligkeitParameter;
 
 

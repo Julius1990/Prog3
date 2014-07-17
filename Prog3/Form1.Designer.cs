@@ -1,6 +1,6 @@
 ﻿namespace Prog3
 {
-    partial class form1
+    partial class _hauptfenster
     {
         /// <summary>
         /// Erforderliche Designervariable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_hauptfenster));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.linkerContainer = new System.Windows.Forms.SplitContainer();
             this.progressBarAbbrechenButton = new System.Windows.Forms.Button();
@@ -968,7 +968,7 @@
             this.histoBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.histoBW_ProgressChanged);
             this.histoBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.histoBW_RunWorkerCompleted);
             // 
-            // form1
+            // hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -978,7 +978,7 @@
             this.Controls.Add(this.randLinksPanel);
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
-            this.Name = "form1";
+            this.Name = "hauptfenster";
             this.Text = "Prog3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.form1_FormClosed);

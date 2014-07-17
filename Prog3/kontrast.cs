@@ -17,7 +17,7 @@ namespace Prog3
     {
     //------------------------------------------------------------------------------------------------
     //Konstruktor
-        public kontrast(form1 parent_in, Semaphore sem_in)
+        public kontrast(_hauptfenster parent_in, Semaphore sem_in)
         {
             InitializeComponent();
 
@@ -35,7 +35,7 @@ namespace Prog3
         }
     //------------------------------------------------------------------------------------------------
     //Globale Variablen
-        form1 parent;
+        _hauptfenster parent;
         float kontrastwert;
         Semaphore kontrSem;
 
@@ -160,7 +160,7 @@ namespace Prog3
          * 
          * Mit abbrechen wird der GC aufgerufen und die bisherigen Änderungen werden verworfen
          * 
-         * Mit Speichern wird der PictureBox im Hauptfenster (form1.bildPictureBox) das geänderte Bild übergeben. Innerhalb
+         * Mit Speichern wird der PictureBox im Hauptfenster (hauptfenster.bildPictureBox) das geänderte Bild übergeben. Innerhalb
          * dieser Funktion wird dann auch der zwischenschritt gespeichert, daher muss diese Funktion an dieser Stelle nicht
          * mehr aufgerufen werden.
          * 

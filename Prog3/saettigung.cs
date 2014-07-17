@@ -13,11 +13,11 @@ namespace Prog3
 {
     public partial class saettigung : Form
     {
-        form1 parent;
+        _hauptfenster parent;
         Bitmap pictureBackup;
         Semaphore saettSem;
 
-        public saettigung(Bitmap bm, form1 parent_in,Semaphore sem_in)
+        public saettigung(Bitmap bm, _hauptfenster parent_in,Semaphore sem_in)
         {
             InitializeComponent();
             saettigungPicturebox.Image = bm;

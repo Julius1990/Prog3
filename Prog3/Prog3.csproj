@@ -95,6 +95,7 @@
     <Compile Include="saettigung.Designer.cs">
       <DependentUpon>saettigung.cs</DependentUpon>
     </Compile>
+    <Compile Include="_histogramm.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +116,7 @@
     <EmbeddedResource Include="saettigung.resx">
       <DependentUpon>saettigung.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace Prog3
 {
-    public partial class form1 : Form
+    public partial class _hauptfenster : Form
     {
-        public form1()
+        public _hauptfenster()
         {
             InitializeComponent();
             schrittSpeicherAnlegen();
@@ -68,7 +68,6 @@ namespace Prog3
 
         //Histogramme
         List<CheckBox> histogramme;
-        int zuletztBerechnetesHistogramm = 1;
 
         //Semaphore
         public Semaphore sem = new Semaphore(1, 1);
@@ -323,7 +322,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Das Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
         private void schrittVor()
@@ -348,7 +346,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Das Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
 
@@ -415,7 +412,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
         private void helligkeitButton_Click(object sender, EventArgs e)
@@ -436,7 +432,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
         private void saettigungButton_Click(object sender, EventArgs e)
@@ -456,7 +451,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
 
@@ -509,7 +503,7 @@ namespace Prog3
         private void grauwertBW_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             //da man hier in einem anderen Thread arbeitet, ist dieser Schritt von Nöten um Zugriff
-            //auf die Variablen der form1 zu haben
+            //auf die Variablen der hauptfenster zu haben
             form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
 
             //abbrechen Button verschwinden lassen
@@ -544,7 +538,7 @@ namespace Prog3
                 return;
 
             //da man hier in einem anderen Thread arbeitet, ist dieser Schritt von Nöten um Zugriff
-            //auf die Variablen der form1 zu haben
+            //auf die Variablen der hauptfenster zu haben
             form1ProgressBar.Invoke(new Action(() =>
             {
                 form1ProgressBar.Value = e.ProgressPercentage;
@@ -975,7 +969,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
         private void linksDrehenButton_Click(object sender, EventArgs e)
@@ -1002,7 +995,6 @@ namespace Prog3
             else
             {
                 MessageBox.Show("Bild wird gerade bearbeitet");
-                checkWorkers();
             }
         }
 
@@ -1106,27 +1098,22 @@ namespace Prog3
             if (grauHistCheckBox.Checked)
             {
                 histGray();
-                zuletztBerechnetesHistogramm = 1;
             }
             else if (rgbHistCheckBox.Checked)
             {
                 histRGB();
-                zuletztBerechnetesHistogramm = 2;
             }
             else if (rHistCheckBox.Checked)
             {
                 histRed();
-                zuletztBerechnetesHistogramm = 3;
             }
             else if (gHistCheckBox.Checked)
             {
                 histGreen();
-                zuletztBerechnetesHistogramm = 4;
             }
             else if (bHistCheckBox.Checked)
             {
                 histBlue();
-                zuletztBerechnetesHistogramm = 5;
             }
         }
         private void histoBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -1147,50 +1134,6 @@ namespace Prog3
             sem.Release();
         }
 
-        //Fremdberechnung
-        private void berechneHistogramm()
-        {
-            if (zuletztBerechnetesHistogramm == 1)
-            {
-                grauHistCheckBox.Invoke(new Action(() =>
-                {
-                    grauHistCheckBox.CheckState = CheckState.Checked;
-                }));
-            }
-            else if (zuletztBerechnetesHistogramm == 2)
-            {
-                rgbHistCheckBox.Invoke(new Action(() =>
-                {
-                    rgbHistCheckBox.CheckState = CheckState.Checked;
-                }));
-            }
-            else if (zuletztBerechnetesHistogramm == 3)
-            {
-                rHistCheckBox.Invoke(new Action(() =>
-                {
-                    rHistCheckBox.CheckState = CheckState.Checked;
-                }));
-            }
-            else if (zuletztBerechnetesHistogramm == 4)
-            {
-                gHistCheckBox.Invoke(new Action(() =>
-                {
-                    gHistCheckBox.CheckState = CheckState.Checked;
-                }));
-            }
-            else if (zuletztBerechnetesHistogramm == 5)
-            {
-                bHistCheckBox.Invoke(new Action(() =>
-                {
-                    bHistCheckBox.CheckState = CheckState.Checked;
-                }));
-            }
-
-            lockHistoButtons();
-            while (histoBW.IsBusy)
-                Thread.Sleep(200);
-            histoBW.RunWorkerAsync();
-        }
 
         //Funktionen zur Histogramm Berechnung
         private void histGray()
@@ -1701,17 +1644,6 @@ namespace Prog3
             threadsBeenden();
         }
 
-        //---------------------------------------------------------------------------------------------------------
-        //Debug Funktionen
-
-        private void checkWorkers()
-        {
-            foreach (BackgroundWorker bw in backWorkers)
-            {
-                if (bw.IsBusy)
-                    Debug.WriteLine(bw.GetHashCode().ToString() + " is busy");
-            }
-        }
 
         
 
