@@ -6,7 +6,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>RyQ9Tb8g9PPoFRNuG62M6gnGS8RayTOGOWR+wby9vIs=</HashCode>
+      <HashCode>xyQ1Tb9g8PPoFRN+G62M6knGS8RayTOGOWR+wby9vIs=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -66,10 +66,10 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3._histogramm">
+  <Class Name="Prog3._Histogramm">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAIABAAAAAAACCAAIAAACAAAABAAAAAAAAAA=</HashCode>
       <FileName>_histogramm.cs</FileName>
     </TypeIdentifier>
   </Class>

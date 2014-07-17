@@ -30,6 +30,9 @@ namespace Prog3
             //Werkzeuge
             initialisiereTools();
 
+            //Histogrammklasse
+            histogramme = new _Histogramm(this);
+
             //Histogramme
             initialisiereHistogramme();
 
@@ -67,10 +70,13 @@ namespace Prog3
         string picDir;
 
         //Histogramme
-        List<CheckBox> histogramme;
+        List<CheckBox> histogrammeListe;
 
         //Semaphore
         public Semaphore sem = new Semaphore(1, 1);
+
+        //Histogramme
+        _Histogramm histogramme;
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -705,7 +711,7 @@ namespace Prog3
     //Threads
         private void threadsInitialisieren()
         {
-            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histoBW };
+            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histoBW};
         }
         private void threadsBeenden()
         {
@@ -1611,12 +1617,12 @@ namespace Prog3
         //Histogramm Checkbox Logik
         private void initialisiereHistogramme()
         {
-            histogramme = new List<CheckBox> { grauHistCheckBox, rgbHistCheckBox, rHistCheckBox, gHistCheckBox, bHistCheckBox };
+            histogrammeListe = new List<CheckBox> { grauHistCheckBox, rgbHistCheckBox, rHistCheckBox, gHistCheckBox, bHistCheckBox };
         }
         private bool checkHistogramme(CheckBox selbst)
         {
             //Prüft ob ein anderes Histogramm gerade aktiv ist
-            foreach (CheckBox h in histogramme)
+            foreach (CheckBox h in histogrammeListe)
             {
                 if (h.Checked && !h.Equals(selbst))
                     return false;
@@ -1625,14 +1631,14 @@ namespace Prog3
         }
         private void lockHistoButtons()
         {
-            foreach (CheckBox c in histogramme)
+            foreach (CheckBox c in histogrammeListe)
             {
                 c.Enabled = false;
             }
         }
         private void unlockHistoButtons()
         {
-            foreach (CheckBox c in histogramme)
+            foreach (CheckBox c in histogrammeListe)
             {
                 c.Enabled = true;
                 c.CheckState = CheckState.Unchecked;
@@ -1643,6 +1649,13 @@ namespace Prog3
         {
             threadsBeenden();
         }
+
+        private void tabControllHistogramme_Selected(object sender, TabControlEventArgs e)
+        {
+            histogramme.berechneHistogramm(tabControllHistogramme.SelectedTab.Text.ToString());
+        }
+
+
 
 
         
