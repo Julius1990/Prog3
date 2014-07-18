@@ -12,14 +12,14 @@ namespace Prog3
 {
     public class _Histogramm
     {
+        //Globale Variablen
         public BackgroundWorker BwHisto;
         _hauptfenster parent;
         List<PictureBox> HistoPictureBoxes;
         List<Button> HistoCancelButtons;
-        List<ProgressBar> HistoProgessBars;
         int geradeBerechnetesHistogramm;
         
-
+        //Kontstuktor
         public _Histogramm(_hauptfenster parent_in)
         {
             //Elternfenster
@@ -38,14 +38,13 @@ namespace Prog3
                 parent.pictureBoxHistoRed,parent.pictureBoxHistoGruen,parent.pictureBoxHistoBlau};
             HistoCancelButtons = new List<Button> {parent.buttonCancelHistGray,parent.buttonCancelHistRGB,
                 parent.buttonCancelHistoRed,parent.buttonCancelHistoGreen,parent.buttonCancelHistoBlue};
-            HistoProgessBars = new List<ProgressBar>{parent.progressBarHistGray,parent.progressBarHistoRGB,
-                parent.progressBarHistoRed,parent.progressBarHistoGreen,parent.progressBarHistoBlue};
             
         }
 
+        //Kommunikation mit Form1
         public void berechneHistogramm(string aktiverTab_in)
         {
-            Debug.WriteLine("Tab change Event ausgelöst");
+            //Herausfinden welcher Tab gerade geöffnet ist
             if (aktiverTab_in == "Grau")
                 geradeBerechnetesHistogramm = 1;
             else if (aktiverTab_in == "RGB")
@@ -57,99 +56,100 @@ namespace Prog3
             else if (aktiverTab_in == "Blau")
                 geradeBerechnetesHistogramm = 5;
 
+            ordneButtons();
+
+            //Versuchen die Berechnung anzustoßen
             if (!BwHisto.IsBusy)
                 BwHisto.RunWorkerAsync();
             else
-                Debug.WriteLine("BwHisto is busy");
+            {
+                BwHisto.CancelAsync();
+                Debug.WriteLine("BwHisto cancelAsync");
+                try
+                {
+                    BwHisto.RunWorkerAsync();
+                }
+                catch
+                {
+                    Debug.WriteLine("BwHisto konnte nicht gestartet werdee");
+                }
+
+            }
         }
 
         //BackgroundWorker
         private void BwHisto_doWork(object sender, DoWorkEventArgs e)
         {
-            //Kritischen Bereich betreten
-            parent.sem.WaitOne();
+            try
+            {
+                //Kritischen Bereich betreten
+                parent.sem.WaitOne(5000);
 
-            Debug.WriteLine("BwHisto startet");
+                Debug.WriteLine("BwHisto startet");
 
-            Thread.Sleep(1000);
 
-            //TabControl sperren
-            lockTabs();
-            
-            
-            if (geradeBerechnetesHistogramm == 1)
-            {
-                Debug.WriteLine("BwHisto: calcGrey()");
-                calcGray();
+                if (geradeBerechnetesHistogramm == 1)
+                {
+                    Debug.WriteLine("BwHisto doWork: calcGrey()");
+                    calcGray();
+                }
+                else if (geradeBerechnetesHistogramm == 2)
+                {
+                    Debug.WriteLine("BwHisto doWork: calcRGB()");
+                    calcRGB();
+                }
+                else if (geradeBerechnetesHistogramm == 3)
+                {
+                    Debug.WriteLine("BwHisto doWork: calcRed()");
+                    calcRed();
+                }
+                else if (geradeBerechnetesHistogramm == 4)
+                {
+                    Debug.WriteLine("BwHisto doWork: calcGreen()");
+                    calcGreen();
+                }
+                else if (geradeBerechnetesHistogramm == 5)
+                {
+                    Debug.WriteLine("BwHisto doWork: calcBlue()");
+                    calcBlue();
+                }
             }
-            else if (geradeBerechnetesHistogramm == 2)
+            catch
             {
-                Debug.WriteLine("BwHisto: calcRGB()");
-                calcRGB();
-            }
-            else if (geradeBerechnetesHistogramm == 3)
-            {
-                Debug.WriteLine("BwHisto: calcRed()");
-                calcRed();
-            }
-            else if (geradeBerechnetesHistogramm == 4)
-            {
-                Debug.WriteLine("BwHisto: calcGreen()");
-                calcGreen();
-            }
-            else if (geradeBerechnetesHistogramm == 5)
-            {
-                Debug.WriteLine("BwHisto: calcBlue()");
-                calcBlue();
+                Debug.WriteLine("BwHisto doWork Semaphor timeout");
             }
         }
         private void BwHisto_progress(object sender, ProgressChangedEventArgs e)
         {
-            if (geradeBerechnetesHistogramm == 1)
-            {
-                parent.progressBarHistGray.Value = e.ProgressPercentage;
-            }
-            else if (geradeBerechnetesHistogramm == 2)
-            {
-                parent.progressBarHistoRGB.Value = e.ProgressPercentage;
-            }
-            else if (geradeBerechnetesHistogramm == 3)
-            {
-                parent.progressBarHistoRed.Value = e.ProgressPercentage;
-            }
-            else if (geradeBerechnetesHistogramm == 4)
-            {
-                parent.progressBarHistoGreen.Value = e.ProgressPercentage;
-            }
-            else if (geradeBerechnetesHistogramm == 5 )
-            {
-                parent.progressBarHistoBlue.Value = e.ProgressPercentage;
-            }
+            parent.toolStripProgressBar.Value = e.ProgressPercentage;
+            Debug.WriteLine("Aktuell: " + parent.toolStripProgressBar.Value.ToString());
+            Debug.WriteLine("Maximum progress: " + parent.toolStripProgressBar.Maximum.ToString());
         }
         private void BwHistp_completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (parent.tabControllHistogramme.SelectedTab == parent.tabGrau)
+            if (geradeBerechnetesHistogramm == 1)
             {
-                //jeweilige ProgressBar und AbbrechenButton entfernen
+                parent.buttonCancelHistGray.Visible = false;
             }
-            else if (parent.tabControllHistogramme.SelectedTab == parent.tabRGB)
+            else if (geradeBerechnetesHistogramm==2)
             {
-                //jeweilige ProgressBar und AbbrechenButton entfernen
+                parent.buttonCancelHistRGB.Visible = false;
             }
-            else if (parent.tabControllHistogramme.SelectedTab == parent.tabR)
+            else if (geradeBerechnetesHistogramm == 3)
             {
-                //jeweilige ProgressBar und AbbrechenButton entfernen
+                parent.buttonCancelHistoRed.Visible = false;
             }
-            else if (parent.tabControllHistogramme.SelectedTab == parent.tabG)
+            else if (geradeBerechnetesHistogramm == 4)
             {
-                //jeweilige ProgressBar und AbbrechenButton entfernen
+                parent.buttonCancelHistoGreen.Visible = false;
             }
-            else if (parent.tabControllHistogramme.SelectedTab == parent.tabB)
+            else if (geradeBerechnetesHistogramm == 5)
             {
-                //jeweilige ProgressBar und AbbrechenButton entfernen
+                parent.buttonCancelHistoBlue.Visible = false;
             }
 
-            unlockTabs();
+            //Progress Bar auf 0 setzen
+            parent.toolStripProgressBar.Value = 0;
 
             Debug.WriteLine("BwHisto Arbeit beendet");
 
@@ -157,21 +157,25 @@ namespace Prog3
             parent.sem.Release();
         }        
     
+        //Alles Plätten wenn neues Bild geladen wird oder etwas bearbeitet wurde
         public void clearAllHistos()
         {
-            throw new System.NotImplementedException();
+            foreach (PictureBox pi in HistoPictureBoxes)
+            {
+                pi.Image = null;
+            }
+            GC.Collect();
         }
 
-        //TabControl
-        public void lockTabs()
+        //Abbrechen Button ordentlich anordne
+        private void ordneButtons()
         {
-            Debug.WriteLine("Histogramm Tabs locked");
-            parent.tabControllHistogramme.Invoke(new Action(() => parent.tabControllHistogramme.Enabled = false));
-        }
-        public void unlockTabs()
-        {
-            Debug.WriteLine("Histogramm Tabs unlocked");
-            parent.tabControllHistogramme.Invoke(new Action(() => parent.tabControllHistogramme.Enabled = true));
+            foreach (Button bt in HistoCancelButtons)
+            {
+                //Noch programmieren
+                bt.Left = parent.tabControllHistogramme.Left+10;
+                bt.Top = parent.tabControllHistogramme.Top + 35;
+            }
         }
 
         //Histogramm Funktionen
@@ -190,12 +194,12 @@ namespace Prog3
                 hist[a] = 0;
             }
 
-            //Fortschritt
-            parent.progressBarHistGray.Invoke(new Action(() =>
+            //Fortschritt (maximum wird in form1 gesetzt)
+            parent.toolStripProgressBar.Value = 0;
+            //Abrrechen Button
+            parent.buttonCancelHistGray.Invoke(new Action(() =>
             {
-                parent.progressBarHistGray.Visible = true;
-                parent.progressBarHistGray.Maximum = origBitmap.Width;
-                parent.progressBarHistGray.Value = 0;
+                parent.buttonCancelHistGray.Visible = true;
             }));
             
             //läuft jedes Pixel einzeln durch
@@ -220,9 +224,6 @@ namespace Prog3
             }
             Bitmap histogramm = new Bitmap(258, 132);
 
-            //Mal schauen was ich mit der Farbe noch mache
-            //histoPictureBox.Invoke(new Action(() => histoPictureBox.BackColor = Color.White));
-
             double ratio = 132.0 / (double)max;
 
             for (int x = 1; x <= 256; x++)
@@ -239,20 +240,285 @@ namespace Prog3
         }
         public void calcRGB()
         {
-            Debug.WriteLine("hallo");
-            //throw new System.NotImplementedException();
+            if (BwHisto.CancellationPending)
+                return;
+
+            parent.buttonCancelHistRGB.Invoke(new Action(()=> parent.buttonCancelHistRGB.Visible = true));
+
+            Bitmap orig = new Bitmap(parent.bildPicturebox.Image);
+
+            //blau
+            long[] blue = new long[256];
+            long maxBlau = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                blue[a] = 0;
+            }
+
+            //rot
+            long[] red = new long[256];
+            long maxRot = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                red[a] = 0;
+            }
+
+            //Grün
+            long[] greene = new long[256];
+            long maxGruen = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                greene[a] = 0;
+            }
+
+            //Fortschritt
+            parent.toolStripProgressBar.Value = 0;
+            parent.toolStripProgressBar.Maximum = orig.Width;
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int rotwert = orig.GetPixel(x, y).R;
+                    int gruenwert = orig.GetPixel(x, y).G;
+                    int blauwert = orig.GetPixel(x, y).B;
+
+                    //rot
+                    red[rotwert]++;
+                    if (red[rotwert] > maxRot)
+                        maxRot = red[rotwert];
+
+                    //grün
+                    greene[gruenwert]++;
+                    if (greene[gruenwert] > maxGruen)
+                        maxGruen = greene[gruenwert];
+
+                    //blau
+                    blue[blauwert]++;
+                    if (blue[blauwert] > maxBlau)
+                        maxBlau = blue[blauwert];
+                }
+                BwHisto.ReportProgress(x);
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            long groesste = 0;
+
+            if (maxBlau > maxGruen && maxBlau > maxRot)
+            {
+                groesste = maxBlau;
+            }
+            else if (maxGruen > maxBlau && maxGruen > maxRot)
+            {
+                groesste = maxGruen;
+            }
+            else
+                groesste = maxRot;
+
+            Debug.WriteLine(groesste);
+            Debug.WriteLine("Blau:" + maxBlau.ToString());
+
+            double ratio = 132.0 / (double)groesste;
+
+            //rot
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)red[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Red);
+                }
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+
+            //grün
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)greene[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    if (histogramm.GetPixel(x, 131 - b).R != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.Yellow);
+                    }
+                    else
+                        histogramm.SetPixel(x, 131 - b, Color.Green);
+                }
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+
+            //blau
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)blue[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    Color grab = histogramm.GetPixel(x + 1, 131 - b);
+                    if (grab.R != 0 && grab.G != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.Gray);
+                    }
+                    else if (grab.R != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.Magenta);
+                    }
+                    else if (grab.G != 0)
+                    {
+                        histogramm.SetPixel(x, 131 - b, Color.LightBlue);
+                    }
+                    else
+                        histogramm.SetPixel(x, 131 - b, Color.Blue);
+                }
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            parent.pictureBoxHistoRGB.Invoke(new Action(() => parent.pictureBoxHistoRGB.Image = histogramm));
+
         }
         public void calcRed()
         {
-            throw new System.NotImplementedException();
+            if (BwHisto.CancellationPending)
+                return;
+
+            Bitmap orig = new Bitmap(parent.bildPicturebox.Image);
+            int[] rot = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                rot[a] = 0;
+            }
+
+            //Fortschritt
+            parent.toolStripProgressBar.Value = 0;
+            //Abbrechen
+            parent.buttonCancelHistoRed.Invoke(new Action(() => parent.buttonCancelHistoRed.Visible = true));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int rotwert = orig.GetPixel(x, y).R;
+                    rot[rotwert]++;
+                    if (rot[rotwert] > max)
+                        max = rot[rotwert];
+                }
+                BwHisto.ReportProgress(x);
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)rot[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Red);
+                }
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            parent.pictureBoxHistoRed.Invoke(new Action(() => parent.pictureBoxHistoRed.Image = histogramm));
         }
         public void calcGreen()
         {
-            throw new System.NotImplementedException();
+            if (BwHisto.CancellationPending)
+                return;
+
+            Bitmap orig = new Bitmap(parent.bildPicturebox.Image);
+            int[] green = new int[256];
+            int max = 0;
+            for (int a = 0; a < 255; a++)
+            {
+                green[a] = 0;
+            }
+
+            //Fortschritt
+            parent.toolStripProgressBar.Value = 0;
+            //Abbrechen
+            parent.buttonCancelHistoGreen.Invoke(new Action(() => parent.buttonCancelHistoGreen.Visible = true));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int gruenwert = orig.GetPixel(x, y).G;
+                    green[gruenwert]++;
+                    if (green[gruenwert] > max)
+                        max = green[gruenwert];
+                }
+                BwHisto.ReportProgress(x);
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)green[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Green);
+                }
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            parent.pictureBoxHistoGruen.Invoke(new Action(() => parent.pictureBoxHistoGruen.Image = histogramm));
         }
         public void calcBlue()
         {
-            throw new System.NotImplementedException();
+            if (BwHisto.CancellationPending)
+                return;
+
+            Bitmap orig = new Bitmap(parent.bildPicturebox.Image);
+            int[] blue = new int[256];
+            int max = 0;
+            for (int a = 0; a <= 255; a++)
+            {
+                blue[a] = 0;
+            }
+
+            //Fortschritt
+            parent.toolStripProgressBar.Value = 0;
+            //Abbrechen
+            parent.buttonCancelHistoBlue.Invoke(new Action(() => parent.buttonCancelHistoBlue.Visible = true));
+
+            for (int x = 0; x < orig.Width; x++)
+            {
+                for (int y = 0; y < orig.Height; y++)
+                {
+                    int blauwert = orig.GetPixel(x, y).B;
+                    blue[blauwert]++;
+                    if (blue[blauwert] > max)
+                        max = blue[blauwert];
+                }
+                BwHisto.ReportProgress(x);
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            Bitmap histogramm = new Bitmap(258, 132);
+
+            double ratio = 132.0 / (double)max;
+
+            for (int x = 1; x <= 256; x++)
+            {
+                int y = (int)((double)blue[256 - x] * ratio);
+                for (int b = 0; b < y; b++)
+                {
+                    histogramm.SetPixel(x, 131 - b, Color.Blue);
+                }
+                if (BwHisto.CancellationPending)
+                    return;
+            }
+            parent.pictureBoxHistoBlau.Invoke(new Action(() => parent.pictureBoxHistoBlau.Image = histogramm));
         }
     }
 }

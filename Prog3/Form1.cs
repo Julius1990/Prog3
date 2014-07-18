@@ -21,26 +21,26 @@ namespace Prog3
             InitializeComponent();
             schrittSpeicherAnlegen();
 
+            //Histogramme
+            initialisiereHistogramme();
+
             //Accordion Menu
             initializeAccordionMenu();
-
-            //Backgroundworker
-            threadsInitialisieren();
 
             //Werkzeuge
             initialisiereTools();
 
             //Histogrammklasse
             histogramme = new _Histogramm(this);
-
-            //Histogramme
-            initialisiereHistogramme();
-
+            
             //Picturebox ordentlich anordnen
             bildPicturebox.Left = linkerContainer.Panel1.Left + 10;
             bildPicturebox.Top = linkerContainer.Panel1.Top + 35;
             bildPicturebox.Width = linkerContainer.Panel1.Width - 30;
             bildPicturebox.Height = linkerContainer.Panel1.Height - 55;
+
+            //Backgroundworker
+            threadsInitialisieren();
         }
     //----------------------------------------------------------------------------------------------------
     //Globale Variablen
@@ -76,7 +76,7 @@ namespace Prog3
         public Semaphore sem = new Semaphore(1, 1);
 
         //Histogramme
-        _Histogramm histogramme;
+        public _Histogramm histogramme;
 
     //----------------------------------------------------------------------------------------------------
     //MenuStrip
@@ -110,6 +110,9 @@ namespace Prog3
                     //rückgängig und wiederholen ausblenden
                     rückgängigToolStripMenuItem.Visible = false;
                     wiederholenToolStripMenuItem.Visible = false;
+
+                    toolStripProgressBar.Maximum = bildPicturebox.Image.Width;
+                    toolStripProgressBar.Value = 0;
 
                     getPicMeta();
                 }                
@@ -323,6 +326,9 @@ namespace Prog3
 
                 Debug.WriteLine("Schritt zurück Ausgeführt");
 
+                //Histogramme löschen
+                histogramme.clearAllHistos();
+
                 sem.Release();
             }
             else
@@ -347,6 +353,9 @@ namespace Prog3
 
                 Debug.WriteLine("Schritt vor Ausgeführt");
 
+                //Histogramme löschen
+                histogramme.clearAllHistos();
+
                 sem.Release();
             }
             else
@@ -365,6 +374,9 @@ namespace Prog3
             schrittSpeicherLoeschen();
 
             bildPicturebox.Image = null;
+
+            //Histogramme aufräumen
+            histogramme.clearAllHistos();
 
             //datei
             speichernUnterToolStripMenuItem.Visible = false;
@@ -711,7 +723,7 @@ namespace Prog3
     //Threads
         private void threadsInitialisieren()
         {
-            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histoBW};
+            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histoBW,histogramme.BwHisto};
         }
         private void threadsBeenden()
         {
@@ -1089,6 +1101,7 @@ namespace Prog3
 
     //----------------------------------------------------------------------------------------------------
     //Histogramme
+        
         //BackgroundWorker
         private void histoBW_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -1644,15 +1657,20 @@ namespace Prog3
                 c.CheckState = CheckState.Unchecked;
             }
         }
-
-        private void histoAbbrechenButton_Click(object sender, EventArgs e)
+        
+        private void histoBerechnungAbbrechen(object sender, EventArgs e)
         {
             threadsBeenden();
         }
-
-        private void tabControllHistogramme_Selected(object sender, TabControlEventArgs e)
+        
+        private void tabControllHistogramme_Click(object sender, EventArgs e)
         {
             histogramme.berechneHistogramm(tabControllHistogramme.SelectedTab.Text.ToString());
+        }
+
+        private void buttonCancelHistGray_Click(object sender, EventArgs e)
+        {
+            histogramme.BwHisto.CancelAsync();
         }
 
 
