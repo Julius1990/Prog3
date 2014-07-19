@@ -855,14 +855,14 @@
             // rückgängigToolStripMenuItem
             // 
             this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
-            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rückgängigToolStripMenuItem.Text = "Rückgängig";
             this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
             // 
             // wiederholenToolStripMenuItem
             // 
             this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
-            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.wiederholenToolStripMenuItem.Text = "Wiederholen";
             this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
             // 
@@ -1095,8 +1095,6 @@
         private System.Windows.Forms.ToolStripMenuItem speichernUnterToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog bildSpeichernDialog;
         private System.Windows.Forms.ToolStripMenuItem bearbeitenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rückgängigToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wiederholenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem schließenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speichernToolStripMenuItem;
@@ -1159,6 +1157,8 @@
         public System.Windows.Forms.Button buttonCancelHistoGreen;
         public System.Windows.Forms.Button buttonCancelHistoBlue;
         public System.Windows.Forms.ToolStripProgressBar toolStripProgressBar;
+        public System.Windows.Forms.ToolStripMenuItem rückgängigToolStripMenuItem;
+        public System.Windows.Forms.ToolStripMenuItem wiederholenToolStripMenuItem;
 
 
     }

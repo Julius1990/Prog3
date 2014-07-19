@@ -165,6 +165,7 @@ namespace Prog3
         //Alles Plätten wenn neues Bild geladen wird oder etwas bearbeitet wurde
         public void clearAllHistos()
         {
+            Debug.WriteLine("clearAllHistos()");
             foreach (PictureBox pi in HistoPictureBoxes)
             {
                 pi.Image = null;

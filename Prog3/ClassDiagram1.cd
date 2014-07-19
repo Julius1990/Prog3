@@ -6,19 +6,19 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>z6Q1Tb9g8PPoMRN+m62M6mnGS8Ra2TOGeWR+wby9vIs=</HashCode>
+      <HashCode>z6Q2Db1g8PPgIBN+mo2IiknGQ8QSWQOCOGR+wZisvIs=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.helligkeit">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+  <Class Name="Prog3.helligkeit" Collapsed="true">
+    <Position X="2.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAoIAKAKAACAJCAACAAEACAAAAQSAIEAAPAQAAAAU=</HashCode>
       <FileName>helligkeit.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.kontrast">
-    <Position X="11" Y="0.5" Width="1.5" />
+  <Class Name="Prog3.kontrast" Collapsed="true">
+    <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAIAiAEBApCAAiAQEACAAAAQQAAEAAHAQAACAI=</HashCode>
       <FileName>kontrast.cs</FileName>
@@ -41,7 +41,7 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.saettigung">
+  <Class Name="Prog3.saettigung" Collapsed="true">
     <Position X="2.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAABAIACAAAAJCAACAAFACAAAgQQADEAAHAQAAAAE=</HashCode>
@@ -60,11 +60,18 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3._Histogramm">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+  <Class Name="Prog3._Histogramm" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEBAAIVBAEBAAAACAAAIAAAAAAAEBACEAAAAAAA=</HashCode>
       <FileName>_histogramm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Prog3._schrittspeicher">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAQBAAAAAAAAAAAAIAAGABBAAAABAAAA=</HashCode>
+      <FileName>_schrittspeicher.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

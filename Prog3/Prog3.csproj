@@ -96,6 +96,7 @@
       <DependentUpon>saettigung.cs</DependentUpon>
     </Compile>
     <Compile Include="_histogramm.cs" />
+    <Compile Include="_schrittspeicher.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
