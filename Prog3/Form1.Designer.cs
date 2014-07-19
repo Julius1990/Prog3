@@ -45,22 +45,6 @@
             this.labelTextG = new System.Windows.Forms.Label();
             this.labelTextR = new System.Windows.Forms.Label();
             this.rechterContainer = new System.Windows.Forms.SplitContainer();
-            this.tabControllHistogramme = new System.Windows.Forms.TabControl();
-            this.tabGrau = new System.Windows.Forms.TabPage();
-            this.buttonCancelHistGray = new System.Windows.Forms.Button();
-            this.pictureBoxHistoGrau = new System.Windows.Forms.PictureBox();
-            this.tabRGB = new System.Windows.Forms.TabPage();
-            this.buttonCancelHistRGB = new System.Windows.Forms.Button();
-            this.pictureBoxHistoRGB = new System.Windows.Forms.PictureBox();
-            this.tabR = new System.Windows.Forms.TabPage();
-            this.buttonCancelHistoRed = new System.Windows.Forms.Button();
-            this.pictureBoxHistoRed = new System.Windows.Forms.PictureBox();
-            this.tabG = new System.Windows.Forms.TabPage();
-            this.buttonCancelHistoGreen = new System.Windows.Forms.Button();
-            this.pictureBoxHistoGruen = new System.Windows.Forms.PictureBox();
-            this.tabB = new System.Windows.Forms.TabPage();
-            this.buttonCancelHistoBlue = new System.Windows.Forms.Button();
-            this.pictureBoxHistoBlau = new System.Windows.Forms.PictureBox();
             this.filterCheckBox = new System.Windows.Forms.CheckBox();
             this.FilterPanel = new System.Windows.Forms.Panel();
             this.sepiaButton = new System.Windows.Forms.Button();
@@ -81,19 +65,22 @@
             this.helligkeitButton = new System.Windows.Forms.Button();
             this.saettigungButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.histoPanel = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.histoPictureboxPanel = new System.Windows.Forms.Panel();
-            this.histoAbbrechenButton = new System.Windows.Forms.Button();
-            this.histoProgressBar = new System.Windows.Forms.ProgressBar();
-            this.histoPictureBox = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rgbHistCheckBox = new System.Windows.Forms.CheckBox();
-            this.grauHistCheckBox = new System.Windows.Forms.CheckBox();
-            this.bHistCheckBox = new System.Windows.Forms.CheckBox();
-            this.rHistCheckBox = new System.Windows.Forms.CheckBox();
-            this.gHistCheckBox = new System.Windows.Forms.CheckBox();
+            this.tabControllHistogramme = new System.Windows.Forms.TabControl();
+            this.tabGrau = new System.Windows.Forms.TabPage();
+            this.buttonCancelHistGray = new System.Windows.Forms.Button();
+            this.pictureBoxHistoGrau = new System.Windows.Forms.PictureBox();
+            this.tabRGB = new System.Windows.Forms.TabPage();
+            this.buttonCancelHistRGB = new System.Windows.Forms.Button();
+            this.pictureBoxHistoRGB = new System.Windows.Forms.PictureBox();
+            this.tabR = new System.Windows.Forms.TabPage();
+            this.buttonCancelHistoRed = new System.Windows.Forms.Button();
+            this.pictureBoxHistoRed = new System.Windows.Forms.PictureBox();
+            this.tabG = new System.Windows.Forms.TabPage();
+            this.buttonCancelHistoGreen = new System.Windows.Forms.Button();
+            this.pictureBoxHistoGruen = new System.Windows.Forms.PictureBox();
+            this.tabB = new System.Windows.Forms.TabPage();
+            this.buttonCancelHistoBlue = new System.Windows.Forms.Button();
+            this.pictureBoxHistoBlau = new System.Windows.Forms.PictureBox();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.dateiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +110,6 @@
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
-            this.histoBW = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -137,6 +123,10 @@
             this.rechterContainer.Panel1.SuspendLayout();
             this.rechterContainer.Panel2.SuspendLayout();
             this.rechterContainer.SuspendLayout();
+            this.FilterPanel.SuspendLayout();
+            this.ansichtPanel.SuspendLayout();
+            this.werkzeugPanel.SuspendLayout();
+            this.korrekturenPanel.SuspendLayout();
             this.tabControllHistogramme.SuspendLayout();
             this.tabGrau.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoGrau)).BeginInit();
@@ -148,14 +138,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoGruen)).BeginInit();
             this.tabB.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoBlau)).BeginInit();
-            this.FilterPanel.SuspendLayout();
-            this.ansichtPanel.SuspendLayout();
-            this.werkzeugPanel.SuspendLayout();
-            this.korrekturenPanel.SuspendLayout();
-            this.histoPanel.SuspendLayout();
-            this.histoPictureboxPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).BeginInit();
-            this.panel1.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.randUntenPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -178,7 +160,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rechterContainer);
             this.splitContainer1.Size = new System.Drawing.Size(1057, 480);
-            this.splitContainer1.SplitterDistance = 547;
+            this.splitContainer1.SplitterDistance = 625;
             this.splitContainer1.TabIndex = 5;
             // 
             // linkerContainer
@@ -208,7 +190,7 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextB);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
-            this.linkerContainer.Size = new System.Drawing.Size(547, 480);
+            this.linkerContainer.Size = new System.Drawing.Size(625, 480);
             this.linkerContainer.SplitterDistance = 399;
             this.linkerContainer.TabIndex = 0;
             // 
@@ -346,14 +328,13 @@
             this.rechterContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rechterContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rechterContainer.Location = new System.Drawing.Point(0, 0);
-            this.rechterContainer.MinimumSize = new System.Drawing.Size(113, 0);
+            this.rechterContainer.MinimumSize = new System.Drawing.Size(272, 0);
             this.rechterContainer.Name = "rechterContainer";
             this.rechterContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // rechterContainer.Panel1
             // 
             this.rechterContainer.Panel1.AutoScroll = true;
-            this.rechterContainer.Panel1.Controls.Add(this.tabControllHistogramme);
             this.rechterContainer.Panel1.Controls.Add(this.filterCheckBox);
             this.rechterContainer.Panel1.Controls.Add(this.FilterPanel);
             this.rechterContainer.Panel1.Controls.Add(this.ansichtPanel);
@@ -365,194 +346,10 @@
             // 
             // rechterContainer.Panel2
             // 
-            this.rechterContainer.Panel2.Controls.Add(this.histoPanel);
-            this.rechterContainer.Size = new System.Drawing.Size(506, 480);
-            this.rechterContainer.SplitterDistance = 314;
+            this.rechterContainer.Panel2.Controls.Add(this.tabControllHistogramme);
+            this.rechterContainer.Size = new System.Drawing.Size(428, 480);
+            this.rechterContainer.SplitterDistance = 278;
             this.rechterContainer.TabIndex = 0;
-            // 
-            // tabControllHistogramme
-            // 
-            this.tabControllHistogramme.Controls.Add(this.tabGrau);
-            this.tabControllHistogramme.Controls.Add(this.tabRGB);
-            this.tabControllHistogramme.Controls.Add(this.tabR);
-            this.tabControllHistogramme.Controls.Add(this.tabG);
-            this.tabControllHistogramme.Controls.Add(this.tabB);
-            this.tabControllHistogramme.Location = new System.Drawing.Point(176, 124);
-            this.tabControllHistogramme.Name = "tabControllHistogramme";
-            this.tabControllHistogramme.SelectedIndex = 0;
-            this.tabControllHistogramme.Size = new System.Drawing.Size(309, 185);
-            this.tabControllHistogramme.TabIndex = 12;
-            this.tabControllHistogramme.Click += new System.EventHandler(this.tabControllHistogramme_Click);
-            // 
-            // tabGrau
-            // 
-            this.tabGrau.Controls.Add(this.buttonCancelHistGray);
-            this.tabGrau.Controls.Add(this.pictureBoxHistoGrau);
-            this.tabGrau.Location = new System.Drawing.Point(4, 22);
-            this.tabGrau.Name = "tabGrau";
-            this.tabGrau.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGrau.Size = new System.Drawing.Size(301, 159);
-            this.tabGrau.TabIndex = 0;
-            this.tabGrau.Text = "Grau";
-            this.tabGrau.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancelHistGray
-            // 
-            this.buttonCancelHistGray.Location = new System.Drawing.Point(59, 86);
-            this.buttonCancelHistGray.Name = "buttonCancelHistGray";
-            this.buttonCancelHistGray.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelHistGray.TabIndex = 2;
-            this.buttonCancelHistGray.Text = "Abbrechen";
-            this.buttonCancelHistGray.UseVisualStyleBackColor = true;
-            this.buttonCancelHistGray.Visible = false;
-            this.buttonCancelHistGray.Click += new System.EventHandler(this.buttonCancelHistGray_Click);
-            // 
-            // pictureBoxHistoGrau
-            // 
-            this.pictureBoxHistoGrau.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBoxHistoGrau.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoGrau.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxHistoGrau.Name = "pictureBoxHistoGrau";
-            this.pictureBoxHistoGrau.Size = new System.Drawing.Size(295, 153);
-            this.pictureBoxHistoGrau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxHistoGrau.TabIndex = 0;
-            this.pictureBoxHistoGrau.TabStop = false;
-            // 
-            // tabRGB
-            // 
-            this.tabRGB.Controls.Add(this.buttonCancelHistRGB);
-            this.tabRGB.Controls.Add(this.pictureBoxHistoRGB);
-            this.tabRGB.Location = new System.Drawing.Point(4, 22);
-            this.tabRGB.Name = "tabRGB";
-            this.tabRGB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRGB.Size = new System.Drawing.Size(301, 159);
-            this.tabRGB.TabIndex = 1;
-            this.tabRGB.Text = "RGB";
-            this.tabRGB.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancelHistRGB
-            // 
-            this.buttonCancelHistRGB.Location = new System.Drawing.Point(54, 92);
-            this.buttonCancelHistRGB.Name = "buttonCancelHistRGB";
-            this.buttonCancelHistRGB.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelHistRGB.TabIndex = 1;
-            this.buttonCancelHistRGB.Text = "Abbrechen";
-            this.buttonCancelHistRGB.UseVisualStyleBackColor = true;
-            this.buttonCancelHistRGB.Visible = false;
-            this.buttonCancelHistRGB.Click += new System.EventHandler(this.buttonCancelHistGray_Click);
-            // 
-            // pictureBoxHistoRGB
-            // 
-            this.pictureBoxHistoRGB.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBoxHistoRGB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoRGB.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxHistoRGB.Name = "pictureBoxHistoRGB";
-            this.pictureBoxHistoRGB.Size = new System.Drawing.Size(295, 153);
-            this.pictureBoxHistoRGB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxHistoRGB.TabIndex = 0;
-            this.pictureBoxHistoRGB.TabStop = false;
-            // 
-            // tabR
-            // 
-            this.tabR.Controls.Add(this.buttonCancelHistoRed);
-            this.tabR.Controls.Add(this.pictureBoxHistoRed);
-            this.tabR.Location = new System.Drawing.Point(4, 22);
-            this.tabR.Name = "tabR";
-            this.tabR.Padding = new System.Windows.Forms.Padding(3);
-            this.tabR.Size = new System.Drawing.Size(301, 159);
-            this.tabR.TabIndex = 2;
-            this.tabR.Text = "Rot";
-            this.tabR.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancelHistoRed
-            // 
-            this.buttonCancelHistoRed.Location = new System.Drawing.Point(119, 99);
-            this.buttonCancelHistoRed.Name = "buttonCancelHistoRed";
-            this.buttonCancelHistoRed.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelHistoRed.TabIndex = 4;
-            this.buttonCancelHistoRed.Text = "Abbrechen";
-            this.buttonCancelHistoRed.UseVisualStyleBackColor = true;
-            this.buttonCancelHistoRed.Visible = false;
-            this.buttonCancelHistoRed.Click += new System.EventHandler(this.buttonCancelHistGray_Click);
-            // 
-            // pictureBoxHistoRed
-            // 
-            this.pictureBoxHistoRed.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBoxHistoRed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoRed.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxHistoRed.Name = "pictureBoxHistoRed";
-            this.pictureBoxHistoRed.Size = new System.Drawing.Size(295, 153);
-            this.pictureBoxHistoRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxHistoRed.TabIndex = 0;
-            this.pictureBoxHistoRed.TabStop = false;
-            // 
-            // tabG
-            // 
-            this.tabG.Controls.Add(this.buttonCancelHistoGreen);
-            this.tabG.Controls.Add(this.pictureBoxHistoGruen);
-            this.tabG.Location = new System.Drawing.Point(4, 22);
-            this.tabG.Name = "tabG";
-            this.tabG.Padding = new System.Windows.Forms.Padding(3);
-            this.tabG.Size = new System.Drawing.Size(301, 159);
-            this.tabG.TabIndex = 3;
-            this.tabG.Text = "Grün";
-            this.tabG.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancelHistoGreen
-            // 
-            this.buttonCancelHistoGreen.Location = new System.Drawing.Point(119, 99);
-            this.buttonCancelHistoGreen.Name = "buttonCancelHistoGreen";
-            this.buttonCancelHistoGreen.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelHistoGreen.TabIndex = 4;
-            this.buttonCancelHistoGreen.Text = "Abbrechen";
-            this.buttonCancelHistoGreen.UseVisualStyleBackColor = true;
-            this.buttonCancelHistoGreen.Visible = false;
-            this.buttonCancelHistoGreen.Click += new System.EventHandler(this.buttonCancelHistGray_Click);
-            // 
-            // pictureBoxHistoGruen
-            // 
-            this.pictureBoxHistoGruen.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBoxHistoGruen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoGruen.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxHistoGruen.Name = "pictureBoxHistoGruen";
-            this.pictureBoxHistoGruen.Size = new System.Drawing.Size(295, 153);
-            this.pictureBoxHistoGruen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxHistoGruen.TabIndex = 0;
-            this.pictureBoxHistoGruen.TabStop = false;
-            // 
-            // tabB
-            // 
-            this.tabB.Controls.Add(this.buttonCancelHistoBlue);
-            this.tabB.Controls.Add(this.pictureBoxHistoBlau);
-            this.tabB.Location = new System.Drawing.Point(4, 22);
-            this.tabB.Name = "tabB";
-            this.tabB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabB.Size = new System.Drawing.Size(301, 159);
-            this.tabB.TabIndex = 4;
-            this.tabB.Text = "Blau";
-            this.tabB.UseVisualStyleBackColor = true;
-            // 
-            // buttonCancelHistoBlue
-            // 
-            this.buttonCancelHistoBlue.Location = new System.Drawing.Point(119, 99);
-            this.buttonCancelHistoBlue.Name = "buttonCancelHistoBlue";
-            this.buttonCancelHistoBlue.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancelHistoBlue.TabIndex = 4;
-            this.buttonCancelHistoBlue.Text = "Abbrechen";
-            this.buttonCancelHistoBlue.UseVisualStyleBackColor = true;
-            this.buttonCancelHistoBlue.Visible = false;
-            this.buttonCancelHistoBlue.Click += new System.EventHandler(this.buttonCancelHistGray_Click);
-            // 
-            // pictureBoxHistoBlau
-            // 
-            this.pictureBoxHistoBlau.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pictureBoxHistoBlau.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoBlau.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxHistoBlau.Name = "pictureBoxHistoBlau";
-            this.pictureBoxHistoBlau.Size = new System.Drawing.Size(295, 153);
-            this.pictureBoxHistoBlau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxHistoBlau.TabIndex = 0;
-            this.pictureBoxHistoBlau.TabStop = false;
             // 
             // filterCheckBox
             // 
@@ -561,7 +358,7 @@
             this.filterCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.filterCheckBox.Location = new System.Drawing.Point(3, 121);
             this.filterCheckBox.Name = "filterCheckBox";
-            this.filterCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.filterCheckBox.Size = new System.Drawing.Size(256, 24);
             this.filterCheckBox.TabIndex = 11;
             this.filterCheckBox.Text = "      Filter";
             this.filterCheckBox.UseVisualStyleBackColor = true;
@@ -573,9 +370,9 @@
             this.FilterPanel.Controls.Add(this.sepiaButton);
             this.FilterPanel.Controls.Add(this.invertedButton);
             this.FilterPanel.Controls.Add(this.greyValButton);
-            this.FilterPanel.Location = new System.Drawing.Point(338, 31);
+            this.FilterPanel.Location = new System.Drawing.Point(3, 382);
             this.FilterPanel.Name = "FilterPanel";
-            this.FilterPanel.Size = new System.Drawing.Size(161, 86);
+            this.FilterPanel.Size = new System.Drawing.Size(256, 86);
             this.FilterPanel.TabIndex = 10;
             this.FilterPanel.Visible = false;
             // 
@@ -621,7 +418,7 @@
             this.ansichtPanel.Controls.Add(this.zoomInButton);
             this.ansichtPanel.Location = new System.Drawing.Point(4, 214);
             this.ansichtPanel.Name = "ansichtPanel";
-            this.ansichtPanel.Size = new System.Drawing.Size(161, 62);
+            this.ansichtPanel.Size = new System.Drawing.Size(255, 62);
             this.ansichtPanel.TabIndex = 5;
             this.ansichtPanel.Visible = false;
             // 
@@ -677,7 +474,7 @@
             this.korrekturenCheckBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.korrekturenCheckBox.Location = new System.Drawing.Point(3, 31);
             this.korrekturenCheckBox.Name = "korrekturenCheckBox";
-            this.korrekturenCheckBox.Size = new System.Drawing.Size(162, 24);
+            this.korrekturenCheckBox.Size = new System.Drawing.Size(256, 24);
             this.korrekturenCheckBox.TabIndex = 9;
             this.korrekturenCheckBox.Text = "      Korrekturen";
             this.korrekturenCheckBox.UseVisualStyleBackColor = true;
@@ -690,7 +487,7 @@
             this.werkzeugeCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.werkzeugeCheckBox.Location = new System.Drawing.Point(3, 61);
             this.werkzeugeCheckBox.Name = "werkzeugeCheckBox";
-            this.werkzeugeCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.werkzeugeCheckBox.Size = new System.Drawing.Size(256, 24);
             this.werkzeugeCheckBox.TabIndex = 8;
             this.werkzeugeCheckBox.Text = "      Werkzeuge";
             this.werkzeugeCheckBox.UseVisualStyleBackColor = true;
@@ -703,7 +500,7 @@
             this.ansichtCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ansichtCheckBox.Location = new System.Drawing.Point(3, 91);
             this.ansichtCheckBox.Name = "ansichtCheckBox";
-            this.ansichtCheckBox.Size = new System.Drawing.Size(161, 24);
+            this.ansichtCheckBox.Size = new System.Drawing.Size(256, 24);
             this.ansichtCheckBox.TabIndex = 7;
             this.ansichtCheckBox.Text = "      Ansicht";
             this.ansichtCheckBox.UseVisualStyleBackColor = true;
@@ -716,7 +513,7 @@
             this.werkzeugPanel.Controls.Add(this.colorPickerCheckBox);
             this.werkzeugPanel.Location = new System.Drawing.Point(4, 151);
             this.werkzeugPanel.Name = "werkzeugPanel";
-            this.werkzeugPanel.Size = new System.Drawing.Size(161, 57);
+            this.werkzeugPanel.Size = new System.Drawing.Size(255, 57);
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
             // 
@@ -750,9 +547,9 @@
             this.korrekturenPanel.Controls.Add(this.helligkeitButton);
             this.korrekturenPanel.Controls.Add(this.saettigungButton);
             this.korrekturenPanel.Controls.Add(this.button2);
-            this.korrekturenPanel.Location = new System.Drawing.Point(171, 31);
+            this.korrekturenPanel.Location = new System.Drawing.Point(3, 282);
             this.korrekturenPanel.Name = "korrekturenPanel";
-            this.korrekturenPanel.Size = new System.Drawing.Size(161, 94);
+            this.korrekturenPanel.Size = new System.Drawing.Size(256, 94);
             this.korrekturenPanel.TabIndex = 1;
             this.korrekturenPanel.Visible = false;
             // 
@@ -786,162 +583,200 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.kontrastButton_Click);
             // 
-            // histoPanel
+            // tabControllHistogramme
             // 
-            this.histoPanel.Controls.Add(this.panel3);
-            this.histoPanel.Controls.Add(this.panel2);
-            this.histoPanel.Controls.Add(this.histoPictureboxPanel);
-            this.histoPanel.Controls.Add(this.panel1);
-            this.histoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.histoPanel.Location = new System.Drawing.Point(0, 0);
-            this.histoPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.histoPanel.Name = "histoPanel";
-            this.histoPanel.Size = new System.Drawing.Size(504, 160);
-            this.histoPanel.TabIndex = 0;
+            this.tabControllHistogramme.Controls.Add(this.tabGrau);
+            this.tabControllHistogramme.Controls.Add(this.tabRGB);
+            this.tabControllHistogramme.Controls.Add(this.tabR);
+            this.tabControllHistogramme.Controls.Add(this.tabG);
+            this.tabControllHistogramme.Controls.Add(this.tabB);
+            this.tabControllHistogramme.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControllHistogramme.Location = new System.Drawing.Point(0, 0);
+            this.tabControllHistogramme.Name = "tabControllHistogramme";
+            this.tabControllHistogramme.SelectedIndex = 0;
+            this.tabControllHistogramme.Size = new System.Drawing.Size(426, 196);
+            this.tabControllHistogramme.TabIndex = 12;
+            this.tabControllHistogramme.Click += new System.EventHandler(this.tabControllHistogramme_Click);
             // 
-            // panel3
+            // tabGrau
             // 
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 25);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.MinimumSize = new System.Drawing.Size(3, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(3, 135);
-            this.panel3.TabIndex = 10;
+            this.tabGrau.Controls.Add(this.buttonCancelHistGray);
+            this.tabGrau.Controls.Add(this.pictureBoxHistoGrau);
+            this.tabGrau.Location = new System.Drawing.Point(4, 22);
+            this.tabGrau.Name = "tabGrau";
+            this.tabGrau.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGrau.Size = new System.Drawing.Size(418, 170);
+            this.tabGrau.TabIndex = 0;
+            this.tabGrau.Text = "Grau";
+            this.tabGrau.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // buttonCancelHistGray
             // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(501, 25);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.MinimumSize = new System.Drawing.Size(3, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(3, 135);
-            this.panel2.TabIndex = 9;
+            this.buttonCancelHistGray.AutoSize = true;
+            this.buttonCancelHistGray.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelHistGray.Location = new System.Drawing.Point(59, 86);
+            this.buttonCancelHistGray.Name = "buttonCancelHistGray";
+            this.buttonCancelHistGray.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistGray.TabIndex = 2;
+            this.buttonCancelHistGray.Text = "Abbrechen";
+            this.buttonCancelHistGray.UseVisualStyleBackColor = true;
+            this.buttonCancelHistGray.Visible = false;
+            this.buttonCancelHistGray.Click += new System.EventHandler(this.cancelHistoCalc);
             // 
-            // histoPictureboxPanel
+            // pictureBoxHistoGrau
             // 
-            this.histoPictureboxPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.histoPictureboxPanel.Controls.Add(this.histoAbbrechenButton);
-            this.histoPictureboxPanel.Controls.Add(this.histoProgressBar);
-            this.histoPictureboxPanel.Controls.Add(this.histoPictureBox);
-            this.histoPictureboxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.histoPictureboxPanel.Location = new System.Drawing.Point(0, 25);
-            this.histoPictureboxPanel.Margin = new System.Windows.Forms.Padding(2);
-            this.histoPictureboxPanel.Name = "histoPictureboxPanel";
-            this.histoPictureboxPanel.Size = new System.Drawing.Size(504, 135);
-            this.histoPictureboxPanel.TabIndex = 8;
+            this.pictureBoxHistoGrau.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBoxHistoGrau.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxHistoGrau.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoGrau.Name = "pictureBoxHistoGrau";
+            this.pictureBoxHistoGrau.Size = new System.Drawing.Size(412, 164);
+            this.pictureBoxHistoGrau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxHistoGrau.TabIndex = 0;
+            this.pictureBoxHistoGrau.TabStop = false;
             // 
-            // histoAbbrechenButton
+            // tabRGB
             // 
-            this.histoAbbrechenButton.Location = new System.Drawing.Point(8, 91);
-            this.histoAbbrechenButton.Name = "histoAbbrechenButton";
-            this.histoAbbrechenButton.Size = new System.Drawing.Size(75, 23);
-            this.histoAbbrechenButton.TabIndex = 13;
-            this.histoAbbrechenButton.Text = "Abbrechen";
-            this.histoAbbrechenButton.UseVisualStyleBackColor = true;
-            this.histoAbbrechenButton.Visible = false;
-            this.histoAbbrechenButton.Click += new System.EventHandler(this.histoBerechnungAbbrechen);
+            this.tabRGB.Controls.Add(this.buttonCancelHistRGB);
+            this.tabRGB.Controls.Add(this.pictureBoxHistoRGB);
+            this.tabRGB.Location = new System.Drawing.Point(4, 22);
+            this.tabRGB.Name = "tabRGB";
+            this.tabRGB.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRGB.Size = new System.Drawing.Size(262, 170);
+            this.tabRGB.TabIndex = 1;
+            this.tabRGB.Text = "RGB";
+            this.tabRGB.UseVisualStyleBackColor = true;
             // 
-            // histoProgressBar
+            // buttonCancelHistRGB
             // 
-            this.histoProgressBar.Location = new System.Drawing.Point(7, 50);
-            this.histoProgressBar.Margin = new System.Windows.Forms.Padding(2);
-            this.histoProgressBar.Name = "histoProgressBar";
-            this.histoProgressBar.Size = new System.Drawing.Size(148, 27);
-            this.histoProgressBar.TabIndex = 1;
-            this.histoProgressBar.Visible = false;
+            this.buttonCancelHistRGB.AutoSize = true;
+            this.buttonCancelHistRGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelHistRGB.Location = new System.Drawing.Point(54, 92);
+            this.buttonCancelHistRGB.Name = "buttonCancelHistRGB";
+            this.buttonCancelHistRGB.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistRGB.TabIndex = 1;
+            this.buttonCancelHistRGB.Text = "Abbrechen";
+            this.buttonCancelHistRGB.UseVisualStyleBackColor = true;
+            this.buttonCancelHistRGB.Visible = false;
+            this.buttonCancelHistRGB.Click += new System.EventHandler(this.cancelHistoCalc);
             // 
-            // histoPictureBox
+            // pictureBoxHistoRGB
             // 
-            this.histoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.histoPictureBox.Location = new System.Drawing.Point(0, 0);
-            this.histoPictureBox.Margin = new System.Windows.Forms.Padding(2);
-            this.histoPictureBox.Name = "histoPictureBox";
-            this.histoPictureBox.Size = new System.Drawing.Size(504, 135);
-            this.histoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.histoPictureBox.TabIndex = 0;
-            this.histoPictureBox.TabStop = false;
+            this.pictureBoxHistoRGB.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBoxHistoRGB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxHistoRGB.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoRGB.Name = "pictureBoxHistoRGB";
+            this.pictureBoxHistoRGB.Size = new System.Drawing.Size(256, 164);
+            this.pictureBoxHistoRGB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxHistoRGB.TabIndex = 0;
+            this.pictureBoxHistoRGB.TabStop = false;
             // 
-            // panel1
+            // tabR
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.Controls.Add(this.rgbHistCheckBox);
-            this.panel1.Controls.Add(this.grauHistCheckBox);
-            this.panel1.Controls.Add(this.bHistCheckBox);
-            this.panel1.Controls.Add(this.rHistCheckBox);
-            this.panel1.Controls.Add(this.gHistCheckBox);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(504, 25);
-            this.panel1.TabIndex = 7;
+            this.tabR.Controls.Add(this.buttonCancelHistoRed);
+            this.tabR.Controls.Add(this.pictureBoxHistoRed);
+            this.tabR.Location = new System.Drawing.Point(4, 22);
+            this.tabR.Name = "tabR";
+            this.tabR.Padding = new System.Windows.Forms.Padding(3);
+            this.tabR.Size = new System.Drawing.Size(262, 170);
+            this.tabR.TabIndex = 2;
+            this.tabR.Text = "Rot";
+            this.tabR.UseVisualStyleBackColor = true;
             // 
-            // rgbHistCheckBox
+            // buttonCancelHistoRed
             // 
-            this.rgbHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rgbHistCheckBox.AutoSize = true;
-            this.rgbHistCheckBox.Location = new System.Drawing.Point(38, 0);
-            this.rgbHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.rgbHistCheckBox.Name = "rgbHistCheckBox";
-            this.rgbHistCheckBox.Size = new System.Drawing.Size(40, 23);
-            this.rgbHistCheckBox.TabIndex = 2;
-            this.rgbHistCheckBox.Text = "RGB";
-            this.rgbHistCheckBox.UseVisualStyleBackColor = true;
-            this.rgbHistCheckBox.CheckedChanged += new System.EventHandler(this.rgbHistCheckBox_CheckedChanged);
+            this.buttonCancelHistoRed.AutoSize = true;
+            this.buttonCancelHistoRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelHistoRed.Location = new System.Drawing.Point(119, 99);
+            this.buttonCancelHistoRed.Name = "buttonCancelHistoRed";
+            this.buttonCancelHistoRed.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistoRed.TabIndex = 4;
+            this.buttonCancelHistoRed.Text = "Abbrechen";
+            this.buttonCancelHistoRed.UseVisualStyleBackColor = true;
+            this.buttonCancelHistoRed.Visible = false;
+            this.buttonCancelHistoRed.Click += new System.EventHandler(this.cancelHistoCalc);
             // 
-            // grauHistCheckBox
+            // pictureBoxHistoRed
             // 
-            this.grauHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.grauHistCheckBox.AutoSize = true;
-            this.grauHistCheckBox.Location = new System.Drawing.Point(2, 0);
-            this.grauHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.grauHistCheckBox.Name = "grauHistCheckBox";
-            this.grauHistCheckBox.Size = new System.Drawing.Size(40, 23);
-            this.grauHistCheckBox.TabIndex = 1;
-            this.grauHistCheckBox.Text = "Grau";
-            this.grauHistCheckBox.UseVisualStyleBackColor = true;
-            this.grauHistCheckBox.CheckedChanged += new System.EventHandler(this.grauHistCheckBox_CheckedChanged);
+            this.pictureBoxHistoRed.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBoxHistoRed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxHistoRed.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoRed.Name = "pictureBoxHistoRed";
+            this.pictureBoxHistoRed.Size = new System.Drawing.Size(256, 164);
+            this.pictureBoxHistoRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxHistoRed.TabIndex = 0;
+            this.pictureBoxHistoRed.TabStop = false;
             // 
-            // bHistCheckBox
+            // tabG
             // 
-            this.bHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.bHistCheckBox.AutoSize = true;
-            this.bHistCheckBox.Location = new System.Drawing.Point(140, 0);
-            this.bHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.bHistCheckBox.Name = "bHistCheckBox";
-            this.bHistCheckBox.Size = new System.Drawing.Size(24, 23);
-            this.bHistCheckBox.TabIndex = 5;
-            this.bHistCheckBox.Text = "B";
-            this.bHistCheckBox.UseVisualStyleBackColor = true;
-            this.bHistCheckBox.CheckedChanged += new System.EventHandler(this.bHistCheckBox_CheckedChanged);
+            this.tabG.Controls.Add(this.buttonCancelHistoGreen);
+            this.tabG.Controls.Add(this.pictureBoxHistoGruen);
+            this.tabG.Location = new System.Drawing.Point(4, 22);
+            this.tabG.Name = "tabG";
+            this.tabG.Padding = new System.Windows.Forms.Padding(3);
+            this.tabG.Size = new System.Drawing.Size(262, 170);
+            this.tabG.TabIndex = 3;
+            this.tabG.Text = "Grün";
+            this.tabG.UseVisualStyleBackColor = true;
             // 
-            // rHistCheckBox
+            // buttonCancelHistoGreen
             // 
-            this.rHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rHistCheckBox.AutoSize = true;
-            this.rHistCheckBox.Location = new System.Drawing.Point(93, 0);
-            this.rHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.rHistCheckBox.Name = "rHistCheckBox";
-            this.rHistCheckBox.Size = new System.Drawing.Size(25, 23);
-            this.rHistCheckBox.TabIndex = 3;
-            this.rHistCheckBox.Text = "R";
-            this.rHistCheckBox.UseVisualStyleBackColor = true;
-            this.rHistCheckBox.CheckedChanged += new System.EventHandler(this.rHistCheckBox_CheckedChanged);
+            this.buttonCancelHistoGreen.AutoSize = true;
+            this.buttonCancelHistoGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelHistoGreen.Location = new System.Drawing.Point(119, 99);
+            this.buttonCancelHistoGreen.Name = "buttonCancelHistoGreen";
+            this.buttonCancelHistoGreen.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistoGreen.TabIndex = 4;
+            this.buttonCancelHistoGreen.Text = "Abbrechen";
+            this.buttonCancelHistoGreen.UseVisualStyleBackColor = true;
+            this.buttonCancelHistoGreen.Visible = false;
+            this.buttonCancelHistoGreen.Click += new System.EventHandler(this.cancelHistoCalc);
             // 
-            // gHistCheckBox
+            // pictureBoxHistoGruen
             // 
-            this.gHistCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.gHistCheckBox.AutoSize = true;
-            this.gHistCheckBox.Location = new System.Drawing.Point(117, 0);
-            this.gHistCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.gHistCheckBox.Name = "gHistCheckBox";
-            this.gHistCheckBox.Size = new System.Drawing.Size(25, 23);
-            this.gHistCheckBox.TabIndex = 4;
-            this.gHistCheckBox.Text = "G";
-            this.gHistCheckBox.UseVisualStyleBackColor = true;
-            this.gHistCheckBox.CheckedChanged += new System.EventHandler(this.gHistCheckBox_CheckedChanged);
+            this.pictureBoxHistoGruen.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBoxHistoGruen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxHistoGruen.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoGruen.Name = "pictureBoxHistoGruen";
+            this.pictureBoxHistoGruen.Size = new System.Drawing.Size(256, 164);
+            this.pictureBoxHistoGruen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxHistoGruen.TabIndex = 0;
+            this.pictureBoxHistoGruen.TabStop = false;
+            // 
+            // tabB
+            // 
+            this.tabB.Controls.Add(this.buttonCancelHistoBlue);
+            this.tabB.Controls.Add(this.pictureBoxHistoBlau);
+            this.tabB.Location = new System.Drawing.Point(4, 22);
+            this.tabB.Name = "tabB";
+            this.tabB.Padding = new System.Windows.Forms.Padding(3);
+            this.tabB.Size = new System.Drawing.Size(262, 170);
+            this.tabB.TabIndex = 4;
+            this.tabB.Text = "Blau";
+            this.tabB.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancelHistoBlue
+            // 
+            this.buttonCancelHistoBlue.AutoSize = true;
+            this.buttonCancelHistoBlue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelHistoBlue.Location = new System.Drawing.Point(119, 99);
+            this.buttonCancelHistoBlue.Name = "buttonCancelHistoBlue";
+            this.buttonCancelHistoBlue.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistoBlue.TabIndex = 4;
+            this.buttonCancelHistoBlue.Text = "Abbrechen";
+            this.buttonCancelHistoBlue.UseVisualStyleBackColor = true;
+            this.buttonCancelHistoBlue.Visible = false;
+            this.buttonCancelHistoBlue.Click += new System.EventHandler(this.cancelHistoCalc);
+            // 
+            // pictureBoxHistoBlau
+            // 
+            this.pictureBoxHistoBlau.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pictureBoxHistoBlau.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxHistoBlau.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoBlau.Name = "pictureBoxHistoBlau";
+            this.pictureBoxHistoBlau.Size = new System.Drawing.Size(256, 164);
+            this.pictureBoxHistoBlau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxHistoBlau.TabIndex = 0;
+            this.pictureBoxHistoBlau.TabStop = false;
             // 
             // menuStrip2
             // 
@@ -1180,14 +1015,6 @@
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
             // 
-            // histoBW
-            // 
-            this.histoBW.WorkerReportsProgress = true;
-            this.histoBW.WorkerSupportsCancellation = true;
-            this.histoBW.DoWork += new System.ComponentModel.DoWorkEventHandler(this.histoBW_DoWork);
-            this.histoBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.histoBW_ProgressChanged);
-            this.histoBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.histoBW_RunWorkerCompleted);
-            // 
             // _hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1216,27 +1043,26 @@
             this.rechterContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rechterContainer)).EndInit();
             this.rechterContainer.ResumeLayout(false);
-            this.tabControllHistogramme.ResumeLayout(false);
-            this.tabGrau.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoGrau)).EndInit();
-            this.tabRGB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoRGB)).EndInit();
-            this.tabR.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoRed)).EndInit();
-            this.tabG.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoGruen)).EndInit();
-            this.tabB.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoBlau)).EndInit();
             this.FilterPanel.ResumeLayout(false);
             this.ansichtPanel.ResumeLayout(false);
             this.werkzeugPanel.ResumeLayout(false);
             this.korrekturenPanel.ResumeLayout(false);
-            this.histoPanel.ResumeLayout(false);
-            this.histoPanel.PerformLayout();
-            this.histoPictureboxPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.histoPictureBox)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.tabControllHistogramme.ResumeLayout(false);
+            this.tabGrau.ResumeLayout(false);
+            this.tabGrau.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoGrau)).EndInit();
+            this.tabRGB.ResumeLayout(false);
+            this.tabRGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoRGB)).EndInit();
+            this.tabR.ResumeLayout(false);
+            this.tabR.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoRed)).EndInit();
+            this.tabG.ResumeLayout(false);
+            this.tabG.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoGruen)).EndInit();
+            this.tabB.ResumeLayout(false);
+            this.tabB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHistoBlau)).EndInit();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.randUntenPanel.ResumeLayout(false);
@@ -1300,25 +1126,11 @@
         private System.Windows.Forms.CheckBox colorPickerCheckBox;
         private System.Windows.Forms.CheckBox handCheckBox;
         private System.Windows.Forms.Button saettigungButton;
-        private System.ComponentModel.BackgroundWorker histoBW;
-        private System.Windows.Forms.Panel histoPanel;
-        private System.Windows.Forms.PictureBox histoPictureBox;
-        private System.Windows.Forms.CheckBox gHistCheckBox;
-        private System.Windows.Forms.CheckBox rHistCheckBox;
-        private System.Windows.Forms.CheckBox rgbHistCheckBox;
-        private System.Windows.Forms.CheckBox grauHistCheckBox;
-        private System.Windows.Forms.CheckBox bHistCheckBox;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel histoPictureboxPanel;
-        private System.Windows.Forms.ProgressBar histoProgressBar;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.Label labelTextDate;
         private System.Windows.Forms.Label labelTextReso;
         private System.Windows.Forms.Label labelReso;
         private System.Windows.Forms.Button helligkeitButton;
-        private System.Windows.Forms.Button histoAbbrechenButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelDirectory;
         private System.Windows.Forms.ToolStripMenuItem drehe90RechtsToolStripMenuItem;
