@@ -6,15 +6,12 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>zyQ1Tb9g8PPoNRN+m62M6knGS8Ra2TOGOWR+wby9vIs=</HashCode>
+      <HashCode>z6Q1Tb9g8PPoMRN+m62M6mnGS8Ra2TOGeWR+wby9vIs=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Prog3.helligkeit">
     <Position X="9.25" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAoIAKAKAACAJCAACAAEACAAAAQSAIEAAPAQAAAAU=</HashCode>
       <FileName>helligkeit.cs</FileName>
@@ -27,8 +24,8 @@
       <FileName>kontrast.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.negativ" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+  <Class Name="Prog3.negativ">
+    <Position X="0.5" Y="2.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -37,31 +34,28 @@
       <FileName>negativ.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.Program">
+  <Class Name="Prog3.Program" Collapsed="true">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.saettigung" Collapsed="true">
+  <Class Name="Prog3.saettigung">
     <Position X="2.25" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
     <TypeIdentifier>
       <HashCode>AAEAABAIACAAAAJCAACAAFACAAAgQQADEAAHAQAAAAE=</HashCode>
       <FileName>saettigung.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.Properties.Resources">
-    <Position X="0.5" Y="3.5" Width="1.5" />
+  <Class Name="Prog3.Properties.Resources" Collapsed="true">
+    <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAABEAAAAQAAAAAgAAQAAAAEAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.Properties.Settings">
-    <Position X="0.5" Y="1.75" Width="1.5" />
+  <Class Name="Prog3.Properties.Settings" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
@@ -69,7 +63,7 @@
   <Class Name="Prog3._Histogramm">
     <Position X="7.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAEBAAIVBAEBAAAACCAAIAAACAAAEBACEAAAAAAA=</HashCode>
+      <HashCode>AAAAAEBAAIVBAEBAAAACAAAIAAAAAAAEBACEAAAAAAA=</HashCode>
       <FileName>_histogramm.cs</FileName>
     </TypeIdentifier>
   </Class>

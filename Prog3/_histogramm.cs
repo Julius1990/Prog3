@@ -33,7 +33,7 @@ namespace Prog3
             BwHisto.ProgressChanged += new ProgressChangedEventHandler(BwHisto_progress);
             BwHisto.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BwHistp_completed);
 
-            //Pictureboxen, ProgressBars und CancelButtons in Liste aufnehmen
+            //Pictureboxen und CancelButtons in Liste aufnehmen
             HistoPictureBoxes = new List<PictureBox> { parent.pictureBoxHistoGrau,parent.pictureBoxHistoRGB,
                 parent.pictureBoxHistoRed,parent.pictureBoxHistoGruen,parent.pictureBoxHistoBlau};
             HistoCancelButtons = new List<Button> {parent.buttonCancelHistGray,parent.buttonCancelHistRGB,
@@ -121,9 +121,14 @@ namespace Prog3
         }
         private void BwHisto_progress(object sender, ProgressChangedEventArgs e)
         {
-            parent.toolStripProgressBar.Value = e.ProgressPercentage;
-            Debug.WriteLine("Aktuell: " + parent.toolStripProgressBar.Value.ToString());
-            Debug.WriteLine("Maximum progress: " + parent.toolStripProgressBar.Maximum.ToString());
+            try
+            {
+                parent.toolStripProgressBar.Value = e.ProgressPercentage;
+            }
+            catch
+            {
+                Debug.WriteLine("Fehler in BwHisto_progress");
+            }
         }
         private void BwHistp_completed(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -170,11 +175,14 @@ namespace Prog3
         //Abbrechen Button ordentlich anordne
         private void ordneButtons()
         {
+            //gewünschte Position berechnen
+            float top = ((float)parent.pictureBoxHistoGrau.Height / 2.0f) - ((float)parent.buttonCancelHistGray.Height / 2.0f);
+            float left = ((float)parent.pictureBoxHistoGrau.Width / 2.0f) - ((float)parent.buttonCancelHistGray.Width / 2.0f);
+            //buttons an gewünschter stelle positionieren
             foreach (Button bt in HistoCancelButtons)
             {
-                //Noch programmieren
-                bt.Left = parent.tabControllHistogramme.Left+10;
-                bt.Top = parent.tabControllHistogramme.Top + 35;
+                bt.Top = parent.pictureBoxHistoGrau.Top + (int)top;
+                bt.Left = parent.pictureBoxHistoGrau.Left + (int)left;
             }
         }
 
