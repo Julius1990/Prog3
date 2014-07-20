@@ -363,7 +363,7 @@ namespace Prog3
         //GrauwertBild
         private void greyValButton_Click(object sender, EventArgs e)
         {
-            //wenn ein Bild in der PictureBox ist, fang an zu rechnen
+                //wenn ein Bild in der PictureBox ist, fang an zu rechnen
             if (bildPicturebox.Image != null)
             {
                 threadsBeenden();
@@ -371,8 +371,14 @@ namespace Prog3
                 positioniereProgressBarPictureBox();
                 greyValButton.Enabled = false;
 
-                //startet die Berechnung in einem neuen Thread
-                grauwertBW.RunWorkerAsync();
+
+                if (sender.ToString().Contains("Grauwert"))
+                {
+                    //startet die Berechnung in einem neuen Thread
+                    grauwertBW.RunWorkerAsync("grau");
+                }
+                else
+                    grauwertBW.RunWorkerAsync("schwarz");
             }
             else
             {
@@ -401,6 +407,8 @@ namespace Prog3
             //Betrete den geschützten Bereich
             sem.WaitOne();
 
+            string eingabe = e.Argument.ToString();
+
             Debug.WriteLine("Grauwert BW starten");
 
             //um auf nummer sicher zu gehen
@@ -409,7 +417,7 @@ namespace Prog3
             progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = true));
 
             //berechne das Grauwertbild            
-            createGreyValPic();
+            createGreyValPic(eingabe);
         }
         private void grauwertBW_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -423,7 +431,7 @@ namespace Prog3
                 form1ProgressBar.Value = e.ProgressPercentage;
             }));
         }
-        public void createGreyValPic()
+        public void createGreyValPic(string eingabe_in)
         {
             Color oldColor, greyColor;
             Bitmap helpMap, greyMap;
@@ -459,6 +467,16 @@ namespace Prog3
                     return;
 
                 grauwertBW.ReportProgress(j);
+            }
+
+            //Berechnung des Schwarz-Weiß Bildes
+            if (eingabe_in != "grau")
+            {
+                Graphics gr = Graphics.FromImage(greyMap);
+                var ia = new System.Drawing.Imaging.ImageAttributes();
+                ia.SetThreshold(0.5f); // Change this threshold as needed
+                var rc = new Rectangle(0, 0, width, height);
+                gr.DrawImage(greyMap, rc, 0, 0, width, height, GraphicsUnit.Pixel, ia);
             }
 
             GC.Collect();

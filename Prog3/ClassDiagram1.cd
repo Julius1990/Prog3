@@ -10,28 +10,18 @@
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.helligkeit" Collapsed="true">
-    <Position X="2.25" Y="2.25" Width="1.5" />
+  <Class Name="Prog3.helligkeit">
+    <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAoIAKAKAACAJCAACAAEACAAAAQSAIEAAPAQAAAAU=</HashCode>
       <FileName>helligkeit.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.kontrast" Collapsed="true">
-    <Position X="2.25" Y="3.25" Width="1.5" />
+  <Class Name="Prog3.kontrast">
+    <Position X="14.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAIAiAEBApCAAiAQEACAAAAQQAAEAAHAQAACAI=</HashCode>
       <FileName>kontrast.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Prog3.negativ">
-    <Position X="0.5" Y="2.75" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAKAAAAJiAACAAAACAAAAQwAAEAAHAQAAAAA=</HashCode>
-      <FileName>negativ.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Prog3.Program" Collapsed="true">
@@ -41,15 +31,15 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.saettigung" Collapsed="true">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+  <Class Name="Prog3.saettigung">
+    <Position X="9.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAEAABAIACAAAAJCAACAAFACAAAgQQADEAAHAQAAAAE=</HashCode>
       <FileName>saettigung.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Prog3.Properties.Resources" Collapsed="true">
-    <Position X="0.5" Y="2" Width="1.5" />
+    <Position X="0.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAAAAAAAAAAAAABEAAAAQAAAAAgAAQAAAAEAIA=</HashCode>
     </TypeIdentifier>
@@ -60,8 +50,8 @@
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3._Histogramm" Collapsed="true">
-    <Position X="2.25" Y="1.5" Width="1.5" />
+  <Class Name="Prog3._Histogramm">
+    <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEBAAIVBAEBAAAACAAAIAAAAAAAEBACEAAAAAAA=</HashCode>
       <FileName>_histogramm.cs</FileName>

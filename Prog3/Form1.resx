@@ -118,22 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="korrekturenCheckBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAHVJREFUOE+V0ssJwCAQRVELsEpBrcNPBe7FUg0kFwnG+DmrYd4TXIyQUqaU6jbR
-        hBDYTdFuvPckP+h1Js9oDBljaL2QTWit6d7YLllrzx48lFJMm3LOTEullN0vteqD7VCMkdYLWcc5R/5B
-        ozk4jd3jOzvvWi/NAGd0Su3vWwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="werkzeugeCheckBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAAHVJREFUOE+V0ssJwCAQRVELsEpBrcNPBe7FUg0kFwnG+DmrYd4TXIyQUqaU6jbR
-        hBDYTdFuvPckP+h1Js9oDBljaL2QTWit6d7YLllrzx48lFJMm3LOTEullN0vteqD7VCMkdYLWcc5R/5B
-        ozk4jd3jOzvvWi/NAGd0Su3vWwAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="linksDrehenButton.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAN
@@ -1630,28 +1614,41 @@
         jh2KCycATfv/+CnT6VfwslcAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="korrekturenCheckBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAHVJREFUOE+V0ssJwCAQRVELsEpBrcNPBe7FUg0kFwnG+DmrYd4TXIyQUqaU6jbR
+        hBDYTdFuvPckP+h1Js9oDBljaL2QTWit6d7YLllrzx48lFJMm3LOTEullN0vteqD7VCMkdYLWcc5R/5B
+        ozk4jd3jOzvvWi/NAGd0Su3vWwAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="werkzeugeCheckBox.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAHVJREFUOE+V0ssJwCAQRVELsEpBrcNPBe7FUg0kFwnG+DmrYd4TXIyQUqaU6jbR
+        hBDYTdFuvPckP+h1Js9oDBljaL2QTWit6d7YLllrzx48lFJMm3LOTEullN0vteqD7VCMkdYLWcc5R/5B
+        ozk4jd3jOzvvWi/NAGd0Su3vWwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="menuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>18, 17</value>
+    <value>11, 6</value>
   </metadata>
   <metadata name="bildOeffnenDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>133, 17</value>
+    <value>110, 7</value>
   </metadata>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>759, 20</value>
-  </metadata>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>759, 20</value>
+    <value>601, 10</value>
   </metadata>
   <metadata name="bildSpeichernDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>284, 17</value>
+    <value>244, 7</value>
   </metadata>
   <metadata name="grauwertBW.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>445, 17</value>
+    <value>389, 7</value>
   </metadata>
   <metadata name="negativBW.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>553, 20</value>
+    <value>492, 7</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>79</value>
+    <value>40</value>
   </metadata>
 </root>
