@@ -704,12 +704,26 @@ namespace Prog3
         }
             private void getPixelColor(MouseEventArgs e, PictureBox picBox)
             {       //Funktion zum berechnen des Farbwerts einzelner Pixel
-                Bitmap helpMap;
+                Bitmap helpMap = new Bitmap(1, 1);
                 Point picPos;
-                Color pixelColor;
-                helpMap = new Bitmap(picBox.Image);     //Bitmap aus Bild in Picturebox erstellen
-                picPos = TranslateZoomMousePosition(new Point(e.X, e.Y), picBox);       //Position der Maus über dem Bild bestimmen
-                pixelColor = helpMap.GetPixel(picPos.X, picPos.Y);      //Pixelfarbe bestimmen
+                Color pixelColor = new Color();
+                try
+                {
+                    helpMap = new Bitmap(picBox.Image);     //Bitmap aus Bild in Picturebox erstellen
+                    picPos = TranslateZoomMousePosition(new Point(e.X, e.Y), picBox);       //Position der Maus über dem Bild bestimmen
+                    pixelColor = helpMap.GetPixel(picPos.X, picPos.Y);      //Pixelfarbe bestimmen
+                }
+                catch
+                {
+                    if (helpMap.Size == new Size(1, 1))
+                    {
+                        MessageBox.Show("Um die Farbe eines Pixels zu bestimmen muss ein Bild geöffnet sein.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bitte klicken Sie in das Bild um die Farbe eines Pixels zu bestimmen!");
+                    }
+                }
                 labelR.Text = pixelColor.R.ToString();      //Farbwerte ausgeben
                 labelG.Text = pixelColor.G.ToString();      //
                 labelB.Text = pixelColor.B.ToString();      //
