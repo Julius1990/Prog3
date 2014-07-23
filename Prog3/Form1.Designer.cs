@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_hauptfenster));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.linkerContainer = new System.Windows.Forms.SplitContainer();
@@ -111,6 +112,7 @@
             this.bildSpeichernDialog = new System.Windows.Forms.SaveFileDialog();
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,7 +152,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(20);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(30, 31, 30, 31);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -160,8 +162,9 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.rechterContainer);
-            this.splitContainer1.Size = new System.Drawing.Size(838, 499);
-            this.splitContainer1.SplitterDistance = 549;
+            this.splitContainer1.Size = new System.Drawing.Size(1257, 769);
+            this.splitContainer1.SplitterDistance = 823;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 5;
             // 
             // linkerContainer
@@ -169,6 +172,7 @@
             this.linkerContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.linkerContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.linkerContainer.Location = new System.Drawing.Point(0, 0);
+            this.linkerContainer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.linkerContainer.Name = "linkerContainer";
             this.linkerContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -192,15 +196,17 @@
             this.linkerContainer.Panel2.Controls.Add(this.labelTextB);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextG);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextR);
-            this.linkerContainer.Size = new System.Drawing.Size(549, 499);
-            this.linkerContainer.SplitterDistance = 414;
+            this.linkerContainer.Size = new System.Drawing.Size(823, 769);
+            this.linkerContainer.SplitterDistance = 638;
+            this.linkerContainer.SplitterWidth = 6;
             this.linkerContainer.TabIndex = 0;
             // 
             // progressBarAbbrechenButton
             // 
-            this.progressBarAbbrechenButton.Location = new System.Drawing.Point(94, 168);
+            this.progressBarAbbrechenButton.Location = new System.Drawing.Point(141, 258);
+            this.progressBarAbbrechenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.progressBarAbbrechenButton.Name = "progressBarAbbrechenButton";
-            this.progressBarAbbrechenButton.Size = new System.Drawing.Size(75, 23);
+            this.progressBarAbbrechenButton.Size = new System.Drawing.Size(112, 35);
             this.progressBarAbbrechenButton.TabIndex = 12;
             this.progressBarAbbrechenButton.Text = "Abbrechen";
             this.progressBarAbbrechenButton.UseVisualStyleBackColor = true;
@@ -209,19 +215,20 @@
             // 
             // form1ProgressBar
             // 
-            this.form1ProgressBar.Location = new System.Drawing.Point(56, 136);
-            this.form1ProgressBar.Margin = new System.Windows.Forms.Padding(6);
+            this.form1ProgressBar.Location = new System.Drawing.Point(84, 209);
+            this.form1ProgressBar.Margin = new System.Windows.Forms.Padding(9);
             this.form1ProgressBar.Name = "form1ProgressBar";
-            this.form1ProgressBar.Size = new System.Drawing.Size(182, 23);
+            this.form1ProgressBar.Size = new System.Drawing.Size(273, 35);
             this.form1ProgressBar.TabIndex = 7;
             this.form1ProgressBar.Visible = false;
             // 
             // bildPicturebox
             // 
             this.bildPicturebox.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.bildPicturebox.Location = new System.Drawing.Point(5, 31);
+            this.bildPicturebox.Location = new System.Drawing.Point(8, 48);
+            this.bildPicturebox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.bildPicturebox.Name = "bildPicturebox";
-            this.bildPicturebox.Size = new System.Drawing.Size(541, 379);
+            this.bildPicturebox.Size = new System.Drawing.Size(812, 583);
             this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.bildPicturebox.TabIndex = 0;
             this.bildPicturebox.TabStop = false;
@@ -232,96 +239,94 @@
             // labelReso
             // 
             this.labelReso.AutoSize = true;
-            this.labelReso.Location = new System.Drawing.Point(212, 31);
+            this.labelReso.Location = new System.Drawing.Point(318, 48);
+            this.labelReso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelReso.Name = "labelReso";
-            this.labelReso.Size = new System.Drawing.Size(39, 13);
+            this.labelReso.Size = new System.Drawing.Size(58, 20);
             this.labelReso.TabIndex = 12;
             this.labelReso.Text = "default";
             // 
             // labelTextReso
             // 
             this.labelTextReso.AutoSize = true;
-            this.labelTextReso.Location = new System.Drawing.Point(158, 31);
+            this.labelTextReso.Location = new System.Drawing.Point(237, 48);
+            this.labelTextReso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTextReso.Name = "labelTextReso";
-            this.labelTextReso.Size = new System.Drawing.Size(60, 13);
+            this.labelTextReso.Size = new System.Drawing.Size(89, 20);
             this.labelTextReso.TabIndex = 11;
             this.labelTextReso.Text = "Auflösung: ";
             // 
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(88, 31);
+            this.labelDate.Location = new System.Drawing.Point(132, 48);
+            this.labelDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(39, 13);
+            this.labelDate.Size = new System.Drawing.Size(58, 20);
             this.labelDate.TabIndex = 8;
             this.labelDate.Text = "default";
             // 
             // labelTextDate
             // 
             this.labelTextDate.AutoSize = true;
-            this.labelTextDate.Location = new System.Drawing.Point(4, 31);
+            this.labelTextDate.Location = new System.Drawing.Point(6, 48);
+            this.labelTextDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTextDate.Name = "labelTextDate";
-            this.labelTextDate.Size = new System.Drawing.Size(90, 13);
+            this.labelTextDate.Size = new System.Drawing.Size(136, 20);
             this.labelTextDate.TabIndex = 7;
             this.labelTextDate.Text = "Aufnahmedatum: ";
             // 
             // labelB
             // 
             this.labelB.AutoSize = true;
-            this.labelB.Location = new System.Drawing.Point(212, 8);
-            this.labelB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelB.Location = new System.Drawing.Point(318, 12);
             this.labelB.Name = "labelB";
-            this.labelB.Size = new System.Drawing.Size(39, 13);
+            this.labelB.Size = new System.Drawing.Size(58, 20);
             this.labelB.TabIndex = 6;
             this.labelB.Text = "default";
             // 
             // labelG
             // 
             this.labelG.AutoSize = true;
-            this.labelG.Location = new System.Drawing.Point(121, 8);
-            this.labelG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelG.Location = new System.Drawing.Point(182, 12);
             this.labelG.Name = "labelG";
-            this.labelG.Size = new System.Drawing.Size(39, 13);
+            this.labelG.Size = new System.Drawing.Size(58, 20);
             this.labelG.TabIndex = 5;
             this.labelG.Text = "default";
             // 
             // labelR
             // 
             this.labelR.AutoSize = true;
-            this.labelR.Location = new System.Drawing.Point(30, 8);
-            this.labelR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelR.Location = new System.Drawing.Point(45, 12);
             this.labelR.Name = "labelR";
-            this.labelR.Size = new System.Drawing.Size(39, 13);
+            this.labelR.Size = new System.Drawing.Size(58, 20);
             this.labelR.TabIndex = 4;
             this.labelR.Text = "default";
             // 
             // labelTextB
             // 
             this.labelTextB.AutoSize = true;
-            this.labelTextB.Location = new System.Drawing.Point(184, 7);
-            this.labelTextB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTextB.Location = new System.Drawing.Point(276, 11);
             this.labelTextB.Name = "labelTextB";
-            this.labelTextB.Size = new System.Drawing.Size(34, 13);
+            this.labelTextB.Size = new System.Drawing.Size(49, 20);
             this.labelTextB.TabIndex = 3;
             this.labelTextB.Text = "Blau: ";
             // 
             // labelTextG
             // 
             this.labelTextG.AutoSize = true;
-            this.labelTextG.Location = new System.Drawing.Point(91, 8);
-            this.labelTextG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTextG.Location = new System.Drawing.Point(136, 12);
             this.labelTextG.Name = "labelTextG";
-            this.labelTextG.Size = new System.Drawing.Size(36, 13);
+            this.labelTextG.Size = new System.Drawing.Size(53, 20);
             this.labelTextG.TabIndex = 2;
             this.labelTextG.Text = "Grün: ";
             // 
             // labelTextR
             // 
             this.labelTextR.AutoSize = true;
-            this.labelTextR.Location = new System.Drawing.Point(4, 8);
-            this.labelTextR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTextR.Location = new System.Drawing.Point(6, 12);
             this.labelTextR.Name = "labelTextR";
-            this.labelTextR.Size = new System.Drawing.Size(30, 13);
+            this.labelTextR.Size = new System.Drawing.Size(43, 20);
             this.labelTextR.TabIndex = 1;
             this.labelTextR.Text = "Rot: ";
             // 
@@ -330,7 +335,8 @@
             this.rechterContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rechterContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rechterContainer.Location = new System.Drawing.Point(0, 0);
-            this.rechterContainer.MinimumSize = new System.Drawing.Size(272, 0);
+            this.rechterContainer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rechterContainer.MinimumSize = new System.Drawing.Size(408, 0);
             this.rechterContainer.Name = "rechterContainer";
             this.rechterContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -349,8 +355,9 @@
             // rechterContainer.Panel2
             // 
             this.rechterContainer.Panel2.Controls.Add(this.tabControllHistogramme);
-            this.rechterContainer.Size = new System.Drawing.Size(285, 499);
-            this.rechterContainer.SplitterDistance = 289;
+            this.rechterContainer.Size = new System.Drawing.Size(428, 769);
+            this.rechterContainer.SplitterDistance = 445;
+            this.rechterContainer.SplitterWidth = 6;
             this.rechterContainer.TabIndex = 0;
             // 
             // filterCheckBox
@@ -358,9 +365,10 @@
             this.filterCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.filterCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
             this.filterCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.filterCheckBox.Location = new System.Drawing.Point(3, 121);
+            this.filterCheckBox.Location = new System.Drawing.Point(4, 186);
+            this.filterCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.filterCheckBox.Name = "filterCheckBox";
-            this.filterCheckBox.Size = new System.Drawing.Size(256, 24);
+            this.filterCheckBox.Size = new System.Drawing.Size(384, 37);
             this.filterCheckBox.TabIndex = 11;
             this.filterCheckBox.Text = "      Filter";
             this.filterCheckBox.UseVisualStyleBackColor = true;
@@ -373,18 +381,18 @@
             this.FilterPanel.Controls.Add(this.sepiaButton);
             this.FilterPanel.Controls.Add(this.invertedButton);
             this.FilterPanel.Controls.Add(this.greyValButton);
-            this.FilterPanel.Location = new System.Drawing.Point(3, 353);
+            this.FilterPanel.Location = new System.Drawing.Point(4, 543);
+            this.FilterPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FilterPanel.Name = "FilterPanel";
-            this.FilterPanel.Size = new System.Drawing.Size(256, 62);
+            this.FilterPanel.Size = new System.Drawing.Size(382, 93);
             this.FilterPanel.TabIndex = 10;
             this.FilterPanel.Visible = false;
             // 
             // blackWhiteButton
             // 
-            this.blackWhiteButton.Location = new System.Drawing.Point(125, 5);
-            this.blackWhiteButton.Margin = new System.Windows.Forms.Padding(2);
+            this.blackWhiteButton.Location = new System.Drawing.Point(188, 8);
             this.blackWhiteButton.Name = "blackWhiteButton";
-            this.blackWhiteButton.Size = new System.Drawing.Size(114, 22);
+            this.blackWhiteButton.Size = new System.Drawing.Size(171, 34);
             this.blackWhiteButton.TabIndex = 14;
             this.blackWhiteButton.Text = "Schwarz-Weiß";
             this.blackWhiteButton.UseVisualStyleBackColor = true;
@@ -392,10 +400,9 @@
             // 
             // sepiaButton
             // 
-            this.sepiaButton.Location = new System.Drawing.Point(125, 30);
-            this.sepiaButton.Margin = new System.Windows.Forms.Padding(2);
+            this.sepiaButton.Location = new System.Drawing.Point(188, 46);
             this.sepiaButton.Name = "sepiaButton";
-            this.sepiaButton.Size = new System.Drawing.Size(114, 22);
+            this.sepiaButton.Size = new System.Drawing.Size(171, 34);
             this.sepiaButton.TabIndex = 13;
             this.sepiaButton.Text = "Sepia";
             this.sepiaButton.UseVisualStyleBackColor = true;
@@ -403,10 +410,9 @@
             // 
             // invertedButton
             // 
-            this.invertedButton.Location = new System.Drawing.Point(3, 30);
-            this.invertedButton.Margin = new System.Windows.Forms.Padding(2);
+            this.invertedButton.Location = new System.Drawing.Point(4, 46);
             this.invertedButton.Name = "invertedButton";
-            this.invertedButton.Size = new System.Drawing.Size(114, 22);
+            this.invertedButton.Size = new System.Drawing.Size(171, 34);
             this.invertedButton.TabIndex = 12;
             this.invertedButton.Text = "Negativbild";
             this.invertedButton.UseVisualStyleBackColor = true;
@@ -414,10 +420,9 @@
             // 
             // greyValButton
             // 
-            this.greyValButton.Location = new System.Drawing.Point(3, 7);
-            this.greyValButton.Margin = new System.Windows.Forms.Padding(2);
+            this.greyValButton.Location = new System.Drawing.Point(4, 11);
             this.greyValButton.Name = "greyValButton";
-            this.greyValButton.Size = new System.Drawing.Size(114, 19);
+            this.greyValButton.Size = new System.Drawing.Size(171, 29);
             this.greyValButton.TabIndex = 11;
             this.greyValButton.Text = "Grauwertbild";
             this.greyValButton.UseVisualStyleBackColor = true;
@@ -430,9 +435,10 @@
             this.ansichtPanel.Controls.Add(this.rechtsDrehenButton);
             this.ansichtPanel.Controls.Add(this.zoomOutButton);
             this.ansichtPanel.Controls.Add(this.zoomInButton);
-            this.ansichtPanel.Location = new System.Drawing.Point(4, 214);
+            this.ansichtPanel.Location = new System.Drawing.Point(6, 329);
+            this.ansichtPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ansichtPanel.Name = "ansichtPanel";
-            this.ansichtPanel.Size = new System.Drawing.Size(255, 62);
+            this.ansichtPanel.Size = new System.Drawing.Size(380, 93);
             this.ansichtPanel.TabIndex = 5;
             this.ansichtPanel.Visible = false;
             // 
@@ -440,9 +446,10 @@
             // 
             this.linksDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("linksDrehenButton.BackgroundImage")));
             this.linksDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.linksDrehenButton.Location = new System.Drawing.Point(88, 16);
+            this.linksDrehenButton.Location = new System.Drawing.Point(132, 25);
+            this.linksDrehenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.linksDrehenButton.Name = "linksDrehenButton";
-            this.linksDrehenButton.Size = new System.Drawing.Size(30, 30);
+            this.linksDrehenButton.Size = new System.Drawing.Size(45, 46);
             this.linksDrehenButton.TabIndex = 3;
             this.linksDrehenButton.UseVisualStyleBackColor = true;
             this.linksDrehenButton.Click += new System.EventHandler(this.linksDrehenButton_Click);
@@ -451,9 +458,10 @@
             // 
             this.rechtsDrehenButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("rechtsDrehenButton.BackgroundImage")));
             this.rechtsDrehenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.rechtsDrehenButton.Location = new System.Drawing.Point(124, 16);
+            this.rechtsDrehenButton.Location = new System.Drawing.Point(186, 25);
+            this.rechtsDrehenButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rechtsDrehenButton.Name = "rechtsDrehenButton";
-            this.rechtsDrehenButton.Size = new System.Drawing.Size(30, 30);
+            this.rechtsDrehenButton.Size = new System.Drawing.Size(45, 46);
             this.rechtsDrehenButton.TabIndex = 2;
             this.rechtsDrehenButton.UseVisualStyleBackColor = true;
             this.rechtsDrehenButton.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
@@ -462,9 +470,10 @@
             // 
             this.zoomOutButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomOutButton.BackgroundImage")));
             this.zoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.zoomOutButton.Location = new System.Drawing.Point(37, 16);
+            this.zoomOutButton.Location = new System.Drawing.Point(56, 25);
+            this.zoomOutButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.zoomOutButton.Name = "zoomOutButton";
-            this.zoomOutButton.Size = new System.Drawing.Size(30, 30);
+            this.zoomOutButton.Size = new System.Drawing.Size(45, 46);
             this.zoomOutButton.TabIndex = 1;
             this.zoomOutButton.UseVisualStyleBackColor = true;
             this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
@@ -474,9 +483,10 @@
             this.zoomInButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("zoomInButton.BackgroundImage")));
             this.zoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.zoomInButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.zoomInButton.Location = new System.Drawing.Point(3, 16);
+            this.zoomInButton.Location = new System.Drawing.Point(4, 25);
+            this.zoomInButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.zoomInButton.Name = "zoomInButton";
-            this.zoomInButton.Size = new System.Drawing.Size(30, 30);
+            this.zoomInButton.Size = new System.Drawing.Size(45, 46);
             this.zoomInButton.TabIndex = 0;
             this.zoomInButton.UseVisualStyleBackColor = true;
             this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
@@ -486,9 +496,10 @@
             this.korrekturenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.korrekturenCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("korrekturenCheckBox.Image")));
             this.korrekturenCheckBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.korrekturenCheckBox.Location = new System.Drawing.Point(3, 31);
+            this.korrekturenCheckBox.Location = new System.Drawing.Point(4, 48);
+            this.korrekturenCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.korrekturenCheckBox.Name = "korrekturenCheckBox";
-            this.korrekturenCheckBox.Size = new System.Drawing.Size(256, 24);
+            this.korrekturenCheckBox.Size = new System.Drawing.Size(384, 37);
             this.korrekturenCheckBox.TabIndex = 9;
             this.korrekturenCheckBox.Text = "      Korrekturen";
             this.korrekturenCheckBox.UseVisualStyleBackColor = true;
@@ -499,9 +510,10 @@
             this.werkzeugeCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.werkzeugeCheckBox.Image = ((System.Drawing.Image)(resources.GetObject("werkzeugeCheckBox.Image")));
             this.werkzeugeCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.werkzeugeCheckBox.Location = new System.Drawing.Point(3, 61);
+            this.werkzeugeCheckBox.Location = new System.Drawing.Point(4, 94);
+            this.werkzeugeCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.werkzeugeCheckBox.Name = "werkzeugeCheckBox";
-            this.werkzeugeCheckBox.Size = new System.Drawing.Size(256, 24);
+            this.werkzeugeCheckBox.Size = new System.Drawing.Size(384, 37);
             this.werkzeugeCheckBox.TabIndex = 8;
             this.werkzeugeCheckBox.Text = "      Werkzeuge";
             this.werkzeugeCheckBox.UseVisualStyleBackColor = true;
@@ -512,9 +524,10 @@
             this.ansichtCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.ansichtCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
             this.ansichtCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ansichtCheckBox.Location = new System.Drawing.Point(3, 91);
+            this.ansichtCheckBox.Location = new System.Drawing.Point(4, 140);
+            this.ansichtCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ansichtCheckBox.Name = "ansichtCheckBox";
-            this.ansichtCheckBox.Size = new System.Drawing.Size(256, 24);
+            this.ansichtCheckBox.Size = new System.Drawing.Size(384, 37);
             this.ansichtCheckBox.TabIndex = 7;
             this.ansichtCheckBox.Text = "      Ansicht";
             this.ansichtCheckBox.UseVisualStyleBackColor = true;
@@ -525,9 +538,10 @@
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.werkzeugPanel.Controls.Add(this.handCheckBox);
             this.werkzeugPanel.Controls.Add(this.colorPickerCheckBox);
-            this.werkzeugPanel.Location = new System.Drawing.Point(4, 151);
+            this.werkzeugPanel.Location = new System.Drawing.Point(6, 232);
+            this.werkzeugPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.werkzeugPanel.Name = "werkzeugPanel";
-            this.werkzeugPanel.Size = new System.Drawing.Size(255, 57);
+            this.werkzeugPanel.Size = new System.Drawing.Size(380, 86);
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
             // 
@@ -536,9 +550,10 @@
             this.handCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.handCheckBox.BackgroundImage = global::Prog3.Properties.Resources.move_1;
             this.handCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.handCheckBox.Location = new System.Drawing.Point(3, 10);
+            this.handCheckBox.Location = new System.Drawing.Point(4, 15);
+            this.handCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.handCheckBox.Name = "handCheckBox";
-            this.handCheckBox.Size = new System.Drawing.Size(30, 30);
+            this.handCheckBox.Size = new System.Drawing.Size(45, 46);
             this.handCheckBox.TabIndex = 3;
             this.handCheckBox.UseVisualStyleBackColor = true;
             this.handCheckBox.CheckedChanged += new System.EventHandler(this.handCheckBox_CheckedChanged);
@@ -548,9 +563,10 @@
             this.colorPickerCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.colorPickerCheckBox.BackgroundImage = global::Prog3.Properties.Resources.color_picker;
             this.colorPickerCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.colorPickerCheckBox.Location = new System.Drawing.Point(41, 9);
+            this.colorPickerCheckBox.Location = new System.Drawing.Point(62, 14);
+            this.colorPickerCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.colorPickerCheckBox.Name = "colorPickerCheckBox";
-            this.colorPickerCheckBox.Size = new System.Drawing.Size(30, 30);
+            this.colorPickerCheckBox.Size = new System.Drawing.Size(45, 46);
             this.colorPickerCheckBox.TabIndex = 2;
             this.colorPickerCheckBox.UseVisualStyleBackColor = true;
             this.colorPickerCheckBox.CheckedChanged += new System.EventHandler(this.colorPickerCheckBox_CheckedChanged);
@@ -561,17 +577,19 @@
             this.korrekturenPanel.Controls.Add(this.helligkeitButton);
             this.korrekturenPanel.Controls.Add(this.saettigungButton);
             this.korrekturenPanel.Controls.Add(this.button2);
-            this.korrekturenPanel.Location = new System.Drawing.Point(3, 282);
+            this.korrekturenPanel.Location = new System.Drawing.Point(4, 434);
+            this.korrekturenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.korrekturenPanel.Name = "korrekturenPanel";
-            this.korrekturenPanel.Size = new System.Drawing.Size(256, 65);
+            this.korrekturenPanel.Size = new System.Drawing.Size(382, 98);
             this.korrekturenPanel.TabIndex = 1;
             this.korrekturenPanel.Visible = false;
             // 
             // helligkeitButton
             // 
-            this.helligkeitButton.Location = new System.Drawing.Point(3, 33);
+            this.helligkeitButton.Location = new System.Drawing.Point(4, 51);
+            this.helligkeitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.helligkeitButton.Name = "helligkeitButton";
-            this.helligkeitButton.Size = new System.Drawing.Size(114, 23);
+            this.helligkeitButton.Size = new System.Drawing.Size(171, 35);
             this.helligkeitButton.TabIndex = 2;
             this.helligkeitButton.Text = "Helligkeit";
             this.helligkeitButton.UseVisualStyleBackColor = true;
@@ -579,9 +597,10 @@
             // 
             // saettigungButton
             // 
-            this.saettigungButton.Location = new System.Drawing.Point(125, 3);
+            this.saettigungButton.Location = new System.Drawing.Point(188, 5);
+            this.saettigungButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saettigungButton.Name = "saettigungButton";
-            this.saettigungButton.Size = new System.Drawing.Size(114, 23);
+            this.saettigungButton.Size = new System.Drawing.Size(171, 35);
             this.saettigungButton.TabIndex = 1;
             this.saettigungButton.Text = "Sättigung";
             this.saettigungButton.UseVisualStyleBackColor = true;
@@ -589,9 +608,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(3, 4);
+            this.button2.Location = new System.Drawing.Point(4, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(114, 23);
+            this.button2.Size = new System.Drawing.Size(171, 35);
             this.button2.TabIndex = 0;
             this.button2.Text = "Kontrast";
             this.button2.UseVisualStyleBackColor = true;
@@ -606,9 +626,10 @@
             this.tabControllHistogramme.Controls.Add(this.tabB);
             this.tabControllHistogramme.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControllHistogramme.Location = new System.Drawing.Point(0, 0);
+            this.tabControllHistogramme.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControllHistogramme.Name = "tabControllHistogramme";
             this.tabControllHistogramme.SelectedIndex = 0;
-            this.tabControllHistogramme.Size = new System.Drawing.Size(283, 204);
+            this.tabControllHistogramme.Size = new System.Drawing.Size(426, 316);
             this.tabControllHistogramme.TabIndex = 12;
             this.tabControllHistogramme.Click += new System.EventHandler(this.tabControllHistogramme_Click);
             // 
@@ -616,10 +637,11 @@
             // 
             this.tabGrau.Controls.Add(this.buttonCancelHistGray);
             this.tabGrau.Controls.Add(this.pictureBoxHistoGrau);
-            this.tabGrau.Location = new System.Drawing.Point(4, 22);
+            this.tabGrau.Location = new System.Drawing.Point(4, 29);
+            this.tabGrau.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabGrau.Name = "tabGrau";
-            this.tabGrau.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGrau.Size = new System.Drawing.Size(275, 178);
+            this.tabGrau.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabGrau.Size = new System.Drawing.Size(418, 283);
             this.tabGrau.TabIndex = 0;
             this.tabGrau.Text = "Grau";
             this.tabGrau.UseVisualStyleBackColor = true;
@@ -628,9 +650,10 @@
             // 
             this.buttonCancelHistGray.AutoSize = true;
             this.buttonCancelHistGray.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelHistGray.Location = new System.Drawing.Point(59, 86);
+            this.buttonCancelHistGray.Location = new System.Drawing.Point(88, 132);
+            this.buttonCancelHistGray.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancelHistGray.Name = "buttonCancelHistGray";
-            this.buttonCancelHistGray.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistGray.Size = new System.Drawing.Size(190, 54);
             this.buttonCancelHistGray.TabIndex = 2;
             this.buttonCancelHistGray.Text = "Abbrechen";
             this.buttonCancelHistGray.UseVisualStyleBackColor = true;
@@ -641,9 +664,10 @@
             // 
             this.pictureBoxHistoGrau.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBoxHistoGrau.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoGrau.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoGrau.Location = new System.Drawing.Point(4, 5);
+            this.pictureBoxHistoGrau.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxHistoGrau.Name = "pictureBoxHistoGrau";
-            this.pictureBoxHistoGrau.Size = new System.Drawing.Size(269, 172);
+            this.pictureBoxHistoGrau.Size = new System.Drawing.Size(410, 273);
             this.pictureBoxHistoGrau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoGrau.TabIndex = 0;
             this.pictureBoxHistoGrau.TabStop = false;
@@ -652,10 +676,11 @@
             // 
             this.tabRGB.Controls.Add(this.buttonCancelHistRGB);
             this.tabRGB.Controls.Add(this.pictureBoxHistoRGB);
-            this.tabRGB.Location = new System.Drawing.Point(4, 22);
+            this.tabRGB.Location = new System.Drawing.Point(4, 29);
+            this.tabRGB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabRGB.Name = "tabRGB";
-            this.tabRGB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRGB.Size = new System.Drawing.Size(275, 178);
+            this.tabRGB.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabRGB.Size = new System.Drawing.Size(418, 283);
             this.tabRGB.TabIndex = 1;
             this.tabRGB.Text = "RGB";
             this.tabRGB.UseVisualStyleBackColor = true;
@@ -664,9 +689,10 @@
             // 
             this.buttonCancelHistRGB.AutoSize = true;
             this.buttonCancelHistRGB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelHistRGB.Location = new System.Drawing.Point(54, 92);
+            this.buttonCancelHistRGB.Location = new System.Drawing.Point(81, 142);
+            this.buttonCancelHistRGB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancelHistRGB.Name = "buttonCancelHistRGB";
-            this.buttonCancelHistRGB.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistRGB.Size = new System.Drawing.Size(190, 54);
             this.buttonCancelHistRGB.TabIndex = 1;
             this.buttonCancelHistRGB.Text = "Abbrechen";
             this.buttonCancelHistRGB.UseVisualStyleBackColor = true;
@@ -677,9 +703,10 @@
             // 
             this.pictureBoxHistoRGB.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBoxHistoRGB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoRGB.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoRGB.Location = new System.Drawing.Point(4, 5);
+            this.pictureBoxHistoRGB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxHistoRGB.Name = "pictureBoxHistoRGB";
-            this.pictureBoxHistoRGB.Size = new System.Drawing.Size(269, 172);
+            this.pictureBoxHistoRGB.Size = new System.Drawing.Size(410, 273);
             this.pictureBoxHistoRGB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoRGB.TabIndex = 0;
             this.pictureBoxHistoRGB.TabStop = false;
@@ -688,10 +715,11 @@
             // 
             this.tabR.Controls.Add(this.buttonCancelHistoRed);
             this.tabR.Controls.Add(this.pictureBoxHistoRed);
-            this.tabR.Location = new System.Drawing.Point(4, 22);
+            this.tabR.Location = new System.Drawing.Point(4, 29);
+            this.tabR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabR.Name = "tabR";
-            this.tabR.Padding = new System.Windows.Forms.Padding(3);
-            this.tabR.Size = new System.Drawing.Size(275, 178);
+            this.tabR.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabR.Size = new System.Drawing.Size(418, 283);
             this.tabR.TabIndex = 2;
             this.tabR.Text = "Rot";
             this.tabR.UseVisualStyleBackColor = true;
@@ -700,9 +728,10 @@
             // 
             this.buttonCancelHistoRed.AutoSize = true;
             this.buttonCancelHistoRed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelHistoRed.Location = new System.Drawing.Point(119, 99);
+            this.buttonCancelHistoRed.Location = new System.Drawing.Point(178, 152);
+            this.buttonCancelHistoRed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancelHistoRed.Name = "buttonCancelHistoRed";
-            this.buttonCancelHistoRed.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistoRed.Size = new System.Drawing.Size(190, 54);
             this.buttonCancelHistoRed.TabIndex = 4;
             this.buttonCancelHistoRed.Text = "Abbrechen";
             this.buttonCancelHistoRed.UseVisualStyleBackColor = true;
@@ -713,9 +742,10 @@
             // 
             this.pictureBoxHistoRed.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBoxHistoRed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoRed.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoRed.Location = new System.Drawing.Point(4, 5);
+            this.pictureBoxHistoRed.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxHistoRed.Name = "pictureBoxHistoRed";
-            this.pictureBoxHistoRed.Size = new System.Drawing.Size(269, 172);
+            this.pictureBoxHistoRed.Size = new System.Drawing.Size(410, 273);
             this.pictureBoxHistoRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoRed.TabIndex = 0;
             this.pictureBoxHistoRed.TabStop = false;
@@ -724,10 +754,11 @@
             // 
             this.tabG.Controls.Add(this.buttonCancelHistoGreen);
             this.tabG.Controls.Add(this.pictureBoxHistoGruen);
-            this.tabG.Location = new System.Drawing.Point(4, 22);
+            this.tabG.Location = new System.Drawing.Point(4, 29);
+            this.tabG.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabG.Name = "tabG";
-            this.tabG.Padding = new System.Windows.Forms.Padding(3);
-            this.tabG.Size = new System.Drawing.Size(275, 178);
+            this.tabG.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabG.Size = new System.Drawing.Size(418, 283);
             this.tabG.TabIndex = 3;
             this.tabG.Text = "Grün";
             this.tabG.UseVisualStyleBackColor = true;
@@ -736,9 +767,10 @@
             // 
             this.buttonCancelHistoGreen.AutoSize = true;
             this.buttonCancelHistoGreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelHistoGreen.Location = new System.Drawing.Point(119, 99);
+            this.buttonCancelHistoGreen.Location = new System.Drawing.Point(178, 152);
+            this.buttonCancelHistoGreen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancelHistoGreen.Name = "buttonCancelHistoGreen";
-            this.buttonCancelHistoGreen.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistoGreen.Size = new System.Drawing.Size(190, 54);
             this.buttonCancelHistoGreen.TabIndex = 4;
             this.buttonCancelHistoGreen.Text = "Abbrechen";
             this.buttonCancelHistoGreen.UseVisualStyleBackColor = true;
@@ -749,9 +781,10 @@
             // 
             this.pictureBoxHistoGruen.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBoxHistoGruen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoGruen.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoGruen.Location = new System.Drawing.Point(4, 5);
+            this.pictureBoxHistoGruen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxHistoGruen.Name = "pictureBoxHistoGruen";
-            this.pictureBoxHistoGruen.Size = new System.Drawing.Size(269, 172);
+            this.pictureBoxHistoGruen.Size = new System.Drawing.Size(410, 273);
             this.pictureBoxHistoGruen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoGruen.TabIndex = 0;
             this.pictureBoxHistoGruen.TabStop = false;
@@ -760,10 +793,11 @@
             // 
             this.tabB.Controls.Add(this.buttonCancelHistoBlue);
             this.tabB.Controls.Add(this.pictureBoxHistoBlau);
-            this.tabB.Location = new System.Drawing.Point(4, 22);
+            this.tabB.Location = new System.Drawing.Point(4, 29);
+            this.tabB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabB.Name = "tabB";
-            this.tabB.Padding = new System.Windows.Forms.Padding(3);
-            this.tabB.Size = new System.Drawing.Size(275, 178);
+            this.tabB.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabB.Size = new System.Drawing.Size(418, 283);
             this.tabB.TabIndex = 4;
             this.tabB.Text = "Blau";
             this.tabB.UseVisualStyleBackColor = true;
@@ -772,9 +806,10 @@
             // 
             this.buttonCancelHistoBlue.AutoSize = true;
             this.buttonCancelHistoBlue.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelHistoBlue.Location = new System.Drawing.Point(119, 99);
+            this.buttonCancelHistoBlue.Location = new System.Drawing.Point(178, 152);
+            this.buttonCancelHistoBlue.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancelHistoBlue.Name = "buttonCancelHistoBlue";
-            this.buttonCancelHistoBlue.Size = new System.Drawing.Size(96, 27);
+            this.buttonCancelHistoBlue.Size = new System.Drawing.Size(190, 54);
             this.buttonCancelHistoBlue.TabIndex = 4;
             this.buttonCancelHistoBlue.Text = "Abbrechen";
             this.buttonCancelHistoBlue.UseVisualStyleBackColor = true;
@@ -785,9 +820,10 @@
             // 
             this.pictureBoxHistoBlau.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pictureBoxHistoBlau.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxHistoBlau.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxHistoBlau.Location = new System.Drawing.Point(4, 5);
+            this.pictureBoxHistoBlau.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxHistoBlau.Name = "pictureBoxHistoBlau";
-            this.pictureBoxHistoBlau.Size = new System.Drawing.Size(269, 172);
+            this.pictureBoxHistoBlau.Size = new System.Drawing.Size(410, 273);
             this.pictureBoxHistoBlau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoBlau.TabIndex = 0;
             this.pictureBoxHistoBlau.TabStop = false;
@@ -800,10 +836,10 @@
             this.bearbeitenToolStripMenuItem,
             this.ansichtToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Margin = new System.Windows.Forms.Padding(2);
+            this.menuStrip2.Margin = new System.Windows.Forms.Padding(3);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(2);
-            this.menuStrip2.Size = new System.Drawing.Size(836, 26);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(3);
+            this.menuStrip2.Size = new System.Drawing.Size(1255, 40);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -816,20 +852,20 @@
             this.schließenToolStripMenuItem,
             this.beendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
-            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(46, 22);
+            this.dateiToolStripMenuItem.Size = new System.Drawing.Size(65, 34);
             this.dateiToolStripMenuItem.Text = "Datei";
             // 
             // öffnenToolStripMenuItem
             // 
             this.öffnenToolStripMenuItem.Name = "öffnenToolStripMenuItem";
-            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.öffnenToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.öffnenToolStripMenuItem.Text = "Öffnen";
             this.öffnenToolStripMenuItem.Click += new System.EventHandler(this.öffnenToolStripMenuItem_Click);
             // 
             // speichernToolStripMenuItem
             // 
             this.speichernToolStripMenuItem.Name = "speichernToolStripMenuItem";
-            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.speichernToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.speichernToolStripMenuItem.Text = "Speichern";
             this.speichernToolStripMenuItem.Visible = false;
             this.speichernToolStripMenuItem.Click += new System.EventHandler(this.speichernToolStripMenuItem_Click);
@@ -837,7 +873,7 @@
             // speichernUnterToolStripMenuItem
             // 
             this.speichernUnterToolStripMenuItem.Name = "speichernUnterToolStripMenuItem";
-            this.speichernUnterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.speichernUnterToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.speichernUnterToolStripMenuItem.Text = "Speichern unter";
             this.speichernUnterToolStripMenuItem.Visible = false;
             this.speichernUnterToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
@@ -845,7 +881,7 @@
             // schließenToolStripMenuItem
             // 
             this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
-            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.schließenToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.schließenToolStripMenuItem.Text = "Schließen";
             this.schließenToolStripMenuItem.Visible = false;
             this.schließenToolStripMenuItem.Click += new System.EventHandler(this.schließenToolStripMenuItem_Click);
@@ -853,7 +889,7 @@
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(207, 30);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
@@ -863,20 +899,20 @@
             this.rückgängigToolStripMenuItem,
             this.wiederholenToolStripMenuItem});
             this.bearbeitenToolStripMenuItem.Name = "bearbeitenToolStripMenuItem";
-            this.bearbeitenToolStripMenuItem.Size = new System.Drawing.Size(75, 22);
+            this.bearbeitenToolStripMenuItem.Size = new System.Drawing.Size(107, 34);
             this.bearbeitenToolStripMenuItem.Text = "Bearbeiten";
             // 
             // rückgängigToolStripMenuItem
             // 
             this.rückgängigToolStripMenuItem.Name = "rückgängigToolStripMenuItem";
-            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.rückgängigToolStripMenuItem.Size = new System.Drawing.Size(184, 30);
             this.rückgängigToolStripMenuItem.Text = "Rückgängig";
             this.rückgängigToolStripMenuItem.Click += new System.EventHandler(this.rückgängigToolStripMenuItem_Click);
             // 
             // wiederholenToolStripMenuItem
             // 
             this.wiederholenToolStripMenuItem.Name = "wiederholenToolStripMenuItem";
-            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.wiederholenToolStripMenuItem.Size = new System.Drawing.Size(184, 30);
             this.wiederholenToolStripMenuItem.Text = "Wiederholen";
             this.wiederholenToolStripMenuItem.Click += new System.EventHandler(this.wiederholenToolStripMenuItem_Click);
             // 
@@ -889,39 +925,39 @@
             this.toolStripMenuItem1,
             this.verkleinernToolStripMenuItem});
             this.ansichtToolStripMenuItem.Name = "ansichtToolStripMenuItem";
-            this.ansichtToolStripMenuItem.Size = new System.Drawing.Size(59, 22);
+            this.ansichtToolStripMenuItem.Size = new System.Drawing.Size(82, 34);
             this.ansichtToolStripMenuItem.Text = "Ansicht";
             // 
             // drehe90RechtsToolStripMenuItem
             // 
             this.drehe90RechtsToolStripMenuItem.Name = "drehe90RechtsToolStripMenuItem";
-            this.drehe90RechtsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.drehe90RechtsToolStripMenuItem.Size = new System.Drawing.Size(220, 30);
             this.drehe90RechtsToolStripMenuItem.Text = "Drehe 90° Rechts";
             this.drehe90RechtsToolStripMenuItem.Click += new System.EventHandler(this.rechtsDrehenButton_Click);
             // 
             // drehe90LinksToolStripMenuItem
             // 
             this.drehe90LinksToolStripMenuItem.Name = "drehe90LinksToolStripMenuItem";
-            this.drehe90LinksToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.drehe90LinksToolStripMenuItem.Size = new System.Drawing.Size(220, 30);
             this.drehe90LinksToolStripMenuItem.Text = "Drehe 90° Links";
             this.drehe90LinksToolStripMenuItem.Click += new System.EventHandler(this.linksDrehenButton_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(160, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(217, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(220, 30);
             this.toolStripMenuItem1.Text = "Vergrößern";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.zoomInButton_Click);
             // 
             // verkleinernToolStripMenuItem
             // 
             this.verkleinernToolStripMenuItem.Name = "verkleinernToolStripMenuItem";
-            this.verkleinernToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.verkleinernToolStripMenuItem.Size = new System.Drawing.Size(220, 30);
             this.verkleinernToolStripMenuItem.Text = "Verkleinern";
             this.verkleinernToolStripMenuItem.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
@@ -935,9 +971,10 @@
             this.randUntenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randUntenPanel.Controls.Add(this.statusStrip1);
             this.randUntenPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.randUntenPanel.Location = new System.Drawing.Point(0, 509);
+            this.randUntenPanel.Location = new System.Drawing.Point(0, 784);
+            this.randUntenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randUntenPanel.Name = "randUntenPanel";
-            this.randUntenPanel.Size = new System.Drawing.Size(858, 25);
+            this.randUntenPanel.Size = new System.Drawing.Size(1287, 38);
             this.randUntenPanel.TabIndex = 6;
             // 
             // statusStrip1
@@ -945,9 +982,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelDirectory,
             this.toolStripProgressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 3);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 7);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(858, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1287, 31);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -955,21 +993,22 @@
             // 
             this.labelDirectory.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelDirectory.Name = "labelDirectory";
-            this.labelDirectory.Size = new System.Drawing.Size(0, 17);
+            this.labelDirectory.Size = new System.Drawing.Size(0, 26);
             // 
             // toolStripProgressBar
             // 
             this.toolStripProgressBar.Maximum = 10000;
             this.toolStripProgressBar.Name = "toolStripProgressBar";
-            this.toolStripProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.toolStripProgressBar.Size = new System.Drawing.Size(150, 25);
             // 
             // randRechtsPanel
             // 
             this.randRechtsPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randRechtsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.randRechtsPanel.Location = new System.Drawing.Point(848, 0);
+            this.randRechtsPanel.Location = new System.Drawing.Point(1272, 0);
+            this.randRechtsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randRechtsPanel.Name = "randRechtsPanel";
-            this.randRechtsPanel.Size = new System.Drawing.Size(10, 509);
+            this.randRechtsPanel.Size = new System.Drawing.Size(15, 784);
             this.randRechtsPanel.TabIndex = 7;
             // 
             // randLinksPanel
@@ -977,17 +1016,19 @@
             this.randLinksPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randLinksPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.randLinksPanel.Location = new System.Drawing.Point(0, 0);
+            this.randLinksPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randLinksPanel.Name = "randLinksPanel";
-            this.randLinksPanel.Size = new System.Drawing.Size(10, 509);
+            this.randLinksPanel.Size = new System.Drawing.Size(15, 784);
             this.randLinksPanel.TabIndex = 8;
             // 
             // randObenPanel
             // 
             this.randObenPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.randObenPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.randObenPanel.Location = new System.Drawing.Point(10, 0);
+            this.randObenPanel.Location = new System.Drawing.Point(15, 0);
+            this.randObenPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.randObenPanel.Name = "randObenPanel";
-            this.randObenPanel.Size = new System.Drawing.Size(838, 10);
+            this.randObenPanel.Size = new System.Drawing.Size(1257, 15);
             this.randObenPanel.TabIndex = 9;
             // 
             // centerPanel
@@ -995,9 +1036,10 @@
             this.centerPanel.Controls.Add(this.menuePanel);
             this.centerPanel.Controls.Add(this.splitContainer1);
             this.centerPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.centerPanel.Location = new System.Drawing.Point(10, 10);
+            this.centerPanel.Location = new System.Drawing.Point(15, 15);
+            this.centerPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.centerPanel.Name = "centerPanel";
-            this.centerPanel.Size = new System.Drawing.Size(838, 499);
+            this.centerPanel.Size = new System.Drawing.Size(1257, 769);
             this.centerPanel.TabIndex = 10;
             // 
             // menuePanel
@@ -1006,8 +1048,9 @@
             this.menuePanel.Controls.Add(this.menuStrip2);
             this.menuePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.menuePanel.Location = new System.Drawing.Point(0, 0);
+            this.menuePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.menuePanel.Name = "menuePanel";
-            this.menuePanel.Size = new System.Drawing.Size(838, 28);
+            this.menuePanel.Size = new System.Drawing.Size(1257, 42);
             this.menuePanel.TabIndex = 6;
             // 
             // bildSpeichernDialog
@@ -1032,14 +1075,15 @@
             // 
             // _hauptfenster
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 534);
+            this.ClientSize = new System.Drawing.Size(1287, 822);
             this.Controls.Add(this.centerPanel);
             this.Controls.Add(this.randObenPanel);
             this.Controls.Add(this.randLinksPanel);
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "_hauptfenster";
             this.Text = "Prog3";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form1_FormClosing);
@@ -1175,6 +1219,7 @@
         public System.Windows.Forms.ToolStripMenuItem rückgängigToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem wiederholenToolStripMenuItem;
         private System.Windows.Forms.Button blackWhiteButton;
+        private System.Windows.Forms.ToolTip toolTip;
 
 
     }

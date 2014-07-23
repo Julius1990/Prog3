@@ -39,6 +39,27 @@ namespace Prog3
             bildPicturebox.Width = linkerContainer.Panel1.Width - 30;
             bildPicturebox.Height = linkerContainer.Panel1.Height - 55;
 
+            //Tooltips festlegen
+            toolTip.SetToolTip(korrekturenCheckBox, "Korrekturen anzeigen");
+            toolTip.SetToolTip(werkzeugeCheckBox, "Werkzeuge anzeigen");
+            toolTip.SetToolTip(ansichtCheckBox, "Optionen zur Ansicht des Bildes anzeigen");
+            toolTip.SetToolTip(filterCheckBox, "Filter anzeigen");
+            toolTip.SetToolTip(colorPickerCheckBox, "Color-Picker");
+            toolTip.SetToolTip(handCheckBox, "Bild bewegen");
+            toolTip.SetToolTip(zoomInButton, "Hereinzoomen");
+            toolTip.SetToolTip(zoomOutButton, "Herauszoomen");
+            toolTip.SetToolTip(linksDrehenButton, "Bild um 90° nach links drehen");
+            toolTip.SetToolTip(rechtsDrehenButton, "Bild um 90° nach rechts drehen");
+            toolTip.SetToolTip(button2, "Kontrast des Bildes verändern");
+            toolTip.SetToolTip(saettigungButton, "Sättigung des Bildes verändern");
+            toolTip.SetToolTip(helligkeitButton, "Helligkeit des Bildes verändern");
+            toolTip.SetToolTip(greyValButton, "Aus dem geöffneten Bild ein Grauwertbild erstellen");
+            toolTip.SetToolTip(blackWhiteButton, "Aus dem geöffneten Bild ein Schwarz-Weiß-Bild erstellen");
+            toolTip.SetToolTip(invertedButton, "Aus dem geöffneten Bild ein Negativbild erstellen");
+            toolTip.SetToolTip(sepiaButton, "Aus dem geöffneten Bild ein Sepiabild erstellen");
+            toolTip.SetToolTip(tabControllHistogramme, "Histogramme erstellen und anzeigen");
+
+
             //Backgroundworker
             threadsInitialisieren();
         }
@@ -1002,6 +1023,7 @@ namespace Prog3
         {
             histogramme.BwHisto.CancelAsync();
         }
+
 
 
 
