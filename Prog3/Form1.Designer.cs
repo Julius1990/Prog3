@@ -113,6 +113,12 @@
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.labelTextH = new System.Windows.Forms.Label();
+            this.labelH = new System.Windows.Forms.Label();
+            this.labelTextS = new System.Windows.Forms.Label();
+            this.labelS = new System.Windows.Forms.Label();
+            this.labelTextBr = new System.Windows.Forms.Label();
+            this.labelBr = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -186,6 +192,12 @@
             // 
             // linkerContainer.Panel2
             // 
+            this.linkerContainer.Panel2.Controls.Add(this.labelBr);
+            this.linkerContainer.Panel2.Controls.Add(this.labelTextBr);
+            this.linkerContainer.Panel2.Controls.Add(this.labelS);
+            this.linkerContainer.Panel2.Controls.Add(this.labelTextS);
+            this.linkerContainer.Panel2.Controls.Add(this.labelH);
+            this.linkerContainer.Panel2.Controls.Add(this.labelTextH);
             this.linkerContainer.Panel2.Controls.Add(this.labelReso);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextReso);
             this.linkerContainer.Panel2.Controls.Add(this.labelDate);
@@ -239,7 +251,7 @@
             // labelReso
             // 
             this.labelReso.AutoSize = true;
-            this.labelReso.Location = new System.Drawing.Point(318, 48);
+            this.labelReso.Location = new System.Drawing.Point(132, 79);
             this.labelReso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelReso.Name = "labelReso";
             this.labelReso.Size = new System.Drawing.Size(58, 20);
@@ -249,7 +261,7 @@
             // labelTextReso
             // 
             this.labelTextReso.AutoSize = true;
-            this.labelTextReso.Location = new System.Drawing.Point(237, 48);
+            this.labelTextReso.Location = new System.Drawing.Point(7, 79);
             this.labelTextReso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTextReso.Name = "labelTextReso";
             this.labelTextReso.Size = new System.Drawing.Size(89, 20);
@@ -279,7 +291,7 @@
             // labelB
             // 
             this.labelB.AutoSize = true;
-            this.labelB.Location = new System.Drawing.Point(318, 12);
+            this.labelB.Location = new System.Drawing.Point(241, 12);
             this.labelB.Name = "labelB";
             this.labelB.Size = new System.Drawing.Size(58, 20);
             this.labelB.TabIndex = 6;
@@ -288,7 +300,7 @@
             // labelG
             // 
             this.labelG.AutoSize = true;
-            this.labelG.Location = new System.Drawing.Point(182, 12);
+            this.labelG.Location = new System.Drawing.Point(138, 12);
             this.labelG.Name = "labelG";
             this.labelG.Size = new System.Drawing.Size(58, 20);
             this.labelG.TabIndex = 5;
@@ -297,7 +309,7 @@
             // labelR
             // 
             this.labelR.AutoSize = true;
-            this.labelR.Location = new System.Drawing.Point(45, 12);
+            this.labelR.Location = new System.Drawing.Point(38, 12);
             this.labelR.Name = "labelR";
             this.labelR.Size = new System.Drawing.Size(58, 20);
             this.labelR.TabIndex = 4;
@@ -306,29 +318,29 @@
             // labelTextB
             // 
             this.labelTextB.AutoSize = true;
-            this.labelTextB.Location = new System.Drawing.Point(276, 11);
+            this.labelTextB.Location = new System.Drawing.Point(207, 12);
             this.labelTextB.Name = "labelTextB";
-            this.labelTextB.Size = new System.Drawing.Size(49, 20);
+            this.labelTextB.Size = new System.Drawing.Size(28, 20);
             this.labelTextB.TabIndex = 3;
-            this.labelTextB.Text = "Blau: ";
+            this.labelTextB.Text = "B: ";
             // 
             // labelTextG
             // 
             this.labelTextG.AutoSize = true;
-            this.labelTextG.Location = new System.Drawing.Point(136, 12);
+            this.labelTextG.Location = new System.Drawing.Point(102, 12);
             this.labelTextG.Name = "labelTextG";
-            this.labelTextG.Size = new System.Drawing.Size(53, 20);
+            this.labelTextG.Size = new System.Drawing.Size(30, 20);
             this.labelTextG.TabIndex = 2;
-            this.labelTextG.Text = "Grün: ";
+            this.labelTextG.Text = "G: ";
             // 
             // labelTextR
             // 
             this.labelTextR.AutoSize = true;
             this.labelTextR.Location = new System.Drawing.Point(6, 12);
             this.labelTextR.Name = "labelTextR";
-            this.labelTextR.Size = new System.Drawing.Size(43, 20);
+            this.labelTextR.Size = new System.Drawing.Size(29, 20);
             this.labelTextR.TabIndex = 1;
-            this.labelTextR.Text = "Rot: ";
+            this.labelTextR.Text = "R: ";
             // 
             // rechterContainer
             // 
@@ -1073,6 +1085,60 @@
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
             // 
+            // labelTextH
+            // 
+            this.labelTextH.AutoSize = true;
+            this.labelTextH.Location = new System.Drawing.Point(523, 12);
+            this.labelTextH.Name = "labelTextH";
+            this.labelTextH.Size = new System.Drawing.Size(29, 20);
+            this.labelTextH.TabIndex = 13;
+            this.labelTextH.Text = "H: ";
+            // 
+            // labelH
+            // 
+            this.labelH.AutoSize = true;
+            this.labelH.Location = new System.Drawing.Point(545, 12);
+            this.labelH.Name = "labelH";
+            this.labelH.Size = new System.Drawing.Size(58, 20);
+            this.labelH.TabIndex = 14;
+            this.labelH.Text = "default";
+            // 
+            // labelTextS
+            // 
+            this.labelTextS.AutoSize = true;
+            this.labelTextS.Location = new System.Drawing.Point(609, 12);
+            this.labelTextS.Name = "labelTextS";
+            this.labelTextS.Size = new System.Drawing.Size(28, 20);
+            this.labelTextS.TabIndex = 15;
+            this.labelTextS.Text = "S: ";
+            // 
+            // labelS
+            // 
+            this.labelS.AutoSize = true;
+            this.labelS.Location = new System.Drawing.Point(643, 12);
+            this.labelS.Name = "labelS";
+            this.labelS.Size = new System.Drawing.Size(58, 20);
+            this.labelS.TabIndex = 16;
+            this.labelS.Text = "default";
+            // 
+            // labelTextBr
+            // 
+            this.labelTextBr.AutoSize = true;
+            this.labelTextBr.Location = new System.Drawing.Point(707, 12);
+            this.labelTextBr.Name = "labelTextBr";
+            this.labelTextBr.Size = new System.Drawing.Size(24, 20);
+            this.labelTextBr.TabIndex = 17;
+            this.labelTextBr.Text = "B:";
+            // 
+            // labelBr
+            // 
+            this.labelBr.AutoSize = true;
+            this.labelBr.Location = new System.Drawing.Point(731, 12);
+            this.labelBr.Name = "labelBr";
+            this.labelBr.Size = new System.Drawing.Size(58, 20);
+            this.labelBr.TabIndex = 18;
+            this.labelBr.Text = "default";
+            // 
             // _hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1220,6 +1286,12 @@
         public System.Windows.Forms.ToolStripMenuItem wiederholenToolStripMenuItem;
         private System.Windows.Forms.Button blackWhiteButton;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label labelBr;
+        private System.Windows.Forms.Label labelTextBr;
+        private System.Windows.Forms.Label labelS;
+        private System.Windows.Forms.Label labelTextS;
+        private System.Windows.Forms.Label labelH;
+        private System.Windows.Forms.Label labelTextH;
 
 
     }

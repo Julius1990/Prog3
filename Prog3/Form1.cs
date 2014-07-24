@@ -745,9 +745,12 @@ namespace Prog3
                         MessageBox.Show("Bitte klicken Sie in das Bild um die Farbe eines Pixels zu bestimmen!");
                     }
                 }
-                labelR.Text = pixelColor.R.ToString();      //Farbwerte ausgeben
+                labelR.Text = pixelColor.R.ToString();      //Farbwerte(RGB) ausgeben
                 labelG.Text = pixelColor.G.ToString();      //
                 labelB.Text = pixelColor.B.ToString();      //
+                labelH.Text = pixelColor.GetHue().ToString();           //Farbwerte(HSI) ausgeben
+                labelS.Text = pixelColor.GetSaturation().ToString();    //
+                labelBr.Text = pixelColor.GetBrightness().ToString();   //
             }
             private Point TranslateZoomMousePosition(Point coordinates, PictureBox picBox)
             {
