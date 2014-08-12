@@ -1027,6 +1027,22 @@ namespace Prog3
             histogramme.BwHisto.CancelAsync();
         }
 
+        private void buttonExif_Click(object sender, EventArgs e)
+        {
+            if (bildPicturebox.Image != null)
+            {
+                if (sem.WaitOne(1000))
+                {
+                    _EXIF exif = new _EXIF(bildPicturebox.Image);
+                    exif.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Bild wird gerade bearbeitet");
+                }
+            }
+        }
+
 
 
 

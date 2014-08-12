@@ -89,6 +89,12 @@
     <Compile Include="saettigung.Designer.cs">
       <DependentUpon>saettigung.cs</DependentUpon>
     </Compile>
+    <Compile Include="_EXIF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_EXIF.Designer.cs">
+      <DependentUpon>_EXIF.cs</DependentUpon>
+    </Compile>
     <Compile Include="_grauwert.cs" />
     <Compile Include="_histogramm.cs" />
     <Compile Include="_schrittspeicher.cs" />
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="saettigung.resx">
       <DependentUpon>saettigung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_EXIF.resx">
+      <DependentUpon>_EXIF.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
