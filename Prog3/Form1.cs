@@ -616,14 +616,109 @@ namespace Prog3
         //Sepia
         private void sepiaButton_Click(object sender, EventArgs e)
         {
+            if (bildPicturebox.Image != null)
+            {
+                threadsBeenden();
 
+                positioniereProgressBarPictureBox();
+                sepiaButton.Enabled = false;
+
+                sepiaBackWorker.RunWorkerAsync();
+            }
+            else
+            {
+                MessageBox.Show("Kein Bild zum Bearbeiten vorhanden");
+            }
+        }
+        private void createSepiaPic()
+        {
+            Bitmap sepiaMap = new Bitmap(bildPicturebox.Image.Width, bildPicturebox.Image.Height);
+            Bitmap origMap = (Bitmap)bildPicturebox.Image;
+
+            form1ProgressBar.Invoke(new Action(() =>
+            {
+                form1ProgressBar.Visible = true;
+                form1ProgressBar.Value = 0;
+                form1ProgressBar.Maximum = sepiaMap.Width;
+            }));
+
+            for (int x = 0; x < sepiaMap.Width; x++)
+            {
+                for (int y = 0; y < sepiaMap.Height; y++)
+                {
+                    Color origColor = origMap.GetPixel(x, y);
+
+                    double redOut = origColor.R * 0.393 + origColor.G * 0.769 + origColor.B * 0.189;
+                    if (redOut > 255)
+                        redOut = 255;
+                    double greenOut = origColor.R * 0.349 + origColor.G * 0.686 + origColor.B * 0.168;
+                    if (greenOut > 255)
+                        greenOut = 255;
+                    double blueOut = origColor.R * 0.272 + origColor.G * 0.534 + origColor.B * 0.131;
+                    if (blueOut > 255)
+                        blueOut = 255;
+
+                    Color sepiaColor = Color.FromArgb((int)redOut, (int)greenOut, (int)blueOut);
+
+                    sepiaMap.SetPixel(x, y, sepiaColor);
+                }
+                sepiaBackWorker.ReportProgress(x);
+                if (sepiaBackWorker.CancellationPending)
+                    return;
+            }
+            if (sepiaBackWorker.CancellationPending)
+                return;
+
+            bildPicturebox.Invoke(new Action(() =>
+            {
+                setAndSavePictureBox(sepiaMap);
+            }));
+
+        }
+        private void sepiaBackWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            //Kritischen Bereich betreten
+            sem.WaitOne();
+
+            Debug.WriteLine("Sepia BW starten");
+
+            //nur um auf nummer sicher zu gehen
+            Thread.Sleep(1000);
+
+            progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = true));
+
+            //negativ berechnen
+            createSepiaPic();
+        }
+        private void sepiaBackWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (sepiaBackWorker.CancellationPending)
+                return;
+
+            //Fortschritt in er Progress Bar anzeigen
+            form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Value = e.ProgressPercentage));
+        }
+        private void sepiaBackWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            //progress bar verschwinden lassen
+            form1ProgressBar.Invoke(new Action(() => form1ProgressBar.Visible = false));
+            //abbrechen button verschwinden lassen
+            progressBarAbbrechenButton.Invoke(new Action(() => progressBarAbbrechenButton.Visible = false));
+
+            //Negativ Checkbox wieder benutzbar machen
+            sepiaButton.Enabled = true;
+
+            Debug.WriteLine("Negativ BW Arbeit beendet");
+
+            //Kritischen Bereich verlassen
+            sem.Release();
         }
 
     //----------------------------------------------------------------------------------------------------
     //Threads
         private void threadsInitialisieren()
         {
-            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histogramme.BwHisto };
+            backWorkers = new List<BackgroundWorker> { negativBW, grauwertBW, histogramme.BwHisto,sepiaBackWorker };
         }
         private void threadsBeenden()
         {
@@ -783,6 +878,52 @@ namespace Prog3
                 return new Point((int)newX, (int)newY);     //Mauskoordinaten über dem vollen Bild zurückgeben
             }
             //siehe außerdem Funktion "bildPicturebox_MouseClick"
+
+        //----------------------------------------------------------------------------------------------------
+        //EXIF-Daten
+            private void buttonExif_Click(object sender, EventArgs e)
+            {
+                if (bildPicturebox.Image != null)
+                {
+                    if (sem.WaitOne(1000))
+                    {
+                        _EXIF exif = new _EXIF(bildPicturebox.Image);
+                        exif.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bild wird gerade bearbeitet");
+                    }
+                }
+            }
+
+        //------------------------------------------------------------------------------------------------
+        //Skalieren
+            private void skalierenButton_Click_1(object sender, EventArgs e)
+            {
+                //Nur ausführen falls ein Bild geladen ist
+                if (bildPicturebox.Image != null)
+                {
+                    //Prüfen ob kritischer Bereich frei
+                    if (sem.WaitOne(1000))
+                    {
+                        //ganze form sperren
+                        lockMainWindow();
+
+                        //um auf nummer sicher zu gehen
+                        Thread.Sleep(1000);
+
+                        //neues Fenster zur Bearbeitung der Skalierung anlegen und öffnen
+                        _skalierung skal = new _skalierung(this,sem);
+                        skal.Show();
+                    }
+                        //Falls was schief geht
+                    else
+                    {
+                        MessageBox.Show("Bild wird gerade bearbeitet");
+                    }
+                }
+            }
 
     //----------------------------------------------------------------------------------------------------
     //Metadaten auslesen
@@ -1027,21 +1168,13 @@ namespace Prog3
             histogramme.BwHisto.CancelAsync();
         }
 
-        private void buttonExif_Click(object sender, EventArgs e)
-        {
-            if (bildPicturebox.Image != null)
-            {
-                if (sem.WaitOne(1000))
-                {
-                    _EXIF exif = new _EXIF(bildPicturebox.Image);
-                    exif.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Bild wird gerade bearbeitet");
-                }
-            }
-        }
+        
+
+    
+
+        
+
+        
 
 
 

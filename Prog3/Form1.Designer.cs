@@ -67,6 +67,8 @@
             this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
             this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
             this.werkzeugPanel = new System.Windows.Forms.Panel();
+            this.skalierenButton = new System.Windows.Forms.Button();
+            this.buttonExif = new System.Windows.Forms.Button();
             this.handCheckBox = new System.Windows.Forms.CheckBox();
             this.colorPickerCheckBox = new System.Windows.Forms.CheckBox();
             this.korrekturenPanel = new System.Windows.Forms.Panel();
@@ -119,7 +121,7 @@
             this.grauwertBW = new System.ComponentModel.BackgroundWorker();
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonExif = new System.Windows.Forms.Button();
+            this.sepiaBackWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -159,7 +161,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(20);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -225,7 +227,7 @@
             // form1ProgressBar
             // 
             this.form1ProgressBar.Location = new System.Drawing.Point(56, 136);
-            this.form1ProgressBar.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.form1ProgressBar.Margin = new System.Windows.Forms.Padding(6);
             this.form1ProgressBar.Name = "form1ProgressBar";
             this.form1ProgressBar.Size = new System.Drawing.Size(182, 23);
             this.form1ProgressBar.TabIndex = 7;
@@ -457,7 +459,7 @@
             // blackWhiteButton
             // 
             this.blackWhiteButton.Location = new System.Drawing.Point(125, 5);
-            this.blackWhiteButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.blackWhiteButton.Margin = new System.Windows.Forms.Padding(2);
             this.blackWhiteButton.Name = "blackWhiteButton";
             this.blackWhiteButton.Size = new System.Drawing.Size(114, 22);
             this.blackWhiteButton.TabIndex = 14;
@@ -468,7 +470,7 @@
             // sepiaButton
             // 
             this.sepiaButton.Location = new System.Drawing.Point(125, 30);
-            this.sepiaButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sepiaButton.Margin = new System.Windows.Forms.Padding(2);
             this.sepiaButton.Name = "sepiaButton";
             this.sepiaButton.Size = new System.Drawing.Size(114, 22);
             this.sepiaButton.TabIndex = 13;
@@ -479,7 +481,7 @@
             // invertedButton
             // 
             this.invertedButton.Location = new System.Drawing.Point(3, 30);
-            this.invertedButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.invertedButton.Margin = new System.Windows.Forms.Padding(2);
             this.invertedButton.Name = "invertedButton";
             this.invertedButton.Size = new System.Drawing.Size(114, 22);
             this.invertedButton.TabIndex = 12;
@@ -490,7 +492,7 @@
             // greyValButton
             // 
             this.greyValButton.Location = new System.Drawing.Point(3, 7);
-            this.greyValButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.greyValButton.Margin = new System.Windows.Forms.Padding(2);
             this.greyValButton.Name = "greyValButton";
             this.greyValButton.Size = new System.Drawing.Size(114, 19);
             this.greyValButton.TabIndex = 11;
@@ -598,6 +600,7 @@
             // werkzeugPanel
             // 
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.werkzeugPanel.Controls.Add(this.skalierenButton);
             this.werkzeugPanel.Controls.Add(this.buttonExif);
             this.werkzeugPanel.Controls.Add(this.handCheckBox);
             this.werkzeugPanel.Controls.Add(this.colorPickerCheckBox);
@@ -606,6 +609,26 @@
             this.werkzeugPanel.Size = new System.Drawing.Size(255, 57);
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
+            // 
+            // skalierenButton
+            // 
+            this.skalierenButton.Location = new System.Drawing.Point(149, 10);
+            this.skalierenButton.Name = "skalierenButton";
+            this.skalierenButton.Size = new System.Drawing.Size(66, 30);
+            this.skalierenButton.TabIndex = 5;
+            this.skalierenButton.Text = "Skalieren";
+            this.skalierenButton.UseVisualStyleBackColor = true;
+            this.skalierenButton.Click += new System.EventHandler(this.skalierenButton_Click_1);
+            // 
+            // buttonExif
+            // 
+            this.buttonExif.Location = new System.Drawing.Point(77, 9);
+            this.buttonExif.Name = "buttonExif";
+            this.buttonExif.Size = new System.Drawing.Size(66, 30);
+            this.buttonExif.TabIndex = 4;
+            this.buttonExif.Text = "Exif-Daten";
+            this.buttonExif.UseVisualStyleBackColor = true;
+            this.buttonExif.Click += new System.EventHandler(this.buttonExif_Click);
             // 
             // handCheckBox
             // 
@@ -694,7 +717,7 @@
             this.tabGrau.Controls.Add(this.pictureBoxHistoGrau);
             this.tabGrau.Location = new System.Drawing.Point(4, 22);
             this.tabGrau.Name = "tabGrau";
-            this.tabGrau.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabGrau.Padding = new System.Windows.Forms.Padding(3);
             this.tabGrau.Size = new System.Drawing.Size(276, 154);
             this.tabGrau.TabIndex = 0;
             this.tabGrau.Text = "Grau";
@@ -730,8 +753,8 @@
             this.tabRGB.Controls.Add(this.pictureBoxHistoRGB);
             this.tabRGB.Location = new System.Drawing.Point(4, 22);
             this.tabRGB.Name = "tabRGB";
-            this.tabRGB.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabRGB.Size = new System.Drawing.Size(276, 179);
+            this.tabRGB.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRGB.Size = new System.Drawing.Size(276, 154);
             this.tabRGB.TabIndex = 1;
             this.tabRGB.Text = "RGB";
             this.tabRGB.UseVisualStyleBackColor = true;
@@ -755,7 +778,7 @@
             this.pictureBoxHistoRGB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxHistoRGB.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxHistoRGB.Name = "pictureBoxHistoRGB";
-            this.pictureBoxHistoRGB.Size = new System.Drawing.Size(270, 173);
+            this.pictureBoxHistoRGB.Size = new System.Drawing.Size(270, 148);
             this.pictureBoxHistoRGB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoRGB.TabIndex = 0;
             this.pictureBoxHistoRGB.TabStop = false;
@@ -766,8 +789,8 @@
             this.tabR.Controls.Add(this.pictureBoxHistoRed);
             this.tabR.Location = new System.Drawing.Point(4, 22);
             this.tabR.Name = "tabR";
-            this.tabR.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabR.Size = new System.Drawing.Size(276, 179);
+            this.tabR.Padding = new System.Windows.Forms.Padding(3);
+            this.tabR.Size = new System.Drawing.Size(276, 154);
             this.tabR.TabIndex = 2;
             this.tabR.Text = "Rot";
             this.tabR.UseVisualStyleBackColor = true;
@@ -791,7 +814,7 @@
             this.pictureBoxHistoRed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxHistoRed.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxHistoRed.Name = "pictureBoxHistoRed";
-            this.pictureBoxHistoRed.Size = new System.Drawing.Size(270, 173);
+            this.pictureBoxHistoRed.Size = new System.Drawing.Size(270, 148);
             this.pictureBoxHistoRed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoRed.TabIndex = 0;
             this.pictureBoxHistoRed.TabStop = false;
@@ -802,8 +825,8 @@
             this.tabG.Controls.Add(this.pictureBoxHistoGruen);
             this.tabG.Location = new System.Drawing.Point(4, 22);
             this.tabG.Name = "tabG";
-            this.tabG.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabG.Size = new System.Drawing.Size(276, 179);
+            this.tabG.Padding = new System.Windows.Forms.Padding(3);
+            this.tabG.Size = new System.Drawing.Size(276, 154);
             this.tabG.TabIndex = 3;
             this.tabG.Text = "Grün";
             this.tabG.UseVisualStyleBackColor = true;
@@ -827,7 +850,7 @@
             this.pictureBoxHistoGruen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxHistoGruen.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxHistoGruen.Name = "pictureBoxHistoGruen";
-            this.pictureBoxHistoGruen.Size = new System.Drawing.Size(270, 173);
+            this.pictureBoxHistoGruen.Size = new System.Drawing.Size(270, 148);
             this.pictureBoxHistoGruen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoGruen.TabIndex = 0;
             this.pictureBoxHistoGruen.TabStop = false;
@@ -838,8 +861,8 @@
             this.tabB.Controls.Add(this.pictureBoxHistoBlau);
             this.tabB.Location = new System.Drawing.Point(4, 22);
             this.tabB.Name = "tabB";
-            this.tabB.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabB.Size = new System.Drawing.Size(276, 179);
+            this.tabB.Padding = new System.Windows.Forms.Padding(3);
+            this.tabB.Size = new System.Drawing.Size(276, 154);
             this.tabB.TabIndex = 4;
             this.tabB.Text = "Blau";
             this.tabB.UseVisualStyleBackColor = true;
@@ -863,7 +886,7 @@
             this.pictureBoxHistoBlau.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxHistoBlau.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxHistoBlau.Name = "pictureBoxHistoBlau";
-            this.pictureBoxHistoBlau.Size = new System.Drawing.Size(270, 173);
+            this.pictureBoxHistoBlau.Size = new System.Drawing.Size(270, 148);
             this.pictureBoxHistoBlau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHistoBlau.TabIndex = 0;
             this.pictureBoxHistoBlau.TabStop = false;
@@ -876,9 +899,9 @@
             this.bearbeitenToolStripMenuItem,
             this.ansichtToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menuStrip2.Margin = new System.Windows.Forms.Padding(2);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(2);
             this.menuStrip2.Size = new System.Drawing.Size(836, 26);
             this.menuStrip2.TabIndex = 4;
             this.menuStrip2.Text = "menuStrip2";
@@ -1106,15 +1129,13 @@
             this.negativBW.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.negativBW_ProgressChanged);
             this.negativBW.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.negativBW_RunWorkerCompleted);
             // 
-            // buttonExif
+            // sepiaBackWorker
             // 
-            this.buttonExif.Location = new System.Drawing.Point(77, 9);
-            this.buttonExif.Name = "buttonExif";
-            this.buttonExif.Size = new System.Drawing.Size(66, 30);
-            this.buttonExif.TabIndex = 4;
-            this.buttonExif.Text = "Exif-Daten";
-            this.buttonExif.UseVisualStyleBackColor = true;
-            this.buttonExif.Click += new System.EventHandler(this.buttonExif_Click);
+            this.sepiaBackWorker.WorkerReportsProgress = true;
+            this.sepiaBackWorker.WorkerSupportsCancellation = true;
+            this.sepiaBackWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.sepiaBackWorker_DoWork);
+            this.sepiaBackWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.sepiaBackWorker_ProgressChanged);
+            this.sepiaBackWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sepiaBackWorker_RunWorkerCompleted);
             // 
             // _hauptfenster
             // 
@@ -1269,6 +1290,8 @@
         private System.Windows.Forms.Label labelH;
         private System.Windows.Forms.Label labelTextH;
         private System.Windows.Forms.Button buttonExif;
+        private System.ComponentModel.BackgroundWorker sepiaBackWorker;
+        private System.Windows.Forms.Button skalierenButton;
 
 
     }

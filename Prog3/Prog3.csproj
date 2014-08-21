@@ -99,6 +99,12 @@
     <Compile Include="_histogramm.cs" />
     <Compile Include="_schrittspeicher.cs" />
     <Compile Include="_schwarzWeiss.cs" />
+    <Compile Include="_skalierung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_skalierung.Designer.cs">
+      <DependentUpon>_skalierung.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="_EXIF.resx">
       <DependentUpon>_EXIF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_skalierung.resx">
+      <DependentUpon>_skalierung.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
