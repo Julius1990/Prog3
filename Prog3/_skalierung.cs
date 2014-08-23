@@ -40,14 +40,48 @@ namespace Prog3
 
         private void anwendenButton_Click(object sender, EventArgs e)
         {
-            //neue Bimap + dazu gehörendes Graphics Objekt anlegen
-            Bitmap orig = (Bitmap)parent.getPictureBoxImage();
-            int targetWidth = Convert.ToInt32(textBox1.Text);
-            int targetHeight = Convert.ToInt32(textBox2.Text);
-            Bitmap gross = new Bitmap(targetWidth, targetHeight);
-            Graphics gr = Graphics.FromImage(gross);
             try
             {
+                //neue Bimap + dazu gehörendes Graphics Objekt anlegen
+                Bitmap orig = (Bitmap)parent.getPictureBoxImage();
+
+                int targetWidth = 0;
+                int targetHeight=0;
+
+                if(checkBoxSeitenverhaeltnis.Checked){
+                    Debug.WriteLine("Seitenverhältnisse beibehalten");
+
+                    if (textBox1.Text != "" && textBox2.Text == "")
+                    {
+                        double ratio = (double)orig.Height / (double)orig.Width;
+
+                        targetWidth = Convert.ToInt32(textBox1.Text);
+                        targetHeight = (int)(targetWidth * ratio);
+
+                        textBox2.Text = targetHeight.ToString();
+                    }
+                    else if (textBox1.Text == "" && textBox2.Text != "")
+                    {
+                        double ratio = (double)orig.Width / (double)orig.Height;
+
+                        targetHeight = Convert.ToInt32(textBox2.Text);
+                        targetWidth = (int)(targetHeight * ratio);
+
+                        textBox1.Text = targetWidth.ToString();
+                    }
+                    else
+                        MessageBox.Show("Bitte nur in eine Box etwas eintragen");
+                }
+                else{
+                    Debug.WriteLine("Seitenverhältnisse ignorieren");
+
+                     targetWidth = Convert.ToInt32(textBox1.Text);
+                     targetHeight = Convert.ToInt32(textBox2.Text);
+                }
+                
+                Bitmap gross = new Bitmap(targetWidth, targetHeight);
+                Graphics gr = Graphics.FromImage(gross);
+
                 //Zielbild erstellen
                 gr.Clear(Color.Black);
                 gr.InterpolationMode = InterpolationMode.Bicubic;
@@ -74,16 +108,19 @@ namespace Prog3
         }
         private void speichernButton_Click(object sender, EventArgs e)
         {
-            //Geändertes Bild an das Hauptfenster übergeben und Bearbeitunsschritt speichern
-            parent.setAndSavePictureBox((Bitmap)pictureBoxSkaliert.Image);
+            if (pictureBoxSkaliert.Image != null)
+            {
+                //Geändertes Bild an das Hauptfenster übergeben und Bearbeitunsschritt speichern
+                parent.setAndSavePictureBox((Bitmap)pictureBoxSkaliert.Image);
 
-            //aufräumen bzw die beiden bilder der pictureboxen löschen
-            pictureBoxSkaliert.Image = null;
-            pictureBoxOriginal.Image = null;
-            GC.Collect();
+                //aufräumen bzw die beiden bilder der pictureboxen löschen
+                pictureBoxSkaliert.Image = null;
+                pictureBoxOriginal.Image = null;
+                GC.Collect();
 
-            //Form schließen
-            this.Close();
+                //Form schließen
+                this.Close();
+            }
         }
 
         private void _skalierung_FormClosing(object sender, FormClosingEventArgs e)

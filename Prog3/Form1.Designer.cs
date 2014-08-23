@@ -122,6 +122,7 @@
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.sepiaBackWorker = new System.ComponentModel.BackgroundWorker();
+            this.exportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -912,6 +913,7 @@
             this.öffnenToolStripMenuItem,
             this.speichernToolStripMenuItem,
             this.speichernUnterToolStripMenuItem,
+            this.exportierenToolStripMenuItem,
             this.schließenToolStripMenuItem,
             this.beendenToolStripMenuItem});
             this.dateiToolStripMenuItem.Name = "dateiToolStripMenuItem";
@@ -1137,6 +1139,14 @@
             this.sepiaBackWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.sepiaBackWorker_ProgressChanged);
             this.sepiaBackWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sepiaBackWorker_RunWorkerCompleted);
             // 
+            // exportierenToolStripMenuItem
+            // 
+            this.exportierenToolStripMenuItem.Name = "exportierenToolStripMenuItem";
+            this.exportierenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exportierenToolStripMenuItem.Text = "Exportieren";
+            this.exportierenToolStripMenuItem.Visible = false;
+            this.exportierenToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
+            // 
             // _hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1292,6 +1302,7 @@
         private System.Windows.Forms.Button buttonExif;
         private System.ComponentModel.BackgroundWorker sepiaBackWorker;
         private System.Windows.Forms.Button skalierenButton;
+        private System.Windows.Forms.ToolStripMenuItem exportierenToolStripMenuItem;
 
 
     }

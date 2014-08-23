@@ -36,13 +36,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.anwendenButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBoxSkaliert = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.anwendenButton = new System.Windows.Forms.Button();
             this.abbrechenButton = new System.Windows.Forms.Button();
             this.speichernButton = new System.Windows.Forms.Button();
+            this.checkBoxSeitenverhaeltnis = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -110,6 +111,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBoxSeitenverhaeltnis);
             this.groupBox2.Controls.Add(this.textBox2);
             this.groupBox2.Controls.Add(this.anwendenButton);
             this.groupBox2.Controls.Add(this.textBox1);
@@ -129,6 +131,16 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 11;
+            // 
+            // anwendenButton
+            // 
+            this.anwendenButton.Location = new System.Drawing.Point(279, 44);
+            this.anwendenButton.Name = "anwendenButton";
+            this.anwendenButton.Size = new System.Drawing.Size(75, 23);
+            this.anwendenButton.TabIndex = 12;
+            this.anwendenButton.Text = "Anwenden";
+            this.anwendenButton.UseVisualStyleBackColor = true;
+            this.anwendenButton.Click += new System.EventHandler(this.anwendenButton_Click);
             // 
             // textBox1
             // 
@@ -164,16 +176,6 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Breite";
             // 
-            // anwendenButton
-            // 
-            this.anwendenButton.Location = new System.Drawing.Point(279, 44);
-            this.anwendenButton.Name = "anwendenButton";
-            this.anwendenButton.Size = new System.Drawing.Size(75, 23);
-            this.anwendenButton.TabIndex = 12;
-            this.anwendenButton.Text = "Anwenden";
-            this.anwendenButton.UseVisualStyleBackColor = true;
-            this.anwendenButton.Click += new System.EventHandler(this.anwendenButton_Click);
-            // 
             // abbrechenButton
             // 
             this.abbrechenButton.Location = new System.Drawing.Point(561, 378);
@@ -193,6 +195,16 @@
             this.speichernButton.Text = "Speichern";
             this.speichernButton.UseVisualStyleBackColor = true;
             this.speichernButton.Click += new System.EventHandler(this.speichernButton_Click);
+            // 
+            // checkBoxSeitenverhaeltnis
+            // 
+            this.checkBoxSeitenverhaeltnis.AutoSize = true;
+            this.checkBoxSeitenverhaeltnis.Location = new System.Drawing.Point(186, 21);
+            this.checkBoxSeitenverhaeltnis.Name = "checkBoxSeitenverhaeltnis";
+            this.checkBoxSeitenverhaeltnis.Size = new System.Drawing.Size(168, 17);
+            this.checkBoxSeitenverhaeltnis.TabIndex = 13;
+            this.checkBoxSeitenverhaeltnis.Text = "Seitenverhätnisse beibehalten";
+            this.checkBoxSeitenverhaeltnis.UseVisualStyleBackColor = true;
             // 
             // _skalierung
             // 
@@ -233,5 +245,6 @@
         private System.Windows.Forms.Button anwendenButton;
         private System.Windows.Forms.Button abbrechenButton;
         private System.Windows.Forms.Button speichernButton;
+        private System.Windows.Forms.CheckBox checkBoxSeitenverhaeltnis;
     }
 }

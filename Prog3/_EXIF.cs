@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,12 +14,16 @@ namespace Prog3
 {
     public partial class _EXIF : Form
     {
-        public _EXIF(Image eingabeBild)
+        Semaphore sem;
+
+        public _EXIF(Image eingabeBild, Semaphore sem_in)
         {
             InitializeComponent();
 
 
             Bitmap bild = (Bitmap)eingabeBild;
+
+            sem = sem_in;
 
             PropertyItem[] properties = bild.PropertyItems;
             ASCIIEncoding metaEncoder = new ASCIIEncoding();
@@ -459,6 +464,7 @@ namespace Prog3
 
                 }
             }
+            sem.Release();
         }
     }
 }

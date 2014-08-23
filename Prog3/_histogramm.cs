@@ -83,7 +83,7 @@ namespace Prog3
             try
             {
                 //Kritischen Bereich betreten
-                parent.sem.WaitOne(5000);
+                //parent.sem.WaitOne(5000);
 
                 Debug.WriteLine("BwHisto startet");
 
@@ -91,27 +91,32 @@ namespace Prog3
                 if (geradeBerechnetesHistogramm == 1)
                 {
                     Debug.WriteLine("BwHisto doWork: calcGrey()");
-                    calcGray();
+                    if (parent.pictureBoxHistoGrau.Image == null)
+                        calcGray();
                 }
                 else if (geradeBerechnetesHistogramm == 2)
                 {
                     Debug.WriteLine("BwHisto doWork: calcRGB()");
-                    calcRGB();
+                    if (parent.pictureBoxHistoRGB.Image == null)
+                        calcRGB();
                 }
                 else if (geradeBerechnetesHistogramm == 3)
                 {
                     Debug.WriteLine("BwHisto doWork: calcRed()");
-                    calcRed();
+                    if (parent.pictureBoxHistoRed.Image == null)
+                        calcRed();
                 }
                 else if (geradeBerechnetesHistogramm == 4)
                 {
                     Debug.WriteLine("BwHisto doWork: calcGreen()");
-                    calcGreen();
+                    if (parent.pictureBoxHistoGruen.Image == null)
+                        calcGreen();
                 }
                 else if (geradeBerechnetesHistogramm == 5)
                 {
                     Debug.WriteLine("BwHisto doWork: calcBlue()");
-                    calcBlue();
+                    if (parent.pictureBoxHistoBlau.Image == null)
+                        calcBlue();
                 }
             }
             catch

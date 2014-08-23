@@ -124,6 +124,7 @@ namespace Prog3
                     picDir = bildOeffnenDialog.FileName;
 
                     speichernUnterToolStripMenuItem.Visible = true;
+                    exportierenToolStripMenuItem.Visible = true;
                     schließenToolStripMenuItem.Visible = true;
 
                     //rückgängig und wiederholen ausblenden
@@ -267,6 +268,7 @@ namespace Prog3
 
             //datei
             speichernUnterToolStripMenuItem.Visible = false;
+            exportierenToolStripMenuItem.Visible = false;
             speichernToolStripMenuItem.Visible = false;
             schließenToolStripMenuItem.Visible = false;
 
@@ -285,7 +287,8 @@ namespace Prog3
         {
             schrittspeicher.schrittSpeichern(bitmap_in);
             Debug.WriteLine("setAndSavePictureBox()");
-            bildPicturebox.Image = bitmap_in;            
+            bildPicturebox.Image = bitmap_in;
+            histogramme.clearAllHistos();
         }
         public Bitmap getPictureBoxImage()
         {
@@ -887,7 +890,7 @@ namespace Prog3
                 {
                     if (sem.WaitOne(1000))
                     {
-                        _EXIF exif = new _EXIF(bildPicturebox.Image);
+                        _EXIF exif = new _EXIF(bildPicturebox.Image,sem);
                         exif.ShowDialog();
                     }
                     else
@@ -1161,7 +1164,10 @@ namespace Prog3
     //Histogramme
         private void tabControllHistogramme_Click(object sender, EventArgs e)
         {
-            histogramme.berechneHistogramm(tabControllHistogramme.SelectedTab.Text.ToString());
+            if (sem.WaitOne(1000))
+            {
+                histogramme.berechneHistogramm(tabControllHistogramme.SelectedTab.Text.ToString());
+            }
         }
         private void cancelHistoCalc(object sender, EventArgs e)
         {
