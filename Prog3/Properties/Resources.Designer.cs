@@ -73,9 +73,19 @@ namespace Prog3.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap crop1 {
+            get {
+                object obj = ResourceManager.GetObject("crop1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap move_1 {
             get {
-                object obj = ResourceManager.GetObject("move-1", resourceCulture);
+                object obj = ResourceManager.GetObject("move_1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +106,16 @@ namespace Prog3.Properties {
         internal static System.Drawing.Bitmap pfeilunten {
             get {
                 object obj = ResourceManager.GetObject("pfeilunten", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ScaleIcon {
+            get {
+                object obj = ResourceManager.GetObject("ScaleIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

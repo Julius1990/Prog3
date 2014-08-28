@@ -67,6 +67,7 @@
             this.werkzeugeCheckBox = new System.Windows.Forms.CheckBox();
             this.ansichtCheckBox = new System.Windows.Forms.CheckBox();
             this.werkzeugPanel = new System.Windows.Forms.Panel();
+            this.beschneidenCheckBox = new System.Windows.Forms.CheckBox();
             this.skalierenButton = new System.Windows.Forms.Button();
             this.buttonExif = new System.Windows.Forms.Button();
             this.handCheckBox = new System.Windows.Forms.CheckBox();
@@ -96,6 +97,7 @@
             this.öffnenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.schließenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +124,6 @@
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.sepiaBackWorker = new System.ComponentModel.BackgroundWorker();
-            this.exportierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -243,9 +244,11 @@
             this.bildPicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.bildPicturebox.TabIndex = 0;
             this.bildPicturebox.TabStop = false;
+            this.bildPicturebox.Paint += new System.Windows.Forms.PaintEventHandler(this.bildPictureBox_Paint);
             this.bildPicturebox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseClick);
             this.bildPicturebox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseDown);
             this.bildPicturebox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.bildPicturebox_MouseMove);
+            this.bildPicturebox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.bildPictureBox_MouseUp);
             // 
             // labelBr
             // 
@@ -434,7 +437,6 @@
             // filterCheckBox
             // 
             this.filterCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.filterCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
             this.filterCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.filterCheckBox.Location = new System.Drawing.Point(3, 121);
             this.filterCheckBox.Name = "filterCheckBox";
@@ -588,7 +590,6 @@
             // ansichtCheckBox
             // 
             this.ansichtCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.ansichtCheckBox.Image = global::Prog3.Properties.Resources.pfeil_rechts2;
             this.ansichtCheckBox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ansichtCheckBox.Location = new System.Drawing.Point(3, 91);
             this.ansichtCheckBox.Name = "ansichtCheckBox";
@@ -601,6 +602,7 @@
             // werkzeugPanel
             // 
             this.werkzeugPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.werkzeugPanel.Controls.Add(this.beschneidenCheckBox);
             this.werkzeugPanel.Controls.Add(this.skalierenButton);
             this.werkzeugPanel.Controls.Add(this.buttonExif);
             this.werkzeugPanel.Controls.Add(this.handCheckBox);
@@ -611,21 +613,35 @@
             this.werkzeugPanel.TabIndex = 3;
             this.werkzeugPanel.Visible = false;
             // 
+            // beschneidenCheckBox
+            // 
+            this.beschneidenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.beschneidenCheckBox.BackgroundImage = global::Prog3.Properties.Resources.crop1;
+            this.beschneidenCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.beschneidenCheckBox.Location = new System.Drawing.Point(77, 10);
+            this.beschneidenCheckBox.Name = "beschneidenCheckBox";
+            this.beschneidenCheckBox.Size = new System.Drawing.Size(32, 30);
+            this.beschneidenCheckBox.TabIndex = 6;
+            this.beschneidenCheckBox.UseVisualStyleBackColor = true;
+            this.beschneidenCheckBox.CheckedChanged += new System.EventHandler(this.beschneidenCheckBox_CheckedChanged);
+            // 
             // skalierenButton
             // 
-            this.skalierenButton.Location = new System.Drawing.Point(149, 10);
+            this.skalierenButton.AutoSize = true;
+            this.skalierenButton.BackgroundImage = global::Prog3.Properties.Resources.ScaleIcon;
+            this.skalierenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.skalierenButton.Location = new System.Drawing.Point(115, 10);
             this.skalierenButton.Name = "skalierenButton";
-            this.skalierenButton.Size = new System.Drawing.Size(66, 30);
+            this.skalierenButton.Size = new System.Drawing.Size(39, 30);
             this.skalierenButton.TabIndex = 5;
-            this.skalierenButton.Text = "Skalieren";
             this.skalierenButton.UseVisualStyleBackColor = true;
             this.skalierenButton.Click += new System.EventHandler(this.skalierenButton_Click_1);
             // 
             // buttonExif
             // 
-            this.buttonExif.Location = new System.Drawing.Point(77, 9);
+            this.buttonExif.Location = new System.Drawing.Point(160, 10);
             this.buttonExif.Name = "buttonExif";
-            this.buttonExif.Size = new System.Drawing.Size(66, 30);
+            this.buttonExif.Size = new System.Drawing.Size(66, 28);
             this.buttonExif.TabIndex = 4;
             this.buttonExif.Text = "Exif-Daten";
             this.buttonExif.UseVisualStyleBackColor = true;
@@ -646,9 +662,8 @@
             // colorPickerCheckBox
             // 
             this.colorPickerCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-            this.colorPickerCheckBox.BackgroundImage = global::Prog3.Properties.Resources.color_picker;
             this.colorPickerCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.colorPickerCheckBox.Location = new System.Drawing.Point(41, 9);
+            this.colorPickerCheckBox.Location = new System.Drawing.Point(39, 10);
             this.colorPickerCheckBox.Name = "colorPickerCheckBox";
             this.colorPickerCheckBox.Size = new System.Drawing.Size(30, 30);
             this.colorPickerCheckBox.TabIndex = 2;
@@ -943,6 +958,14 @@
             this.speichernUnterToolStripMenuItem.Visible = false;
             this.speichernUnterToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
             // 
+            // exportierenToolStripMenuItem
+            // 
+            this.exportierenToolStripMenuItem.Name = "exportierenToolStripMenuItem";
+            this.exportierenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.exportierenToolStripMenuItem.Text = "Exportieren";
+            this.exportierenToolStripMenuItem.Visible = false;
+            this.exportierenToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
+            // 
             // schließenToolStripMenuItem
             // 
             this.schließenToolStripMenuItem.Name = "schließenToolStripMenuItem";
@@ -1139,14 +1162,6 @@
             this.sepiaBackWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.sepiaBackWorker_ProgressChanged);
             this.sepiaBackWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sepiaBackWorker_RunWorkerCompleted);
             // 
-            // exportierenToolStripMenuItem
-            // 
-            this.exportierenToolStripMenuItem.Name = "exportierenToolStripMenuItem";
-            this.exportierenToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.exportierenToolStripMenuItem.Text = "Exportieren";
-            this.exportierenToolStripMenuItem.Visible = false;
-            this.exportierenToolStripMenuItem.Click += new System.EventHandler(this.speichernUnterToolStripMenuItem_Click);
-            // 
             // _hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1178,6 +1193,7 @@
             this.FilterPanel.ResumeLayout(false);
             this.ansichtPanel.ResumeLayout(false);
             this.werkzeugPanel.ResumeLayout(false);
+            this.werkzeugPanel.PerformLayout();
             this.korrekturenPanel.ResumeLayout(false);
             this.tabControllHistogramme.ResumeLayout(false);
             this.tabGrau.ResumeLayout(false);
@@ -1303,6 +1319,7 @@
         private System.ComponentModel.BackgroundWorker sepiaBackWorker;
         private System.Windows.Forms.Button skalierenButton;
         private System.Windows.Forms.ToolStripMenuItem exportierenToolStripMenuItem;
+        private System.Windows.Forms.CheckBox beschneidenCheckBox;
 
 
     }

@@ -118,8 +118,6 @@ namespace Prog3
                     bildPicturebox.Top = 0;
                     bildPicturebox.Left = 0;
 
-                    schrittspeicher.schrittSpeichern((Bitmap)bildPicturebox.Image);
-
                     //Speicherort merken
                     picDir = bildOeffnenDialog.FileName;
 
@@ -135,6 +133,8 @@ namespace Prog3
                     toolStripProgressBar.Value = 0;
 
                     getPicMeta();
+
+                    schrittspeicher.schrittSpeichern((Bitmap)bildPicturebox.Image);
                 }                
             }
         }
@@ -736,7 +736,7 @@ namespace Prog3
     //Werkzeuge
         private void initialisiereTools()
         {
-            werkzeuge = new List<CheckBox> { handCheckBox, colorPickerCheckBox };
+            werkzeuge = new List<CheckBox> { handCheckBox, colorPickerCheckBox, beschneidenCheckBox };
         }
         private void lockTools(CheckBox selbst)
         {
@@ -763,6 +763,41 @@ namespace Prog3
             }
             return true;
         }
+
+        //------------------------------------------------------------------------------------------------
+        //Hand Tool
+        private void beschneidenCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (beschneidenCheckBox.Checked)
+            {
+                if (checkTools(beschneidenCheckBox))   //wenn kein anderes tool aktiv
+                {
+                    //einfach so stehen lasse, die Funktionen "bildPicturebox_MouseMove" und 
+                    //"bildPicturebox_MouseDown" arbeiten damit weiter
+
+                    Cursor = Cursors.Arrow;
+                    lockTools(beschneidenCheckBox);
+                }
+                else
+                {
+                    beschneidenCheckBox.CheckState = CheckState.Unchecked;
+                }
+            }
+            else
+            {
+                if (checkTools(beschneidenCheckBox))
+                {
+                    unlockTools(beschneidenCheckBox);
+                    Cursor = Cursors.Default;
+                }
+            }
+        }
+
+        Rectangle auswahl;
+        Rectangle draw_auswahl;
+        bool amAuswaehlen;
+        
+        
 
         //------------------------------------------------------------------------------------------------
         //Hand Tool
@@ -960,6 +995,19 @@ namespace Prog3
                     bildPicturebox.Left += (e.X - xMouseMove);
                 }
             }
+            //falls Beschneidung aktiv
+            else if (amAuswaehlen)
+            {
+                Point trans = TranslateZoomMousePosition(new Point(e.X, e.Y), bildPicturebox);
+                auswahl.Width = trans.X - auswahl.X;
+                auswahl.Height = trans.Y - auswahl.Y;
+
+                draw_auswahl.Width = e.X - draw_auswahl.X;
+                draw_auswahl.Height = e.Y - draw_auswahl.Y;
+
+                // Redraw the picturebox:
+                bildPicturebox.Refresh();
+            }
         }
         private void bildPicturebox_MouseDown(object sender, MouseEventArgs e)
         {    
@@ -970,6 +1018,16 @@ namespace Prog3
                 {
                     xMouseMove = e.X;
                     yMouseMove = e.Y;
+                }
+            }
+            else if (beschneidenCheckBox.Checked)
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    amAuswaehlen = true;
+                    Point translatiert = TranslateZoomMousePosition(new Point(e.X, e.Y), bildPicturebox);
+                    auswahl = new Rectangle(translatiert, new Size());
+                    draw_auswahl = new Rectangle(new Point(e.X, e.Y), new Size());
                 }
             }
         }
@@ -987,6 +1045,43 @@ namespace Prog3
             else if (e.Button == MouseButtons.Right)
             {
 
+            }
+        }
+        private void bildPictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && amAuswaehlen && auswahl.Size != new Size())
+            {
+                try
+                {
+                    Bitmap orig = (Bitmap)bildPicturebox.Image;
+
+                    bildPicturebox.Image = null;
+                    GC.Collect();
+
+                    orig = orig.Clone(auswahl, orig.PixelFormat);
+
+                    setAndSavePictureBox(orig);
+
+                    orig = null;
+                    orig = null;
+                    GC.Collect();
+
+                    amAuswaehlen = false;
+                }
+                catch
+                {
+                    Debug.WriteLine("Beschneidung out of Range pictureBox");
+                }
+            }
+            else
+                amAuswaehlen = false;
+        }
+        private void bildPictureBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (amAuswaehlen)
+            {
+                Pen pen = Pens.GreenYellow;
+                e.Graphics.DrawRectangle(pen, draw_auswahl);
             }
         }
 
@@ -1173,6 +1268,8 @@ namespace Prog3
         {
             histogramme.BwHisto.CancelAsync();
         }
+
+        
 
         
 

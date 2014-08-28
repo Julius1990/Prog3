@@ -35,6 +35,7 @@
             this.origBreiteLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBoxSeitenverhaeltnis = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.anwendenButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.abbrechenButton = new System.Windows.Forms.Button();
             this.speichernButton = new System.Windows.Forms.Button();
-            this.checkBoxSeitenverhaeltnis = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOriginal)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -125,6 +125,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Skalieren auf";
             // 
+            // checkBoxSeitenverhaeltnis
+            // 
+            this.checkBoxSeitenverhaeltnis.AutoSize = true;
+            this.checkBoxSeitenverhaeltnis.Location = new System.Drawing.Point(186, 21);
+            this.checkBoxSeitenverhaeltnis.Name = "checkBoxSeitenverhaeltnis";
+            this.checkBoxSeitenverhaeltnis.Size = new System.Drawing.Size(168, 17);
+            this.checkBoxSeitenverhaeltnis.TabIndex = 13;
+            this.checkBoxSeitenverhaeltnis.Text = "Seitenverhätnisse beibehalten";
+            this.checkBoxSeitenverhaeltnis.UseVisualStyleBackColor = true;
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(46, 46);
@@ -196,16 +206,6 @@
             this.speichernButton.UseVisualStyleBackColor = true;
             this.speichernButton.Click += new System.EventHandler(this.speichernButton_Click);
             // 
-            // checkBoxSeitenverhaeltnis
-            // 
-            this.checkBoxSeitenverhaeltnis.AutoSize = true;
-            this.checkBoxSeitenverhaeltnis.Location = new System.Drawing.Point(186, 21);
-            this.checkBoxSeitenverhaeltnis.Name = "checkBoxSeitenverhaeltnis";
-            this.checkBoxSeitenverhaeltnis.Size = new System.Drawing.Size(168, 17);
-            this.checkBoxSeitenverhaeltnis.TabIndex = 13;
-            this.checkBoxSeitenverhaeltnis.Text = "Seitenverhätnisse beibehalten";
-            this.checkBoxSeitenverhaeltnis.UseVisualStyleBackColor = true;
-            // 
             // _skalierung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +215,8 @@
             this.Controls.Add(this.speichernButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximumSize = new System.Drawing.Size(766, 447);
+            this.MinimumSize = new System.Drawing.Size(766, 447);
             this.Name = "_skalierung";
             this.Text = "Skalieren";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this._skalierung_FormClosing);

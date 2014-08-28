@@ -45,60 +45,74 @@ namespace Prog3
         }
         public void speicherlöschen()
         {
-            parent.bildPicturebox.Image = null;
-            GC.Collect();
-            counter = -1;
-            maxSchritt = counter;
-            //sucht alle dateien und löscht diese
-            string[] dateien = Directory.GetFiles(ordnerName);
-            foreach (string filePath in dateien)
+            try
             {
-                File.Delete(filePath);
+                parent.bildPicturebox.Image = null;
+                GC.Collect();
+                counter = -1;
+                maxSchritt = counter;
+                //sucht alle dateien und löscht diese
+                string[] dateien = Directory.GetFiles(ordnerName);
+                foreach (string filePath in dateien)
+                {
+                    File.Delete(filePath);
+                }
+                //optionen für rückgängig und wiederholen ausblenden
+                parent.rückgängigToolStripMenuItem.Visible = false;
+                parent.wiederholenToolStripMenuItem.Visible = false;
             }
-            //optionen für rückgängig und wiederholen ausblenden
-            parent.rückgängigToolStripMenuItem.Visible = false;
-            parent.wiederholenToolStripMenuItem.Visible = false;
+            catch
+            {
+                Debug.WriteLine("Schrittspeicher konnte nicht gelöscht werden");
+            }
         }
 
         //einzelnen Schritt speichern
         public void schrittSpeichern(Bitmap bild)
         {
-            Debug.WriteLine("schrittSpeichern()");
-            //überflüssig gespeichertes löschen
-            if (maxSchritt > counter)
+            try
             {
-                string[] dateien = Directory.GetFiles(ordnerName);
-                foreach (string filePath in dateien)
+                Debug.WriteLine("schrittSpeichern()");
+                //überflüssig gespeichertes löschen
+                if (maxSchritt > counter)
                 {
-                    string name = Path.GetFileNameWithoutExtension(filePath);
-                    Int32 number = Convert.ToInt32(name);
-
-                    if (number > counter)
+                    string[] dateien = Directory.GetFiles(ordnerName);
+                    foreach (string filePath in dateien)
                     {
-                        File.Delete(filePath);
+                        string name = Path.GetFileNameWithoutExtension(filePath);
+                        Int32 number = Convert.ToInt32(name);
+
+                        if (number > counter)
+                        {
+                            File.Delete(filePath);
+                        }
+
+                        parent.histogramme.clearAllHistos();
                     }
-
-                    parent.histogramme.clearAllHistos();
                 }
+
+                counter++;
+                Debug.WriteLine("ZwischenSchrittCounter: " + counter.ToString());
+
+                //bild speichern
+                string dateiName = "zwischenSchritte\\" + counter.ToString() + ".bmp";
+                bild.Save(dateiName);
+
+                //rückgängig zulassen oder blockieren
+                if (counter > 0)
+                    parent.rückgängigToolStripMenuItem.Visible = true;
+                else
+                    parent.rückgängigToolStripMenuItem.Visible = false;
+
+                //wiederholen deaktivieren
+                parent.wiederholenToolStripMenuItem.Visible = false;
+                //benötigt für wiederholen
+                maxSchritt = counter;
             }
-
-            counter++;
-            Debug.WriteLine("ZwischenSchrittCounter: " + counter.ToString());
-
-            //bild speichern
-            string dateiName = "zwischenSchritte\\" + counter.ToString() + ".bmp";
-            bild.Save(dateiName);
-
-            //rückgängig zulassen oder blockieren
-            if (counter > 0)
-                parent.rückgängigToolStripMenuItem.Visible = true;
-            else
-                parent.rückgängigToolStripMenuItem.Visible = false;
-
-            //wiederholen deaktivieren
-            parent.wiederholenToolStripMenuItem.Visible = false;
-            //benötigt für wiederholen
-            maxSchritt = counter;
+            catch
+            {
+                Debug.WriteLine("Schritt konnte nicht gespeichert werden");
+            }
         }
 
         //Navigation zwischen den Schritten
