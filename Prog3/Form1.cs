@@ -606,7 +606,7 @@ namespace Prog3
         {
             Color origColor, invertedColor;
             Bitmap origMap, invertedMap;
-            int r, g, b, width, height, i, j = 0;
+            int r, g, b, width, height, i, j;
 
             //Hier muss ein neues Objekt angelegt werde, ansonsten bekommt man eine Zugriffsverletzung
             origMap = new Bitmap(bildPicturebox.Image);
@@ -623,7 +623,7 @@ namespace Prog3
             }));
 
 
-            while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
+            for (j = 0; j < height; j++ )      //Schleife zum durchlaufen der Bitmap in der  Breite
             {
                 for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
                 {
@@ -634,7 +634,7 @@ namespace Prog3
                     invertedColor = Color.FromArgb(r, g, b);        //Colorvariable aus invertierten Farbwerten erstellen
                     invertedMap.SetPixel(i, j, invertedColor);      //Farbe setzen
                 }
-                j++;        //Laufvariable inkrementieren
+                //j++;        //Laufvariable inkrementieren
                 negativBW.ReportProgress(j);
                 if (negativBW.CancellationPending)
                     return;
