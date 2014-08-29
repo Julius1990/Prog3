@@ -108,6 +108,12 @@
     <Compile Include="_skalierung.Designer.cs">
       <DependentUpon>_skalierung.cs</DependentUpon>
     </Compile>
+    <Compile Include="_weissAbgleich.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_weissAbgleich.Designer.cs">
+      <DependentUpon>_weissAbgleich.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="_skalierung.resx">
       <DependentUpon>_skalierung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_weissAbgleich.resx">
+      <DependentUpon>_weissAbgleich.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
@@ -173,15 +182,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\color_picker.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\move-1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\crop1.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\crop.png" />
@@ -190,7 +193,7 @@
     <None Include="Resources\ScaleIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ScaleIcon1.png" />
+    <None Include="Resources\color_picker.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

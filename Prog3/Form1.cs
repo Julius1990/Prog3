@@ -32,6 +32,14 @@ namespace Prog3
 
             //Histogrammklasse
             histogramme = new _Histogramm(this);
+
+            //Label initialisieren
+            labelR.Text = "";
+            labelG.Text = "";
+            labelB.Text = "";
+            labelH.Text = "";
+            labelS.Text = "";
+            labelBr.Text = "";
             
             //Picturebox ordentlich anordnen
             bildPicturebox.Left = linkerContainer.Panel1.Left + 10;
@@ -131,9 +139,7 @@ namespace Prog3
 
                     toolStripProgressBar.Maximum = bildPicturebox.Image.Width;
                     toolStripProgressBar.Value = 0;
-
-                    getPicMeta();
-
+                    
                     schrittspeicher.schrittSpeichern((Bitmap)bildPicturebox.Image);
                 }                
             }
@@ -261,7 +267,16 @@ namespace Prog3
             //Threads beenden
             threadsBeenden();
 
+            //Labels Color Picker Reset
+            labelR.Text = "";
+            labelG.Text = "";
+            labelB.Text = "";
+            labelH.Text = "";
+            labelS.Text = "";
+            labelBr.Text = "";
+
             bildPicturebox.Image = null;
+            pictureBoxColor.BackColor = System.Drawing.SystemColors.ControlDarkDark;
 
             //Histogramme aufräumen
             histogramme.clearAllHistos();
@@ -364,7 +379,26 @@ namespace Prog3
                 MessageBox.Show("Bild wird gerade bearbeitet");
             }
         }
+        private void weissabgleichButton_Click(object sender, EventArgs e)
+        {
+            //Kritischen Bereich betreten
+            if (sem.WaitOne(1000))
+            {
+                //ganze form sperren
+                lockMainWindow();
 
+                //um auf nummer sicher zu gehen
+                Thread.Sleep(1000);
+
+                //neue Form öffnen
+                _weissAbgleich weiss = new _weissAbgleich(getPictureBoxImage(),this,sem);
+                weiss.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bild wird gerade bearbeitet");
+            }
+        }
     //----------------------------------------------------------------------------------------------------
     //Filter     
 
@@ -793,11 +827,11 @@ namespace Prog3
             }
         }
 
+        //------------------------------------------------------------------------------------------------
+        //Beschndeiden
         Rectangle auswahl;
         Rectangle draw_auswahl;
         bool amAuswaehlen;
-        
-        
 
         //------------------------------------------------------------------------------------------------
         //Hand Tool
@@ -878,6 +912,8 @@ namespace Prog3
                         MessageBox.Show("Bitte klicken Sie in das Bild um die Farbe eines Pixels zu bestimmen!");
                     }
                 }
+                pictureBoxColor.BackColor = pixelColor;
+
                 labelR.Text = pixelColor.R.ToString();      //Farbwerte(RGB) ausgeben
                 labelG.Text = pixelColor.G.ToString();      //
                 labelB.Text = pixelColor.B.ToString();      //
@@ -964,25 +1000,6 @@ namespace Prog3
             }
 
     //----------------------------------------------------------------------------------------------------
-    //Metadaten auslesen
-        private void getPicMeta() {
-            PropertyItem[] picProps = bildPicturebox.Image.PropertyItems;
-            ASCIIEncoding metaEncoder = new ASCIIEncoding();
-
-            labelDate.Text = "default";
-
-            foreach(PropertyItem item in picProps){
-                if (item.Id == 0x9003)
-                {
-                    labelDate.Text = metaEncoder.GetString(item.Value);
-                }
-            }
-
-            labelReso.Text = bildPicturebox.Image.Width + " x " + bildPicturebox.Image.Height;
-            labelDirectory.Text = picDir;
-        }
-
-    //----------------------------------------------------------------------------------------------------
     //Mausbewegungen
         private void bildPicturebox_MouseMove(object sender, MouseEventArgs e)
         {
@@ -996,7 +1013,7 @@ namespace Prog3
                 }
             }
             //falls Beschneidung aktiv
-            else if (amAuswaehlen)
+            else if (amAuswaehlen && bildPicturebox.Image!=null)
             {
                 Point trans = TranslateZoomMousePosition(new Point(e.X, e.Y), bildPicturebox);
                 auswahl.Width = trans.X - auswahl.X;
@@ -1268,6 +1285,8 @@ namespace Prog3
         {
             histogramme.BwHisto.CancelAsync();
         }
+
+        
 
         
 

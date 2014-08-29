@@ -41,10 +41,6 @@
             this.labelTextS = new System.Windows.Forms.Label();
             this.labelH = new System.Windows.Forms.Label();
             this.labelTextH = new System.Windows.Forms.Label();
-            this.labelReso = new System.Windows.Forms.Label();
-            this.labelTextReso = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.labelTextDate = new System.Windows.Forms.Label();
             this.labelB = new System.Windows.Forms.Label();
             this.labelG = new System.Windows.Forms.Label();
             this.labelR = new System.Windows.Forms.Label();
@@ -73,6 +69,7 @@
             this.handCheckBox = new System.Windows.Forms.CheckBox();
             this.colorPickerCheckBox = new System.Windows.Forms.CheckBox();
             this.korrekturenPanel = new System.Windows.Forms.Panel();
+            this.weissabgleichButton = new System.Windows.Forms.Button();
             this.helligkeitButton = new System.Windows.Forms.Button();
             this.saettigungButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -124,6 +121,7 @@
             this.negativBW = new System.ComponentModel.BackgroundWorker();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.sepiaBackWorker = new System.ComponentModel.BackgroundWorker();
+            this.pictureBoxColor = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -157,6 +155,7 @@
             this.statusStrip1.SuspendLayout();
             this.centerPanel.SuspendLayout();
             this.menuePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxColor)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -195,16 +194,13 @@
             // 
             // linkerContainer.Panel2
             // 
+            this.linkerContainer.Panel2.Controls.Add(this.pictureBoxColor);
             this.linkerContainer.Panel2.Controls.Add(this.labelBr);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextBr);
             this.linkerContainer.Panel2.Controls.Add(this.labelS);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextS);
             this.linkerContainer.Panel2.Controls.Add(this.labelH);
             this.linkerContainer.Panel2.Controls.Add(this.labelTextH);
-            this.linkerContainer.Panel2.Controls.Add(this.labelReso);
-            this.linkerContainer.Panel2.Controls.Add(this.labelTextReso);
-            this.linkerContainer.Panel2.Controls.Add(this.labelDate);
-            this.linkerContainer.Panel2.Controls.Add(this.labelTextDate);
             this.linkerContainer.Panel2.Controls.Add(this.labelB);
             this.linkerContainer.Panel2.Controls.Add(this.labelG);
             this.linkerContainer.Panel2.Controls.Add(this.labelR);
@@ -253,7 +249,7 @@
             // labelBr
             // 
             this.labelBr.AutoSize = true;
-            this.labelBr.Location = new System.Drawing.Point(487, 8);
+            this.labelBr.Location = new System.Drawing.Point(273, 50);
             this.labelBr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelBr.Name = "labelBr";
             this.labelBr.Size = new System.Drawing.Size(39, 13);
@@ -263,17 +259,17 @@
             // labelTextBr
             // 
             this.labelTextBr.AutoSize = true;
-            this.labelTextBr.Location = new System.Drawing.Point(471, 8);
+            this.labelTextBr.Location = new System.Drawing.Point(202, 50);
             this.labelTextBr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextBr.Name = "labelTextBr";
-            this.labelTextBr.Size = new System.Drawing.Size(17, 13);
+            this.labelTextBr.Size = new System.Drawing.Size(59, 13);
             this.labelTextBr.TabIndex = 17;
-            this.labelTextBr.Text = "B:";
+            this.labelTextBr.Text = "Brightness:";
             // 
             // labelS
             // 
             this.labelS.AutoSize = true;
-            this.labelS.Location = new System.Drawing.Point(429, 8);
+            this.labelS.Location = new System.Drawing.Point(273, 28);
             this.labelS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelS.Name = "labelS";
             this.labelS.Size = new System.Drawing.Size(39, 13);
@@ -283,17 +279,17 @@
             // labelTextS
             // 
             this.labelTextS.AutoSize = true;
-            this.labelTextS.Location = new System.Drawing.Point(406, 8);
+            this.labelTextS.Location = new System.Drawing.Point(203, 28);
             this.labelTextS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextS.Name = "labelTextS";
-            this.labelTextS.Size = new System.Drawing.Size(20, 13);
+            this.labelTextS.Size = new System.Drawing.Size(58, 13);
             this.labelTextS.TabIndex = 15;
-            this.labelTextS.Text = "S: ";
+            this.labelTextS.Text = "Saturation:";
             // 
             // labelH
             // 
             this.labelH.AutoSize = true;
-            this.labelH.Location = new System.Drawing.Point(363, 8);
+            this.labelH.Location = new System.Drawing.Point(273, 8);
             this.labelH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelH.Name = "labelH";
             this.labelH.Size = new System.Drawing.Size(39, 13);
@@ -303,53 +299,17 @@
             // labelTextH
             // 
             this.labelTextH.AutoSize = true;
-            this.labelTextH.Location = new System.Drawing.Point(349, 8);
+            this.labelTextH.Location = new System.Drawing.Point(231, 8);
             this.labelTextH.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextH.Name = "labelTextH";
-            this.labelTextH.Size = new System.Drawing.Size(21, 13);
+            this.labelTextH.Size = new System.Drawing.Size(30, 13);
             this.labelTextH.TabIndex = 13;
-            this.labelTextH.Text = "H: ";
-            // 
-            // labelReso
-            // 
-            this.labelReso.AutoSize = true;
-            this.labelReso.Location = new System.Drawing.Point(88, 51);
-            this.labelReso.Name = "labelReso";
-            this.labelReso.Size = new System.Drawing.Size(39, 13);
-            this.labelReso.TabIndex = 12;
-            this.labelReso.Text = "default";
-            // 
-            // labelTextReso
-            // 
-            this.labelTextReso.AutoSize = true;
-            this.labelTextReso.Location = new System.Drawing.Point(5, 51);
-            this.labelTextReso.Name = "labelTextReso";
-            this.labelTextReso.Size = new System.Drawing.Size(60, 13);
-            this.labelTextReso.TabIndex = 11;
-            this.labelTextReso.Text = "Auflösung: ";
-            // 
-            // labelDate
-            // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(88, 31);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(39, 13);
-            this.labelDate.TabIndex = 8;
-            this.labelDate.Text = "default";
-            // 
-            // labelTextDate
-            // 
-            this.labelTextDate.AutoSize = true;
-            this.labelTextDate.Location = new System.Drawing.Point(4, 31);
-            this.labelTextDate.Name = "labelTextDate";
-            this.labelTextDate.Size = new System.Drawing.Size(90, 13);
-            this.labelTextDate.TabIndex = 7;
-            this.labelTextDate.Text = "Aufnahmedatum: ";
+            this.labelTextH.Text = "Hue:";
             // 
             // labelB
             // 
             this.labelB.AutoSize = true;
-            this.labelB.Location = new System.Drawing.Point(161, 8);
+            this.labelB.Location = new System.Drawing.Point(53, 50);
             this.labelB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelB.Name = "labelB";
             this.labelB.Size = new System.Drawing.Size(39, 13);
@@ -359,7 +319,7 @@
             // labelG
             // 
             this.labelG.AutoSize = true;
-            this.labelG.Location = new System.Drawing.Point(92, 8);
+            this.labelG.Location = new System.Drawing.Point(53, 28);
             this.labelG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelG.Name = "labelG";
             this.labelG.Size = new System.Drawing.Size(39, 13);
@@ -369,7 +329,7 @@
             // labelR
             // 
             this.labelR.AutoSize = true;
-            this.labelR.Location = new System.Drawing.Point(25, 8);
+            this.labelR.Location = new System.Drawing.Point(53, 8);
             this.labelR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelR.Name = "labelR";
             this.labelR.Size = new System.Drawing.Size(39, 13);
@@ -379,32 +339,32 @@
             // labelTextB
             // 
             this.labelTextB.AutoSize = true;
-            this.labelTextB.Location = new System.Drawing.Point(138, 8);
+            this.labelTextB.Location = new System.Drawing.Point(7, 50);
             this.labelTextB.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextB.Name = "labelTextB";
-            this.labelTextB.Size = new System.Drawing.Size(20, 13);
+            this.labelTextB.Size = new System.Drawing.Size(31, 13);
             this.labelTextB.TabIndex = 3;
-            this.labelTextB.Text = "B: ";
+            this.labelTextB.Text = "Blau:";
             // 
             // labelTextG
             // 
             this.labelTextG.AutoSize = true;
-            this.labelTextG.Location = new System.Drawing.Point(68, 8);
+            this.labelTextG.Location = new System.Drawing.Point(5, 28);
             this.labelTextG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextG.Name = "labelTextG";
-            this.labelTextG.Size = new System.Drawing.Size(21, 13);
+            this.labelTextG.Size = new System.Drawing.Size(33, 13);
             this.labelTextG.TabIndex = 2;
-            this.labelTextG.Text = "G: ";
+            this.labelTextG.Text = "Grün:";
             // 
             // labelTextR
             // 
             this.labelTextR.AutoSize = true;
-            this.labelTextR.Location = new System.Drawing.Point(4, 8);
+            this.labelTextR.Location = new System.Drawing.Point(11, 9);
             this.labelTextR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTextR.Name = "labelTextR";
-            this.labelTextR.Size = new System.Drawing.Size(21, 13);
+            this.labelTextR.Size = new System.Drawing.Size(27, 13);
             this.labelTextR.TabIndex = 1;
-            this.labelTextR.Text = "R: ";
+            this.labelTextR.Text = "Rot:";
             // 
             // rechterContainer
             // 
@@ -618,7 +578,7 @@
             this.beschneidenCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
             this.beschneidenCheckBox.BackgroundImage = global::Prog3.Properties.Resources.crop1;
             this.beschneidenCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.beschneidenCheckBox.Location = new System.Drawing.Point(77, 10);
+            this.beschneidenCheckBox.Location = new System.Drawing.Point(75, 10);
             this.beschneidenCheckBox.Name = "beschneidenCheckBox";
             this.beschneidenCheckBox.Size = new System.Drawing.Size(32, 30);
             this.beschneidenCheckBox.TabIndex = 6;
@@ -627,19 +587,18 @@
             // 
             // skalierenButton
             // 
-            this.skalierenButton.AutoSize = true;
             this.skalierenButton.BackgroundImage = global::Prog3.Properties.Resources.ScaleIcon;
             this.skalierenButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.skalierenButton.Location = new System.Drawing.Point(115, 10);
+            this.skalierenButton.Location = new System.Drawing.Point(113, 10);
             this.skalierenButton.Name = "skalierenButton";
-            this.skalierenButton.Size = new System.Drawing.Size(39, 30);
+            this.skalierenButton.Size = new System.Drawing.Size(32, 30);
             this.skalierenButton.TabIndex = 5;
             this.skalierenButton.UseVisualStyleBackColor = true;
             this.skalierenButton.Click += new System.EventHandler(this.skalierenButton_Click_1);
             // 
             // buttonExif
             // 
-            this.buttonExif.Location = new System.Drawing.Point(160, 10);
+            this.buttonExif.Location = new System.Drawing.Point(151, 10);
             this.buttonExif.Name = "buttonExif";
             this.buttonExif.Size = new System.Drawing.Size(66, 28);
             this.buttonExif.TabIndex = 4;
@@ -662,6 +621,7 @@
             // colorPickerCheckBox
             // 
             this.colorPickerCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+            this.colorPickerCheckBox.BackgroundImage = global::Prog3.Properties.Resources.color_picker;
             this.colorPickerCheckBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.colorPickerCheckBox.Location = new System.Drawing.Point(39, 10);
             this.colorPickerCheckBox.Name = "colorPickerCheckBox";
@@ -673,6 +633,7 @@
             // korrekturenPanel
             // 
             this.korrekturenPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.korrekturenPanel.Controls.Add(this.weissabgleichButton);
             this.korrekturenPanel.Controls.Add(this.helligkeitButton);
             this.korrekturenPanel.Controls.Add(this.saettigungButton);
             this.korrekturenPanel.Controls.Add(this.button2);
@@ -681,6 +642,16 @@
             this.korrekturenPanel.Size = new System.Drawing.Size(256, 65);
             this.korrekturenPanel.TabIndex = 1;
             this.korrekturenPanel.Visible = false;
+            // 
+            // weissabgleichButton
+            // 
+            this.weissabgleichButton.Location = new System.Drawing.Point(125, 33);
+            this.weissabgleichButton.Name = "weissabgleichButton";
+            this.weissabgleichButton.Size = new System.Drawing.Size(114, 23);
+            this.weissabgleichButton.TabIndex = 3;
+            this.weissabgleichButton.Text = "Weißabgleich";
+            this.weissabgleichButton.UseVisualStyleBackColor = true;
+            this.weissabgleichButton.Click += new System.EventHandler(this.weissabgleichButton_Click);
             // 
             // helligkeitButton
             // 
@@ -1162,6 +1133,15 @@
             this.sepiaBackWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.sepiaBackWorker_ProgressChanged);
             this.sepiaBackWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.sepiaBackWorker_RunWorkerCompleted);
             // 
+            // pictureBoxColor
+            // 
+            this.pictureBoxColor.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.pictureBoxColor.Location = new System.Drawing.Point(97, 9);
+            this.pictureBoxColor.Name = "pictureBoxColor";
+            this.pictureBoxColor.Size = new System.Drawing.Size(100, 54);
+            this.pictureBoxColor.TabIndex = 19;
+            this.pictureBoxColor.TabStop = false;
+            // 
             // _hauptfenster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1173,7 +1153,7 @@
             this.Controls.Add(this.randRechtsPanel);
             this.Controls.Add(this.randUntenPanel);
             this.Name = "_hauptfenster";
-            this.Text = "Prog3";
+            this.Text = "Photoshop für Arme";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.form1_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.form1_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1193,7 +1173,6 @@
             this.FilterPanel.ResumeLayout(false);
             this.ansichtPanel.ResumeLayout(false);
             this.werkzeugPanel.ResumeLayout(false);
-            this.werkzeugPanel.PerformLayout();
             this.korrekturenPanel.ResumeLayout(false);
             this.tabControllHistogramme.ResumeLayout(false);
             this.tabGrau.ResumeLayout(false);
@@ -1220,6 +1199,7 @@
             this.centerPanel.ResumeLayout(false);
             this.menuePanel.ResumeLayout(false);
             this.menuePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxColor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1272,10 +1252,6 @@
         private System.Windows.Forms.CheckBox colorPickerCheckBox;
         private System.Windows.Forms.CheckBox handCheckBox;
         private System.Windows.Forms.Button saettigungButton;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.Label labelTextDate;
-        private System.Windows.Forms.Label labelTextReso;
-        private System.Windows.Forms.Label labelReso;
         private System.Windows.Forms.Button helligkeitButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel labelDirectory;
@@ -1320,6 +1296,8 @@
         private System.Windows.Forms.Button skalierenButton;
         private System.Windows.Forms.ToolStripMenuItem exportierenToolStripMenuItem;
         private System.Windows.Forms.CheckBox beschneidenCheckBox;
+        private System.Windows.Forms.Button weissabgleichButton;
+        private System.Windows.Forms.PictureBox pictureBoxColor;
 
 
     }
