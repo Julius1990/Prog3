@@ -475,7 +475,7 @@ namespace Prog3
                 form1ProgressBar.Value = 0;
             }));
 
-            while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
+            for (j = 0; j < height; j++)      //Schleife zum durchlaufen der Bitmap in der  Breite
             {
                 for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
                 {
@@ -484,8 +484,8 @@ namespace Prog3
                     greyColor = Color.FromArgb(greyValue, greyValue, greyValue);        //Colorvariable aus Grauwert erzeugen
                     greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
                 }
-                j++;        //Laufvariable inkrementieren
-                
+               // j++;        //Laufvariable inkrementieren
+
                 //falls die bearbeitung abgebrochen wird
                 if (grauwertBW.CancellationPending)
                     return;
