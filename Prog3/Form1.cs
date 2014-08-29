@@ -493,7 +493,7 @@ namespace Prog3
         {
             Color oldColor, greyColor;
             Bitmap helpMap, greyMap;
-            int width, height, i, j = 0, greyValue;
+            int width, height, i, j, greyValue;
 
             //neue Instanz anlegen, sonst bekommt man eine Zugriffsverletzung
             helpMap = new Bitmap(bildPicturebox.Image);
@@ -509,7 +509,7 @@ namespace Prog3
                 form1ProgressBar.Value = 0;
             }));
 
-            while (j < height)      //Schleife zum durchlaufen der Bitmap in der  Breite
+            for (j = 0; j < height; j++)      //Schleife zum durchlaufen der Bitmap in der  Breite
             {
                 for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
                 {
@@ -518,8 +518,7 @@ namespace Prog3
                     greyColor = Color.FromArgb(greyValue, greyValue, greyValue);        //Colorvariable aus Grauwert erzeugen
                     greyMap.SetPixel(i, j, greyColor);      //Farbe(Grau) setzen
                 }
-                j++;        //Laufvariable inkrementieren
-                
+               
                 //falls die bearbeitung abgebrochen wird
                 if (grauwertBW.CancellationPending)
                     return;
@@ -531,12 +530,12 @@ namespace Prog3
             if (eingabe_in != "grau")
             {
                 Graphics gr = Graphics.FromImage(greyMap);
-                var ia = new System.Drawing.Imaging.ImageAttributes();
+                ImageAttributes ia = new System.Drawing.Imaging.ImageAttributes();
                 ia.SetThreshold(0.5f); // Change this threshold as needed
-                var rc = new Rectangle(0, 0, width, height);
+                Rectangle rc = new Rectangle(0, 0, width, height);
                 gr.DrawImage(greyMap, rc, 0, 0, width, height, GraphicsUnit.Pixel, ia);
             }
-
+            
             GC.Collect();
 
             if (grauwertBW.CancellationPending)
