@@ -1105,14 +1105,6 @@ namespace Prog3
                 bildPicturebox.Width += bildPicturebox.Width / 5;
                 bildPicturebox.Height += bildPicturebox.Height / 5;
             }
-                //Ordnet die Picturebox ordentlich an
-            else
-            {
-                bildPicturebox.Left = linkerContainer.Panel1.Left+10;
-                bildPicturebox.Top = linkerContainer.Panel1.Top+35;
-                bildPicturebox.Width = linkerContainer.Panel1.Width-30;
-                bildPicturebox.Height = linkerContainer.Panel1.Height-55;
-            }
         }
         private void zoomOutButton_Click(object sender, EventArgs e)
         {
@@ -1120,14 +1112,6 @@ namespace Prog3
             {
                 bildPicturebox.Width -= bildPicturebox.Width / 5;
                 bildPicturebox.Height -= bildPicturebox.Height / 5;
-            }
-            //Ordnet die Picturebox ordentlich an
-            else
-            {
-                bildPicturebox.Left = linkerContainer.Panel1.Left + 10;
-                bildPicturebox.Top = linkerContainer.Panel1.Top + 35;
-                bildPicturebox.Width = linkerContainer.Panel1.Width - 30;
-                bildPicturebox.Height = linkerContainer.Panel1.Height - 55;
             }
         }
         private void rechtsDrehenButton_Click(object sender, EventArgs e)
