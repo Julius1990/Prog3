@@ -127,8 +127,6 @@ namespace Prog3
             saettigungPicturebox.Image = newMap;
         }
 
-        
-
         private void saettTrackBar_ValueChanged_1(object sender, EventArgs e)
         {
             if (saettTrackBar.Value < 0)

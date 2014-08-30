@@ -6,7 +6,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>z6Q2Db1g8PPgIBN+mo2IiknGQ8QSWQOCOGR+wZi8vIs=</HashCode>
+      <HashCode>y6w2Hb1g8fPpIBNemo3IiknGQ8QaWUqCOGR+wZq8vIs=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -38,12 +38,6 @@
       <FileName>saettigung.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Prog3.Properties.Resources" Collapsed="true">
-    <Position X="0.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AABAAAAAAAAAAAAAAAABEAAAAQAAAAAgAAQAAAAEAIA=</HashCode>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Prog3.Properties.Settings" Collapsed="true">
     <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
@@ -62,6 +56,12 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAIAQBAAAAAAAAAAAAIAAGABBAAAABAAAA=</HashCode>
       <FileName>_schrittspeicher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Prog3.Properties.Resources" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAgAAIBAAAAAAAAAABEAAAAQAAAAAgAAQQAAAEAIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

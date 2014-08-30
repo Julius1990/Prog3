@@ -103,9 +103,29 @@ namespace Prog3.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pfeil_rechts21 {
+            get {
+                object obj = ResourceManager.GetObject("pfeil_rechts21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pfeilunten {
             get {
                 object obj = ResourceManager.GetObject("pfeilunten", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pfeilunten1 {
+            get {
+                object obj = ResourceManager.GetObject("pfeilunten1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

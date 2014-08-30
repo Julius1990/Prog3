@@ -93,9 +93,6 @@ namespace Prog3
 
         //Werkzeuge
         List<CheckBox> werkzeuge;
-
-        //Metadaten
-        string picDir;
         
         //Semaphore
         public Semaphore sem = new Semaphore(1, 1);
@@ -128,16 +125,9 @@ namespace Prog3
                     bildPicturebox.Top = 0;
                     bildPicturebox.Left = 0;
 
-                    //Speicherort merken
-                    picDir = bildOeffnenDialog.FileName;
-
                     speichernUnterToolStripMenuItem.Visible = true;
                     exportierenToolStripMenuItem.Visible = true;
                     schließenToolStripMenuItem.Visible = true;
-
-                    //rückgängig und wiederholen ausblenden
-                    rückgängigToolStripMenuItem.Visible = false;
-                    wiederholenToolStripMenuItem.Visible = false;
 
                     toolStripProgressBar.Maximum = bildPicturebox.Image.Width;
                     toolStripProgressBar.Value = 0;
@@ -147,10 +137,6 @@ namespace Prog3
             }
         }
         private void form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            aufraeumen();
-        }
-        private void form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             aufraeumen();
         }
@@ -402,8 +388,7 @@ namespace Prog3
             }
         }
     //----------------------------------------------------------------------------------------------------
-    //Filter     
-
+    //Filter 
         //Korrekturen abbrechen
         private void abbrechenButton_CLick(object sender, EventArgs e)
         {

@@ -84,7 +84,7 @@ namespace Prog3
 
                 //Zielbild erstellen
                 gr.Clear(Color.Black);
-                gr.InterpolationMode = InterpolationMode.Bicubic;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 gr.DrawImage(orig, new Rectangle(0, 0, targetWidth, targetHeight), new Rectangle(0, 0, orig.Width, orig.Height), GraphicsUnit.Pixel);
                 gr.Dispose();
                 pictureBoxSkaliert.Image = gross;
