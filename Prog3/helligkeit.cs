@@ -70,11 +70,8 @@ namespace Prog3
             {
                 float wert = (float)Convert.ToDouble(gelesen);
                 Debug.WriteLine("Eingelesen :" + wert);
-
-                if (wert == 0)
-                    helligkeitParameter = 0;
-                else
-                    helligkeitParameter = wert * 0.01f;
+                                
+                helligkeitParameter = wert * 0.01f;
 
                 Debug.WriteLine("Umgerechnet in :" + helligkeitParameter);
 
