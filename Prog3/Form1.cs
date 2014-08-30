@@ -21,6 +21,7 @@ namespace Prog3
         public _hauptfenster()
         {
             InitializeComponent();
+
             schrittspeicher = new _schrittspeicher(this);
             schrittspeicher.speicherAnlegen();
 
@@ -72,6 +73,8 @@ namespace Prog3
 
             //Backgroundworker
             threadsInitialisieren();
+
+            labelFilename.Text = "";
         }
 
     //----------------------------------------------------------------------------------------------------
@@ -119,6 +122,8 @@ namespace Prog3
                 if (ext == ".jpg" || ext == ".JPG" || ext == ".jpeg" || ext == ".png" || ext == ".gif" || ext == ".tif" || ext == ".bmp")
                 {
                     aufraeumen();
+
+                    labelFilename.Text = Path.GetFullPath(bildOeffnenDialog.FileName).ToString();
 
                     //bild laden, picturebox ausrichten, geladenes bild als zwischenschritt speichern
                     bildPicturebox.Image = Image.FromFile(bildOeffnenDialog.FileName);
@@ -254,6 +259,9 @@ namespace Prog3
         {
             //Threads beenden
             threadsBeenden();
+
+            //Angezeigten Dateinamen entfernen
+            labelFilename.Text = "";
 
             //Labels Color Picker Reset
             labelR.Text = "";
@@ -785,7 +793,7 @@ namespace Prog3
         }
 
         //------------------------------------------------------------------------------------------------
-        //Hand Tool
+        //Beschneiden
         private void beschneidenCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (beschneidenCheckBox.Checked)
@@ -1271,6 +1279,7 @@ namespace Prog3
         {
             histogramme.BwHisto.CancelAsync();
         }
+
 
         
 
