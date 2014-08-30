@@ -456,6 +456,8 @@ namespace Prog3
                             Int16 atitudeRef = BitConverter.ToInt16(pr.Value, 0);
                             textBox2.AppendText("Altitude Ref: " + atitudeRef.ToString());
                             break;
+                        default:
+                            continue;
                     }
                     textBox2.AppendText("\n");
                 }

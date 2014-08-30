@@ -26,7 +26,7 @@ namespace Prog3
             hellSem = sem_in;
 
             //Helligkeit mit Standardwert initialisieren
-            helligkeitParameter = -0.1f;
+            helligkeitParameter = 0.0f;
 
             //Bild in der PictureBox anzeigen
             helligkeitPicturebox.Image = parent.getPictureBoxImage();

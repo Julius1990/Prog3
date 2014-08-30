@@ -47,8 +47,6 @@ namespace Prog3
         {
             try
             {
-                parent.bildPicturebox.Image = null;
-                GC.Collect();
                 counter = -1;
                 maxSchritt = counter;
                 //sucht alle dateien und löscht diese
