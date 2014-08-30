@@ -66,7 +66,9 @@ namespace Prog3
             toolTip.SetToolTip(invertedButton, "Aus dem geöffneten Bild ein Negativbild erstellen");
             toolTip.SetToolTip(sepiaButton, "Aus dem geöffneten Bild ein Sepiabild erstellen");
             toolTip.SetToolTip(tabControllHistogramme, "Histogramme erstellen und anzeigen");
-
+            toolTip.SetToolTip(beschneidenCheckBox, "Beschneiden");
+            toolTip.SetToolTip(skalierenButton, "Skalieren");
+            toolTip.SetToolTip(buttonExif, "Exif-Daten des Bildes auslesen");
 
             //Backgroundworker
             threadsInitialisieren();
