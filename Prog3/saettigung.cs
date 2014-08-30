@@ -109,10 +109,12 @@ namespace Prog3
                 for (i = 0; i < width; i++)     //Schleife zum durchlaufen der Bitmap in der Höhe
                 {
                     oldColor = helpMap.GetPixel(i, j);
-                    if ((oldColor.GetSaturation() * factor) > 1.0)
+                    //Wenn Maximalwert der Sättigung schon erreicht
+                    if ((oldColor.GetSaturation() * factor) >= 1.0)
                     {
                         newColor = hsl2rgb(oldColor.GetHue() / 360, 1.0, oldColor.GetBrightness());
                     }
+                    //Wenn Sättigung unter dem Maximalwert liegt
                     else
                     {
                         newColor = hsl2rgb(oldColor.GetHue() / 360, oldColor.GetSaturation() * factor, oldColor.GetBrightness());
