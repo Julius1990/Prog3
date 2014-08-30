@@ -38,7 +38,7 @@ namespace Prog3
 
         //------------------------------------------------------------------------------------------------
         //Steuerung Button + Trackbar
-        private void kontrastTrackBar_ValueChanged(object sender, EventArgs e)
+        private void weissabgleich_ValueChanged(object sender, EventArgs e)
         {
             calc_white();
         }

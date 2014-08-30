@@ -176,7 +176,7 @@
             this.weissabgleichTrackBar.TickFrequency = 10;
             this.weissabgleichTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.weissabgleichTrackBar.Value = 255;
-            this.weissabgleichTrackBar.ValueChanged += new System.EventHandler(this.kontrastTrackBar_ValueChanged);
+            this.weissabgleichTrackBar.ValueChanged += new System.EventHandler(this.weissabgleich_ValueChanged);
             // 
             // abbrechenButton
             // 
